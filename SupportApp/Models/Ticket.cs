@@ -8,8 +8,7 @@ namespace SupportApp.Model
     [Index(nameof(TicketNumber),IsUnique = true, Name = "Unique_TicketNumber")]
     public class Ticket
     {
-        private Agent? agent;
-        private BaseUser? baseUser;
+
 
         public int Id { get; set; }
 
@@ -23,11 +22,10 @@ namespace SupportApp.Model
         public Priority Priority { get; set; }
 
         public int UserId { get; set; }
-        public BaseUser? User { get => baseUser; set => baseUser = value; }
-
+        public BaseUser? BaseUser { get; set; }
 
         public int AgentId { get; set; }
-        public Agent? Agent { get => agent; set => agent = value; }
+        public Agent? Agent { get; set; }
 
         public int? ChatId { get; set; }
 

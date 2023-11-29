@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using SupportApp.Helper;
+using SupportApp.Models;
 using SupportApp.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,16 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 
 // register interface 
 builder.Services.AddTransient<IEmailService, EmailService>();
+
+
+
+// config Dependency Injection
+
+builder.Services.AddDbContext<SupportAppDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDatabase")));
+
+
+
 
 var app = builder.Build();
 
