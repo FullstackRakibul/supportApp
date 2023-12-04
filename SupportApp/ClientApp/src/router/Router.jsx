@@ -4,14 +4,10 @@ import routes from './Routes';
 
 
 
-const Router = () => (
+const router = () => (
     <BrowserRouter>
-        <Routes>
-            <Route path={routes.map((routeData) => (
-                <Route key={routeData.path} element={routeData.element}/>
-            ))}/>
-        </Routes>
+        <RouterProvider router={routes} />
     </BrowserRouter>
 );
 
-export default Router;
+export default router;

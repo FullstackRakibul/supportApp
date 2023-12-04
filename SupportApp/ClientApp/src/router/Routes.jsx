@@ -18,7 +18,7 @@ const routes =[
         element:<EmailCard/>
     },
     {
-        path:"/",
+        path:"/dashboard",
         element:<Dashboard/>,
     },
     {

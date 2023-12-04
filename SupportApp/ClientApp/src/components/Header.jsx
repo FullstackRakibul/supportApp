@@ -1,14 +1,23 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import {Link, NavLink, Route, Routes} from 'react-router-dom'
+import Dashboard from "../containers/Dashboard.jsx";
+import AgentCard from "../containers/AgentCard.jsx";
+import ProfileCard from "../containers/ProfileCard.jsx";
 
 const Header = () => {
   return (
     <>
         <header>
             <nav>
-                <NavLink to="/profile"> User Profile </NavLink>
-                <NavLink to="/agent"> Agent </NavLink>
-                <NavLink to="/chat"> Chat Box </NavLink>
+                <div>
+                    This is a header.
+                </div>
+                <Routes>
+                    <Route path="/dashboard" element={<Dashboard/>} />
+                    <Route path="/agent" element={<AgentCard/>} />
+                    <Route path="/profile" element={<ProfileCard/>} />
+                </Routes>
+                
             </nav>
         </header>
     </>
