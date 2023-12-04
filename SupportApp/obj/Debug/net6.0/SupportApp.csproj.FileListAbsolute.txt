@@ -276,3 +276,11 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ru\Micros
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package-lock.json
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package.json
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.sourcelink.json
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.SupportApp.Microsoft.AspNetCore.StaticWebAssets.props
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.build.SupportApp.props
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.SupportApp.props
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SupportApp.props
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets.pack.json
