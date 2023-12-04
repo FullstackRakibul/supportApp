@@ -7,7 +7,9 @@ import routes from './Routes';
 const Router = () => (
     <BrowserRouter>
         <Routes>
-            <Route path={routes.map()}/>
+            <Route path={routes.map((routeData) => (
+                <Route key={routeData.path} element={routeData.element}/>
+            ))}/>
         </Routes>
     </BrowserRouter>
 );
