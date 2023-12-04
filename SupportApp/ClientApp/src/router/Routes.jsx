@@ -20,12 +20,6 @@ const routes =[
     {
         path:"/",
         element:<Dashboard/>,
-        children: [
-            {
-                path:"dashboard/agent",
-                element:<AgentCard/>
-            }
-        ]
     },
     {
         path:"/profile",
