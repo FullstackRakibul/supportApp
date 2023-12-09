@@ -25,9 +25,6 @@ namespace SupportApp.Models
         public string? Username { get; set; }
 
         public string? Password { get; set; }
-
-        // Navigation property for tickets associated with this user
-        public ICollection<Ticket>? Tickets { get; set; }
     }
 
     public enum AgentStatus {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportApp.Models;
 using SupportApp.Models;
+using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
@@ -15,10 +16,14 @@ namespace SupportApp.Controllers
     public class TicketController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
+        private readonly TicketService _ticketService;
+        private readonly EmailBoxServcie _emailBoxServcie;
 
-        public TicketController(SupportAppDbContext context)
+        public TicketController(SupportAppDbContext context, TicketService ticketService, EmailBoxServcie emailBoxServcie)
         {
             _context = context;
+            _ticketService = ticketService;
+            _emailBoxServcie = emailBoxServcie;
         }
 
         // GET: api/Ticket
@@ -119,6 +124,27 @@ namespace SupportApp.Controllers
         private bool TicketExists(int id)
         {
             return (_context.Ticket?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        [HttpGet("FetchEmailData")]
+        public IActionResult FetchEmailDataToDatabase()
+        {
+            try
+            {
+                var emailDetailsList = _emailBoxServcie.GetEmailDetails();
+
+                foreach (var emailDetails in emailDetailsList)
+                {
+                    _ticketService.CreateTicket(emailDetails);
+                }
+
+                return Ok(emailDetailsList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -25,32 +25,32 @@ namespace SupportApp.Models
 
         public Priority Priority { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public BaseUser? BaseUser { get; set; }
-
-        public int AgentId { get; set; }
+    
+        public int? AgentId { get; set; }
         public Agent? Agent { get; set; }
 
         public int? ChatId { get; set; }
 
         public string? Attachment { get; set; }
 
-        public TicketStatus Status { get; set; } = TicketStatus.Open;
+        public TicketStatus Status { get; set; } = TicketStatus.Acknowledged;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; }
     }
 
     public enum Priority
     { 
-        High,
-        Low,
+        Regular,
+        Standard,
         Emergency,
         BusinessClass
     }
 
     public enum TicketStatus
     {
-        Open, 
+        Acknowledged,
         InProgress,
         Closed
     }
