@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SupportApp.Model;
+using SupportApp.Models;
 using SupportApp.Models;
 
 namespace SupportApp.Controllers

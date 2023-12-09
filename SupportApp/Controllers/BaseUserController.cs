@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Bcpg.Sig;
-using SupportApp.Model;
+using SupportApp.Models;
 using SupportApp.Models;
 
 namespace SupportApp.Controllers

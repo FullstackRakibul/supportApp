@@ -69,7 +69,7 @@ public class EmailBoxServcie
                     Headers = GetHeaders(message),
                     From = message.From.ToString(),
                     Subject = message.Subject,
-                    Body = message.TextBody,
+                    Body = !string.IsNullOrEmpty(message.TextBody)? message.TextBody: message.HtmlBody,
                     To = message.To.ToString(),
                     Cc = message.Cc.ToString(),
                     Bcc = message.Bcc.ToString(),

@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using SupportApp.Models;
 
-namespace SupportApp.Model
+namespace SupportApp.Models
 {
     public class Agent
     {

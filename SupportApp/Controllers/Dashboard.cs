@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SupportApp.Model;
+using SupportApp.Models;
 
 namespace SupportApp.Controllers;
 
