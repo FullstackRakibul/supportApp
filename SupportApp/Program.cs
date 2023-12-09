@@ -27,10 +27,9 @@ builder.Services.AddTransient<TicketService , TicketService>();
 builder.Services.AddDbContext<SupportAppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDatabase")));
 
-
-
-
 var app = builder.Build();
+
+app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

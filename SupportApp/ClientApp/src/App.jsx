@@ -9,6 +9,7 @@ import AgentCard from "./containers/AgentCard.jsx";
 import ProfileCard from "./containers/ProfileCard.jsx";
 import ChatCard from "./containers/ChatCard.jsx";
 import EmailCard from "./containers/EmailCard.jsx";
+import EmailList from "./containers/EmailList.jsx";
 
 const App = () => (
   <>
@@ -19,7 +20,8 @@ const App = () => (
         <Route path="/profile" element={<ProfileCard />} />
         <Route path="/agent" element={<AgentCard />} />
         <Route path="/chat" element={<ChatCard />} />
-        <Route path="/email" element={<EmailCard />} />
+        <Route path="/emailBox" element={<EmailCard />} />
+        <Route path="/emailList" element={<EmailList />} />
           
       </Routes>
     </div>

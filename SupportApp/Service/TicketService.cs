@@ -39,6 +39,7 @@ public class TicketService
         else
         {
             Console.WriteLine($"Ticket with Message Id '{emailDetails.MessageId}' already exits.");
+            
         }
         
     }

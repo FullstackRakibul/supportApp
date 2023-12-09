@@ -1,6 +1,8 @@
 const TicketCard = () => {
     return (
-      console.log("Rakibul Hasan")  
+      <>
+        console.log("Rakibul Hasan");
+      </>
     );
 }
 

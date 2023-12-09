@@ -9,6 +9,7 @@ import NotFoundPage from "../containers/NotFoundPage.jsx";
 import EmailCard from "../containers/EmailCard.jsx";
 import TicketCard from "../containers/TicketCard.jsx"
 import App from "../App.jsx";
+import EmailList from "../containers/EmailList.jsx";
 
 
 
@@ -32,8 +33,12 @@ const routes =(
         element:<ChatCard/>
     },
     {
-        path:"/email",
+        path:"/emailBox",
         element:<EmailCard/>
+    },
+    {
+        path:"/emailList",
+        element:<EmailList/>
     },
     {
         path:"*",

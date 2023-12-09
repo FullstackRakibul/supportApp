@@ -26,10 +26,16 @@ const menuItems = [
     path: '/chat',
   },
   {
-    key: '/email support',
+    key: '/emailBox',
+    icon: <MailOutlined />,
+    label: 'Mail Create',
+    path: '/emailBox',
+  },
+  {
+    key: '/emailList',
     icon: <MailOutlined />,
     label: 'Mail Box',
-    path: '/email',
+    path: '/emailList',
   },
 ];
 
@@ -49,7 +55,7 @@ const Header = () => {
         <div className="container mx-auto flex items-center justify-between">
 
 
-          <Menu mode="horizontal" className="rounded-md">
+          <Menu mode="horizontal" className="rounded-2xl">
             {menuItems.map((item) => (
                 <Menu.Item key={item.key} icon={item.icon}>
                   <NavLink to={item.path} >{item.label}</NavLink>
