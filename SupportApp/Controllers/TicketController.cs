@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportApp.Models;
-using SupportApp.Models;
 using SupportApp.Service;
 
 namespace SupportApp.Controllers
@@ -17,13 +16,13 @@ namespace SupportApp.Controllers
     {
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
-        private readonly EmailBoxServcie _emailBoxServcie;
+        private readonly EmailBoxService _emailBoxService;
 
-        public TicketController(SupportAppDbContext context, TicketService ticketService, EmailBoxServcie emailBoxServcie)
+        public TicketController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService)
         {
             _context = context;
             _ticketService = ticketService;
-            _emailBoxServcie = emailBoxServcie;
+            _emailBoxService = emailBoxService;
         }
 
         // GET: api/Ticket
@@ -89,13 +88,15 @@ namespace SupportApp.Controllers
         // POST: api/Ticket
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
+        public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket)
         {
           if (_context.Ticket == null)
           {
               return Problem("Entity set 'SupportAppDbContext.Ticket'  is null.");
           }
-            _context.Ticket.Add(ticket);
+          
+          _ticketService.CreateTicket(ticket);
+           // _context.Ticket.Add(ticket);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
@@ -131,11 +132,11 @@ namespace SupportApp.Controllers
         {
             try
             {
-                var emailDetailsList = _emailBoxServcie.GetEmailDetails();
+                var emailDetailsList = _emailBoxService.GetEmailDetails();
 
                 foreach (var emailDetails in emailDetailsList)
                 {
-                    _ticketService.CreateTicket(emailDetails);
+                    _ticketService.CreateTicketFromEmail(emailDetails);
                 }
 
                 return Ok(emailDetailsList);

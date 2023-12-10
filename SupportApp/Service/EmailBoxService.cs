@@ -1,16 +1,20 @@
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using MailKit.Net.Pop3;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.Extensions.Options;
 using MimeKit;
+using SupportApp.Helper;
 using SupportApp.Models;
 
 namespace SupportApp.Service;
 
-public class EmailBoxServcie
+public class EmailBoxService
 {
     private readonly SupportAppDbContext _dbContext;
+    private readonly EmailSettings _emailSettings;
 
-    public EmailBoxServcie(SupportAppDbContext dbContext)
+    public EmailBoxService(SupportAppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -50,6 +54,14 @@ public class EmailBoxServcie
 
         return headers;
     }
+    
+    // Helper method to extract headers
+    private static List<KeyValuePair<string, string>> ExtractHeaders(MimeMessage mimeMessage)
+    {
+        // Logic to extract headers
+        var headers = mimeMessage.Headers.Select(header => new KeyValuePair<string, string>(header.Field, header.Value)).ToList();
+        return headers;
+    }
 
     public List<EmailDetails> GetEmailDetails()
     {
@@ -58,7 +70,7 @@ public class EmailBoxServcie
         {
             using var client = new Pop3Client();
             client.Connect("mail.dhakawestern.com",995,true);
-            client.Authenticate("it@dhakawestern.com","it@dhakawestern.com");
+            client.Authenticate("dev@dhakawestern.com","dev@dhakawestern.com");
 
             for (int i = 0; i < client.Count; i++)
             {
@@ -67,7 +79,9 @@ public class EmailBoxServcie
                 {
                     MessageId = message.MessageId.ToString(),
                     Headers = GetHeaders(message),
-                    From = message.From.ToString(),
+                    //Headers = ExtractHeaders(message),
+                   // From = message.From.ToString(),
+                    From = Regex.Match(message.From.ToString(), @"<([^>]+)>").Groups[1].Value,
                     Subject = message.Subject,
                     Body = !string.IsNullOrEmpty(message.TextBody)? message.TextBody: message.HtmlBody,
                     To = message.To.ToString(),

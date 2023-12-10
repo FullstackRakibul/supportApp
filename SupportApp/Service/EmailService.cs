@@ -14,7 +14,7 @@ namespace SupportApp.Service
             this.emailSettings = options.Value;
         }
 
-        public async Task SendEmailAsync(Mailrequest mailrequest) {
+        public async Task SendEmailAsync(Mailrequest? mailrequest) {
             var email = new MimeMessage();
 
             //using mimekit to sent the mail 

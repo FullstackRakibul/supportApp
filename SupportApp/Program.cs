@@ -17,7 +17,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 
 // register interface 
 builder.Services.AddTransient<IEmailService, EmailService>();
-builder.Services.AddTransient<EmailBoxServcie, EmailBoxServcie>();
+builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
 
 

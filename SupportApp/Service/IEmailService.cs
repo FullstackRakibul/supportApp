@@ -4,6 +4,6 @@ namespace SupportApp.Service
 {
     public interface IEmailService
     {
-        Task SendEmailAsync(Mailrequest mailrequest);
+        Task SendEmailAsync(Mailrequest? mailrequest);
     }
 }

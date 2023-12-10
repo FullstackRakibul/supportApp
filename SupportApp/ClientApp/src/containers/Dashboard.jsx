@@ -5,10 +5,15 @@ const Dashboard = () => {
 
     // State to track form values
     const [formData, setFormData] = useState({
+
         title: '',
         description: '',
-        attachment:'',
-        priority: 'Low',
+
+        userId: null,
+        agentId: null,
+        chatId: null,
+        attachment: '',
+        
     });
 
     // Handle form field changes
@@ -75,7 +80,7 @@ const Dashboard = () => {
                       <Upload
                           action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
                           value={formData.attachment}
-                          listType="picture"
+                          listType="file"
                       >
                           <Button icon={<UploadOutlined />}>Upload</Button>
                       </Upload>

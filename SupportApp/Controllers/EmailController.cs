@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SupportApp.Helper;
 using SupportApp.Service;
 
@@ -10,22 +9,22 @@ namespace SupportApp.Controllers
     public class EmailController : ControllerBase
     {
         private readonly IEmailService _emailService;
-        private readonly EmailBoxServcie _emailBoxServcie;
+        private readonly EmailBoxService _emailBoxService;
 
 
-        public EmailController(IEmailService service , EmailBoxServcie emailBoxServcie)
+        public EmailController(IEmailService service , EmailBoxService emailBoxService)
         {
             _emailService = service;
-            _emailBoxServcie = emailBoxServcie;
+            _emailBoxService = emailBoxService;
         }
 
-        [HttpPost("sendMail")]
+        [HttpPost("SendMail")]
         public async Task<IActionResult> SendMail() {
             try {
                 var mailrequest = new Mailrequest();
                 mailrequest.ToEmail = "it@dhakawestern.com";
-                mailrequest.Subject = "Test mail 01";
-                mailrequest.Body = "This is a test mail body";
+                mailrequest.Subject = "Fetch Data test";
+                mailrequest.Body = "This is a test mail body for fetch data";
                 if (_emailService != null)
                 {
                     await _emailService.SendEmailAsync(mailrequest);
@@ -41,12 +40,35 @@ namespace SupportApp.Controllers
             }
         }
 
+        [HttpPost("sendEmailViaForm")]
+        public async Task<IActionResult> SendEmailViaForm([FromBody] Mailrequest? mailRequest)
+        {
+            try
+            {
+                if (mailRequest != null && _emailService != null)
+                {
+                    
+                    await _emailService.SendEmailAsync(mailRequest);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Invalid mail request or email service not available");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
         [HttpGet("GetMails")]
         public IActionResult GetMails()
         {
             try
             {
-                var emailDetailsList = _emailBoxServcie.GetEmailDetails();
+                var emailDetailsList = _emailBoxService.GetEmailDetails();
                 return Ok(emailDetailsList);
             }
             catch (Exception ex)

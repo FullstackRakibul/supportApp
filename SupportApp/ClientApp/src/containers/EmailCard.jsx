@@ -1,120 +1,145 @@
 import React, { useState } from "react";
-import {Button, Upload} from "antd";
-import {UploadOutlined} from "@ant-design/icons";
+import { Button, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import EmailList from "./EmailList";
+import MailSendForm from "../components/MailSendForm";
+
+
+
 
 const EmailCard = () => {
-
-    const [formData, setFormData] = useState({
-        from: '',
-        to: '',
-        subject: '',
-        message: '',
-        attachment: '',
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add logic for sending mail with formData
-        console.log('Sending mail with data:', formData);
-    };
+    const handleSendEmail = async (values) => {
+        try {
+          const mailRequest = {
+            toEmail: values.toEmail,
+            subject: values.subject,
+            body: values.body,
+          };
     
-    return (
-        <>
-            <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-md p-6 mb-6">
-                <h2 className="text-2xl font-semibold mb-4">Compose Mail</h2>
+          // Make a POST request to your API endpoint to send the email
+          await axios.post('https://localhost:7295/api/Email/sendMail', mailRequest);
+          message.success('Email sent successfully');
+        } catch (error) {
+          console.error('Error sending email:', error);
+          message.error('Failed to send email');
+        }
+      };
 
-                <form onSubmit={handleSubmit}>
-                    {/* Sender Information */}
-                    <div className="mb-4">
-                        <label className="block text-gray-600 text-sm font-medium mb-2">From:</label>
-                        <input
-                            type="text"
-                            name="from"
-                            value={formData.from}
-                            onChange={handleChange}
-                            className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Your Name"
-                        />
-                    </div>
-
-                    {/* Recipient Information */}
-                    <div className="mb-4">
-                        <label className="block text-gray-600 text-sm font-medium mb-2">To:</label>
-                        <input
-                            type="text"
-                            name="to"
-                            value={formData.to}
-                            onChange={handleChange}
-                            className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Recipient's Email"
-                        />
-                    </div>
-
-                    {/* Subject */}
-                    <div className="mb-4">
-                        <label className="block text-gray-600 text-sm font-medium mb-2">Subject:</label>
-                        <input
-                            type="text"
-                            name="subject"
-                            value={formData.subject}
-                            onChange={handleChange}
-                            className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Subject"
-                        />
-                    </div>
-
-                    {/* Message Body */}
-                    <div className="mb-4">
-                        <label className="block text-gray-600 text-sm font-medium mb-2">Message:</label>
-                        <textarea
-                            name="message"
-                            rows="4"
-                            value={formData.message}
-                            onChange={handleChange}
-                            className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Type your message here..."
-                        ></textarea>
-                    </div>
-                    <div className="mb-4">
-                    <label className="block text-gray-600 text-sm font-medium mb-2">
-                        Attachment:
-                    </label>
-                    <Upload
-                        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                        value={formData.attachment}
-                        listType="picture"
-                    >
-                        <Button icon={<UploadOutlined />}>Upload</Button>
-                    </Upload>
-                    </div>
-
-                    {/* Send Button */}
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-                    >
-                        Send Mail
-                    </button>
-                </form>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <section className="flex flex-row items-center justify-center">
+        <div className="container p-10 bg-white rounded-md shadow-md">
+          <h1 className="p-3 font-sans text-2xl my-5 ">Send Mail From Here </h1>
+          <MailSendForm onSendEmail={handleSendEmail} />
+        </div>
+      </section>
+    </>
+  );
 };
 
+// const EmailCard = () => {
 
+//     const [formData, setFormData] = useState({
+//         from: '',
+//         to: '',
+//         subject: '',
+//         message: '',
+//         attachment: '',
+//     });
 
+//     const handleChange = (e) => {
+//         const { name, value } = e.target;
+//         setFormData({ ...formData, [name]: value });
+//     };
 
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+//         // Add logic for sending mail with formData
+//         console.log('Sending mail with data:', formData);
+//     };
 
+//     return (
+//         <>
+//             <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-md p-6 mb-6">
+//                 <h2 className="text-2xl font-semibold mb-4">Compose Mail</h2>
 
+//                 <form onSubmit={handleSubmit}>
+//                     {/* Sender Information */}
+//                     <div className="mb-4">
+//                         <label className="block text-gray-600 text-sm font-medium mb-2">From:</label>
+//                         <input
+//                             type="text"
+//                             name="from"
+//                             value={formData.from}
+//                             onChange={handleChange}
+//                             className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
+//                             placeholder="Your Name"
+//                         />
+//                     </div>
 
+//                     {/* Recipient Information */}
+//                     <div className="mb-4">
+//                         <label className="block text-gray-600 text-sm font-medium mb-2">To:</label>
+//                         <input
+//                             type="text"
+//                             name="to"
+//                             value={formData.to}
+//                             onChange={handleChange}
+//                             className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
+//                             placeholder="Recipient's Email"
+//                         />
+//                     </div>
 
+//                     {/* Subject */}
+//                     <div className="mb-4">
+//                         <label className="block text-gray-600 text-sm font-medium mb-2">Subject:</label>
+//                         <input
+//                             type="text"
+//                             name="subject"
+//                             value={formData.subject}
+//                             onChange={handleChange}
+//                             className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
+//                             placeholder="Subject"
+//                         />
+//                     </div>
 
+//                     {/* Message Body */}
+//                     <div className="mb-4">
+//                         <label className="block text-gray-600 text-sm font-medium mb-2">Message:</label>
+//                         <textarea
+//                             name="message"
+//                             rows="4"
+//                             value={formData.message}
+//                             onChange={handleChange}
+//                             className="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500"
+//                             placeholder="Type your message here..."
+//                         ></textarea>
+//                     </div>
+//                     <div className="mb-4">
+//                     <label className="block text-gray-600 text-sm font-medium mb-2">
+//                         Attachment:
+//                     </label>
+//                     <Upload
+//                         action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+//                         value={formData.attachment}
+//                         listType="picture"
+//                     >
+//                         <Button icon={<UploadOutlined />}>Upload</Button>
+//                     </Upload>
+//                     </div>
+
+//                     {/* Send Button */}
+//                     <button
+//                         type="submit"
+//                         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+//                     >
+//                         Send Mail
+//                     </button>
+//                 </form>
+//             </div>
+//         </>
+//     );
+// };
 
 // const EmailList = ({ emails, onSelectEmail }) => (
 //     <div className="w-1/4 p-4 border-r overflow-y-auto">
@@ -170,7 +195,5 @@ const EmailCard = () => {
 //       </>
 //   )
 // }
-
-
 
 export default EmailCard;

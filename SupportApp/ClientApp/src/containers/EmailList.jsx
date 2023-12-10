@@ -11,7 +11,6 @@ const EmailList = () => {
       try {
         const response = await axios.get("https://localhost:7295/api/Ticket");
         setTickets(response.data);
-        console.log(response);
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }
@@ -37,6 +36,11 @@ const EmailList = () => {
       title: "MessageId",
       dataIndex: "messageId",
       key: "messageId",
+    },
+    {
+      title: "From",
+      dataIndex: "fromEmail",
+      key: "fromEmail",
     },
   ];
 

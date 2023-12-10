@@ -3,14 +3,14 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-        <footer className="bg-gray-800 text-white p-8">
+        <footer className="bg-primary text-white pt-8">
             <div className="container mx-auto">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {/* Column 1 */}
                     <div>
-                        <h3 className="text-2xl font-bold mb-4">About Us</h3>
-                        <p>Our mission is to empower businesses by providing a reliable and user-friendly platform that enhances communication and support ticket management. We are committed to delivering innovative solutions that save you time, reduce complexities, and contribute to your overall success.</p>
+                        <h3 className="text-2xl text-white font-bold mb-4">About Us</h3>
+                        <p className="">Our mission is to empower businesses by providing a reliable and user-friendly platform that enhances communication and support ticket management. We are committed to delivering innovative solutions that save you time, reduce complexities, and contribute to your overall success.</p>
                     </div>
 
                     {/* Column 2 */}
