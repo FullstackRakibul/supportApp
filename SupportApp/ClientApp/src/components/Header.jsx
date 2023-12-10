@@ -109,7 +109,7 @@ const Header = () => {
           <div className="w-4/12">
             <h3>Ha-Meem Group</h3>
           </div>
-          <div className="w-4/12 flex justify-center items-center">
+          <div className="w-4/12 flex justify-center items-center h-10">
             <Form 
                 onFinish={(state)=>{
                   console.log(state)
@@ -143,7 +143,13 @@ const Header = () => {
         {/*Header bottom design .....*/}
         <div className="bg-primary">
           <div className="container mx-auto items-center justify-between h-10">
-            <h3 className="text-white text-2xl font-semibold flex items-center"> Ha-Meem Desk</h3>
+            <Menu mode="horizontal" className="bg-primary text-white h-10">
+                   {menuItems.map((item) => (
+                    <Menu.Item key={item.key} icon={item.icon}>
+                    <NavLink to={item.path} className="hover:text-black" >{item.label}</NavLink>
+                     </Menu.Item>
+                ))}
+                </Menu>
           </div>
         </div>
       </header>

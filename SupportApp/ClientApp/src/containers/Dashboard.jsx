@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Upload} from "antd";
 import {InboxOutlined, UploadOutlined} from "@ant-design/icons";
+import axios from "axios";
 const Dashboard = () => {
 
     // State to track form values
@@ -8,7 +9,6 @@ const Dashboard = () => {
 
         title: '',
         description: '',
-
         userId: null,
         agentId: null,
         chatId: null,
@@ -16,26 +16,24 @@ const Dashboard = () => {
         
     });
 
-    // Handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setTicketData((prevData) => ({
+            ...prevData,
             [name]: value,
-        });
+        }));
     };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform actions with formData (e.g., send to server)
-        console.log(formData);
-        // Reset form after submission
-        setFormData({
-            title: '',
-            description: '',
-            priority: 'Low',
-        });
+        try {
+            const response = await axios.post('https://localhost:7295/api/Ticket');
+            console.log(response.data);
+            // Handle success, e.g., show a success message or redirect
+        } catch (error) {
+            console.error('Error creating ticket:', error);
+            // Handle error, e.g., show an error message to the user
+        }
     };
     
   return (
@@ -96,3 +94,38 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+
+
+// <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded">
+//     <h2 className="text-2xl font-semibold mb-4">Create Ticket</h2>
+//     <form onSubmit={handleSubmit}>
+//         {/* Add form fields for each property in the Ticket model */}
+//         {/* Example: */}
+//         <div className="mb-4">
+//             <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
+//                 Title
+//             </label>
+//             <input
+//                 type="text"
+//                 id="title"
+//                 name="title"
+//                 value={ticketData.title}
+//                 onChange={handleChange}
+//                 className="border rounded w-full p-2"
+//                 required
+//             />
+//         </div>
+//
+//         {/* Repeat this pattern for other form fields */}
+//
+//         <button
+//             type="submit"
+//             className="bg-blue-500 text-white rounded p-2 hover:bg-blue-700"
+//         >
+//             Create Ticket
+//         </button>
+//     </form>
+// </div>
