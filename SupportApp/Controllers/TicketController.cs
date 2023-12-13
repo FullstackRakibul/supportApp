@@ -88,18 +88,25 @@ namespace SupportApp.Controllers
         // POST: api/Ticket
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket)
+       // public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket)
+        public IActionResult CreateTicket( [FromBody]Ticket ticket)
         {
-          if (_context.Ticket == null)
+          // if (_context.Ticket == null)
+          // {
+          //     return Problem("Entity set 'SupportAppDbContext.Ticket'  is null.");
+          // }
+          try
           {
-              return Problem("Entity set 'SupportAppDbContext.Ticket'  is null.");
           }
-          
-          _ticketService.CreateTicket(ticket);
-           // _context.Ticket.Add(ticket);
-            await _context.SaveChangesAsync();
+          catch (Exception ex)
+          {
+              return BadRequest("Create Ticket failed for BadRequest-C");
+          }
 
-            return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
+          _ticketService.CreateTicket(ticket);
+          // _context.Ticket.Add(ticket);
+          _context.SaveChangesAsync();
+            return Ok($"Ticket Create Successfully.");
         }
 
         // DELETE: api/Ticket/5
@@ -119,7 +126,7 @@ namespace SupportApp.Controllers
             _context.Ticket.Remove(ticket);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok($"Ticket deleted successfully.");
         }
 
         private bool TicketExists(int id)

@@ -1,103 +1,104 @@
-import React, {useState} from "react";
-import {Button, Upload} from "antd";
-import {InboxOutlined, UploadOutlined} from "@ant-design/icons";
+import React, { useState } from "react";
+import { Button, Upload, Form, Input } from "antd";
+const { TextArea } = Input;
+import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 const Dashboard = () => {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    attachment: "",
+    ticketNumber: "",
+    userId: "",
+    agentId: "",
+    priority: "",
+    updatedAt: "",
+  });
+  const handleInput = (data) => {
+    //data.persist();
+    setFormData({ ...formData, [data.target.name]: data.target.value });
+  };
 
-    // State to track form values
-    const [formData, setFormData] = useState({
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(formData);
+      const response = await axios.post(
+        "https://localhost:7295/api/Ticket",
+        formData
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-        title: '',
-        description: '',
-        userId: null,
-        agentId: null,
-        chatId: null,
-        attachment: '',
-        
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setTicketData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('https://localhost:7295/api/Ticket');
-            console.log(response.data);
-            // Handle success, e.g., show a success message or redirect
-        } catch (error) {
-            console.error('Error creating ticket:', error);
-            // Handle error, e.g., show an error message to the user
-        }
-    };
-    
   return (
     <>
       <section className=" flex justify-between">
-          <div className=" w-1/2 mx-auto p-4 bg-white rounded-md shadow-md">
-              <h2 className="text-2xl font-semibold mb-4">Create a Ticket</h2>
-              <form onSubmit={handleSubmit}>
-                  {/* Title */}
-                  <div className="mb-4">
-                      <label htmlFor="title" className="block text-sm font-medium text-gray-600">
-                          Title
-                      </label>
-                      <input
-                          type="text"
-                          id="title"
-                          name="title"
-                          value={formData.title}
-                          onChange={handleChange}
-                          className="mt-1 p-2 w-full border rounded-md"
-                          required
-                      />
-                  </div>
+        <div className="mx-auto p-2 bg-white rounded-md shadow-md ">
+          <h2 className="text-2xl font-semibold mb-4">Create a Ticket</h2>
+          <Form
+            onSubmit={handleSubmit}
+            className="p-5"
+            encType="multipart/form-data"
+          >
+            <Form.Item
+              // wrapperCol={{
+              //   span: 16,
+              // }}
 
-                  {/* Description */}
-                  <div className="mb-4">
-                      <label htmlFor="description" className="block text-sm font-medium text-gray-600">
-                          Problem Description
-                      </label>
-                      <textarea
-                          id="description"
-                          name="description"
-                          value={formData.description}
-                          onChange={handleChange}
-                          className="mt-1 p-2 w-full border rounded-md resize-none"
-                      ></textarea>
-                  </div>
-                  <div className="mb-4">
-                      <label htmlFor="Attachment" className="block text-sm font-medium text-gray-600">
-                          Attachment
-                      </label>
-                      <Upload
-                          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                          value={formData.attachment}
-                          listType="file"
-                      >
-                          <Button icon={<UploadOutlined />}>Upload</Button>
-                      </Upload>
-                  </div>
-                  <div>
-                      <Button htmlType="submit" className="text-black text-md h-full  px-4 py-2 rounded-md ">Create Ticket</Button>
-                  </div>
-              </form>
-          </div>
+              colon={false}
+              name="title"
+              label="Issue Title"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+              labelAlign={"left"}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="description"
+              label="Issue Description"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <TextArea rows={4} />
+            </Form.Item>
+            <Form.Item name="attachment" label="Attachment">
+              <Upload.Dragger name="attachment">
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload.
+                </p>
+              </Upload.Dragger>
+            </Form.Item>
+            <Button
+              type="primary"
+              htmlType={"submit"}
+              className="text-md bg-primary text-white font-semibold rounded-sm hover:bg-white hover:text-primary hover:border-primary"
+            >
+              Create Ticket
+            </Button>
+          </Form>
+        </div>
       </section>
     </>
   );
 };
 
 export default Dashboard;
-
-
-
-
 
 // <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded">
 //     <h2 className="text-2xl font-semibold mb-4">Create Ticket</h2>

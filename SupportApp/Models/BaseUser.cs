@@ -26,8 +26,6 @@ namespace SupportApp.Models
         public string? Username { get; set; }
         public string? Password { get; set; }
         public UserRole UserRole { get; set; } = UserRole.Employee;
-
-        public ICollection<Ticket>? Tickets { get; set; }
     }
 
     public enum UserStatus

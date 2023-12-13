@@ -127,10 +127,11 @@ namespace SupportApp.Migrations
                     b.Property<int?>("ChatId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmailCc")
@@ -160,8 +161,11 @@ namespace SupportApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -189,17 +193,12 @@ namespace SupportApp.Migrations
                         .HasForeignKey("AgentId");
 
                     b.HasOne("SupportApp.Models.BaseUser", "BaseUser")
-                        .WithMany("Tickets")
+                        .WithMany()
                         .HasForeignKey("BaseUserUserId");
 
                     b.Navigation("Agent");
 
                     b.Navigation("BaseUser");
-                });
-
-            modelBuilder.Entity("SupportApp.Models.BaseUser", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,7 +20,13 @@ builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builders =>
+    {
+        builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
 
 // config Dependency Injection
 
@@ -29,7 +35,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDatabase"
 
 var app = builder.Build();
 
-app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

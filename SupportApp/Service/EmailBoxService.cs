@@ -12,13 +12,11 @@ namespace SupportApp.Service;
 public class EmailBoxService
 {
     private readonly SupportAppDbContext _dbContext;
-    private readonly EmailSettings _emailSettings;
-
+    //private readonly EmailSettings _emailSettings;
     public EmailBoxService(SupportAppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
-    
     public class EmailDetails
     {
         public string MessageId { get; set; }

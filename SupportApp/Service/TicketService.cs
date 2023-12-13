@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using MimeKit;
 using SupportApp.Models;
 namespace SupportApp.Service;
@@ -8,9 +10,34 @@ public class TicketService
     {
         _context = context;
     }
+    // private string GenerateTicketNumber()
+    // {
+    //     
+    //     return DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);
+    // }
+    
     private string GenerateTicketNumber()
     {
-        return DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);
+        string ticketNumber;
+        bool isUnique = false;
+        do
+        {
+            // Generate a new ticket number
+            ticketNumber = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);
+            // Check if the ticket number exists in the database
+            isUnique = CheckIfTicketNumberExists(ticketNumber);
+        }
+        while (!isUnique);
+        return ticketNumber;
+    }
+
+    private bool CheckIfTicketNumberExists(string ticketNumber)
+    {
+        // Using database context checking the ticket number
+        var existingTicket = _context.Ticket.FirstOrDefault(t => t.TicketNumber == ticketNumber);
+        // Return true if no existing ticket is found, false otherwise
+        return existingTicket == null;
+
     }
     
     // create ticket from mail 
@@ -53,12 +80,30 @@ public class TicketService
     {
         try
         {
-            _context.Ticket.Add(ticket);
+            var generatedTicketNumber = GenerateTicketNumber();
+            var ticketData = new Ticket
+            { 
+              Title      = ticket.Title,
+              TicketNumber = generatedTicketNumber,
+              Description = ticket.Description,
+              Attachment = ticket.Attachment,
+              CreatedAt = DateTime.Now,
+              MessageId =generatedTicketNumber ,
+              Priority = Priority.Regular,
+              Status = TicketStatus.Open,
+              IsEmail = false,
+              UpdatedAt = DateTime.Now,
+              
+            };
+            Console.WriteLine(ticketData);
+            _context.Ticket.Add(ticketData);
             _context.SaveChanges();
+            Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine("This is Service layer error.",ex.Message);
+            
         }
     }
 

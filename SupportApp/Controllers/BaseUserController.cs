@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders.Physical;
 using Org.BouncyCastle.Bcpg.Sig;
 using SupportApp.Models;
 
@@ -31,24 +32,29 @@ namespace SupportApp.Controllers
           }
             return await _context.BaseUser.ToListAsync();
         }
-
         // GET: api/BaseUser/5
         [HttpGet("{id}")]
+        //public async Task<ActionResult<BaseUser>> GetBaseUser( int id)
         public async Task<ActionResult<BaseUser>> GetBaseUser( int id)
         {
           if (_context.BaseUser == null)
           {
-              return NotFound();
+              return Problem("BaseUser Table is Empty!");
           }
-            //var baseUser = await _context.BaseUser.FindAsync(id);
-            var baseUser = _context.BaseUser.Find(id);
-
-            if (baseUser == null)
-            {
-                return NotFound();
-            }
-
-            return baseUser;
+          try
+          {
+              var baseUser = await _context.BaseUser.FindAsync(id);
+              //var baseUser = _context.BaseUser.Find(id);
+              if (baseUser == null)
+              {
+                  return NotFound("User doesn't exit !!");
+              }
+              return baseUser;
+          }
+          catch (Exception ex)
+          {
+              return BadRequest("Something wrong with the request");
+          }
         }
 
         // PUT: api/BaseUser/5
@@ -66,6 +72,7 @@ namespace SupportApp.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+                return Ok("User Updated successfully");
             }
             catch (DbUpdateConcurrencyException)
             {
