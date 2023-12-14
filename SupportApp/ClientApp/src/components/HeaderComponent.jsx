@@ -182,15 +182,15 @@ const Header = () => {
             >
               Create
             </Button>
-            {/* <Button
+            <Button
               className="bg-[#ffd82c] text-black font-semibold "
               icon={<RedoOutlined />}
             >
               Update
             </Button>
-            <Button  type="primary" danger icon={<DeleteOutlined />}>
+            <Button type="primary" danger icon={<DeleteOutlined />}>
               Delete
-            </Button> */}
+            </Button>
           </div>
         </div>
       </header>
