@@ -46,6 +46,7 @@ public class TicketService
         var existingTicket = _context.Ticket.FirstOrDefault(ticket => ticket.MessageId == emailDetails.MessageId);
         // Find the "Date" header
         var dateHeader = emailDetails.Headers.FirstOrDefault(header => header.Key == "Date");
+        Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
 
         if (existingTicket == null && DateTime.TryParse(dateHeader.Value, out var createdDate))
         {
@@ -72,7 +73,7 @@ public class TicketService
         }
         else
         {
-            Console.WriteLine($"Ticket with Message Id '{emailDetails.MessageId}' already exits.");
+            Console.WriteLine($" This Ticket:'{emailDetails.MessageId}'is already exits.");
         }
     }
     // create ticket from frontend form 

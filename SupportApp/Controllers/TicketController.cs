@@ -29,11 +29,21 @@ namespace SupportApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
-          if (_context.Ticket == null)
+          // if (_context.Ticket == null)
+          // {
+          //     return NotFound();
+          // }
+          // return await _context.Ticket.ToListAsync();
+          try
           {
-              return NotFound();
+              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Closed).ToListAsync();
+              return tickets;
           }
-            return await _context.Ticket.ToListAsync();
+          catch (Exception ex)
+          {
+              return StatusCode(500, "Server Response Error.");
+              Console.WriteLine("No Ticket Data Found !!!");
+          }
         }
 
         // GET: api/Ticket/5
@@ -97,16 +107,17 @@ namespace SupportApp.Controllers
           // }
           try
           {
+              _ticketService.CreateTicket(ticket);
+              // _context.Ticket.Add(ticket);
+              _context.SaveChangesAsync();
+              return Ok($"Ticket Create Successfully.");
           }
           catch (Exception ex)
           {
               return BadRequest("Create Ticket failed for BadRequest-C");
           }
 
-          _ticketService.CreateTicket(ticket);
-          // _context.Ticket.Add(ticket);
-          _context.SaveChangesAsync();
-            return Ok($"Ticket Create Successfully.");
+
         }
 
         // DELETE: api/Ticket/5
@@ -115,15 +126,17 @@ namespace SupportApp.Controllers
         {
             if (_context.Ticket == null)
             {
-                return NotFound();
+                return NotFound("No Ticket found in the database.");
             }
             var ticket = await _context.Ticket.FindAsync(id);
             if (ticket == null)
             {
-                return NotFound();
+                return NotFound("This Ticket is already deleted or No record found. ");
             }
 
-            _context.Ticket.Remove(ticket);
+            ticket.Status = TicketStatus.Closed;
+            //_context.Ticket.Remove(ticket);
+            
             await _context.SaveChangesAsync();
 
             return Ok($"Ticket deleted successfully.");

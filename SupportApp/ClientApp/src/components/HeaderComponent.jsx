@@ -85,7 +85,7 @@ const Header = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  console.log(toggleMenu);
+  //console.log(toggleMenu);
   return (
     <>
       <header className="">
@@ -175,7 +175,7 @@ const Header = () => {
             />
           </div>
           <div className="w-11/12 flex flex-row justify-end gap-3">
-            <Button
+            {/* <Button
               type="primary"
               className="bg-[#1E99DC]"
               icon={<EditOutlined />}
@@ -190,7 +190,8 @@ const Header = () => {
             </Button>
             <Button type="primary" danger icon={<DeleteOutlined />}>
               Delete
-            </Button>
+            </Button> */}
+            <p>.</p>
           </div>
         </div>
       </header>

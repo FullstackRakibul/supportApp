@@ -284,4 +284,3 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticweb
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.SupportApp.props
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SupportApp.props
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets.pack.json
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\my-project\package.json

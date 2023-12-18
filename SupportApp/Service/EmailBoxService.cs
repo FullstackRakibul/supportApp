@@ -19,7 +19,7 @@ public class EmailBoxService
     }
     public class EmailDetails
     {
-        public string MessageId { get; set; }
+        public string MessageId { get; set; } = "";
         public string Subject { get; set; } = "";
         public string Body { get; set; } = "";
         public string From { get; set; } = "";
@@ -68,7 +68,7 @@ public class EmailBoxService
         {
             using var client = new Pop3Client();
             client.Connect("mail.dhakawestern.com",995,true);
-            client.Authenticate("dev@dhakawestern.com","dev@dhakawestern.com");
+            client.Authenticate("support@dhakawestern.com","support@dhakawestern.com");
 
             for (int i = 0; i < client.Count; i++)
             {
