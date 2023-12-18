@@ -27,6 +27,21 @@ function CreateTicket() {
         values
       );
       //console.log(` This is a request error ${response.data}`);
+
+      //   const formData = new FormData();
+      //   formData.append("title", values.title);
+      //   formData.append("description", values.description);
+      //   formData.append("attachment", values.attachment[0]);
+      //   const response = await axios.post(
+      //     "https://localhost:7295/api/Ticket",
+      //     formData,
+      //     {
+      //       headers: {
+      //         "Content-Type": "multipart/form-data",
+      //       },
+      //     }
+      //   );
+
       if (response.status === 200) {
         message.success("Ticket Create Successfully.");
         form.resetFields();
