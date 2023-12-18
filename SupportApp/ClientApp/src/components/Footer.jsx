@@ -54,7 +54,7 @@ const Footer = () => {
         {/*    </div>*/}
         {/*</div>*/}
         <div className="p-3 flex justify-center items-center bg-primary ">
-          <p className="text-white">
+          <p className="text-white font-sans font-semibold">
             &copy;2023.Ha-Meem Group. All rights reserved.
           </p>
         </div>

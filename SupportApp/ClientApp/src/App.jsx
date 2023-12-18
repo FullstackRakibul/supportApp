@@ -28,6 +28,7 @@ import {
   TagsOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import CreateTicket from "./containers/ticket/CreateTicket.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -59,8 +60,14 @@ const App = () => {
           </div> */}
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             {customRoutes.map((route) => (
-              <Menu.Item key={route.path} icon={route.icon}>
-                <NavLink to={route.path}>{route.label}</NavLink>
+              <Menu.Item
+                style={{ accentColor: "#000" }}
+                key={route.path}
+                icon={route.icon}
+              >
+                <NavLink className="font-sans font-semibold" to={route.path}>
+                  {route.label}
+                </NavLink>
               </Menu.Item>
             ))}
           </Menu>
@@ -117,6 +124,7 @@ const App = () => {
               <Route path="/chat" element={<ChatCard />} />
               <Route path="/ticketList" element={<TicketCard />} />
               <Route path="/emailList" element={<EmailList />} />
+              <Route path="/createTicket" element={<CreateTicket />} />
             </Routes>
           </Content>
           <Footer />

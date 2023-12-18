@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Space, Button, message } from "antd";
 import { EditOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
 
 const TicketCard = () => {
   const config = {
@@ -50,12 +51,12 @@ const TicketCard = () => {
             icon={<EditOutlined />}
             onClick={() => handleEdit(record.id)}
           />
-          <Button
+          {/* <Button
             className="text-warning "
             type="default"
             icon={<CheckOutlined />}
             onClick={() => handleUpdate(record.id)}
-          />
+          /> */}
           <Button
             className="text-error "
             type="danger"
@@ -91,10 +92,12 @@ const TicketCard = () => {
 
   return (
     <>
-      <section className="container p-3">
+      <section className="container mx-auto p-3">
         <div className="flex justify-center items-start">
           <div className="table">
             <Table
+              className="font-semibold"
+              scroll={{ x: "max-content" }}
               dataSource={ticket}
               columns={columns}
               loading={loading}

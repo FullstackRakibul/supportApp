@@ -88,12 +88,12 @@ public class TicketService
               TicketNumber = generatedTicketNumber,
               Description = ticket.Description,
               Attachment = ticket.Attachment,
-              CreatedAt = DateTime.Now,
+              //CreatedAt = DateTime.Now,
               MessageId =generatedTicketNumber ,
               Priority = Priority.Regular,
               Status = TicketStatus.Open,
               IsEmail = false,
-              UpdatedAt = DateTime.Now,
+              //UpdatedAt = DateTime.Now,
               
             };
             Console.WriteLine(ticketData);
