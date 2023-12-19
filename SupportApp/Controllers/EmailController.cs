@@ -40,20 +40,19 @@ namespace SupportApp.Controllers
             }
         }
 
-        [HttpPost("sendEmailViaForm")]
-        public async Task<IActionResult> SendEmailViaForm([FromBody] Mailrequest? mailRequest)
+        [HttpPost("ComposeMail")]
+        public async Task<IActionResult> ComposeMail([FromBody] Mailrequest mailRequest)
         {
             try
             {
                 if (mailRequest != null && _emailService != null)
                 {
-                    
                     await _emailService.SendEmailAsync(mailRequest);
-                    return Ok();
+                    return Ok("Mail send successfully.");
                 }
                 else
                 {
-                    return BadRequest("Invalid mail request or email service not available");
+                    return BadRequest("Mail send failed !!");
                 }
             }
             catch (Exception ex)

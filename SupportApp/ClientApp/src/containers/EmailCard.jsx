@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Form, Row, Input, Upload } from "antd";
+import { Button, Card, Col, Form, Row, Input, Upload, message } from "antd";
+import axios from "axios";
 
 const { TextArea } = Input;
 
@@ -10,16 +11,22 @@ const EmailCard = () => {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      console.log(`Form value ${values}`);
+      console.log(values);
+
+      const response = await axios.post(
+        "https://localhost:7295/api/Email/ComposeMail",
+        values
+      );
 
       if (response.status === 200) {
-        message.success("Ticket Create Successfully.");
+        message.success("Mail Sent Successfully.");
         form.resetFields();
       } else {
-        message.error("Error in Creating Ticket.");
+        message.error("Sending Mail error !!!");
       }
     } catch (error) {
-      console.log(`form handle error ${error}`);
+      console.log(`Form validation error : ${error}`);
+      message.error("Mail Validation Error !!!");
     }
   };
 
@@ -59,19 +66,32 @@ const EmailCard = () => {
               <Form form={form} {...layout} labelAlign="left">
                 <Form.Item
                   className="font-sans"
-                  name="title"
-                  label="Mail to"
+                  name="toEmail"
+                  label="Email to"
                   rules={[
                     {
                       required: true,
-                      message: "Please input Issue Title!",
+                      message: "Please input email address!",
                     },
                   ]}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  name="description"
+                  className="font-sans"
+                  name="subject"
+                  label="Subject"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input mail subject!",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="body"
                   label="Mail body"
                   rules={[
                     {

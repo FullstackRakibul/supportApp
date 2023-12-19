@@ -41,6 +41,7 @@ namespace SupportApp.Controllers
           }
           catch (Exception ex)
           {
+              Console.WriteLine(ex);
               return StatusCode(500, "Server Response Error.");
               Console.WriteLine("No Ticket Data Found !!!");
           }
@@ -114,6 +115,7 @@ namespace SupportApp.Controllers
           }
           catch (Exception ex)
           {
+              Console.WriteLine(ex);
               return BadRequest("Create Ticket failed for BadRequest-C");
           }
 

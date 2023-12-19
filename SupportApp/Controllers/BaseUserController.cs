@@ -53,6 +53,7 @@ namespace SupportApp.Controllers
           }
           catch (Exception ex)
           {
+              Console.WriteLine(ex);
               return BadRequest("Something wrong with the request");
           }
         }

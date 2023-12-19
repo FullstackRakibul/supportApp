@@ -3,18 +3,19 @@ import axios from "axios";
 import { Table, Space, Button, message } from "antd";
 import {
   RollbackOutlined,
-  DeleteOutlined,
+  EditOutlined,
   EyeOutlined,
+  RedoOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
 
 const TicketCard = () => {
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  //   },
+  // };
 
   const [ticket, setTicket] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,13 +45,14 @@ const TicketCard = () => {
     { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "createdAt", dataIndex: "createdAt", key: "createdAt" },
     { title: "Status", dataIndex: "status", key: "status" },
+    { title: "Acknoledge by", dataIndex: "agentId", key: "agentId" },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <Space size="middle">
           <Button
-            className="text-warning "
+            className="text-primary "
             type="default"
             icon={<EyeOutlined />}
             onClick={() => handleShow(record.id)}
@@ -62,53 +64,86 @@ const TicketCard = () => {
             onClick={() => handleReply(record.id)}
           />
           <Button
-            className="text-error "
-            type="danger"
-            icon={<DeleteOutlined />}
-            onClick={() => handleDelete(record.id)}
+            className="text-primary"
+            type="dashed"
+            icon={<EditOutlined />}
+            onClick={() => handleEdit(record.id)}
+          />
+          <Button
+            className="text-primary "
+            type="dashed"
+            icon={<UserAddOutlined />}
+            onClick={() => handleAsignAgent(record.id)}
           />
         </Space>
       ),
     },
   ];
 
+  // handle refresh
+
+  const handleRefresh = async () => {
+    try {
+      const response = await axios.get(
+        "https://localhost:7295/api/Ticket/FetchEmailData"
+      );
+      //setTicket(response);
+      message.success("Mail fetching successfully.press f5");
+      console.log(response.data);
+    } catch (error) {
+      console.log(`refresh mail error : ${error}`);
+    }
+  };
+
+  // handle action button
   const handleShow = (id) => {
     console.log(`Show ticket with ID ${id}`);
+    message.success(`Details popup for Ticket id : ${id}`);
   };
 
   const handleReply = (id) => {
     console.log(`Reply ticket with ID ${id}`);
+    message.success(`Reply for Ticket id : ${id}`);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
-      console.log(`Ticket with id ${id} , deleted successfully.`);
-      setTicket((prevTickets) =>
-        prevTickets.filter((ticket) => ticket.id !== id)
-      );
-      message.error("Ticket Deleted Successfully");
-    } catch (error) {
-      console.log(`Delete operation failed ! ${id}`, error);
-    }
-    console.log(`Delete ticket with ID ${id}`);
+  const handleEdit = (id) => {
+    message.success(`Edit Ticket id : ${id}`);
+    console.log(`Edit ticket with ID ${id}`);
+  };
+
+  const handleAsignAgent = (id) => {
+    message.success(`Asign Agent for Ticket id : ${id}`);
+    console.log(`Asign Agent for ticket ID ${id}`);
   };
 
   return (
     <>
       <section className="container mx-auto p-3">
-        <div className="flex justify-center items-start">
-          <div className="table">
-            <h1 className="text-2xl font-bold mb-4">Issue Ticket List</h1>
-            <Table
-              className="font-semibold"
-              scroll={{ x: "max-content" }}
-              dataSource={ticket}
-              columns={columns}
-              loading={loading}
-              rowKey="id"
-            />
+        <div className="">
+          <div className="flex justify-between gap-5 items-center">
+            <span>
+              <h1 className="text-2xl font-bold mb-4">Issue Ticket List</h1>
+            </span>
+            <span>
+              <Button
+                type="primary"
+                className="font-sans font-semibold bg-primary"
+                icon={<RedoOutlined />}
+                onClick={handleRefresh}
+              >
+                Refresh Ticket
+              </Button>
+            </span>
           </div>
+          <Table
+            sticky={true}
+            className="font-semibold"
+            scroll={{ y: "max-content" }}
+            dataSource={ticket}
+            columns={columns}
+            loading={loading}
+            rowKey="id"
+          />
         </div>
       </section>
     </>
@@ -116,3 +151,17 @@ const TicketCard = () => {
 };
 
 export default TicketCard;
+
+// const handleDelete = async (id) => {
+//   try {
+//     await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
+//     console.log(`Ticket with id ${id} , deleted successfully.`);
+//     setTicket((prevTickets) =>
+//       prevTickets.filter((ticket) => ticket.id !== id)
+//     );
+//     message.error("Ticket Deleted Successfully");
+//   } catch (error) {
+//     console.log(`Delete operation failed ! ${id}`, error);
+//   }
+//   console.log(`Delete ticket with ID ${id}`);
+// };

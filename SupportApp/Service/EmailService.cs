@@ -8,17 +8,17 @@ namespace SupportApp.Service
 {
     public class EmailService : IEmailService
     {
-        private readonly EmailSettings emailSettings;
+        private readonly EmailSettings _emailSettings;
 
         public EmailService(IOptions<EmailSettings> options) { 
-            this.emailSettings = options.Value;
+            this._emailSettings = options.Value;
         }
 
         public async Task SendEmailAsync(Mailrequest mailrequest) {
             var email = new MimeMessage();
 
             //using mimekit to sent the mail 
-            email.Sender = MailboxAddress.Parse(emailSettings.Email);
+            email.Sender = MailboxAddress.Parse(_emailSettings.Email);
             email.To.Add(MailboxAddress.Parse(mailrequest.ToEmail));
             email.Subject = mailrequest.Subject;
 
@@ -29,8 +29,8 @@ namespace SupportApp.Service
             //create email client
             using var smtp = new SmtpClient();
             //smtp.Connect(emailSettings.Host, emailSettings.Port, SecureSocketOptions.SslOnConnect);            
-            smtp.Connect(emailSettings.Host, emailSettings.Port, SecureSocketOptions.SslOnConnect);
-            smtp.Authenticate(emailSettings.Email, emailSettings.Password);
+            smtp.Connect(_emailSettings.Host, _emailSettings.Port, SecureSocketOptions.SslOnConnect);
+            smtp.Authenticate(_emailSettings.Email, _emailSettings.Password);
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
         }

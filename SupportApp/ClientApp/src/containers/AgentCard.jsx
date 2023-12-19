@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const AgentCard = () => {
-  return (
-    <div>
-      this is a Agent card.
-    </div>
-  )
-}
+  return <div>This is Agent Dashboard</div>;
+};
 
-export default AgentCard
+export default AgentCard;
