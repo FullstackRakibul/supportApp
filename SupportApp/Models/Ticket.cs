@@ -46,6 +46,7 @@ namespace SupportApp.Models
         Open,
         Acknowledged,
         InProgress,
-        Closed
+        Closed,
+        Deleted
     }
 }

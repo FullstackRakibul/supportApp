@@ -36,7 +36,7 @@ namespace SupportApp.Controllers
           // return await _context.Ticket.ToListAsync();
           try
           {
-              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Closed).ToListAsync();
+              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).ToListAsync();
               return tickets;
           }
           catch (Exception ex)
@@ -134,7 +134,7 @@ namespace SupportApp.Controllers
                 return NotFound("This Ticket is already deleted or No record found. ");
             }
 
-            ticket.Status = TicketStatus.Closed;
+            ticket.Status = TicketStatus.Deleted;
             //_context.Ticket.Remove(ticket);
             
             await _context.SaveChangesAsync();

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Space, Button, message } from "antd";
-import { EditOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
+import {
+  RollbackOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
 const TicketCard = () => {
@@ -46,17 +50,17 @@ const TicketCard = () => {
       render: (text, record) => (
         <Space size="middle">
           <Button
-            className=" text-primary "
-            type="dashed"
-            icon={<EditOutlined />}
-            onClick={() => handleEdit(record.id)}
-          />
-          {/* <Button
             className="text-warning "
             type="default"
-            icon={<CheckOutlined />}
-            onClick={() => handleUpdate(record.id)}
-          /> */}
+            icon={<EyeOutlined />}
+            onClick={() => handleShow(record.id)}
+          />
+          <Button
+            className=" text-primary "
+            type="dashed"
+            icon={<RollbackOutlined />}
+            onClick={() => handleReply(record.id)}
+          />
           <Button
             className="text-error "
             type="danger"
@@ -68,12 +72,12 @@ const TicketCard = () => {
     },
   ];
 
-  const handleEdit = (id) => {
-    console.log(`Edit ticket with ID ${id}`);
+  const handleShow = (id) => {
+    console.log(`Show ticket with ID ${id}`);
   };
 
-  const handleUpdate = (id) => {
-    console.log(`Update ticket with ID ${id}`);
+  const handleReply = (id) => {
+    console.log(`Reply ticket with ID ${id}`);
   };
 
   const handleDelete = async (id) => {
