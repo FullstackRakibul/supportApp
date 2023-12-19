@@ -99,6 +99,7 @@ const TicketCard = () => {
       <section className="container mx-auto p-3">
         <div className="flex justify-center items-start">
           <div className="table">
+            <h1 className="text-2xl font-bold mb-4">Issue Ticket List</h1>
             <Table
               className="font-semibold"
               scroll={{ x: "max-content" }}

@@ -1,17 +1,7 @@
 import React from "react";
 const { TextArea } = Input;
 import { UploadOutlined } from "@ant-design/icons";
-import {
-  Col,
-  Row,
-  Card,
-  Form,
-  Input,
-  Button,
-  Upload,
-  message,
-  DatePicker,
-} from "antd";
+import { Col, Row, Card, Form, Input, Button, Upload, message } from "antd";
 import axios from "axios";
 
 function CreateTicket() {

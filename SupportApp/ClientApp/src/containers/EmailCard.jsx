@@ -1,37 +1,109 @@
 import React, { useState } from "react";
-import { Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import EmailList from "./EmailList";
-import MailSendForm from "../components/MailSendForm";
+import { Button, Card, Col, Form, Row, Input, Upload } from "antd";
 
-
-
+const { TextArea } = Input;
 
 const EmailCard = () => {
-    const handleSendEmail = async (values) => {
-        try {
-          const mailRequest = {
-            toEmail: values.toEmail,
-            subject: values.subject,
-            body: values.body,
-          };
-    
-          // Make a POST request to your API endpoint to send the email
-          await axios.post('https://localhost:7295/api/Email/sendMail', mailRequest);
-          message.success('Email sent successfully');
-        } catch (error) {
-          console.error('Error sending email:', error);
-          message.error('Failed to send email');
-        }
-      };
+  const [form] = Form.useForm();
+
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      console.log(`Form value ${values}`);
+
+      if (response.status === 200) {
+        message.success("Ticket Create Successfully.");
+        form.resetFields();
+      } else {
+        message.error("Error in Creating Ticket.");
+      }
+    } catch (error) {
+      console.log(`form handle error ${error}`);
+    }
+  };
+
+  // form design
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+  const footerLayout = {
+    wrapperCol: {
+      offset: 8,
+      span: 16,
+    },
+  };
+  const uploadButtonProps = {
+    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+  };
 
   return (
     <>
-      <section className="flex flex-row items-center justify-center">
-        <div className="container p-10 bg-white rounded-md shadow-md">
-          <h1 className="p-3 font-sans text-2xl my-5 ">Send Mail From Here </h1>
-          <MailSendForm onSendEmail={handleSendEmail} />
-        </div>
+      <section className="container mx-auto">
+        <Row className="flex justify-center items-center ">
+          <Col span={12} className="">
+            <Card
+              type="inner"
+              title="Compose Mail"
+              headStyle={{
+                backgroundColor: "#000",
+                color: "#fff",
+                fontFamily: "Montserrat",
+              }}
+            >
+              <Form form={form} {...layout} labelAlign="left">
+                <Form.Item
+                  className="font-sans"
+                  name="title"
+                  label="Mail to"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input Issue Title!",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="description"
+                  label="Mail body"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input Issue Description!",
+                    },
+                  ]}
+                >
+                  <TextArea rows={4} />
+                </Form.Item>
+                <Form.Item
+                  className="font-sans"
+                  name="attachment"
+                  label="Upload attachment"
+                >
+                  <Upload {...uploadButtonProps}>
+                    <Button icon={<UploadOutlined />}>Upload</Button>
+                  </Upload>
+                </Form.Item>
+                <Form.Item {...footerLayout}>
+                  <Button
+                    onClick={handleSubmit}
+                    type="primary"
+                    className="bg-primary text-white font-sans font-xl font-semibold hover:bg-white"
+                  >
+                    Send Mail
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Card>
+          </Col>
+        </Row>
       </section>
     </>
   );

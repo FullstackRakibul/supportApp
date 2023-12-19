@@ -29,6 +29,7 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import CreateTicket from "./containers/ticket/CreateTicket.jsx";
+import EmailCard from "./containers/EmailCard.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -37,8 +38,8 @@ const App = () => {
     { path: "/", label: "Dashboard", icon: <DashboardOutlined /> },
     { path: "/agent", label: "Agent", icon: <UserSwitchOutlined /> },
     { path: "/profile", label: "Profile", icon: <IdcardOutlined /> },
-    { path: "/emailList", label: "Email Box", icon: <MailOutlined /> },
-    { path: "/ticketList", label: "Ticket List ", icon: <TagsOutlined /> },
+    { path: "/emailList", label: "Email", icon: <MailOutlined /> },
+    { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
   ];
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -123,7 +124,7 @@ const App = () => {
               <Route path="/agent" element={<AgentCard />} />
               <Route path="/chat" element={<ChatCard />} />
               <Route path="/ticketList" element={<TicketCard />} />
-              <Route path="/emailList" element={<EmailList />} />
+              <Route path="/emailList" element={<EmailCard />} />
               <Route path="/createTicket" element={<CreateTicket />} />
             </Routes>
           </Content>
