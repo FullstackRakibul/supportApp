@@ -70,30 +70,24 @@ namespace SupportApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
-            if (id != ticket.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(ticket).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TicketExists(id))
+                if (id != ticket.Id)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                var ticketdata = await _context.Ticket.FindAsync(id);
+
+                ticketdata.Status = ticket.Status;
+                ticketdata.
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         // POST: api/Ticket
@@ -138,9 +132,7 @@ namespace SupportApp.Controllers
 
             ticket.Status = TicketStatus.Deleted;
             //_context.Ticket.Remove(ticket);
-            
             await _context.SaveChangesAsync();
-
             return Ok($"Ticket deleted successfully.");
         }
 
@@ -155,12 +147,10 @@ namespace SupportApp.Controllers
             try
             {
                 var emailDetailsList = _emailBoxService.GetEmailDetails();
-
                 foreach (var emailDetails in emailDetailsList)
                 {
                     _ticketService.CreateTicketFromEmail(emailDetails);
                 }
-
                 return Ok(emailDetailsList);
             }
             catch (Exception ex)
@@ -168,6 +158,12 @@ namespace SupportApp.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPut("id")]
+        public IActionResult UpdateTicketStatus()
+        {
+            return Ok("update status controller working");
         }
     }
 }

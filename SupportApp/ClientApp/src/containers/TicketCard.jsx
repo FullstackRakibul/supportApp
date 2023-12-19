@@ -116,6 +116,20 @@ const TicketCard = () => {
     console.log(`Asign Agent for ticket ID ${id}`);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
+      console.log(`Ticket with id ${id} , deleted successfully.`);
+      setTicket((prevTickets) =>
+        prevTickets.filter((ticket) => ticket.id !== id)
+      );
+      message.error("Ticket Deleted Successfully");
+    } catch (error) {
+      console.log(`Delete operation failed ! ${id}`, error);
+    }
+    console.log(`Delete ticket with ID ${id}`);
+  };
+
   return (
     <>
       <section className="container mx-auto p-3">
@@ -151,17 +165,3 @@ const TicketCard = () => {
 };
 
 export default TicketCard;
-
-// const handleDelete = async (id) => {
-//   try {
-//     await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
-//     console.log(`Ticket with id ${id} , deleted successfully.`);
-//     setTicket((prevTickets) =>
-//       prevTickets.filter((ticket) => ticket.id !== id)
-//     );
-//     message.error("Ticket Deleted Successfully");
-//   } catch (error) {
-//     console.log(`Delete operation failed ! ${id}`, error);
-//   }
-//   console.log(`Delete ticket with ID ${id}`);
-// };
