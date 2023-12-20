@@ -70,24 +70,26 @@ namespace SupportApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
-            try
-            {
-                if (id != ticket.Id)
-                {
-                    return NotFound();
-                }
+            // try
+            // {
+            //     if (id != ticket.Id)
+            //     {
+            //         return NotFound();
+            //     }
+            //
+            //     var ticketdata = await _context.Ticket.FindAsync(id);
+            //
+            //     ticketdata.Status = ticket.Status;
+            //     _context.SaveChangesAsync();
+            //
+            // }
+            // catch (Exception e)
+            // {
+            //     Console.WriteLine(e);
+            //     throw;
+            // }
 
-                var ticketdata = await _context.Ticket.FindAsync(id);
-
-                ticketdata.Status = ticket.Status;
-                ticketdata.
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            return null;
         }
 
         // POST: api/Ticket
