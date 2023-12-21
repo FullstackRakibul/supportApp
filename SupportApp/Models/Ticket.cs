@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SupportApp.Models;
 
 
 namespace SupportApp.Models
 {
-    [Index(nameof(Title))]
-    [Index(nameof(MessageId))]
-    [Index(nameof(TicketNumber),IsUnique = true, Name = "Unique_TicketNumber")]
+    [Microsoft.EntityFrameworkCore.Index(nameof(Title))]
+    [Microsoft.EntityFrameworkCore.Index(nameof(MessageId))]
+    [Microsoft.EntityFrameworkCore.Index(nameof(TicketNumber),IsUnique = true, Name = "Unique_TicketNumber")]
     public class Ticket
     {
         [Key]
@@ -27,10 +27,16 @@ namespace SupportApp.Models
         public bool? IsEmail { get; set; }
         public string? FromEmail { get; set; }
         public string? EmailCc { get; set; }
-        public TicketStatus Status { get; set; } = TicketStatus.Acknowledged;
+        public TicketStatus Status { get; set; } = TicketStatus.Open;
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdatedBy { get; set; }
+
+        [Required]
+        public int TicketTypeId { get; set; }
+        
+        [ForeignKey("TicketTypeId")]
+        public TicketType TicketType { get; set; }
     }
 
     public enum Priority

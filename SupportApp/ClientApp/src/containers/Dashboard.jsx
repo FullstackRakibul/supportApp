@@ -2,6 +2,9 @@ import { Card } from "antd";
 import React from "react";
 
 function Dashboard() {
+    const handleClick = () =>{
+        console.log('Button has been clicked.')
+    }
   return (
     <>
       <section className="container mx-auto">

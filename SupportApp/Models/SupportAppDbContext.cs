@@ -23,5 +23,32 @@ namespace SupportApp.Models
             get; set;
         }
 
+        public DbSet<TicketType> TicketType
+        {
+            get; set;
+        }
+        
+        public DbSet<Department> Department
+        {
+            get; set;
+        }
+        
+        public DbSet<Notification> Notification
+        {
+            get; set;
+        }
+        
+        public DbSet<Review> Review
+        {
+            get; set;
+        }
+        
+        public DbSet<Target> Target
+        {
+            get; set;
+        }
+        
+        
+
     }
 }
