@@ -1,11 +1,7 @@
-using System.Net.Mail;
-using System.Text.RegularExpressions;
 using MailKit.Net.Pop3;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using Microsoft.Extensions.Options;
 using MimeKit;
-using SupportApp.Helper;
 using SupportApp.Models;
+using System.Text.RegularExpressions;
 
 namespace SupportApp.Service;
 

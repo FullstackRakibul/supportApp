@@ -86,8 +86,6 @@ namespace SupportApp.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
         }
 
         // POST: api/BaseUser

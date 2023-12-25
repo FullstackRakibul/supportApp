@@ -1,19 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿
 using SupportApp.Models;
 
 namespace SupportApp.Models
 {
     public class Agent
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int AgentId { get; set; }
-
-        public string Name { get; set; } = "";
-        [Required]
-        public string EmpCode { get; set; } = "";
-
+        public string Name { get; set; } = String.Empty;
+        public string EmpCode { get; set; } = String.Empty;
         public string? Email { get; set; }
 
         public string? Mobile { get; set; }

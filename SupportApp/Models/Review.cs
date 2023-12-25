@@ -1,29 +1,17 @@
 namespace SupportApp.Models;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 public class Review
 {
-    [Key]
+
     public int Id { get; set; }
-    
-    public int TargetId { get; set; }
-
-    [Required]
     public int TicketId { get; set; }
-
-    [Required]
     public int ReviewUserId { get; set; }
-
-    [Required]
-    [MaxLength(255)]
-    public string ReviewNote { get; set; }
+    public int ReviewAgentId { get; set; }
+    public string? ReviewNote { get; set; }
     
-    public byte Status { get; set; } = 1;
+    public bool Status { get; set; } = true;
 
-    [ForeignKey("TicketId")]
-    public Ticket Ticket { get; set; }
+    public Ticket Ticket { get; set; } = new Ticket();
 
-    [ForeignKey("TargetId")]
-    public Target Target { get; set; }
 }

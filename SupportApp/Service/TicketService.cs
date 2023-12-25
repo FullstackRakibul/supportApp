@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using MimeKit;
 using SupportApp.Models;
 namespace SupportApp.Service;
 public class TicketService
@@ -15,7 +12,7 @@ public class TicketService
     //     
     //     return DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);
     // }
-    
+
     private string GenerateTicketNumber()
     {
         string ticketNumber;
@@ -39,17 +36,18 @@ public class TicketService
         return existingTicket == null;
 
     }
-    
+
     // create ticket from mail 
     public void CreateTicketFromEmail(EmailBoxService.EmailDetails emailDetails)
     {
         var existingTicket = _context.Ticket.FirstOrDefault(ticket => ticket.MessageId == emailDetails.MessageId);
         // Find the "Date" header
         var dateHeader = emailDetails.Headers.FirstOrDefault(header => header.Key == "Date");
-        Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
+       //Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
 
         if (existingTicket == null && DateTime.TryParse(dateHeader.Value, out var createdDate))
         {
+
             var ticket = new Ticket
             {
                 Title = emailDetails.Subject,
@@ -64,9 +62,9 @@ public class TicketService
                 CreatedAt = Convert.ToDateTime(createdDate),
                 //CreatedAt = createdDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 UpdatedAt = DateTime.Now,
-                IsEmail =true,
+                IsEmail = true,
                 FromEmail = emailDetails.From.ToString(),
-                EmailCc = emailDetails.Cc
+                EmailCc = emailDetails.Cc,
             };
             _context.Ticket.Add(ticket);
             _context.SaveChanges();
@@ -81,20 +79,22 @@ public class TicketService
     {
         try
         {
+            ticket.CreatedAt = DateTime.Now;
+
             var generatedTicketNumber = GenerateTicketNumber();
             var ticketData = new Ticket
-            { 
-              Title      = ticket.Title,
-              TicketNumber = generatedTicketNumber,
-              Description = ticket.Description,
-              Attachment = ticket.Attachment,
-              //CreatedAt = DateTime.Now,
-              MessageId =generatedTicketNumber ,
-              Priority = Priority.Regular,
-              Status = TicketStatus.Open,
-              IsEmail = false,
-              //UpdatedAt = DateTime.Now,
-              
+            {
+                Title = ticket.Title,
+                TicketNumber = generatedTicketNumber,
+                Description = ticket.Description,
+                Attachment = ticket.Attachment,
+                //CreatedAt = ticket.CreatedAt,
+                MessageId = generatedTicketNumber,
+                Priority = Priority.Regular,
+                Status = TicketStatus.Open,
+                IsEmail = false,
+                //UpdatedAt = DateTime.Now,
+
             };
             Console.WriteLine(ticketData);
             _context.Ticket.Add(ticketData);
@@ -103,8 +103,8 @@ public class TicketService
         }
         catch (Exception ex)
         {
-            Console.WriteLine("This is Service layer error.",ex.Message);
-            
+            Console.WriteLine("This is Service layer error.", ex.Message);
+
         }
     }
 

@@ -43,7 +43,6 @@ namespace SupportApp.Controllers
           {
               Console.WriteLine(ex);
               return StatusCode(500, "Server Response Error.");
-              Console.WriteLine("No Ticket Data Found !!!");
           }
         }
 
@@ -70,24 +69,24 @@ namespace SupportApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
-            // try
-            // {
-            //     if (id != ticket.Id)
-            //     {
-            //         return NotFound();
-            //     }
-            //
-            //     var ticketdata = await _context.Ticket.FindAsync(id);
-            //
-            //     ticketdata.Status = ticket.Status;
-            //     _context.SaveChangesAsync();
-            //
-            // }
-            // catch (Exception e)
-            // {
-            //     Console.WriteLine(e);
-            //     throw;
-            // }
+            try
+            {
+                if (id != ticket.Id)
+                {
+                    return NotFound();
+                }
+
+                var ticketdata = await _context.Ticket.FindAsync(id);
+
+                ticketdata.Status = ticket.Status;
+                _context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
             return null;
         }
@@ -146,9 +145,12 @@ namespace SupportApp.Controllers
         [HttpGet("FetchEmailData")]
         public IActionResult FetchEmailDataToDatabase()
         {
+            
+            Console.WriteLine("API working - test 01");
             try
             {
                 var emailDetailsList = _emailBoxService.GetEmailDetails();
+                // return Ok(emailDetailsList);
                 foreach (var emailDetails in emailDetailsList)
                 {
                     _ticketService.CreateTicketFromEmail(emailDetails);
