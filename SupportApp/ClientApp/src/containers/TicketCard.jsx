@@ -91,6 +91,7 @@ const TicketCard = () => {
       message.success("Mail fetching successfully.press f5");
       console.log(response.data);
     } catch (error) {
+      message.error(`Server Error ! ${error}`);
       console.log(`refresh mail error : ${error}`);
     }
   };

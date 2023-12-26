@@ -64,6 +64,7 @@ public class TicketService
                 IsEmail = true,
                 FromEmail = emailDetails.From.ToString(),
                 EmailCc = emailDetails.Cc,
+                TicketTypeId = 1,
             };
             _context.Ticket.Add(ticket);
             _context.SaveChanges();
