@@ -9,5 +9,6 @@ public class Department
     public string? Note { get; set; }
     public byte Status { get; set; } = 1;
 
-    public ICollection<TicketType> TicketTypes { get; set; } = new List<TicketType>();
+    public Target? Target { get; set; }
+    
 }

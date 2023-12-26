@@ -11,6 +11,6 @@ public class Target
 
     public Ticket Ticket { get; set; } = new Ticket();
     public Department Department { get; set; } = new Department();
-
+    public Notification? Notification { get; set; }
 
 }

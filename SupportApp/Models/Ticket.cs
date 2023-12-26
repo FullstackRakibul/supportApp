@@ -24,6 +24,7 @@ namespace SupportApp.Models
         
         public int TicketTypeId { get; set; }
         public TicketType TicketType { get; set; } = new TicketType();
+        public Target? Target { get; set; }
 
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         

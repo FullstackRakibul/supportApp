@@ -47,7 +47,6 @@ public class TicketService
 
         if (existingTicket == null && DateTime.TryParse(dateHeader.Value, out var createdDate))
         {
-
             var ticket = new Ticket
             {
                 Title = emailDetails.Subject,
