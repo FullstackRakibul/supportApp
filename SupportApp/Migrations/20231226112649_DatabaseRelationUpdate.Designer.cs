@@ -12,8 +12,8 @@ using SupportApp.Models;
 namespace SupportApp.Migrations
 {
     [DbContext(typeof(SupportAppDbContext))]
-    [Migration("20231223070238_databaseRedesign")]
-    partial class databaseRedesign
+    [Migration("20231226112649_DatabaseRelationUpdate")]
+    partial class DatabaseRelationUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,7 +124,6 @@ namespace SupportApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Status")
@@ -155,6 +154,9 @@ namespace SupportApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TargetId")
+                        .IsUnique();
+
                     b.ToTable("Notification");
                 });
 
@@ -178,13 +180,12 @@ namespace SupportApp.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TargetId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
 
                     b.ToTable("Review");
                 });
@@ -206,13 +207,16 @@ namespace SupportApp.Migrations
                     b.Property<string>("Objective")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TicketATypeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId")
+                        .IsUnique();
+
+                    b.HasIndex("TicketId")
+                        .IsUnique();
 
                     b.ToTable("Target");
                 });
@@ -257,7 +261,7 @@ namespace SupportApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TicketTypeId")
+                    b.Property<int>("TicketTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -300,13 +304,73 @@ namespace SupportApp.Migrations
                     b.ToTable("TicketType");
                 });
 
+            modelBuilder.Entity("SupportApp.Models.Notification", b =>
+                {
+                    b.HasOne("SupportApp.Models.Target", "Target")
+                        .WithOne("Notification")
+                        .HasForeignKey("SupportApp.Models.Notification", "TargetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Target");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Review", b =>
+                {
+                    b.HasOne("SupportApp.Models.Ticket", "Ticket")
+                        .WithMany("Reviews")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Target", b =>
+                {
+                    b.HasOne("SupportApp.Models.Department", "Department")
+                        .WithOne("Target")
+                        .HasForeignKey("SupportApp.Models.Target", "DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SupportApp.Models.Ticket", "Ticket")
+                        .WithOne("Target")
+                        .HasForeignKey("SupportApp.Models.Target", "TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Ticket");
+                });
+
             modelBuilder.Entity("SupportApp.Models.Ticket", b =>
                 {
                     b.HasOne("SupportApp.Models.TicketType", "TicketType")
                         .WithMany("Tickets")
-                        .HasForeignKey("TicketTypeId");
+                        .HasForeignKey("TicketTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TicketType");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Department", b =>
+                {
+                    b.Navigation("Target");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Target", b =>
+                {
+                    b.Navigation("Notification");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Ticket", b =>
+                {
+                    b.Navigation("Reviews");
+
+                    b.Navigation("Target");
                 });
 
             modelBuilder.Entity("SupportApp.Models.TicketType", b =>

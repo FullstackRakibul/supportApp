@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using Microsoft.EntityFrameworkCore;
-using SupportApp.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SupportApp.Models
 {
@@ -14,6 +12,7 @@ namespace SupportApp.Models
 
 
         public DbSet<BaseUser> BaseUser { get; set;}
+
 
         public DbSet<Ticket> Ticket {get; set;}
 

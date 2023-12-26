@@ -1,8 +1,11 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace SupportApp.Models
 {
     public class BaseUser
     {
+        [Key]
         public int UserId { get; set; }
         public string Name { get; set; } = String.Empty;
         public string EmpCode { get; set; } = String.Empty;
