@@ -9,5 +9,5 @@ public class Notification
     public string Message { get; set; } = "A new issue has been raised.";
 
     public int TargetId { get; set; }   
-    public Target Target { get; set; } = new Target();
+    public Target? Target { get; set; }
 }

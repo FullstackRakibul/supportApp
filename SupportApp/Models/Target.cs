@@ -9,8 +9,8 @@ public class Target
     public int DepartmentId { get; set; }
     public string? Objective { get; set; }
 
-    public Ticket Ticket { get; set; } = new Ticket();
-    public Department Department { get; set; } = new Department();
+    public Ticket? Ticket { get; set; }
+    public Department? Department { get; set; }
     public Notification? Notification { get; set; }
 
 }

@@ -12,8 +12,8 @@ using SupportApp.Models;
 namespace SupportApp.Migrations
 {
     [DbContext(typeof(SupportAppDbContext))]
-    [Migration("20231226112649_DatabaseRelationUpdate")]
-    partial class DatabaseRelationUpdate
+    [Migration("20231226114847_FinalmodelRelation")]
+    partial class FinalmodelRelation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

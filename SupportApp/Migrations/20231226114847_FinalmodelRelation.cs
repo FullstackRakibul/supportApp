@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SupportApp.Migrations
 {
-    public partial class DatabaseRelationUpdate : Migration
+    public partial class FinalmodelRelation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

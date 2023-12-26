@@ -23,10 +23,10 @@ namespace SupportApp.Models
         public Priority Priority { get; set; } = Priority.Regular;
         
         public int TicketTypeId { get; set; }
-        public TicketType TicketType { get; set; } = new TicketType();
+        public TicketType? TicketType { get; set; }
         public Target? Target { get; set; }
 
-        public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ICollection<Review>? Reviews { get; set; }
         
 
     }
