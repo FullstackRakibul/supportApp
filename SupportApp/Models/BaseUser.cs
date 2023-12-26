@@ -1,19 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using SupportApp.Models;
-
+﻿
 namespace SupportApp.Models
 {
     public class BaseUser
     {
-        [Key]
         public int UserId { get; set; }
-        public string Name { get; set; } = "";
-        [Required]
-        public string EmpCode { get; set; } = "";
+        public string Name { get; set; } = String.Empty;
+        public string EmpCode { get; set; } = String.Empty;
         public string? Email { get; set; }
-        [Required]
-        public string Mobile { get; set; } = "";
+        public string Mobile { get; set; } = String.Empty;
         public string? PhoneExtension { get; set; }
         public string? Username { get; set; }
         public string? Password { get; set; }
