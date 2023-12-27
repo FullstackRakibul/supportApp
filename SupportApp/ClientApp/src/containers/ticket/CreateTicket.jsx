@@ -1,8 +1,44 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 const { TextArea } = Input;
-import { UploadOutlined } from "@ant-design/icons";
-import { Col, Row, Card, Form, Input, Button, Upload, message } from "antd";
+import { InboxOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import {
+  Col,
+  Row,
+  Card,
+  Form,
+  Input,
+  Button,
+  Upload,
+  message,
+  Select,
+} from "antd";
+const { Dragger } = Upload;
 import axios from "axios";
+
+// component load
+
+import TickeTypeDropDown from "../../components/TicketTypeDropDown.jsx";
+
+const props = {
+  name: "attachment",
+  multiple: true,
+  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+  onChange(info) {
+    const { status } = info.file;
+    if (status !== "uploading") {
+      console.log(info.file, info.fileList);
+    }
+    if (status === "done") {
+      message.success(`${info.file.name} attachment uploaded successfully.`);
+    } else if (status === "error") {
+      message.error(`${info.file.name} attachment upload failed.`);
+    }
+  },
+  onDrop(e) {
+    console.log("Dropped files", e.dataTransfer.files);
+  },
+};
 
 function CreateTicket() {
   const [form] = Form.useForm();
@@ -64,6 +100,7 @@ function CreateTicket() {
   const uploadButtonProps = {
     action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
   };
+
   return (
     <>
       <section className="conatainer mx-auto">
@@ -79,6 +116,28 @@ function CreateTicket() {
               }}
             >
               <Form form={form} {...layout} labelAlign="left">
+                <Form.Item
+                  className="font-sans gap-5 "
+                  name="ticketTypeId"
+                  label="Select Ticket Type"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input Issue Type!",
+                    },
+                  ]}
+                >
+                  {/* <Select /> */}
+                  <TickeTypeDropDown name="ticketTypeId" />
+
+                  <NavLink to="/createTicketType">
+                    <Button
+                      type="primary"
+                      className="font-sans font-semibold bg-primary"
+                      icon={<PlusCircleOutlined />}
+                    ></Button>
+                  </NavLink>
+                </Form.Item>
                 <Form.Item
                   className="font-sans"
                   name="title"
@@ -121,9 +180,21 @@ function CreateTicket() {
                   name="attachment"
                   label="Upload Files"
                 >
-                  <Upload {...uploadButtonProps}>
+                  {/* <Upload {...uploadButtonProps}>
                     <Button icon={<UploadOutlined />}>Upload</Button>
-                  </Upload>
+                  </Upload> */}
+                  <Dragger {...props}>
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text">
+                      Click or drag file to this area to upload
+                    </p>
+                    <p className="ant-upload-hint">
+                      Support for a single or bulk upload. Strictly prohibited
+                      from uploading company data or other banned files.
+                    </p>
+                  </Dragger>
                 </Form.Item>
                 <Form.Item {...footerLayout}>
                   <Button

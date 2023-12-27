@@ -16,6 +16,8 @@ import TicketCard from "../containers/TicketCard.jsx";
 import App from "../App.jsx";
 import EmailList from "../containers/EmailList.jsx";
 import CreateTicket from "../containers/ticket/CreateTicket.jsx";
+import CreateTicketType from "../containers/ticket/CreateTicketType.jsx";
+import DepartmentWiseTicket from "../containers/department/DepartmentWiseTicket.jsx";
 
 const routes =
   ({
@@ -45,6 +47,14 @@ const routes =
   {
     path: "/createTicket",
     element: <CreateTicket />,
+  },
+  {
+    path: "/createTicketType",
+    element: <CreateTicketType />,
+  },
+  {
+    path: "/departmentWiseTicket",
+    element: <DepartmentWiseTicket />,
   },
   {
     path: "*",

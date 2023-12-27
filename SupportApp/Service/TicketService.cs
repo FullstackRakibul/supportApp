@@ -43,7 +43,7 @@ public class TicketService
         var existingTicket = _context.Ticket.FirstOrDefault(ticket => ticket.MessageId == emailDetails.MessageId);
         // Find the "Date" header
         var dateHeader = emailDetails.Headers.FirstOrDefault(header => header.Key == "Date");
-       //Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
+        //Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
 
         if (existingTicket == null && DateTime.TryParse(dateHeader.Value, out var createdDate))
         {
@@ -88,12 +88,13 @@ public class TicketService
                 TicketNumber = generatedTicketNumber,
                 Description = ticket.Description,
                 Attachment = ticket.Attachment,
-                //CreatedAt = ticket.CreatedAt,
+                CreatedAt = ticket.CreatedAt,
                 MessageId = generatedTicketNumber,
                 Priority = Priority.Regular,
                 Status = TicketStatus.Open,
                 IsEmail = false,
-                //UpdatedAt = DateTime.Now,
+                TicketTypeId = ticket.TicketTypeId,
+                UpdatedAt = null,
 
             };
             Console.WriteLine(ticketData);
