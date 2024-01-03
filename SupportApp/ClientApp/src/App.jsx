@@ -27,12 +27,14 @@ import {
   IdcardOutlined,
   TagsOutlined,
   MailOutlined,
-  OrderedListOutlined,
+  DatabaseOutlined,
+  DeploymentUnitOutlined,
 } from "@ant-design/icons";
 import CreateTicket from "./containers/ticket/CreateTicket.jsx";
 import EmailCard from "./containers/EmailCard.jsx";
 import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
 import DepartmentWiseTicket from "./containers/department/DepartmentWiseTicket.jsx";
+import UnitCard from "./containers/UnitCard.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,8 +48,9 @@ const App = () => {
     {
       path: "/departmentWiseTicket",
       label: "Department",
-      icon: <OrderedListOutlined />,
+      icon: <DatabaseOutlined />,
     },
+    { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
   ];
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -135,6 +138,7 @@ const App = () => {
               <Route path="/emailList" element={<EmailCard />} />
               <Route path="/createTicket" element={<CreateTicket />} />
               <Route path="/createTicketType" element={<CreateTicketType />} />
+              <Route path="/unit" element={<UnitCard />} />
               <Route
                 path="/departmentWiseTicket"
                 element={<DepartmentWiseTicket />}

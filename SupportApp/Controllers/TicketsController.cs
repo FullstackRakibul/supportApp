@@ -12,13 +12,13 @@ namespace SupportApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TicketController : ControllerBase
+    public class TicketsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
 
-        public TicketController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService)
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService)
         {
             _context = context;
             _ticketService = ticketService;

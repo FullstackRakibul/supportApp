@@ -13,11 +13,11 @@ namespace SupportApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseUserController : ControllerBase
+    public class BaseUsersController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
 
-        public BaseUserController(SupportAppDbContext context)
+        public BaseUsersController(SupportAppDbContext context)
         {
             _context = context;
         }

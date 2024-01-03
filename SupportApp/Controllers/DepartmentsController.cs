@@ -11,55 +11,55 @@ namespace SupportApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TicketTypeController : ControllerBase
+    public class DepartmentsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
 
-        public TicketTypeController(SupportAppDbContext context)
+        public DepartmentsController(SupportAppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/TicketType
+        // GET: api/Department
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TicketType>>> GetTicketType()
+        public async Task<ActionResult<IEnumerable<Department>>> GetDepartment()
         {
-          if (_context.TicketType == null)
+          if (_context.Department == null)
           {
               return NotFound();
           }
-            return await _context.TicketType.ToListAsync();
+            return await _context.Department.ToListAsync();
         }
 
-        // GET: api/TicketType/5
+        // GET: api/Department/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TicketType>> GetTicketType(int id)
+        public async Task<ActionResult<Department>> GetDepartment(int id)
         {
-          if (_context.TicketType == null)
+          if (_context.Department == null)
           {
-              return NotFound("Not Ticket type is found.");
+              return NotFound();
           }
-            var ticketType = await _context.TicketType.FindAsync(id);
-            
-            if (ticketType == null)
+            var department = await _context.Department.FindAsync(id);
+
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return ticketType;
+            return department;
         }
 
-        // PUT: api/TicketType/5
+        // PUT: api/Department/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTicketType(int id, TicketType ticketType)
+        public async Task<IActionResult> PutDepartment(int id, Department department)
         {
-            if (id != ticketType.Id)
+            if (id != department.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(ticketType).State = EntityState.Modified;
+            _context.Entry(department).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace SupportApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TicketTypeExists(id))
+                if (!DepartmentExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace SupportApp.Controllers
             return NoContent();
         }
 
-        // POST: api/TicketType
+        // POST: api/Department
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TicketType>> PostTicketType(TicketType ticketType)
+        public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
-          if (_context.TicketType == null)
+          if (_context.Department == null)
           {
-              return Problem("Entity set 'SupportAppDbContext.TicketType'  is null.");
+              return Problem("Entity set 'SupportAppDbContext.Department'  is null.");
           }
-            _context.TicketType.Add(ticketType);
+            _context.Department.Add(department);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTicketType", new { id = ticketType.Id }, ticketType);
+            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
         }
 
-        // DELETE: api/TicketType/5
+        // DELETE: api/Department/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTicketType(int id)
+        public async Task<IActionResult> DeleteDepartment(int id)
         {
-            if (_context.TicketType == null)
+            if (_context.Department == null)
             {
                 return NotFound();
             }
-            var ticketType = await _context.TicketType.FindAsync(id);
-            if (ticketType == null)
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
             {
                 return NotFound();
             }
 
-            _context.TicketType.Remove(ticketType);
+            _context.Department.Remove(department);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TicketTypeExists(int id)
+        private bool DepartmentExists(int id)
         {
-            return (_context.TicketType?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Department?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SupportApp.Models;
 
 namespace SupportApp.Models
 {
@@ -27,5 +28,7 @@ namespace SupportApp.Models
         public DbSet<Review> Review{get; set;}
         
         public DbSet<Target> Target{get; set;}     
+        
+        public DbSet<SupportApp.Models.Unit>? Unit { get; set; }
     }
 }

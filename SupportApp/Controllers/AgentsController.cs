@@ -11,55 +11,55 @@ namespace SupportApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class AgentsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
 
-        public DepartmentController(SupportAppDbContext context)
+        public AgentsController(SupportAppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Department
+        // GET: api/Agent
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Department>>> GetDepartment()
+        public async Task<ActionResult<IEnumerable<Agent>>> GetAgent()
         {
-          if (_context.Department == null)
+          if (_context.Agent == null)
           {
               return NotFound();
           }
-            return await _context.Department.ToListAsync();
+            return await _context.Agent.ToListAsync();
         }
 
-        // GET: api/Department/5
+        // GET: api/Agent/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Department>> GetDepartment(int id)
+        public async Task<ActionResult<Agent>> GetAgent(int id)
         {
-          if (_context.Department == null)
+          if (_context.Agent == null)
           {
               return NotFound();
           }
-            var department = await _context.Department.FindAsync(id);
+            var agent = await _context.Agent.FindAsync(id);
 
-            if (department == null)
+            if (agent == null)
             {
                 return NotFound();
             }
 
-            return department;
+            return agent;
         }
 
-        // PUT: api/Department/5
+        // PUT: api/Agent/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepartment(int id, Department department)
+        public async Task<IActionResult> PutAgent(int id, Agent agent)
         {
-            if (id != department.Id)
+            if (id != agent.AgentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(department).State = EntityState.Modified;
+            _context.Entry(agent).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace SupportApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DepartmentExists(id))
+                if (!AgentExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace SupportApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Department
+        // POST: api/Agent
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Department>> PostDepartment(Department department)
+        public async Task<ActionResult<Agent>> PostAgent(Agent agent)
         {
-          if (_context.Department == null)
+          if (_context.Agent == null)
           {
-              return Problem("Entity set 'SupportAppDbContext.Department'  is null.");
+              return Problem("Entity set 'SupportAppDbContext.Agent'  is null.");
           }
-            _context.Department.Add(department);
+            _context.Agent.Add(agent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            return CreatedAtAction("GetAgent", new { id = agent.AgentId }, agent);
         }
 
-        // DELETE: api/Department/5
+        // DELETE: api/Agent/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDepartment(int id)
+        public async Task<IActionResult> DeleteAgent(int id)
         {
-            if (_context.Department == null)
+            if (_context.Agent == null)
             {
                 return NotFound();
             }
-            var department = await _context.Department.FindAsync(id);
-            if (department == null)
+            var agent = await _context.Agent.FindAsync(id);
+            if (agent == null)
             {
                 return NotFound();
             }
 
-            _context.Department.Remove(department);
+            _context.Agent.Remove(agent);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DepartmentExists(int id)
+        private bool AgentExists(int id)
         {
-            return (_context.Department?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Agent?.Any(e => e.AgentId == id)).GetValueOrDefault();
         }
     }
 }
