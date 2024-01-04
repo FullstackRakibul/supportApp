@@ -4,7 +4,7 @@ function DepartmentWiseTicket() {
   return (
     <>
       <section className="conatainer mx-auto">
-        <p>DepartmentWiseTicket</p>
+        <p className="font-sans font-2xl font-semibold">DepartmentWiseTicket</p>
       </section>
     </>
   );

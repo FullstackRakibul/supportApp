@@ -35,6 +35,7 @@ import EmailCard from "./containers/EmailCard.jsx";
 import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
 import DepartmentWiseTicket from "./containers/department/DepartmentWiseTicket.jsx";
 import UnitCard from "./containers/UnitCard.jsx";
+import Department from "./containers/Department.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,7 +47,7 @@ const App = () => {
     { path: "/emailList", label: "Email", icon: <MailOutlined /> },
     { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
     {
-      path: "/departmentWiseTicket",
+      path: "/department",
       label: "Department",
       icon: <DatabaseOutlined />,
     },
@@ -139,10 +140,7 @@ const App = () => {
               <Route path="/createTicket" element={<CreateTicket />} />
               <Route path="/createTicketType" element={<CreateTicketType />} />
               <Route path="/unit" element={<UnitCard />} />
-              <Route
-                path="/departmentWiseTicket"
-                element={<DepartmentWiseTicket />}
-              />
+              <Route path="/department" element={<Department />} />
             </Routes>
           </Content>
           <Footer />

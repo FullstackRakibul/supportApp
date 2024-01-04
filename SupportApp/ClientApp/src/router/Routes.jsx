@@ -19,6 +19,8 @@ import CreateTicket from "../containers/ticket/CreateTicket.jsx";
 import CreateTicketType from "../containers/ticket/CreateTicketType.jsx";
 import DepartmentWiseTicket from "../containers/department/DepartmentWiseTicket.jsx";
 import CreateUnit from "../containers/unit/CreateUnit.jsx";
+import DepartmentListTable from "../containers/department/DepartmentListTable.jsx";
+import Department from "../containers/Department.jsx";
 
 const routes =
   ({
@@ -56,6 +58,14 @@ const routes =
   {
     path: "/departmentWiseTicket",
     element: <DepartmentWiseTicket />,
+  },
+  {
+    path: "/departmentListTable",
+    element: <DepartmentListTable />,
+  },
+  {
+    path: "/department",
+    element: <Department />,
   },
   {
     path: "/createUnit",
