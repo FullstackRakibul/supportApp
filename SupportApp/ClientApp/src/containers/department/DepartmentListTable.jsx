@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import { Space, Table, Tag } from "antd";
+import { Space, Table } from "antd";
 import axios from "axios";
+import { EyeOutlined, EditOutlined } from "@ant-design/icons";
 const columns = [
   {
     title: "Department Name",
-    dataIndex: "DepartmentName",
-    key: "departmentName",
+    dataIndex: "departmentName",
+    key: "DepartmentName",
     render: (text) => <a>{text}</a>,
   },
   {
@@ -19,8 +20,8 @@ const columns = [
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <EyeOutlined />
+        <EditOutlined />
       </Space>
     ),
   },
@@ -32,13 +33,26 @@ function DepartmentListTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-      } catch (error) {}
+        const response = await axios.get(
+          "https://localhost:7295/api/Departments"
+        );
+        setDepartment(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(`Data fatching error ${error}`);
+      }
     };
-  });
+    fetchData();
+  }, []);
 
   return (
     <>
-      <Table columns={columns} virtual scroll={{ x: 2000, y: 500 }} />
+      <Table
+        columns={columns}
+        dataSource={department}
+        // virtual
+        // scroll={{ x: 2000, y: 500 }}
+      />
     </>
   );
 }
