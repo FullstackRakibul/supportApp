@@ -33,7 +33,6 @@ import {
 import CreateTicket from "./containers/ticket/CreateTicket.jsx";
 import EmailCard from "./containers/EmailCard.jsx";
 import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
-import DepartmentWiseTicket from "./containers/department/DepartmentWiseTicket.jsx";
 import UnitCard from "./containers/UnitCard.jsx";
 import Department from "./containers/Department.jsx";
 

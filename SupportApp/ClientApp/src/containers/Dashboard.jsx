@@ -1,6 +1,7 @@
 import { Card } from "antd";
 import React from "react";
 import DocumentationSection from "./dashboard/DocumentationSection";
+import IssueBox from "./dashboard/IssueBox";
 
 function Dashboard() {
   const handleClick = () => {
@@ -8,8 +9,9 @@ function Dashboard() {
   };
   return (
     <>
-      <section className="container">
-        <DocumentationSection />
+      <section className="mx-auto">
+        <IssueBox />
+        {/* <DocumentationSection /> */}
       </section>
     </>
   );

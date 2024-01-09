@@ -3,12 +3,9 @@ import {
   PushpinOutlined,
   QuestionCircleOutlined,
   UserOutlined,
-  HomeOutlined,
   MessageOutlined,
   BellOutlined,
-  MailOutlined,
   EditOutlined,
-  AudioOutlined,
 } from "@ant-design/icons";
 
 import { Avatar, Button } from "antd";

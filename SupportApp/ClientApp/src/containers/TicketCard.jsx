@@ -23,14 +23,11 @@ const TicketCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://localhost:7295/api/Ticket?format=json"
-        );
+        const response = await axios.get("https://localhost:7295/api/Tickets");
         setTicket(response.data);
         setLoading(false);
 
-        console.log("This is response", response);
-        console.log("This is response data ", response.data);
+        //console.log("This is response data ", response.data);
       } catch (error) {
         console.log("API error ", console.error());
         setLoading(false);
@@ -146,7 +143,7 @@ const TicketCard = () => {
                 icon={<RedoOutlined />}
                 onClick={handleRefresh}
               >
-                Refresh Ticket
+                Get Ticket From Mail
               </Button>
             </span>
           </div>

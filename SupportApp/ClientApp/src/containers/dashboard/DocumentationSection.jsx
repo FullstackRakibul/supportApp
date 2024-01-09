@@ -5,18 +5,20 @@ import { NavLink } from "react-router-dom";
 const data = [
   {
     title: "Submit an Issue",
-    avatar: <span class="material-symbols-outlined text-black">draw</span>,
+    avatar: <span className="material-symbols-outlined text-black">draw</span>,
   },
   {
     title: "Issue form mail",
     avatar: (
-      <span class="material-symbols-outlined text-black">contact_mail</span>
+      <span className="material-symbols-outlined text-black">contact_mail</span>
     ),
   },
   {
     title: "Issue Type",
     avatar: (
-      <span class="material-symbols-outlined text-black">checklist_rtl</span>
+      <span className="material-symbols-outlined text-black">
+        checklist_rtl
+      </span>
     ),
   },
 ];
@@ -47,7 +49,7 @@ function DocumentationSection() {
               />
             </Card>
           </Col>
-          <Col span={3} className=""></Col>
+          <Col span={3}></Col>
         </div>
       </Row>
     </>
