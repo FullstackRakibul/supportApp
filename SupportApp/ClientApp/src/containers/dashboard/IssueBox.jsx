@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import IssueCard from "../../components/IssueCard";
-import axios from "axios";
 
 import axiosInstance from "../../router/api.js";
+import { Row, Col } from "antd";
 
 const IssueBox = () => {
   const [issue, setIssue] = useState([]);
@@ -24,19 +24,38 @@ const IssueBox = () => {
 
   return (
     <>
-      <section
-        className="p-3 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
-        style={{ maxHeight: "550px" }}
-      >
-        {issue.map((issueData) => (
-          <IssueCard
-            issueTitle={issueData.title}
-            issueDescription={issueData.description}
-            issueCreateDate={issueData.createdAt}
-            assignAgent={issueData.agentId}
-            issueStatus={issueData.status}
-          />
-        ))}
+      <section>
+        <Row>
+          <Col span={6}>
+            <div>
+              <ul>
+                <li>Test 01</li>
+                <li>Test 01</li>
+                <li>Test 01</li>
+                <li>Test 01</li>
+                <li>Test 01</li>
+                <li>Test 01</li>
+                <li>Test 01</li>
+              </ul>
+            </div>
+          </Col>
+          <Col
+            span={16}
+            className="p-3 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
+            style={{ maxHeight: "600px" }}
+          >
+            {issue.map((issueData) => (
+              <IssueCard
+                issueTitle={issueData.title}
+                issueDescription={issueData.description}
+                issueCreateDate={issueData.createdAt}
+                assignAgent={"Rakibul Hasan"}
+                issueStatus={issueData.status}
+                assignCreator={"Employee Name"}
+              />
+            ))}
+          </Col>
+        </Row>
       </section>
     </>
   );

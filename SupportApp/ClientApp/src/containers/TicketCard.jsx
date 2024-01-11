@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Space, Button, message } from "antd";
+import { Table, Space, Button, message, Modal } from "antd";
 import {
   RollbackOutlined,
   EditOutlined,
   EyeOutlined,
   RedoOutlined,
   UserAddOutlined,
+  CheckCircleOutlined,
 } from "@ant-design/icons";
+
+import AxiosInstance from "../router/api";
 
 const TicketCard = () => {
   // const config = {
@@ -42,7 +45,7 @@ const TicketCard = () => {
     { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "createdAt", dataIndex: "createdAt", key: "createdAt" },
     { title: "Status", dataIndex: "status", key: "status" },
-    { title: "Acknoledge by", dataIndex: "agentId", key: "agentId" },
+    // { title: "Acknoledge by", dataIndex: "agentId", key: "agentId" },
     {
       title: "Action",
       key: "action",
@@ -94,9 +97,25 @@ const TicketCard = () => {
   };
 
   // handle action button
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ticketData, setTicketData] = useState([]);
   const handleShow = (id) => {
-    console.log(`Show ticket with ID ${id}`);
-    message.success(`Details popup for Ticket id : ${id}`);
+    const fetchData = async () => {
+      try {
+        const response = await AxiosInstance.get(`/api/Tickets/${id}`);
+        setTicketData(response.data);
+        console.log(response.data);
+        //message.success(`Details popup for Ticket id : ${id}`);
+        setIsModalOpen(true);
+      } catch (error) {
+        console.log(`show error ${error}`);
+      }
+    };
+
+    fetchData();
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
   };
 
   const handleReply = (id) => {
@@ -158,6 +177,25 @@ const TicketCard = () => {
           />
         </div>
       </section>
+
+      <Modal
+        title={ticketData.title}
+        open={isModalOpen}
+        onOk={handleOk}
+        footer={[
+          <Button
+            key="back"
+            className="bg-primary"
+            type="primary"
+            icon={<CheckCircleOutlined />}
+            onClick={handleOk}
+          ></Button>,
+        ]}
+        style={{}}
+      >
+        <h3 className="text-lg font-sans font-semibold">Details:</h3>
+        <p className="font-sans font-semibold">{ticketData.description}</p>
+      </Modal>
     </>
   );
 };

@@ -25,9 +25,9 @@ public class DashboardsController : ControllerBase
     public async Task<ActionResult<IEnumerable<Ticket>>> Index()
     {
 
-        //var ticket = await _context.Ticket.ToListAsync();
+        var ticket = await _context.Ticket.ToListAsync();
 
-        var ticket = _context.Ticket.Where(tickets => tickets.Status == TicketStatus.Open).ToList();
+        //var ticket = _context.Ticket.Where(tickets => tickets.Status == TicketStatus.Open).ToList();
         var department = await _context.Department.ToListAsync();
 
         var contextData = new

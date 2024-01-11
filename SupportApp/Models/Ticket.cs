@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.Serialization;
+
 namespace SupportApp.Models
 {
     public class Ticket
@@ -16,8 +18,8 @@ namespace SupportApp.Models
         public string? EmailCc { get; set; }
         public int? UpdatedBy { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public string? CreatedAt { get; set; }
+        public string? UpdatedAt { get; set; }
 
         public TicketStatus Status { get; set; } = TicketStatus.Open;
         public Priority Priority { get; set; } = Priority.Regular;
@@ -32,7 +34,7 @@ namespace SupportApp.Models
     }
 
     public enum Priority
-    { 
+    {
         Regular,
         Standard,
         Emergency,
@@ -45,6 +47,7 @@ namespace SupportApp.Models
         Acknowledged,
         InProgress,
         Closed,
+        Complete,
         Deleted
     }
 }

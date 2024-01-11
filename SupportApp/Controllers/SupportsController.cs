@@ -11,11 +11,11 @@ namespace SupportApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AgentsController : ControllerBase
+    public class SupportsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
 
-        public AgentsController(SupportAppDbContext context)
+        public SupportsController(SupportAppDbContext context)
         {
             _context = context;
         }

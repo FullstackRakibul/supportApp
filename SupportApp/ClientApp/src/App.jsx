@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet, Route, Router, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 //import Header from "./components/Header";
@@ -14,10 +14,6 @@ import HeaderComponet from "./components/HeaderComponent.jsx";
 
 //
 import { Layout, Menu, theme, Button, Avatar } from "antd";
-
-// media import
-import logo from "./assets/hameemgroup-sq-logo.png";
-import userimg from "./assets/user01.png";
 
 import {
   MenuFoldOutlined,
@@ -35,6 +31,7 @@ import EmailCard from "./containers/EmailCard.jsx";
 import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
 import UnitCard from "./containers/UnitCard.jsx";
 import Department from "./containers/Department.jsx";
+import Signin from "./containers/auth/Signin.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -67,9 +64,6 @@ const App = () => {
           collapsed={collapsed}
           style={{ backgroundColor: "#ffff" }}
         >
-          {/* <div className="demo-logo-vertical">
-            <img src={logo} alt="Ha-meem desk" className="h-24 w-screen" />
-          </div> */}
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             {customRoutes.map((route) => (
               <Menu.Item
@@ -123,7 +117,7 @@ const App = () => {
           <Content
             style={{
               margin: "24px 16px",
-              padding: 24,
+              padding: 10,
               minHeight: 280,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
@@ -140,6 +134,7 @@ const App = () => {
               <Route path="/createTicketType" element={<CreateTicketType />} />
               <Route path="/unit" element={<UnitCard />} />
               <Route path="/department" element={<Department />} />
+              <Route path="/signin" element={<Signin />} />
             </Routes>
           </Content>
           <Footer />
@@ -150,44 +145,3 @@ const App = () => {
 };
 
 export default App;
-
-// const App = () => (
-//   <>
-//     <Header />
-//     <div className="p-3">
-//       <Routes>
-//         <Route path="/" element={<Dashboard />} />
-//         <Route path="/profile" element={<ProfileCard />} />
-//         <Route path="/agent" element={<AgentCard />} />
-//         <Route path="/chat" element={<ChatCard />} />
-//         <Route path="/emailBox" element={<EmailCard />} />
-//         <Route path="/emailList" element={<EmailList />} />
-
-//       </Routes>
-//     </div>
-//     <Footer />
-//   </>
-// );
-
-// <Menu
-// theme="light"
-// mode="inline"
-// defaultSelectedKeys={["1"]}
-// items={[
-//   {
-//     key: "1",
-//     icon: <UserOutlined />,
-//     label: "nav 1",
-//   },
-//   {
-//     key: "2",
-//     icon: <VideoCameraOutlined />,
-//     label: "nav 2",
-//   },
-//   {
-//     key: "3",
-//     icon: <UploadOutlined />,
-//     label: "nav 3",
-//   },
-// ]}
-// />

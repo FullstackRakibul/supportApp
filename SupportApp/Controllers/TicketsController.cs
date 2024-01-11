@@ -67,7 +67,7 @@ namespace SupportApp.Controllers
         // PUT: api/Ticket/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public  Task<IActionResult> PutTicket(int id, Ticket ticket)
+        public async  Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             try
             {
@@ -76,11 +76,14 @@ namespace SupportApp.Controllers
                     return NotFound();
                 }
 
-                var ticketdata = _context.Ticket.FindAsync(id);
+                var ticketdata =await _context.Ticket.FindAsync(id);
 
+                if (ticketdata != null) {
                 ticketdata.Status = ticket.Status;
-
                 _context.SaveChangesAsync();
+                }
+
+
 
             }
             catch (Exception e)

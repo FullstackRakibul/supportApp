@@ -58,14 +58,18 @@ public class TicketService
                     ? string.Join(",", emailDetails.Attachments)
                     : null,
                 Status = TicketStatus.Acknowledged,
-                CreatedAt = Convert.ToDateTime(createdDate),
+                CreatedAt = Convert.ToDateTime(createdDate).ToString("yyyy-MM-dd HH:mm:ss"),
                 //CreatedAt = createdDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                UpdatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 IsEmail = true,
                 FromEmail = emailDetails.From.ToString(),
                 EmailCc = emailDetails.Cc,
                 TicketTypeId = 1,
             };
+
+            // Format CreatedAt property to "yyyy-MM-dd HH:mm:ss"
+            //ticket.CreatedAt = Convert.ToDateTime(createdDate).ToString("yyyy-MM-dd HH:mm:ss");
+
             _context.Ticket.Add(ticket);
             _context.SaveChanges();
         }
@@ -79,7 +83,7 @@ public class TicketService
     {
         try
         {
-            ticket.CreatedAt = DateTime.Now;
+            ticket.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             var generatedTicketNumber = GenerateTicketNumber();
             var ticketData = new Ticket
