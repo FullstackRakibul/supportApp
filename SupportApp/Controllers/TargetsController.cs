@@ -119,5 +119,14 @@ namespace SupportApp.Controllers
         {
             return (_context.Target?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
+        // AssignSupportEngineer
+        [HttpPut("assignAgent/{id}")]
+        public async Task<IActionResult> AssignAgent(int id , Ticket ticket)
+        {
+            return Ok();
+
+        }
     }
 }

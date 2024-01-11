@@ -73,7 +73,7 @@ const TicketCard = () => {
             className="text-primary "
             type="dashed"
             icon={<UserAddOutlined />}
-            onClick={() => handleAsignAgent(record.id)}
+            onClick={() => handleAssignAgent(record.id)}
           />
         </Space>
       ),
@@ -118,6 +118,7 @@ const TicketCard = () => {
     setIsModalOpen(false);
   };
 
+  // handle issue reply system ..........
   const handleReply = (id) => {
     console.log(`Reply ticket with ID ${id}`);
     message.success(`Reply for Ticket id : ${id}`);
@@ -128,11 +129,19 @@ const TicketCard = () => {
     console.log(`Edit ticket with ID ${id}`);
   };
 
-  const handleAsignAgent = (id) => {
+  // hangle assign agent .........
+
+  const handleAssignAgent = (id) => {
+    const assignAgent = async () => {
+      const response = await AxiosInstance.put("");
+      console.log(``);
+    };
+    assignAgent();
     message.success(`Asign Agent for Ticket id : ${id}`);
     console.log(`Asign Agent for ticket ID ${id}`);
   };
 
+  // handle solf delete ..........
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
