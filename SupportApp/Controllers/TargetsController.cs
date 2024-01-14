@@ -117,29 +117,41 @@ namespace SupportApp.Controllers
 
 
         // AssignSupportEngineer
-        [HttpGet("assignAgent/{id}")]
-        public async Task<ActionResult<Ticket>> AssignAgent(int id, Ticket ticket)
+        [HttpGet("/ticket/{ticketId}/assignsupportengineer")]
+        public async Task<ActionResult<Target>> AssignSupportEngineer(int ticketId, [FromBody] Target request)
         {
-       
-            var targetTicket = await _context.Ticket.FindAsync(id);
-            return targetTicket;
+            try
+            {
+                // Find the target ticket based on the provided ticketId
+                var targetTicket = await _context.Ticket.FindAsync(ticketId);
 
-            //try
-            //{
-            //    var targetTicket = await _context.Ticket.FindAsync(id);
-            //    if (targetTicket != null)
-            //    {
-            //        return targetTicket;
-            //    }
-            //    else {
-            //        return BadRequest();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.ToString());
-            //    return BadRequest(ex.ToString());
-            //}
+                // Check if the ticket exists
+                if (targetTicket == null)
+                {
+                    return NotFound("Ticket not found");
+                }
+
+                
+                var newTarget = new Target
+                {
+                    TicketId = ticketId,
+                    AgentId = request.AgentId,
+                    //DepartmentId = request.DepartmentId,
+                    //UnitId = request.UnitId,
+                    //Objective = request.Objective
+                };
+
+                // Add the new target to the context and save changes
+                _context.Target.Add(newTarget);
+                await _context.SaveChangesAsync();
+
+                return Ok(newTarget);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, log errors, and return an appropriate response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
+            }
         }
     }
 }

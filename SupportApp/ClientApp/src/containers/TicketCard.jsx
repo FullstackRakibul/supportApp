@@ -133,8 +133,11 @@ const TicketCard = () => {
 
   const handleAssignAgent = (id) => {
     const assignAgent = async () => {
-      const response = await AxiosInstance.put("");
-      console.log(``);
+      const response = await AxiosInstance.get(
+        `https://localhost:7295/ticket/${id}/assignsupportengineer`
+      );
+      console.log(response.data);
+      message.success(response.data);
     };
     assignAgent();
     message.success(`Asign Agent for Ticket id : ${id}`);

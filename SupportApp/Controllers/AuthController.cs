@@ -12,16 +12,22 @@ namespace SupportApp.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
+        private readonly SupportAppDbContext _dbContext;
 
-        public AuthController(IConfiguration configuration)
+
+        public AuthController(IConfiguration configuration , SupportAppDbContext dbContext)
         {
             _config = configuration;
+            _dbContext = dbContext;
         }
 
         
         private BaseUser AuthenticateUser(BaseUser baseUser) {
             BaseUser _baseUser = null;
+
+
+            // test auth
             if (baseUser.Username == "admin" && baseUser.Password == "12345")
             {
                 _baseUser = new BaseUser
@@ -29,7 +35,27 @@ namespace SupportApp.Controllers
                     Username = "Rakibul Hasan"
                 };
             }
-                return _baseUser;
+            return _baseUser;
+
+
+            //
+
+            var userFromDb = _dbContext.BaseUser
+                .FirstOrDefault(u => u.Username == baseUser.Username && u.Password == baseUser.Password);
+
+            if (userFromDb != null)
+            {
+                _baseUser = new BaseUser
+                {
+                    Username = userFromDb.Username,
+                    // Add other properties if needed
+                };
+            }
+
+            return _baseUser;
+
+
+            //
         }
 
         private string GenerateToken(BaseUser baseUser) {

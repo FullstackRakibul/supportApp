@@ -49,6 +49,7 @@ namespace SupportApp.Controllers
         }
 
         // GET: api/Ticket/5
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
