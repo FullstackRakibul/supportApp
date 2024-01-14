@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class TicketsController : ControllerBase
@@ -80,7 +82,7 @@ namespace SupportApp.Controllers
 
                 if (ticketdata != null) {
                 ticketdata.Status = ticket.Status;
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 }
 
 

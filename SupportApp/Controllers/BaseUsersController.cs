@@ -127,5 +127,8 @@ namespace SupportApp.Controllers
         {
             return (_context.BaseUser?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
+
+
+
     }
 }

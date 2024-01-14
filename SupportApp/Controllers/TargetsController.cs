@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportApp.Models;
 
@@ -24,10 +19,10 @@ namespace SupportApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Target>>> GetTarget()
         {
-          if (_context.Target == null)
-          {
-              return NotFound();
-          }
+            if (_context.Target == null)
+            {
+                return NotFound();
+            }
             return await _context.Target.ToListAsync();
         }
 
@@ -35,10 +30,10 @@ namespace SupportApp.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Target>> GetTarget(int id)
         {
-          if (_context.Target == null)
-          {
-              return NotFound();
-          }
+            if (_context.Target == null)
+            {
+                return NotFound();
+            }
             var target = await _context.Target.FindAsync(id);
 
             if (target == null)
@@ -85,10 +80,10 @@ namespace SupportApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Target>> PostTarget(Target target)
         {
-          if (_context.Target == null)
-          {
-              return Problem("Entity set 'SupportAppDbContext.Target'  is null.");
-          }
+            if (_context.Target == null)
+            {
+                return Problem("Entity set 'SupportAppDbContext.Target'  is null.");
+            }
             _context.Target.Add(target);
             await _context.SaveChangesAsync();
 
@@ -122,11 +117,29 @@ namespace SupportApp.Controllers
 
 
         // AssignSupportEngineer
-        [HttpPut("assignAgent/{id}")]
-        public async Task<IActionResult> AssignAgent(int id , Ticket ticket)
+        [HttpGet("assignAgent/{id}")]
+        public async Task<ActionResult<Ticket>> AssignAgent(int id, Ticket ticket)
         {
-            return Ok();
+       
+            var targetTicket = await _context.Ticket.FindAsync(id);
+            return targetTicket;
 
+            //try
+            //{
+            //    var targetTicket = await _context.Ticket.FindAsync(id);
+            //    if (targetTicket != null)
+            //    {
+            //        return targetTicket;
+            //    }
+            //    else {
+            //        return BadRequest();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //    return BadRequest(ex.ToString());
+            //}
         }
     }
 }

@@ -29,8 +29,10 @@ namespace SupportApp.Models
 
     public enum UserRole { 
         Admin,
-        Agent,
-        Employee
+        SupportManager,
+        SupportEngineer,
+        Employee,
+
     }
 
     public enum WorkingStatus {
