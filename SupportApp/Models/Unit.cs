@@ -7,6 +7,6 @@
         public string Address { get; set; } = string.Empty;
         public bool Status { get; set; }
 
-        public Target? Target { get; set; }
+        public ICollection<Target> Targets { get; set; } = new List<Target>();
     }
 }

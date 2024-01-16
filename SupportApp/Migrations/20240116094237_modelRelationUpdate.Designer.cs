@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupportApp.Models;
 
@@ -11,9 +12,10 @@ using SupportApp.Models;
 namespace SupportApp.Migrations
 {
     [DbContext(typeof(SupportAppDbContext))]
-    partial class SupportAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240116094237_modelRelationUpdate")]
+    partial class modelRelationUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace SupportApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("DepartmentTarget", b =>
-                {
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TargetsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DepartmentId", "TargetsId");
-
-                    b.HasIndex("TargetsId");
-
-                    b.ToTable("DepartmentTarget");
-                });
 
             modelBuilder.Entity("SupportApp.Models.Agent", b =>
                 {
@@ -228,8 +215,12 @@ namespace SupportApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.HasIndex("TicketId")
                         .IsUnique();
+
+                    b.HasIndex("UnitId");
 
                     b.ToTable("Target");
                 });
@@ -341,36 +332,6 @@ namespace SupportApp.Migrations
                     b.ToTable("Unit");
                 });
 
-            modelBuilder.Entity("TargetUnit", b =>
-                {
-                    b.Property<int>("TargetsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UnitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TargetsId", "UnitId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("TargetUnit");
-                });
-
-            modelBuilder.Entity("DepartmentTarget", b =>
-                {
-                    b.HasOne("SupportApp.Models.Department", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SupportApp.Models.Target", null)
-                        .WithMany()
-                        .HasForeignKey("TargetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SupportApp.Models.Notification", b =>
                 {
                     b.HasOne("SupportApp.Models.Target", "Target")
@@ -395,13 +356,29 @@ namespace SupportApp.Migrations
 
             modelBuilder.Entity("SupportApp.Models.Target", b =>
                 {
+                    b.HasOne("SupportApp.Models.Department", "Department")
+                        .WithMany("Targets")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SupportApp.Models.Ticket", "Ticket")
                         .WithOne("Target")
                         .HasForeignKey("SupportApp.Models.Target", "TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SupportApp.Models.Unit", "Unit")
+                        .WithMany("Targets")
+                        .HasForeignKey("UnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
                     b.Navigation("Ticket");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("SupportApp.Models.Ticket", b =>
@@ -415,19 +392,9 @@ namespace SupportApp.Migrations
                     b.Navigation("TicketType");
                 });
 
-            modelBuilder.Entity("TargetUnit", b =>
+            modelBuilder.Entity("SupportApp.Models.Department", b =>
                 {
-                    b.HasOne("SupportApp.Models.Target", null)
-                        .WithMany()
-                        .HasForeignKey("TargetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SupportApp.Models.Unit", null)
-                        .WithMany()
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Targets");
                 });
 
             modelBuilder.Entity("SupportApp.Models.Target", b =>
@@ -445,6 +412,11 @@ namespace SupportApp.Migrations
             modelBuilder.Entity("SupportApp.Models.TicketType", b =>
                 {
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.Unit", b =>
+                {
+                    b.Navigation("Targets");
                 });
 #pragma warning restore 612, 618
         }
