@@ -43,14 +43,6 @@ const props = {
 
 const CreateTicket = () => {
   const [form] = Form.useForm();
-  const [ticketType, setTicketType] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await AxiosInstance.get("/api/TicketTypes");
-      setTicketType(response.data);
-    };
-    fetchData();
-  }, []);
 
   const [selectedTicketTypeId, setSelectedTicketTypeId] = useState(null);
 
@@ -62,7 +54,6 @@ const CreateTicket = () => {
     try {
       const values = await form.validateFields();
       values.ticketTypeId = selectedTicketTypeId;
-
       const response = await AxiosInstance.post("/api/Tickets", values);
       console.log(response.data);
       console.log(`status code :${response.status}`);
@@ -72,8 +63,6 @@ const CreateTicket = () => {
       } else {
         message.error("Error in Creating Ticket.");
       }
-
-      //console.log("Form values", values);
     } catch (error) {
       console.log(`catching formData error : ${error}`);
       message.error("catch Error in Creating Ticket.");
