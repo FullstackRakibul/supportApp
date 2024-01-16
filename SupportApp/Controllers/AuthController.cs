@@ -28,16 +28,14 @@ namespace SupportApp.Controllers
 
 
             // test auth
-            if (baseUser.Username == "admin" && baseUser.Password == "12345")
-            {
-                _baseUser = new BaseUser
-                {
-                    Username = "Rakibul Hasan"
-                };
-            }
-            return _baseUser;
-
-
+            //if (baseUser.Username == "admin" && baseUser.Password == "12345")
+            //{
+            //    _baseUser = new BaseUser
+            //    {
+            //        Username = "Rakibul Hasan"
+            //    };
+            //}
+            //return _baseUser;
             //
 
             var userFromDb = _dbContext.BaseUser

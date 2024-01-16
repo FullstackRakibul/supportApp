@@ -14,6 +14,8 @@ import CreateUnit from "../containers/unit/CreateUnit.jsx";
 import DepartmentListTable from "../containers/department/DepartmentListTable.jsx";
 import Department from "../containers/Department.jsx";
 import Signin from "../containers/auth/Signin.jsx";
+import ManageIssue from "../containers/service/ManageIssue.jsx";
+import TargetCreate from "../containers/service/TargetCreate.jsx";
 
 const routes =
   ({
@@ -67,6 +69,14 @@ const routes =
   {
     path: "/signin",
     element: <Signin />,
+  },
+  {
+    path: "/manageIssue",
+    element: <ManageIssue />,
+  },
+  {
+    path: "/targetCreate",
+    element: <TargetCreate />,
   },
   {
     path: "*",

@@ -32,6 +32,8 @@ import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
 import UnitCard from "./containers/UnitCard.jsx";
 import Department from "./containers/Department.jsx";
 import Signin from "./containers/auth/Signin.jsx";
+import ManageIssue from "./containers/service/ManageIssue.jsx";
+import TargetCreate from "./containers/service/TargetCreate.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -48,6 +50,8 @@ const App = () => {
       icon: <DatabaseOutlined />,
     },
     { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
+    { path: "/targetCreate", label: "target", icon: <TagsOutlined /> },
+    //{ path: "/manageIssue", label: "Manage", icon: <ManageIssue /> },
   ];
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -135,6 +139,8 @@ const App = () => {
               <Route path="/unit" element={<UnitCard />} />
               <Route path="/department" element={<Department />} />
               <Route path="/signin" element={<Signin />} />
+              <Route path="/manageIssue" element={<ManageIssue />} />
+              <Route path="/targetCreate" element={<TargetCreate />} />
             </Routes>
           </Content>
           <Footer />

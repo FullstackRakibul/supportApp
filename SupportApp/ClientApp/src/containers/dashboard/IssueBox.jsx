@@ -13,7 +13,6 @@ const IssueBox = () => {
         const response = await axiosInstance.get(
           "/dashboard/Dashboards/IssueBox"
         );
-        console.log(response.data.tickets);
         setIssue(response.data.tickets);
       } catch (error) {
         console.log(`issue data fetch error : ${error}`);
@@ -46,6 +45,7 @@ const IssueBox = () => {
           >
             {issue.map((issueData) => (
               <IssueCard
+                key={issueData.id}
                 issueTitle={issueData.title}
                 issueDescription={issueData.description}
                 issueCreateDate={issueData.createdAt}

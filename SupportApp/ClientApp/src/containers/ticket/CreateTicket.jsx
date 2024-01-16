@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 const { TextArea } = Input;
 import { InboxOutlined, PlusCircleOutlined } from "@ant-design/icons";
@@ -14,11 +14,12 @@ import {
   Select,
 } from "antd";
 const { Dragger } = Upload;
-import axios from "axios";
 
 // component load
 
 import TickeTypeDropDown from "../../components/TicketTypeDropDown.jsx";
+import AxiosInstance from "../../router/api.js";
+import axios from "axios";
 
 const props = {
   name: "attachment",
@@ -40,34 +41,31 @@ const props = {
   },
 };
 
-function CreateTicket() {
+const CreateTicket = () => {
   const [form] = Form.useForm();
+  const [ticketType, setTicketType] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await AxiosInstance.get("/api/TicketTypes");
+      setTicketType(response.data);
+    };
+    fetchData();
+  }, []);
+
+  const [selectedTicketTypeId, setSelectedTicketTypeId] = useState(null);
+
+  const handleTicketTypeChange = (ticketTypeId) => {
+    setSelectedTicketTypeId(ticketTypeId);
+  };
 
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
+      values.ticketTypeId = selectedTicketTypeId;
 
-      //console.log(values);
-      const response = await axios.post(
-        "https://localhost:7295/api/Ticket",
-        values
-      );
-      //console.log(` This is a request error ${response.data}`);
-
-      //   const formData = new FormData();
-      //   formData.append("title", values.title);
-      //   formData.append("description", values.description);
-      //   formData.append("attachment", values.attachment[0]);
-      //   const response = await axios.post(
-      //     "https://localhost:7295/api/Ticket",
-      //     formData,
-      //     {
-      //       headers: {
-      //         "Content-Type": "multipart/form-data",
-      //       },
-      //     }
-      //   );
-
+      const response = await AxiosInstance.post("/api/Tickets", values);
+      console.log(response.data);
+      console.log(`status code :${response.status}`);
       if (response.status === 200) {
         message.success("Ticket Create Successfully.");
         form.resetFields();
@@ -77,8 +75,8 @@ function CreateTicket() {
 
       //console.log("Form values", values);
     } catch (error) {
-      console.log(`this is formData error ${error}`);
-      message.error("Error in Creating Ticket.");
+      console.log(`catching formData error : ${error}`);
+      message.error("catch Error in Creating Ticket.");
     }
   };
 
@@ -118,17 +116,12 @@ function CreateTicket() {
               <Form form={form} {...layout} labelAlign="left">
                 <Form.Item
                   className="font-sans gap-5 "
-                  name="ticketTypeId"
                   label="Select Ticket Type"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input Issue Type!",
-                    },
-                  ]}
+                  name="ticketTypeId"
                 >
-                  {/* <Select /> */}
-                  <TickeTypeDropDown name="ticketTypeId" />
+                  <TickeTypeDropDown
+                    onTicketTypeChange={handleTicketTypeChange}
+                  />
 
                   <NavLink to="/createTicketType">
                     <Button
@@ -138,6 +131,7 @@ function CreateTicket() {
                     ></Button>
                   </NavLink>
                 </Form.Item>
+
                 <Form.Item
                   className="font-sans"
                   name="title"
@@ -212,20 +206,6 @@ function CreateTicket() {
       </section>
     </>
   );
-}
+};
 
 export default CreateTicket;
-
-// const response = await axios.post("https://your-api-endpoint", values);
-
-//         // Check if the request was successful
-//         if (response.status === 200) {
-//             // Show a success message
-//             message.success("Ticket created successfully");
-
-//             // Reset the form
-//             form.resetFields();
-//         } else {
-//             // Show an error message
-//             message.error("Error creating ticket. Please try again.");
-//         }

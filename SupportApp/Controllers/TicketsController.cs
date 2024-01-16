@@ -101,7 +101,7 @@ namespace SupportApp.Controllers
         // POST: api/Ticket
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-       // public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket)
+        //public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket) 
         public IActionResult CreateTicket( [FromBody]Ticket ticket)
         {
           // if (_context.Ticket == null)
@@ -111,7 +111,7 @@ namespace SupportApp.Controllers
           try
           {
               _ticketService.CreateTicket(ticket);
-              // _context.Ticket.Add(ticket);
+              //_context.Ticket.Add(ticket);
               _context.SaveChangesAsync();
               return Ok($"Ticket Create Successfully.");
           }

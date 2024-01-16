@@ -9,6 +9,6 @@ public class Department
     public string? Note { get; set; }
     public byte Status { get; set; } = 1;
 
-    public Target? Target { get; set; }
-    
+    public ICollection<Target> Targets { get; set; } = new List<Target>();
+
 }

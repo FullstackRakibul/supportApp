@@ -1,6 +1,6 @@
 import { Row, Col, Card, Form, Input, Button, message } from "antd";
-import axios from "axios";
 import React from "react";
+import AxiosInstance from "../../router/api";
 
 function CreateTicketType() {
   const [form] = Form.useForm();
@@ -8,12 +8,8 @@ function CreateTicketType() {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-
-      const response = await axios.post(
-        "https://localhost:7295/api/TicketType",
-        values
-      );
-
+      console.log(values);
+      const response = await AxiosInstance.post("/api/TicketTypes", values);
       //message.success(response.status);
 
       if (response.status === 201) {

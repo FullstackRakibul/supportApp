@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Ocsp;
 using SupportApp.Models;
 
 namespace SupportApp.Controllers
@@ -75,19 +76,14 @@ namespace SupportApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Targets
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Target
         [HttpPost]
-        public async Task<ActionResult<Target>> PostTarget(Target target)
+        public async Task<IActionResult> PostTarget([FromBody] Target target )
         {
-            if (_context.Target == null)
-            {
-                return Problem("Entity set 'SupportAppDbContext.Target'  is null.");
-            }
             _context.Target.Add(target);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTarget", new { id = target.Id }, target);
+            return Ok(target);
         }
 
         // DELETE: api/Targets/5
@@ -117,7 +113,7 @@ namespace SupportApp.Controllers
 
 
         // AssignSupportEngineer
-        [HttpGet("/ticket/{ticketId}/assignsupportengineer")]
+        [HttpGet("/ticket/{ticketId}/assignsupportengineer/{SupportEngineerId}")]
         public async Task<ActionResult<Target>> AssignSupportEngineer(int ticketId, [FromBody] Target request)
         {
             try

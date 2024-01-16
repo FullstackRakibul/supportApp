@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 
 import AxiosInstance from "../router/api";
+import AssignSupportEngineerModal from "./service/AssignSupportEngineerModal";
 
 const TicketCard = () => {
   // const config = {
@@ -75,6 +76,7 @@ const TicketCard = () => {
             icon={<UserAddOutlined />}
             onClick={() => handleAssignAgent(record.id)}
           />
+          <AssignSupportEngineerModal ticketId={record.id} />
         </Space>
       ),
     },
@@ -84,12 +86,8 @@ const TicketCard = () => {
 
   const handleRefresh = async () => {
     try {
-      const response = await axios.get(
-        "https://localhost:7295/api/Ticket/FetchEmailData"
-      );
-      //setTicket(response);
-      message.success("Mail fetching successfully.press f5");
-      console.log(response.data);
+      const response = await AxiosInstance.get("/api/Tickets/FetchEmailData");
+      message.success("mail data fatching success. try refresh");
     } catch (error) {
       message.error(`Server Error ! ${error}`);
       console.log(`refresh mail error : ${error}`);
@@ -129,7 +127,7 @@ const TicketCard = () => {
     console.log(`Edit ticket with ID ${id}`);
   };
 
-  // hangle assign agent .........
+  // hangle assign agent .............................................
 
   const handleAssignAgent = (id) => {
     const assignAgent = async () => {

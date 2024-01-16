@@ -101,7 +101,7 @@ public class TicketService
                 UpdatedAt = null,
 
             };
-            Console.WriteLine(ticketData);
+            //Console.WriteLine(ticketData);
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
             Console.WriteLine("Create Ticket Successfully.");
