@@ -7,15 +7,15 @@ const TargetCreate = () => {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      console.log(form.validateFields());
+      console.log(values);
       const response = await AxiosInstance.post("/api/Targets");
-      console.log(response);
-      // if (response.status === 200) {
-      //   message.success("Ticket Create Successfully.");
-      //   form.resetFields();
-      // } else {
-      //   message.error("Error in Creating Ticket.");
-      // }
+      console.log(response.data);
+      if (response.status === 200) {
+        message.success("Ticket Create Successfully.");
+        form.resetFields();
+      } else {
+        message.error("Error in Creating Ticket.");
+      }
     } catch (error) {
       console.log(`create target record error : ${error}`);
       message.error("Error in Creating Ticket.");
@@ -29,20 +29,20 @@ const TargetCreate = () => {
         wrapperCol={{ span: 14 }}
         layout="horizontal"
       >
-        <Form.Item label="Ticket ID">
-          <Input type="number" name="tickedId" />
+        <Form.Item label="Ticket ID" name="tickedId">
+          <Input type="number" />
         </Form.Item>
-        <Form.Item label="Agent ID">
-          <Input type="number" name="agentId" />
+        <Form.Item label="Agent ID" name="agentId">
+          <Input type="number" />
         </Form.Item>
-        <Form.Item label="Department ID">
-          <Input type="number" name="departmentId" />
+        <Form.Item label="Department ID" name="departmentId">
+          <Input type="number" />
         </Form.Item>
-        <Form.Item label="Unit ID">
-          <Input type="number" name="unitId" />
+        <Form.Item label="Unit ID" name="unitId">
+          <Input type="number" />
         </Form.Item>
-        <Form.Item label="Objective">
-          <Input name="objective" />
+        <Form.Item label="Objective" name="objective">
+          <Input />
         </Form.Item>
         <Form.Item>
           <Button type="dashed" onClick={handleSubmit}>
