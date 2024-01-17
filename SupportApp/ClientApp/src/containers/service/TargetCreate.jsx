@@ -37,7 +37,7 @@ const TargetCreate = () => {
       console.log(response.data);
       console.log(`this is a response code : ${response.status}`);
       if (response.status === 200) {
-        message.success("Ticket Create Successfully.");
+        message.success("Ticket Assign Successfully.");
         form.resetFields();
       } else {
         message.error("Error in Creating Ticket.");
