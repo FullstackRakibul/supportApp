@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-//import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Dashboard from "./containers/Dashboard.jsx";
 import AgentCard from "./containers/AgentCard.jsx";
 import ProfileCard from "./containers/ProfileCard.jsx";
 import ChatCard from "./containers/ChatCard.jsx";
-import EmailList from "./containers/EmailList.jsx";
 import TicketCard from "./containers/TicketCard.jsx";
 import HeaderComponet from "./components/HeaderComponent.jsx";
+import CreateTicket from "./containers/ticket/CreateTicket.jsx";
+import EmailCard from "./containers/EmailCard.jsx";
+import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
+import UnitCard from "./containers/UnitCard.jsx";
+import Department from "./containers/Department.jsx";
+import SessionForm from "./containers/auth/SessionForm.jsx";
+import ManageIssue from "./containers/service/ManageIssue.jsx";
+import TargetCreate from "./containers/service/TargetCreate.jsx";
 
 //
-import { Layout, Menu, theme, Button, Avatar } from "antd";
+import { Layout, Menu, theme, Button } from "antd";
 
 import {
   MenuFoldOutlined,
@@ -26,14 +32,6 @@ import {
   DatabaseOutlined,
   DeploymentUnitOutlined,
 } from "@ant-design/icons";
-import CreateTicket from "./containers/ticket/CreateTicket.jsx";
-import EmailCard from "./containers/EmailCard.jsx";
-import CreateTicketType from "./containers/ticket/CreateTicketType.jsx";
-import UnitCard from "./containers/UnitCard.jsx";
-import Department from "./containers/Department.jsx";
-import Signin from "./containers/auth/Signin.jsx";
-import ManageIssue from "./containers/service/ManageIssue.jsx";
-import TargetCreate from "./containers/service/TargetCreate.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -51,7 +49,11 @@ const App = () => {
     },
     { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
     { path: "/targetCreate", label: "target", icon: <TagsOutlined /> },
-    //{ path: "/manageIssue", label: "Manage", icon: <ManageIssue /> },
+    {
+      path: "/sessionform",
+      label: "Session In",
+      icon: <DeploymentUnitOutlined />,
+    },
   ];
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -138,7 +140,7 @@ const App = () => {
               <Route path="/createTicketType" element={<CreateTicketType />} />
               <Route path="/unit" element={<UnitCard />} />
               <Route path="/department" element={<Department />} />
-              <Route path="/signin" element={<Signin />} />
+              <Route path="/sessionform" element={<SessionForm />} />
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
             </Routes>

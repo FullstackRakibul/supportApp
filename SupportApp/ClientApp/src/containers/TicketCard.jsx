@@ -14,13 +14,6 @@ import AxiosInstance from "../router/api";
 import AssignSupportEngineerModal from "./service/AssignSupportEngineerModal";
 
 const TicketCard = () => {
-  // const config = {
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  //   },
-  // };
-
   const [ticket, setTicket] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -102,7 +95,7 @@ const TicketCard = () => {
       try {
         const response = await AxiosInstance.get(`/api/Tickets/${id}`);
         setTicketData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
         //message.success(`Details popup for Ticket id : ${id}`);
         setIsModalOpen(true);
       } catch (error) {
@@ -134,7 +127,7 @@ const TicketCard = () => {
       const response = await AxiosInstance.get(
         `https://localhost:7295/ticket/${id}/assignsupportengineer`
       );
-      console.log(response.data);
+      //console.log(response.data);
       message.success(response.data);
     };
     assignAgent();

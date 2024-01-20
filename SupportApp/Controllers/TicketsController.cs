@@ -113,6 +113,17 @@ namespace SupportApp.Controllers
               _ticketService.CreateTicket(ticket);
               //_context.Ticket.Add(ticket);
               _context.SaveChangesAsync();
+
+                // assign Ticket to target 
+
+                //if (ticket.TicketType=) { 
+                    
+                //};
+                //    var assignTotarget = new Target
+                //{
+                //    TicketId = ticket.Id,
+                    
+                //};
               return Ok($"Ticket Create Successfully.");
           }
           catch (Exception ex)

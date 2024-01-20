@@ -13,9 +13,10 @@ import DepartmentWiseTicket from "../containers/department/DepartmentWiseTicket.
 import CreateUnit from "../containers/unit/CreateUnit.jsx";
 import DepartmentListTable from "../containers/department/DepartmentListTable.jsx";
 import Department from "../containers/Department.jsx";
-import Signin from "../containers/auth/Signin.jsx";
+import SessionIn from "../containers/auth/SessionIn.jsx";
 import ManageIssue from "../containers/service/ManageIssue.jsx";
 import TargetCreate from "../containers/service/TargetCreate.jsx";
+import SessionForm from "../containers/auth/SessionForm.jsx";
 
 const routes =
   ({
@@ -67,8 +68,8 @@ const routes =
     element: <CreateUnit />,
   },
   {
-    path: "/signin",
-    element: <Signin />,
+    path: "/sessionform",
+    element: <SessionForm />,
   },
   {
     path: "/manageIssue",
@@ -79,7 +80,7 @@ const routes =
     element: <TargetCreate />,
   },
   {
-    path: "*",
+    path: "/*",
     element: <NotFoundPage />,
   });
 

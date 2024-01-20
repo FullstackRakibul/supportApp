@@ -2,24 +2,13 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 const { TextArea } = Input;
 import { InboxOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import {
-  Col,
-  Row,
-  Card,
-  Form,
-  Input,
-  Button,
-  Upload,
-  message,
-  Select,
-} from "antd";
+import { Col, Row, Card, Form, Input, Button, Upload, message } from "antd";
 const { Dragger } = Upload;
 
 // component load
 
 import TickeTypeDropDown from "../../components/TicketTypeDropDown.jsx";
 import AxiosInstance from "../../router/api.js";
-import axios from "axios";
 
 const props = {
   name: "attachment",
@@ -55,8 +44,8 @@ const CreateTicket = () => {
       const values = await form.validateFields();
       values.ticketTypeId = selectedTicketTypeId;
       const response = await AxiosInstance.post("/api/Tickets", values);
-      console.log(response.data);
-      console.log(`status code :${response.status}`);
+      //console.log(response.data);
+      //console.log(`status code :${response.status}`);
       if (response.status === 200) {
         message.success("Ticket Create Successfully.");
         form.resetFields();

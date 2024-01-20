@@ -12,7 +12,7 @@ const AssignSupportEngineerModal = (props) => {
       try {
         const response = await AxiosInstance.get("/api/Supports");
         setSupportEngineer(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         message.error(`data fetch error: ${error}`);
       }

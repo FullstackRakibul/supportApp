@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import IssueCard from "../../components/IssueCard";
 
 import axiosInstance from "../../router/api.js";
-import { Row, Col } from "antd";
+import { Row, Col, Menu } from "antd";
+import { NavLink } from "react-router-dom";
 
 const IssueBox = () => {
   const [issue, setIssue] = useState([]);
@@ -27,15 +28,26 @@ const IssueBox = () => {
         <Row>
           <Col span={6}>
             <div>
-              <ul>
-                <li>Test 01</li>
-                <li>Test 01</li>
-                <li>Test 01</li>
-                <li>Test 01</li>
-                <li>Test 01</li>
-                <li>Test 01</li>
-                <li>Test 01</li>
-              </ul>
+              <Menu>
+                <Menu.Item>
+                  <NavLink className="font-sans font-semibold">
+                    All Ticket
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink className="font-sans font-semibold">
+                    Complete
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink className="font-sans font-semibold">
+                    Acknowledged
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink className="font-sans font-semibold">Done</NavLink>
+                </Menu.Item>
+              </Menu>
             </div>
           </Col>
           <Col

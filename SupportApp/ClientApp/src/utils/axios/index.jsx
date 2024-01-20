@@ -3,7 +3,7 @@ import { Navigate, useNavigate, Outlet } from "react-router-dom";
 
 const configureAxios = () => {
   axios.defaults.headers.post["Content-Type"] = "application/json";
-  axios.defaults.baseURL = "https://localhost:7295/";
+  axios.defaults.baseURL = "http://localhost:7002/";
 
   let token = localStorage.getItem("token");
 

@@ -104,6 +104,15 @@ public class TicketService
             //Console.WriteLine(ticketData);
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
+
+            // assign ticket to the target department
+            //var assignToTarget = new Target
+            //{
+            //    TicketId=ticketData.Id,
+            //    DepartmentId = ticket.departmentId,
+
+            //};
+
             Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)

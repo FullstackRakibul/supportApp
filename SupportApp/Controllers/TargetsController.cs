@@ -80,10 +80,18 @@ namespace SupportApp.Controllers
         [HttpPost]
         public async Task<IActionResult> PostTarget([FromBody] Target target )
         {
-            _context.Target.Add(target);
-            await _context.SaveChangesAsync();
+            var targetTicket = _context.Target.FirstOrDefault(attribute => attribute.TicketId == target.TicketId);
+            if (targetTicket == null)
+            {
+                _context.Target.Add(target);
+                await _context.SaveChangesAsync();
+                return Ok(target);
+            }
+            else {
+                return BadRequest("Ticket is already assigned!");
+            }
 
-            return Ok(target);
+            
         }
 
         // DELETE: api/Targets/5

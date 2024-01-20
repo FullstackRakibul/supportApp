@@ -13,19 +13,33 @@ const TargetCreate = () => {
   useEffect(() => {
     const fetchData = async () => {
       const responseForTicket = await AxiosInstance.get("/api/Tickets");
+      const responseForTarget = await AxiosInstance.get("/api/Targets");
+
+      // Assuming both responses are arrays of objects with an 'id' property
+      const ticketIdToCheck = responseForTicket.data.id;
+
+      const isTicketIdNotPresent = !responseForTarget.data.some(
+        (target) => target.ticketId === ticketIdToCheck
+      );
+
+      if (isTicketIdNotPresent) {
+        setTicket(responseForTicket.data);
+      }
+      //................................................................
       const responseForSupportEngineer = await AxiosInstance.get(
         "/api/Supports"
       );
       const responseForDepartment = await AxiosInstance.get("/api/Departments");
       const responseForUnit = await AxiosInstance.get("/api/Units");
 
-      setTicket(responseForTicket.data);
+      //setTicket(responseForTicket.data);
       setSupportEngineer(responseForSupportEngineer.data);
       setDepartment(responseForDepartment.data);
       setUnit(responseForUnit.data);
     };
     fetchData();
   }, []);
+
   //.................end here .......................
 
   const [form] = Form.useForm();

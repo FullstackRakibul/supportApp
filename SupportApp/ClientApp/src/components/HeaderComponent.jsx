@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PushpinOutlined,
   QuestionCircleOutlined,
@@ -6,6 +6,7 @@ import {
   MessageOutlined,
   BellOutlined,
   EditOutlined,
+  PoweroffOutlined,
 } from "@ant-design/icons";
 
 import { Avatar, Button } from "antd";
@@ -16,9 +17,16 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/hameemgroup-software-logo-new.png";
 import userimg from "../assets/user01.png";
 import userimg2 from "../assets/hameemgroup-sq-logo-02.png";
+import SessionOut from "../containers/auth/SessionOut";
+import SessionIn from "../containers/auth/SessionIn";
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const response = localStorage.getItem("token");
+    setToken(response);
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -41,12 +49,13 @@ const Header = () => {
               <QuestionCircleOutlined className="text-2xl" />
               <BellOutlined className="text-2xl" />
               <MessageOutlined className="text-2xl" />
-              <Avatar
+              {/* <Avatar
                 size={28}
                 shape="circle"
                 src={userimg}
                 icon={<UserOutlined />}
-              />
+              /> */}
+              {token ? <SessionOut /> : <SessionIn />}
             </div>
           </div>
         </div>
