@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -19,7 +19,10 @@ import ManageIssue from "./containers/service/ManageIssue.jsx";
 import TargetCreate from "./containers/service/TargetCreate.jsx";
 
 //
-import { Layout, Menu, theme, Button } from "antd";
+import PrivateRoute from "./router/PrivateRoute.jsx";
+
+//
+import { Layout, Menu, theme, Button, Switch } from "antd";
 
 import {
   MenuFoldOutlined,
@@ -36,6 +39,18 @@ import {
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
+
+  //
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   const customRoutes = [
     { path: "/", label: "Dashboard", icon: <DashboardOutlined /> },
     { path: "/agent", label: "Agent", icon: <UserSwitchOutlined /> },
@@ -55,10 +70,6 @@ const App = () => {
       icon: <DeploymentUnitOutlined />,
     },
   ];
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
     <>
@@ -143,6 +154,14 @@ const App = () => {
               <Route path="/sessionform" element={<SessionForm />} />
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
+              <Route
+                element={
+                  <PrivateRoute
+                    path="/targetCreate"
+                    element={<TargetCreate />}
+                  />
+                }
+              />
             </Routes>
           </Content>
           <Footer />
