@@ -119,5 +119,14 @@ namespace SupportApp.Controllers
         {
             return (_context.Review?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
+        [HttpGet("TicketWiseReply")]
+        public async Task<ActionResult<Review>> TicketWiseReply(int id)
+        {
+            var singleTicketReplyData = await _context.Review.Where( reply => reply.TicketId == id ).ToListAsync();
+
+            return Ok(singleTicketReplyData);
+        }
     }
 }

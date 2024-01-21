@@ -36,8 +36,8 @@ function DetailsUnit() {
         const response = await axios.get("https://localhost:7295/api/Units");
         setUnit(response.data);
 
-        console.log(response.data);
-        //message.success("data loaded successfully");
+        //console.log(response.data);
+        message.success("data loaded successfully");
       } catch (error) {
         console.log(`unit table data fatching error. ${error}`);
         message.error("Unit Data fatching error !!!");
@@ -52,6 +52,7 @@ function DetailsUnit() {
         <Table
           columns={columns}
           dataSource={unit}
+          key={columns.key}
           // virtual
           // scroll={{ x: 2000, y: 500 }}
         />

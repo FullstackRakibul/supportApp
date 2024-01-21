@@ -37,7 +37,7 @@ function DepartmentListTable() {
           "https://localhost:7295/api/Departments"
         );
         setDepartment(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.log(`Data fatching error ${error}`);
       }
@@ -50,6 +50,7 @@ function DepartmentListTable() {
       <Table
         columns={columns}
         dataSource={department}
+        key={columns.key}
         // virtual
         // scroll={{ x: 2000, y: 500 }}
       />

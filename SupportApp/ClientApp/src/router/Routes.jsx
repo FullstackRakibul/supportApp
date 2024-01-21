@@ -17,6 +17,7 @@ import SessionIn from "../containers/auth/SessionIn.jsx";
 import ManageIssue from "../containers/service/ManageIssue.jsx";
 import TargetCreate from "../containers/service/TargetCreate.jsx";
 import SessionForm from "../containers/auth/SessionForm.jsx";
+import ReplyCard from "../containers/ticket/ticketReply/ReplyCard.jsx";
 
 const routes =
   ({
@@ -78,6 +79,10 @@ const routes =
   {
     path: "/targetCreate",
     element: <TargetCreate />,
+  },
+  {
+    path: "/replycard",
+    element: <ReplyCard />,
   },
   {
     path: "/*",

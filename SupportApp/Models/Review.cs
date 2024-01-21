@@ -12,6 +12,6 @@ public class Review
     public DateTime? Created { get; set; }
     public bool Status { get; set; } = true;
 
-    public Ticket Ticket { get; set; } = new Ticket();
+    //public Ticket Ticket { get; set; } = new Ticket();
 
 }

@@ -7,7 +7,7 @@ const AgentCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await AxiosInstance.get("api/Supports");
-      console.log(response.data);
+      //console.log(response.data);
       setSupportEngineer(response.data);
     };
     fetchData();
@@ -17,7 +17,7 @@ const AgentCard = () => {
       <section className=" flex flex-wrap gap-4 p-4">
         {supportEngineer.map((engineer) => (
           <Card
-            key={engineer.id}
+            key={engineer.agentId}
             className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5"
             hoverable
           >

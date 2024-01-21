@@ -34,7 +34,9 @@ import {
   MailOutlined,
   DatabaseOutlined,
   DeploymentUnitOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
+import ReplyCard from "./containers/ticket/ticketReply/ReplyCard.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -68,6 +70,11 @@ const App = () => {
       path: "/sessionform",
       label: "Session In",
       icon: <DeploymentUnitOutlined />,
+    },
+    {
+      path: "/replycard",
+      label: "ticket wise reply",
+      icon: <MessageOutlined />,
     },
   ];
 
@@ -154,14 +161,7 @@ const App = () => {
               <Route path="/sessionform" element={<SessionForm />} />
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
-              <Route
-                element={
-                  <PrivateRoute
-                    path="/targetCreate"
-                    element={<TargetCreate />}
-                  />
-                }
-              />
+              <Route path="/replycard" element={<ReplyCard />} />
             </Routes>
           </Content>
           <Footer />
