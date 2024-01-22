@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "../../../router/api";
 import { Button, Input, Form } from "antd";
+import SingleReplyCard from "./SingleReplyCard";
 
 const ReplyCard = () => {
   const [reply, setReply] = useState([]);
@@ -51,9 +52,7 @@ const ReplyCard = () => {
         <div className="container p-3">
           {reply.map((item) => (
             <div key={item.id} className="flex flex-col">
-              <span>{`Emp ${item.reviewUserId}`}</span>
-              <span>{`Agent ${item.reviewAgentId}`}</span>
-              <span>: {item.reviewNote}</span>
+              <SingleReplyCard reviewNote={item.reviewNote} />
             </div>
           ))}
         </div>
