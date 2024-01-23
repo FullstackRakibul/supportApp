@@ -8,9 +8,9 @@ const CreateReply = () => {
     try {
       const values = await form.validateFields();
 
-      values.ticketId = 5;
+      values.ticketId = 6;
       values.reviewerId = 53324;
-      values.createdAt = new Date();
+      //values.createdAt = new Date();
 
       //console.log(values);
       await AxiosInstance.post("/api/Reviews", values);

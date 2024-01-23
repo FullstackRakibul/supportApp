@@ -15,12 +15,17 @@ const SessionForm = () => {
         "http://localhost:7002/api/Auth/login",
         values
       );
-      console.log(response.data);
-      const token = response.data.result.token;
-      localStorage.setItem("token", token);
-      sessionStorage.setItem("token", token);
-      message.success("Session in successfully.");
-      history("/");
+      // console.log(response.data);
+      const { isSuccess, result, message } = response.data;
+      if (isSuccess) {
+        const { token, user } = result;
+        localStorage.setItem("token", token);
+        sessionStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("user", JSON.stringify(user));
+        message.success("Session in successfully.");
+        history("/");
+      }
     } catch (error) {
       console.log(error);
       message.error(error);

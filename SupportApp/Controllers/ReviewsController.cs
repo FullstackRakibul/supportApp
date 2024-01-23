@@ -85,14 +85,22 @@ namespace SupportApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Review>> PostReview(Review review)
         {
-          if (_context.Review == null)
-          {
-              return Problem("Entity set 'SupportAppDbContext.Review'  is null.");
-          }
-            _context.Review.Add(review);
-            await _context.SaveChangesAsync();
+            try {
+                if (string.IsNullOrEmpty(review.ReviewNote))
+                {
+                    return BadRequest("ReviewNote cannot be empty.");
+                }
+                review.CreatedAt = DateTime.UtcNow;
+                _context.Review.Add(review);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetReview", new { id = review.Id }, review);
+                return CreatedAtAction("GetReviewData", new { id = review.Id }, review);
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"Error in IssueReview: {ex.Message}");
+                return Problem("An error occurred while processing the request.");
+            }
+         
         }
 
         // DELETE: api/Reviews/5
