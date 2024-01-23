@@ -287,3 +287,4 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\Microsoft
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\System.Formats.Asn1.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.sourcelink.json

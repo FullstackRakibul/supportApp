@@ -156,15 +156,21 @@ namespace SupportApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
                     b.Property<int>("TargetId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -181,17 +187,14 @@ namespace SupportApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("ReviewAgentId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ReviewNote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReviewUserId")
+                    b.Property<int?>("ReviewerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
@@ -378,7 +381,7 @@ namespace SupportApp.Migrations
             modelBuilder.Entity("SupportApp.Models.Notification", b =>
                 {
                     b.HasOne("SupportApp.Models.Target", "Target")
-                        .WithMany("Targets")
+                        .WithMany("Notification")
                         .HasForeignKey("TargetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -434,7 +437,7 @@ namespace SupportApp.Migrations
 
             modelBuilder.Entity("SupportApp.Models.Target", b =>
                 {
-                    b.Navigation("Targets");
+                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("SupportApp.Models.Ticket", b =>

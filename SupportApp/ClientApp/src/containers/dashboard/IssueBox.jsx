@@ -5,6 +5,14 @@ import axiosInstance from "../../router/api.js";
 import { Row, Col, Menu } from "antd";
 import { NavLink } from "react-router-dom";
 
+import {
+  FileAddOutlined,
+  SnippetsOutlined,
+  FileDoneOutlined,
+  MailOutlined,
+  FileExcelOutlined,
+} from "@ant-design/icons";
+
 const IssueBox = () => {
   const [issue, setIssue] = useState([]);
 
@@ -22,31 +30,39 @@ const IssueBox = () => {
     fetchData();
   }, []);
 
+  const customRoutes = [
+    {
+      path: "/",
+      label: "All Tickets",
+      icon: <SnippetsOutlined />,
+    },
+    { path: "/agent", label: "Pending", icon: <FileAddOutlined /> },
+    { path: "/profile", label: "Complete", icon: <FileDoneOutlined /> },
+    { path: "/emailList", label: "Un-assigned", icon: <FileExcelOutlined /> },
+    { path: "/ticketList", label: "Mail Tickets", icon: <MailOutlined /> },
+  ];
+
   return (
     <>
       <section>
         <Row>
           <Col span={6}>
             <div>
-              <Menu>
-                <Menu.Item>
-                  <NavLink className="font-sans font-semibold">
-                    All Ticket
-                  </NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink className="font-sans font-semibold">
-                    Complete
-                  </NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink className="font-sans font-semibold">
-                    Acknowledged
-                  </NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink className="font-sans font-semibold">Done</NavLink>
-                </Menu.Item>
+              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                {customRoutes.map((route) => (
+                  <Menu.Item
+                    style={{ accentColor: "#000" }}
+                    key={route.path}
+                    icon={route.icon}
+                  >
+                    <NavLink
+                      className="font-sans font-semibold"
+                      to={route.path}
+                    >
+                      {route.label}
+                    </NavLink>
+                  </Menu.Item>
+                ))}
               </Menu>
             </div>
           </Col>

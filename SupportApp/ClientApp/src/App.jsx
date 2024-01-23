@@ -17,6 +17,7 @@ import Department from "./containers/Department.jsx";
 import SessionForm from "./containers/auth/SessionForm.jsx";
 import ManageIssue from "./containers/service/ManageIssue.jsx";
 import TargetCreate from "./containers/service/TargetCreate.jsx";
+import RoutesList from "./router/Routes.jsx";
 
 //
 import PrivateRoute from "./router/PrivateRoute.jsx";
@@ -37,6 +38,7 @@ import {
   MessageOutlined,
 } from "@ant-design/icons";
 import ReplyCard from "./containers/ticket/ticketReply/ReplyCard.jsx";
+import CreateReply from "./containers/ticket/ticketReply/CreateReply.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -162,6 +164,7 @@ const App = () => {
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
               <Route path="/replycard" element={<ReplyCard />} />
+              <Route path="/createreply" element={<CreateReply />} />
             </Routes>
           </Content>
           <Footer />

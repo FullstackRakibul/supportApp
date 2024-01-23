@@ -16,6 +16,6 @@ public class Target
 
     public ICollection<Department> Department { get; set; } = new List<Department>();
     public ICollection<Unit> Unit { get; set; } = new List<Unit>();
-    public ICollection<Notification> Targets { get; set; } = new List<Notification>();
+    public ICollection<Notification> Notification { get; set; } = new List<Notification>();
 
 }

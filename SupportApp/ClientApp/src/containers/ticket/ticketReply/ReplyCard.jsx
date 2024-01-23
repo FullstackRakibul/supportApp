@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "../../../router/api";
-import { Button, Input, Form } from "antd";
+import { Button, Input, Form, Tabs } from "antd";
 import SingleReplyCard from "./SingleReplyCard";
+import CreateReply from "./CreateReply";
 
 const ReplyCard = () => {
   const [reply, setReply] = useState([]);
@@ -10,12 +11,12 @@ const ReplyCard = () => {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      console.log(values.ticketId);
-      console.log(ticketId.value);
+      //console.log(values);
+      //console.log(ticketId.value);
       const response = await AxiosInstance.get(
         `/api/Reviews/TicketWiseReply?id=${ticketId.value}`
       );
-      console.log(response.data);
+      //console.log(response.data);
       setReply(response.data);
     } catch (error) {
       console.log(error);
@@ -52,10 +53,17 @@ const ReplyCard = () => {
         <div className="container p-3">
           {reply.map((item) => (
             <div key={item.id} className="flex flex-col">
-              <SingleReplyCard reviewNote={item.reviewNote} />
+              <SingleReplyCard
+                reviewNote={item.reviewNote}
+                reviewerId={item.reviewerId}
+                createdAt={item.createdAt}
+              />
             </div>
           ))}
         </div>
+      </section>
+      <section>
+        <CreateReply />
       </section>
     </>
   );
