@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Space, Button, message, Modal } from "antd";
+import { Table, Space, Button, message, Modal, Form, Select } from "antd";
 import {
   RollbackOutlined,
   EditOutlined,
@@ -122,17 +122,28 @@ const TicketCard = () => {
 
   // hangle assign agent .............................................
 
+  const [isAssignAgentModalOpen, setIsAssignAgentModalOpen] = useState(false);
   const handleAssignAgent = (id) => {
-    const assignAgent = async () => {
-      const response = await AxiosInstance.get(
-        `https://localhost:7295/ticket/${id}/assignsupportengineer`
+    setIsAssignAgentModalOpen(true);
+  };
+
+  const handleAssignAgentSubmit = async (agentId) => {
+    try {
+      setIsAssignAgentModalOpen(true);
+      // Send a request to assign the agent to the ticket
+      const response = await AxiosInstance.post(
+        `/api/Tickets/${id}/AssignAgent`,
+        { agentId: agentId }
       );
-      //console.log(response.data);
-      message.success(response.data);
-    };
-    assignAgent();
-    message.success(`Asign Agent for Ticket id : ${id}`);
-    console.log(`Asign Agent for ticket ID ${id}`);
+
+      // Handle the response as needed
+      console.log(response.data);
+      message.success("Agent assigned successfully.");
+      setIsAssignAgentModalOpen(false);
+    } catch (error) {
+      console.error("Assign agent error:", error);
+      message.error("Failed to assign agent.");
+    }
   };
 
   // handle solf delete ..........
@@ -199,7 +210,72 @@ const TicketCard = () => {
         <h3 className="text-lg font-sans font-semibold">Details:</h3>
         <p className="font-sans font-semibold">{ticketData.description}</p>
       </Modal>
+      {/* add another model for assignning the Agent */}
+      <AssignAgentModal
+        visible={isAssignAgentModalOpen}
+        onCancel={() => setIsAssignAgentModalOpen(false)}
+        onAssign={handleAssignAgentSubmit}
+      />
     </>
+  );
+};
+
+// Assign Agent Options
+
+const AssignAgentModal = ({ visible, onCancel, onAssign }) => {
+  const [selectedAgentId, setSelectedAgentId] = useState(null);
+  const [supportEngineer, setSupportEngineer] = useState([]);
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await AxiosInstance.get("/api/Supports");
+      //setTicket(responseForTicket.data);
+      setSupportEngineer(response.data);
+    };
+    fetchData();
+  }, []);
+
+  const handleSubmit = async () => {
+    // Validate that an agent is selected
+    const values = await form.validateFields();
+    console.log(values);
+    if (!values) {
+      message.error("Select support engineer first");
+      return;
+    }
+    onAssign(values);
+  };
+
+  return (
+    <Modal
+      title="Assign Agent"
+      visible={visible}
+      onCancel={onCancel}
+      onOk={handleSubmit}
+      footer={[
+        <Button onClick={handleSubmit} className="bg-primary" type="primary">
+          Assign
+        </Button>,
+      ]}
+    >
+      <Form form={form}>
+        <Form.Item
+          label="Select Agent"
+          name="agentId"
+          key="agentId"
+          rules={[{ required: true }]}
+        >
+          <Select style={{ width: 200 }}>
+            {supportEngineer.map((item) => (
+              <Select.Option key={item.agentId} value={item.agentId}>
+                {item.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 

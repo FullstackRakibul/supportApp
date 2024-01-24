@@ -9,6 +9,8 @@ const { Dragger } = Upload;
 
 import TickeTypeDropDown from "../../components/TicketTypeDropDown.jsx";
 import AxiosInstance from "../../router/api.js";
+import DepartmentDropdown from "../../components/global/DepartmentDropdown.jsx";
+import UnitDropdown from "../../components/global/UnitDropdown.jsx";
 
 const props = {
   name: "attachment",
@@ -34,24 +36,36 @@ const CreateTicket = () => {
   const [form] = Form.useForm();
 
   const [selectedTicketTypeId, setSelectedTicketTypeId] = useState(null);
+  const [selectedDepartmentId, setselectedDepartmentId] = useState(null);
+  const [selectedUnitId, setselectedUnitId] = useState(null);
 
   const handleTicketTypeChange = (ticketTypeId) => {
     setSelectedTicketTypeId(ticketTypeId);
+  };
+
+  const handleDepartmentSelect = (departmentId) => {
+    setselectedDepartmentId(departmentId);
+  };
+  const handleUnitSelect = (unitId) => {
+    setselectedUnitId(unitId);
   };
 
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
       values.ticketTypeId = selectedTicketTypeId;
-      const response = await AxiosInstance.post("/api/Tickets", values);
+      values.departmentId = selectedDepartmentId;
+      values.unitId = selectedUnitId;
+      console.log(values);
+      //const response = await AxiosInstance.post("/api/Tickets", values);
       //console.log(response.data);
       //console.log(`status code :${response.status}`);
-      if (response.status === 200) {
-        message.success("Ticket Create Successfully.");
-        form.resetFields();
-      } else {
-        message.error("Error in Creating Ticket.");
-      }
+      // if (response.status === 200) {
+      //   message.success("Ticket Create Successfully.");
+      //   form.resetFields();
+      // } else {
+      //   message.error("Error in Creating Ticket.");
+      // }
     } catch (error) {
       console.log(`catching formData error : ${error}`);
       message.error("catch Error in Creating Ticket.");
@@ -109,6 +123,22 @@ const CreateTicket = () => {
                     ></Button>
                   </NavLink>
                 </Form.Item>
+                <Form.Item
+                  className="font-sans gap-5 "
+                  label="Select Department"
+                  name="departmentId"
+                >
+                  <DepartmentDropdown
+                    onDepartmentSelect={handleDepartmentSelect}
+                  />
+                </Form.Item>
+                <Form.Item
+                  className="font-sans gap-5 "
+                  label="Select Unit"
+                  name="unitId"
+                >
+                  <UnitDropdown onUnitSelect={handleUnitSelect} />
+                </Form.Item>
 
                 <Form.Item
                   className="font-sans"
@@ -135,18 +165,6 @@ const CreateTicket = () => {
                 >
                   <TextArea rows={4} />
                 </Form.Item>
-                {/* <Form.Item
-                  name="updatedAt"
-                  label="UpdatedAt"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input Issue Description!",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item> */}
                 <Form.Item
                   className="font-sans"
                   name="attachment"
