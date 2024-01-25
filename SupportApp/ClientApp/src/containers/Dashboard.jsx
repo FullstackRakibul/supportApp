@@ -40,6 +40,8 @@ function Dashboard() {
       icon: <MailOutlined />,
     },
   ];
+
+  const isIssueBoxRoute = customRoutes.path === "/ticket/all";
   return (
     <>
       <section>
@@ -69,7 +71,7 @@ function Dashboard() {
             className="p-2 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
             style={{ maxHeight: "600px" }}
           >
-            <Outlet />
+            <Outlet /> <IssueBox />
           </Col>
         </Row>
       </section>

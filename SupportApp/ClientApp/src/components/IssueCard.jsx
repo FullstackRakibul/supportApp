@@ -25,8 +25,8 @@ const IssueCard = (props) => {
   const [assignModalVisible, setAssignModalVisible] = useState(false);
   const [selectedIssueId, setSelectedIssueId] = useState(null);
 
-  const handleAssignAgentClick = (issueId) => {
-    setSelectedIssueId(issueId);
+  const handleAssignAgentClick = () => {
+    setSelectedIssueId(props.issueId);
     setAssignModalVisible(true);
   };
   return (

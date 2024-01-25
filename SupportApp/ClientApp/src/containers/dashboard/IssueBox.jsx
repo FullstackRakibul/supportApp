@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IssueCard from "../../components/IssueCard";
 
-import axiosInstance from "../../router/api.js";
 import { Row, Col, Menu } from "antd";
 
 import {
@@ -35,11 +34,7 @@ const IssueBox = () => {
     <>
       <section>
         <Row>
-          <Col span={6}>
-            <div>
-              <h3>test </h3>
-            </div>
-          </Col>
+          <Col span={6}></Col>
           <Col
             span={16}
             className="p-3 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
