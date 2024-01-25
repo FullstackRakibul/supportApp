@@ -3,7 +3,6 @@ import IssueCard from "../../components/IssueCard";
 
 import axiosInstance from "../../router/api.js";
 import { Row, Col, Menu } from "antd";
-import { NavLink } from "react-router-dom";
 
 import {
   FileAddOutlined,
@@ -12,6 +11,7 @@ import {
   MailOutlined,
   FileExcelOutlined,
 } from "@ant-design/icons";
+import AxiosInstance from "../../router/api.js";
 
 const IssueBox = () => {
   const [issue, setIssue] = useState([]);
@@ -19,9 +19,10 @@ const IssueBox = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get(
+        const response = await AxiosInstance.get(
           "/dashboard/Dashboards/IssueBox"
         );
+        console.log(response);
         setIssue(response.data.tickets);
       } catch (error) {
         console.log(`issue data fetch error : ${error}`);
@@ -30,40 +31,13 @@ const IssueBox = () => {
     fetchData();
   }, []);
 
-  const customRoutes = [
-    {
-      path: "/",
-      label: "All Tickets",
-      icon: <SnippetsOutlined />,
-    },
-    { path: "/agent", label: "Pending", icon: <FileAddOutlined /> },
-    { path: "/profile", label: "Complete", icon: <FileDoneOutlined /> },
-    { path: "/emailList", label: "Un-assigned", icon: <FileExcelOutlined /> },
-    { path: "/ticketList", label: "Mail Tickets", icon: <MailOutlined /> },
-  ];
-
   return (
     <>
       <section>
         <Row>
           <Col span={6}>
             <div>
-              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-                {customRoutes.map((route) => (
-                  <Menu.Item
-                    style={{ accentColor: "#000" }}
-                    key={route.path}
-                    icon={route.icon}
-                  >
-                    <NavLink
-                      className="font-sans font-semibold"
-                      to={route.path}
-                    >
-                      {route.label}
-                    </NavLink>
-                  </Menu.Item>
-                ))}
-              </Menu>
+              <h3>test </h3>
             </div>
           </Col>
           <Col

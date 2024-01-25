@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Card, Row, Col } from "antd";
 import {
@@ -6,6 +6,8 @@ import {
   UsergroupAddOutlined,
   EditOutlined,
 } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
+import AssignAgentModal from "./global/AssignAgentModal";
 
 const IssueCard = (props) => {
   const handleColor = () => {
@@ -18,6 +20,14 @@ const IssueCard = (props) => {
     } else {
       return "#000";
     }
+  };
+
+  const [assignModalVisible, setAssignModalVisible] = useState(false);
+  const [selectedIssueId, setSelectedIssueId] = useState(null);
+
+  const handleAssignAgentClick = (issueId) => {
+    setSelectedIssueId(issueId);
+    setAssignModalVisible(true);
   };
   return (
     <>
@@ -58,15 +68,23 @@ const IssueCard = (props) => {
             >{`create by : ${props.assignCreator}`}</Col>
             <Col className="font-sans flex gap-2" span={12}>
               <span>action :</span>
-              <span className="flex gap-2">
-                <EyeOutlined />
-                <UsergroupAddOutlined />
-                <EditOutlined />
+              <span className="flex text-lg gap-2">
+                <NavLink to="/singleticketcard">
+                  <EyeOutlined title="Single Issue Details" />
+                </NavLink>
+                <UsergroupAddOutlined
+                  onClick={() => handleAssignAgentClick(props.id)}
+                />
               </span>
             </Col>
           </Row>
         </div>
       </Card>
+      <AssignAgentModal
+        visible={assignModalVisible}
+        onCancel={() => setAssignModalVisible(false)}
+        issueId={selectedIssueId}
+      />
     </>
   );
 };

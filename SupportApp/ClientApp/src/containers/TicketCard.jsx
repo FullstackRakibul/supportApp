@@ -36,10 +36,10 @@ const TicketCard = () => {
   const columns = [
     { title: "TicketNumber", dataIndex: "ticketNumber", key: "TicketNumber" },
     { title: "Title", dataIndex: "title", key: "title" },
-    { title: "priority", dataIndex: "priority", key: "priority" },
+    //{ title: "priority", dataIndex: "priority", key: "priority" },
     { title: "createdAt", dataIndex: "createdAt", key: "createdAt" },
     { title: "Status", dataIndex: "status", key: "status" },
-    // { title: "Acknoledge by", dataIndex: "agentId", key: "agentId" },
+    { title: "Acknoledge by", dataIndex: "agentId", key: "agentId" },
     {
       title: "Action",
       key: "action",
@@ -221,7 +221,6 @@ const TicketCard = () => {
 };
 
 // Assign Agent Options
-
 const AssignAgentModal = ({ visible, onCancel, onAssign }) => {
   const [selectedAgentId, setSelectedAgentId] = useState(null);
   const [supportEngineer, setSupportEngineer] = useState([]);
@@ -247,6 +246,31 @@ const AssignAgentModal = ({ visible, onCancel, onAssign }) => {
     onAssign(values);
   };
 
+  // hangle assign agent .............................................
+
+  const [isAssignAgentModalOpen, setIsAssignAgentModalOpen] = useState(false);
+  const handleAssignAgent = (id) => {
+    setIsAssignAgentModalOpen(true);
+  };
+
+  const handleAssignAgentSubmit = async (agentId) => {
+    try {
+      setIsAssignAgentModalOpen(true);
+      // Send a request to assign the agent to the ticket
+      const response = await AxiosInstance.post(
+        `/api/Tickets/${id}/AssignAgent`,
+        { agentId: agentId }
+      );
+
+      // Handle the response as needed
+      console.log(response.data);
+      message.success("Agent assigned successfully.");
+      setIsAssignAgentModalOpen(false);
+    } catch (error) {
+      console.error("Assign agent error:", error);
+      message.error("Failed to assign agent.");
+    }
+  };
   return (
     <Modal
       title="Assign Agent"
@@ -278,5 +302,4 @@ const AssignAgentModal = ({ visible, onCancel, onAssign }) => {
     </Modal>
   );
 };
-
 export default TicketCard;

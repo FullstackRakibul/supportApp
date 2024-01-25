@@ -8,17 +8,17 @@ const CreateReply = () => {
     try {
       const values = await form.validateFields();
 
-      values.ticketId = 6;
+      values.ticketId = 5;
       values.reviewerId = 53324;
       //values.createdAt = new Date();
 
       //console.log(values);
-      await AxiosInstance.post("/api/Reviews", values);
-      //console.log(response.data);
+      const response = await AxiosInstance.post("/api/Reviews", values);
+      console.log(response.data);
       message.success("reply create successfully.");
     } catch (error) {
       message.error("Reply create failed");
-      console.log(error);
+      //console.log(error);
     }
   };
 

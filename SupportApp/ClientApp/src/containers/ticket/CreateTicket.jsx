@@ -46,6 +46,7 @@ const CreateTicket = () => {
   const handleDepartmentSelect = (departmentId) => {
     setselectedDepartmentId(departmentId);
   };
+
   const handleUnitSelect = (unitId) => {
     setselectedUnitId(unitId);
   };
@@ -56,16 +57,16 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      console.log(values);
-      //const response = await AxiosInstance.post("/api/Tickets", values);
-      //console.log(response.data);
-      //console.log(`status code :${response.status}`);
-      // if (response.status === 200) {
-      //   message.success("Ticket Create Successfully.");
-      //   form.resetFields();
-      // } else {
-      //   message.error("Error in Creating Ticket.");
-      // }
+      //console.log(values);
+      const response = await AxiosInstance.post("/api/Tickets", values);
+      console.log(response.data);
+      console.log(`status code :${response.status}`);
+      if (response.status === 200) {
+        message.success("Ticket Create Successfully.");
+        form.resetFields();
+      } else {
+        message.error("Error in Creating Ticket.");
+      }
     } catch (error) {
       console.log(`catching formData error : ${error}`);
       message.error("catch Error in Creating Ticket.");

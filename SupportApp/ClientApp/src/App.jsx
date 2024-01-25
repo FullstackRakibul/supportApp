@@ -39,6 +39,8 @@ import {
 } from "@ant-design/icons";
 import ReplyCard from "./containers/ticket/ticketReply/ReplyCard.jsx";
 import CreateReply from "./containers/ticket/ticketReply/CreateReply.jsx";
+import SingleTicketCard from "./containers/ticket/SingleTicketCard.jsx";
+import IssueCard from "./components/IssueCard.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -72,11 +74,6 @@ const App = () => {
       path: "/sessionform",
       label: "Session In",
       icon: <DeploymentUnitOutlined />,
-    },
-    {
-      path: "/replycard",
-      label: "ticket wise reply",
-      icon: <MessageOutlined />,
     },
   ];
 
@@ -150,7 +147,14 @@ const App = () => {
             }}
           >
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />}>
+                <Route path="dashboard/ticketList" element={<TicketCard />} />
+                <Route path="ticket/all" element={<IssueCard />} />
+                <Route path="dashboard/replycard" element={<ReplyCard />} />
+                <Route path="dashboard/createreply" element={<CreateReply />} />
+                <Route path="dashboard/unit" element={<UnitCard />} />
+                <Route path="dashboard/department" element={<Department />} />
+              </Route>
               <Route path="/profile" element={<ProfileCard />} />
               <Route path="/agent" element={<AgentCard />} />
               <Route path="/chat" element={<ChatCard />} />
@@ -163,8 +167,8 @@ const App = () => {
               <Route path="/sessionform" element={<SessionForm />} />
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
-              <Route path="/replycard" element={<ReplyCard />} />
-              <Route path="/createreply" element={<CreateReply />} />
+
+              <Route path="/singleticketcard" element={<SingleTicketCard />} />
             </Routes>
           </Content>
           <Footer />

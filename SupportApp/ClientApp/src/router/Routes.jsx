@@ -19,6 +19,8 @@ import TargetCreate from "../containers/service/TargetCreate.jsx";
 import SessionForm from "../containers/auth/SessionForm.jsx";
 import ReplyCard from "../containers/ticket/ticketReply/ReplyCard.jsx";
 import CreateReply from "../containers/ticket/ticketReply/CreateReply.jsx";
+import SingleTicketCard from "../containers/ticket/SingleTicketCard.jsx";
+import IssueBox from "../containers/dashboard/IssueBox.jsx";
 
 const routes =
   ({
@@ -82,12 +84,20 @@ const routes =
     element: <TargetCreate />,
   },
   {
-    path: "/replycard",
+    path: "dashboard/replycard",
     element: <ReplyCard />,
   },
   {
     path: "/createreply",
     element: <CreateReply />,
+  },
+  {
+    path: "/singleticketcard",
+    element: <SingleTicketCard />,
+  },
+  {
+    path: "/ticket/all",
+    element: <IssueBox />,
   },
   {
     path: "/*",

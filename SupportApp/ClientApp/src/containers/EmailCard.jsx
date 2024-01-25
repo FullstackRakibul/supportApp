@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Form, Row, Input, Upload, message } from "antd";
 import axios from "axios";
+import AxiosInstance from "../router/api";
 
 const { TextArea } = Input;
 
@@ -13,8 +14,8 @@ const EmailCard = () => {
       const values = await form.validateFields();
       console.log(values);
 
-      const response = await axios.post(
-        "https://localhost:7295/api/Email/ComposeMail",
+      const response = await AxiosInstance.post(
+        "/api/Email/ComposeMail",
         values
       );
 
@@ -22,7 +23,7 @@ const EmailCard = () => {
         message.success("Mail Sent Successfully.");
         form.resetFields();
       } else {
-        message.error("Sending Mail error !!!");
+        message.error("Sending Mail Failed !");
       }
     } catch (error) {
       console.log(`Form validation error : ${error}`);
