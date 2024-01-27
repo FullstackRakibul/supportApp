@@ -11,8 +11,10 @@ import {
   MailOutlined,
   FileExcelOutlined,
 } from "@ant-design/icons";
+import useAuthCheck from "../utils/useAuthCheck";
 
 function Dashboard() {
+  useAuthCheck();
   const handleClick = () => {
     console.log("Button has been clicked.");
   };

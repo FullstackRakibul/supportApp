@@ -23,8 +23,9 @@ const SessionForm = () => {
         sessionStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         sessionStorage.setItem("user", JSON.stringify(user));
-        message.success("Session in successfully.");
+        //message.success("Session in successfully.");
         history("/");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

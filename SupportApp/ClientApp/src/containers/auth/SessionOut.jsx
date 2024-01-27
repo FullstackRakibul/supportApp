@@ -8,7 +8,11 @@ const SessionOut = () => {
   const history = useNavigate();
   const handleSessionOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
     history("/sessionform");
+    window.location.reload();
     message.error("Session is Cleared.");
   };
   return (

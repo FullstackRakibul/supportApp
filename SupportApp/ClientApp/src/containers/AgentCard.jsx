@@ -1,8 +1,10 @@
 import { Card } from "antd";
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "../router/api";
+import useAuthCheck from "../utils/useAuthCheck";
 
 const AgentCard = () => {
+  useAuthCheck();
   const [supportEngineer, setSupportEngineer] = useState([]);
   useEffect(() => {
     const fetchData = async () => {

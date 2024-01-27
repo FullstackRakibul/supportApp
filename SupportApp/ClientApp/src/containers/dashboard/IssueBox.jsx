@@ -11,8 +11,10 @@ import {
   FileExcelOutlined,
 } from "@ant-design/icons";
 import AxiosInstance from "../../router/api.js";
+import useAuthCheck from "../../utils/useAuthCheck.jsx";
 
 const IssueBox = () => {
+  
   const [issue, setIssue] = useState([]);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const IssueBox = () => {
         const response = await AxiosInstance.get(
           "/dashboard/Dashboards/IssueBox"
         );
-        console.log(response);
+        //console.log(response);
         setIssue(response.data.tickets);
       } catch (error) {
         console.log(`issue data fetch error : ${error}`);

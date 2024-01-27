@@ -12,8 +12,10 @@ import {
 
 import AxiosInstance from "../router/api";
 import AssignSupportEngineerModal from "./service/AssignSupportEngineerModal";
+import useAuthCheck from "../utils/useAuthCheck";
 
 const TicketCard = () => {
+  useAuthCheck();
   const [ticket, setTicket] = useState([]);
   const [loading, setLoading] = useState(true);
 
