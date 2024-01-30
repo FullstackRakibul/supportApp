@@ -13,7 +13,7 @@ public class TicketService
     //     return DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);
     // }
 
-    private string GenerateTicketNumber()
+    public string GenerateTicketNumber()
     {
         string ticketNumber;
         bool isUnique = false;
@@ -79,25 +79,25 @@ public class TicketService
         }
     }
     // create ticket from frontend form 
-    public void CreateTicket(Ticket ticket)
+    public void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
     {
         try
         {
-            ticket.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            ticketAndTargetDto.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             var generatedTicketNumber = GenerateTicketNumber();
             var ticketData = new Ticket
             {
-                Title = ticket.Title,
+                Title = ticketAndTargetDto.Title,
                 TicketNumber = generatedTicketNumber,
-                Description = ticket.Description,
-                Attachment = ticket.Attachment,
-                CreatedAt = ticket.CreatedAt,
+                Description = ticketAndTargetDto.Description,
+                Attachment = ticketAndTargetDto.Attachment,
+                CreatedAt = ticketAndTargetDto.CreatedAt,
                 MessageId = generatedTicketNumber,
                 Priority = Priority.Regular,
                 Status = TicketStatus.Open,
                 IsEmail = false,
-                TicketTypeId = ticket.TicketTypeId,
+                TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
 
             };
@@ -105,13 +105,15 @@ public class TicketService
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
-            // assign ticket to the target department
-            //var assignToTarget = new Target
+            //int newTicketId = ticketData.Id;
+            //var newTarget = new Target
             //{
-            //    TicketId=ticketData.Id,
-            //    DepartmentId = ticket.departmentId,
-
+            //    TicketId = newTicketId,
+            //    DepartmentId = ticketAndTargetDto.DepartmentId,
+            //    UnitId = ticketAndTargetDto.UnitId,
             //};
+
+            
 
             Console.WriteLine("Create Ticket Successfully.");
         }

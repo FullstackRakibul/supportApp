@@ -19,8 +19,9 @@ namespace SupportApp.Controllers
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
+       
 
-        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService)
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService )
         {
             _context = context;
             _ticketService = ticketService;
@@ -102,37 +103,40 @@ namespace SupportApp.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         //public async Task<ActionResult<Ticket>> PostTicket([FromBody] Ticket ticket) 
-        public IActionResult CreateTicket( [FromBody]Ticket ticket)
+        public IActionResult CreateTicket( [FromBody] TicketAndTargetDto ticketAndTargetDto)
         {
-          // if (_context.Ticket == null)
-          // {
-          //     return Problem("Entity set 'SupportAppDbContext.Ticket'  is null.");
-          // }
-          try
-          {
-              _ticketService.CreateTicket(ticket);
-              //_context.Ticket.Add(ticket);
+            try
+            {
+              _ticketService.CreateTicket(ticketAndTargetDto);
               _context.SaveChangesAsync();
 
-                // assign Ticket to target 
 
-                //if (ticket.TicketType=) { 
-                    
-                //};
-                //    var assignTotarget = new Target
+                //ticketAndTargetDto.TicketId = ticketAndTargetDto.Id;
+                //_targetService.InitialTargetCreate(ticketAndTargetDto);
+                //_context.SaveChangesAsync();
+
+
+                //create a new target
+                //int newTicketId = ticketAndTargetDto.Id;
+                //var newTarget = new Target
                 //{
-                //    TicketId = ticket.Id,
+                //    TicketId = newTicketId,
+                //    DepartmentId = ticketAndTargetDto.DepartmentId,
+                //    UnitId = ticketAndTargetDto.UnitId,
                     
                 //};
-              return Ok($"Ticket Create Successfully.");
+
+                // Add the new Target to the context and save changes
+                //_context.Target.Add(newTarget);
+                //_context.SaveChanges();
+
+                return Ok($"Ticket Create Successfully.");
           }
           catch (Exception ex)
           {
               Console.WriteLine(ex);
               return BadRequest("Create Ticket failed for BadRequest-C");
           }
-
-
         }
 
         // DELETE: api/Ticket/5
@@ -186,6 +190,62 @@ namespace SupportApp.Controllers
         public IActionResult UpdateTicketStatus()
         {
             return Ok("update status controller working");
+        }
+
+        [HttpPost("createTicketWithTarget")]
+
+        public async Task<ActionResult<Ticket>> createTicketWithTarget([FromBody] TicketAndTargetDto ticketAndTargetDto) {
+            try {
+                //_ticketService.CreateTicket(ticketAndTargetDto);
+
+                //ticketAndTargetDto.TicketId = ticketAndTargetDto.Id;
+                //_targetService.InitialTargetCreate(ticketAndTargetDto);
+
+
+
+                ticketAndTargetDto.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                var generatedTicketNumber = _ticketService.GenerateTicketNumber();
+                var ticketData = new Ticket
+                {
+                    Title = ticketAndTargetDto.Title,
+                    TicketNumber = generatedTicketNumber,
+                    Description = ticketAndTargetDto.Description,
+                    Attachment = ticketAndTargetDto.Attachment,
+                    CreatedAt = ticketAndTargetDto.CreatedAt,
+                    MessageId = generatedTicketNumber,
+                    Priority = Priority.Regular,
+                    Status = TicketStatus.Open,
+                    IsEmail = false,
+                    TicketTypeId = ticketAndTargetDto.TicketTypeId,
+                    UpdatedAt = null,
+
+                };
+                //Console.WriteLine(ticketData);
+                _context.Ticket.Add(ticketData);
+                _context.SaveChanges();
+
+
+               // Console.WriteLine("newly created ticked id ==================================",ticketData);
+                var newTarget = new Target
+                {
+                    TicketId = ticketData.Id, // hard code 
+                    DepartmentId = ticketAndTargetDto.DepartmentId,
+                    UnitId = ticketAndTargetDto.UnitId,
+
+                };
+                _context.Target.Add(newTarget);
+
+                await _context.SaveChangesAsync();
+
+                return Ok($"Ticket Create Successfully.");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

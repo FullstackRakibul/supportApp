@@ -5,7 +5,11 @@ export default {
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        bengali: ["Siyam Rupali", "sans-serif"],
+      },
+    },
     colors: {
       //primary: '#354A6B',
       primary: "#000",

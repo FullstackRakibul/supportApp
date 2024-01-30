@@ -57,8 +57,12 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      //console.log(values);
-      const response = await AxiosInstance.post("/api/Tickets", values);
+      console.log(values);
+      //const response = await AxiosInstance.post("/api/Tickets", values);
+      const response = await AxiosInstance.post(
+        "/api/Tickets/createTicketWithTarget",
+        values
+      );
       console.log(response.data);
       console.log(`status code :${response.status}`);
       if (response.status === 200) {
@@ -95,6 +99,9 @@ const CreateTicket = () => {
   return (
     <>
       <section className="conatainer mx-auto">
+        <h3 className="font-bengali font-normal text-xl">
+          নতুন টিকেট তৈরী করুন :
+        </h3>
         <Row className="flex justify-center items-center ">
           <Col span={12} className="">
             <Card
