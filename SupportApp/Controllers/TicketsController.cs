@@ -194,7 +194,6 @@ namespace SupportApp.Controllers
         }
 
         [HttpPost("createTicketWithTarget")]
-
         public async Task<ActionResult<Ticket>> createTicketWithTarget([FromBody] TicketAndTargetDto ticketAndTargetDto) {
             try {
                 _ticketService.CreateTicket(ticketAndTargetDto);
@@ -205,6 +204,13 @@ namespace SupportApp.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("ticketStatus")]
+        public IActionResult GetTicketStatusEnum()
+        {
+            var ticketStatusEnumValues = Enum.GetNames(typeof(TicketStatus));
+            return Ok(ticketStatusEnumValues);
         }
     }
 }

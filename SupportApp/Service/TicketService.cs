@@ -1,3 +1,4 @@
+using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
 namespace SupportApp.Service;
@@ -138,6 +139,21 @@ public class TicketService
         {
             Console.WriteLine("This is Service layer error.", ex.Message);
 
+        }
+    }
+
+    public async void UpdateTicketstatus(int ticketId , TicketStatus status)
+    {
+        try {
+            var ticketData = _context.Ticket.SingleOrDefault(t => t.Id == ticketId); ;
+
+            ticketData.Status =status;
+            await _context.SaveChangesAsync();
+            Console.WriteLine("Ticket status update successful.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ticket status update successfull.");
         }
     }
 
