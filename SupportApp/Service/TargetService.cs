@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SupportApp.DTO;
 using SupportApp.Models;
 
 namespace SupportApp.Service
@@ -34,17 +35,46 @@ namespace SupportApp.Service
             }
         }
 
-        public void AssignSupportEngineer(Target target) {
+        public async void AssignSupportEngineer(int ticketId , int agentId)
+        {
 
             // find target record where the ticket id matched , then update that target and only assign AgentId 
 
             try {
-                var selectTarget = _context.Target.FirstOrDefault(t => t.TicketId == target.TicketId);
+                var selectTarget = _context.Target.FirstOrDefault(t => t.TicketId == ticketId);
 
                 if (selectTarget != null)
                 {
-                    selectTarget.AgentId = target.AgentId;
+                    selectTarget.AgentId = agentId;
+                    _context.SaveChanges();
+                    Console.WriteLine("Assign upport engineer service error !");
+
+                    var newNotification = new Notification
+                    {
+                        UserId = agentId.ToString(),
+                        IsRead = false,
+                        Message = "A new ticket has been raised !",
+                        TargetId = selectTarget.Id,
+                        CreatedAt = DateTime.Now,
+                    };
+                    _context.Notification.Add(newNotification);
+                    _context.SaveChanges();
                 }
+                else {
+
+                    var newTarget = new Target
+                    {
+                        TicketId = ticketId,
+                        AgentId = agentId,
+                        DepartmentId = _context.Department.Where(d => d.DepartmentName == "Information Technology").FirstOrDefault().Id,
+                        UnitId = _context.Unit.Where(u => u.Name == "Corporate Office").FirstOrDefault().Id,
+                    };
+
+                    _context.Target.Add(newTarget);
+                    _context.SaveChangesAsync();
+                }
+
+
             }
             catch (Exception ex) {
                 Console.WriteLine("Assign upport engineer service error !",ex.Message);

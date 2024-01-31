@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Select, Button, message } from "antd";
+import { Modal, Form, Select, Button, message, Input } from "antd";
 import AxiosInstance from "../../router/api";
 
 const AssignAgentModal = ({ visible, onCancel, issueId }) => {
@@ -17,7 +17,13 @@ const AssignAgentModal = ({ visible, onCancel, issueId }) => {
   const handleAssignAgent = async () => {
     try {
       const values = await form.validateFields();
+      //console.log(`issue ID: ${issueId}`);
+      values.ticketId = issueId;
       console.log(values);
+      const response = AxiosInstance.post(
+        "/api/Targets/assignSupportEngineer",
+        values
+      );
       message.success("Agent assigned successfully!");
       onCancel();
     } catch (error) {

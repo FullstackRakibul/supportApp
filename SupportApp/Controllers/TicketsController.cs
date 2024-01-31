@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class TicketsController : ControllerBase
@@ -196,54 +197,12 @@ namespace SupportApp.Controllers
 
         public async Task<ActionResult<Ticket>> createTicketWithTarget([FromBody] TicketAndTargetDto ticketAndTargetDto) {
             try {
-                //_ticketService.CreateTicket(ticketAndTargetDto);
-
-                //ticketAndTargetDto.TicketId = ticketAndTargetDto.Id;
-                //_targetService.InitialTargetCreate(ticketAndTargetDto);
-
-
-
-                ticketAndTargetDto.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                var generatedTicketNumber = _ticketService.GenerateTicketNumber();
-                var ticketData = new Ticket
-                {
-                    Title = ticketAndTargetDto.Title,
-                    TicketNumber = generatedTicketNumber,
-                    Description = ticketAndTargetDto.Description,
-                    Attachment = ticketAndTargetDto.Attachment,
-                    CreatedAt = ticketAndTargetDto.CreatedAt,
-                    MessageId = generatedTicketNumber,
-                    Priority = Priority.Regular,
-                    Status = TicketStatus.Open,
-                    IsEmail = false,
-                    TicketTypeId = ticketAndTargetDto.TicketTypeId,
-                    UpdatedAt = null,
-
-                };
-                //Console.WriteLine(ticketData);
-                _context.Ticket.Add(ticketData);
-                _context.SaveChanges();
-
-
-               // Console.WriteLine("newly created ticked id ==================================",ticketData);
-                var newTarget = new Target
-                {
-                    TicketId = ticketData.Id, // hard code 
-                    DepartmentId = ticketAndTargetDto.DepartmentId,
-                    UnitId = ticketAndTargetDto.UnitId,
-
-                };
-                _context.Target.Add(newTarget);
-
-                await _context.SaveChangesAsync();
-
+                _ticketService.CreateTicket(ticketAndTargetDto);
                 return Ok($"Ticket Create Successfully.");
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
         }

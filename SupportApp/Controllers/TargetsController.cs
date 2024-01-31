@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Ocsp;
+using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
@@ -10,10 +11,11 @@ namespace SupportApp.Controllers
     public class TargetsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
-
-        public TargetsController(SupportAppDbContext context)
+        private readonly TargetService _targetService;
+        public TargetsController(SupportAppDbContext context , TargetService targetService )
         {
             _context = context;
+            _targetService = targetService;
         }
 
         // GET: api/Targets
@@ -157,5 +159,25 @@ namespace SupportApp.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
             }
         }
+
+
+        [HttpPost("assignSupportEngineer")]
+        public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
+        {
+            try
+            {
+                int ticketId = targetSupportEngineerDto.TicketId;
+                int agentId = targetSupportEngineerDto.AgentId;
+
+                _targetService.AssignSupportEngineer(ticketId,agentId);
+                return Ok("Support engineer assigned successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it based on your application's requirements
+                return BadRequest("Failed to assign support engineer.");
+            }
+        }
     }
+
 }

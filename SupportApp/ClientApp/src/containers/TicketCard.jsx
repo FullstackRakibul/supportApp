@@ -82,6 +82,7 @@ const TicketCard = () => {
   const handleRefresh = async () => {
     try {
       const response = await AxiosInstance.get("/api/Tickets/FetchEmailData");
+      setTicketData(response.data);
       message.success("mail data fatching success. try refresh");
     } catch (error) {
       message.error(`Server Error ! ${error}`);

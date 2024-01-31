@@ -24,6 +24,8 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
+builder.Services.AddScoped<TargetService,TargetService>();
+
 
 builder.Services.AddCors(options =>
 {

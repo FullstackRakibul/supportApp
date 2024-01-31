@@ -1,11 +1,13 @@
+using SupportApp.DTO;
 using SupportApp.Models;
 namespace SupportApp.Service;
 public class TicketService
 {
     private readonly SupportAppDbContext _context;
-    public TicketService(SupportAppDbContext context)
+    public TicketService(SupportAppDbContext context )
     {
         _context = context;
+        
     }
     // private string GenerateTicketNumber()
     // {
@@ -38,7 +40,8 @@ public class TicketService
     }
 
     // create ticket from mail 
-    public void CreateTicketFromEmail(EmailBoxService.EmailDetails emailDetails)
+    //public async void CreateTicketFromEmail(EmailBoxService.EmailDetails emailDetails)
+    public async Task CreateTicketFromEmail(EmailBoxService.EmailDetails emailDetails)
     {
         var existingTicket = _context.Ticket.FirstOrDefault(ticket => ticket.MessageId == emailDetails.MessageId);
         // Find the "Date" header
@@ -71,7 +74,18 @@ public class TicketService
             //ticket.CreatedAt = Convert.ToDateTime(createdDate).ToString("yyyy-MM-dd HH:mm:ss");
 
             _context.Ticket.Add(ticket);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            int newTicketId = ticket.Id;
+            var newTarget = new Target
+            {
+                TicketId = newTicketId,
+                DepartmentId = _context.Department.Where(d => d.DepartmentName == "Information Technology").FirstOrDefault().Id,
+                UnitId = _context.Unit.Where(u => u.Name == "Corporate Office").FirstOrDefault().Id,
+            };
+
+            _context.Target.Add(newTarget);
+            await _context.SaveChangesAsync();
         }
         else
         {
@@ -79,7 +93,7 @@ public class TicketService
         }
     }
     // create ticket from frontend form 
-    public void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
+    public async void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
     {
         try
         {
@@ -101,19 +115,22 @@ public class TicketService
                 UpdatedAt = null,
 
             };
-            //Console.WriteLine(ticketData);
+
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
-            //int newTicketId = ticketData.Id;
-            //var newTarget = new Target
-            //{
-            //    TicketId = newTicketId,
-            //    DepartmentId = ticketAndTargetDto.DepartmentId,
-            //    UnitId = ticketAndTargetDto.UnitId,
-            //};
+            int newTicketId = ticketData.Id;
+            var newTarget = new Target
+            {
+                TicketId = newTicketId,
+                DepartmentId = ticketAndTargetDto.DepartmentId,
+                UnitId = ticketAndTargetDto.UnitId,
+            };
 
-            
+            _context.Target.Add(newTarget);
+            await _context.SaveChangesAsync();
+
+
 
             Console.WriteLine("Create Ticket Successfully.");
         }

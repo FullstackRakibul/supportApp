@@ -75,6 +75,7 @@ const IssueCard = (props) => {
                 <UsergroupAddOutlined
                   onClick={() => handleAssignAgentClick(props.id)}
                 />
+                <EditOutlined />
               </span>
             </Col>
           </Row>
