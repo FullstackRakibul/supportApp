@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, message } from "antd";
 import {
   EyeOutlined,
   UsergroupAddOutlined,
@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import AssignAgentModal from "./global/AssignAgentModal";
+import UpdateTicketStatusModal from "./global/UpdateTicketStatusModal";
 
 const IssueCard = (props) => {
   const handleColor = () => {
@@ -28,6 +29,14 @@ const IssueCard = (props) => {
   const handleAssignAgentClick = () => {
     setSelectedIssueId(props.issueId);
     setAssignModalVisible(true);
+  };
+
+  // ticket status changes
+  const [statusModalVisible, setStatusModalVisible] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const handleUpdateTicketStatus = () => {
+    setSelectedStatus(props.issueId);
+    setStatusModalVisible(true);
   };
   return (
     <>
@@ -73,9 +82,9 @@ const IssueCard = (props) => {
                   <EyeOutlined title="Single Issue Details" />
                 </NavLink>
                 <UsergroupAddOutlined
-                  onClick={() => handleAssignAgentClick(props.id)}
+                  onClick={() => handleAssignAgentClick()}
                 />
-                <EditOutlined />
+                <EditOutlined onClick={() => handleUpdateTicketStatus()} />
               </span>
             </Col>
           </Row>
@@ -85,6 +94,11 @@ const IssueCard = (props) => {
         visible={assignModalVisible}
         onCancel={() => setAssignModalVisible(false)}
         issueId={selectedIssueId}
+      />
+      <UpdateTicketStatusModal
+        visible={statusModalVisible}
+        onCancel={() => setStatusModalVisible(false)}
+        issueId={selectedStatus}
       />
     </>
   );
