@@ -212,5 +212,29 @@ namespace SupportApp.Controllers
             var ticketStatusEnumValues = Enum.GetNames(typeof(TicketStatus));
             return Ok(ticketStatusEnumValues);
         }
+
+        [HttpGet("ticketPriority")]
+        public IActionResult GetTicketPriorityEnum()
+        {
+            var ticketPriorityEnumValues = Enum.GetNames(typeof(TicketPriority));
+            return Ok(ticketPriorityEnumValues);
+        }
+
+        [HttpPut("updateTicketStatus")]
+        public async Task<ActionResult<Ticket>> UpdateTicketstatus([FromBody] UpdateTicketStatusDto updateTicketStatusDto )
+        {
+            try
+            {
+                _ticketService.UpdateTicketstatus(updateTicketStatusDto);
+                return Ok($"Ticket status updated !");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }

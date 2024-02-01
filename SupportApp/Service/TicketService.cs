@@ -57,7 +57,7 @@ public class TicketService
                 TicketNumber = GenerateTicketNumber(),
                 MessageId = emailDetails.MessageId,
                 Description = emailDetails.Body,
-                Priority = Priority.BusinessClass,
+                Priority = TicketPriority.BusinessClass,
                 Attachment = emailDetails.Attachments != null && emailDetails.Attachments.Any()
                     ? string.Join(",", emailDetails.Attachments)
                     : null,
@@ -109,7 +109,7 @@ public class TicketService
                 Attachment = ticketAndTargetDto.Attachment,
                 CreatedAt = ticketAndTargetDto.CreatedAt,
                 MessageId = generatedTicketNumber,
-                Priority = Priority.Regular,
+                Priority = TicketPriority.Regular,
                 Status = TicketStatus.Open,
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
@@ -142,13 +142,16 @@ public class TicketService
         }
     }
 
-    public async void UpdateTicketstatus(int ticketId , TicketStatus status)
+    public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
     {
         try {
-            var ticketData = _context.Ticket.SingleOrDefault(t => t.Id == ticketId); ;
+            var ticketData = _context.Ticket.Where(t => t.Id == updateTicketStatusDto.Id).FirstOrDefault();
 
-            ticketData.Status =status;
-            await _context.SaveChangesAsync();
+            ticketData.Status = updateTicketStatusDto.Status;
+            ticketData.Priority = updateTicketStatusDto.Priority;
+            ticketData.UpdatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            
+            _context.SaveChanges();
             Console.WriteLine("Ticket status update successful.");
         }
         catch (Exception ex)

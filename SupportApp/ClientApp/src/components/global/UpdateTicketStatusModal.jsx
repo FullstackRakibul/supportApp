@@ -5,10 +5,17 @@ import AxiosInstance from "../../router/api";
 const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
   const [form] = Form.useForm();
   const [ticketStatus, setTicketStatus] = useState([]);
+  const [ticketPriority, setTicketPriority] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await AxiosInstance.get("/api/Tickets/ticketStatus");
-      setTicketStatus(response.data);
+      const responseStatus = await AxiosInstance.get(
+        "/api/Tickets/ticketStatus"
+      );
+      const responsePriority = await AxiosInstance.get(
+        "/api/Tickets/ticketPriority"
+      );
+      setTicketStatus(responseStatus.data);
+      setTicketPriority(responsePriority.data);
     };
     fetchData();
   }, []);
@@ -16,9 +23,13 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
   const handleStatusUpdate = async () => {
     try {
       const values = await form.validateFields();
-      values.ticketId = issueId;
+      values.id = issueId;
       console.log(values);
-
+      const response = AxiosInstance.put(
+        "/api/Tickets/updateTicketStatus",
+        values
+      );
+      console.log(response);
       message.success("Ticket Status Updated!");
     } catch (error) {
       console.log("status update error on form.");
@@ -46,7 +57,7 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
             type="primary"
             onClick={handleStatusUpdate}
           >
-            Assign Agent
+            Update Status
           </Button>,
         ]}
       >
@@ -58,8 +69,22 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
           >
             {/* Replace the options with your actual data source for agents */}
             <Select style={{ width: 470 }}>
-              {ticketStatus.map((item) => (
-                <Select.Option key={item.id} value={item}>
+              {ticketStatus.map((item, index) => (
+                <Select.Option key={index} value={index}>
+                  {item}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Select Priority"
+            name="priority"
+            //rules={[{ required: true, message: "Please select an priority" }]}
+          >
+            {/* Replace the options with your actual data source for agents */}
+            <Select style={{ width: 470 }}>
+              {ticketPriority.map((item, index) => (
+                <Select.Option key={index} value={index}>
                   {item}
                 </Select.Option>
               ))}

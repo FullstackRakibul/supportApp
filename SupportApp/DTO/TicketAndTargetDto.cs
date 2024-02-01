@@ -19,7 +19,7 @@ namespace SupportApp.DTO
         public string? UpdatedAt { get; set; }
 
         public TicketStatus Status { get; set; } = TicketStatus.Open;
-        public Priority Priority { get; set; } = Priority.Regular;
+        public TicketPriority Priority { get; set; } = TicketPriority.Regular;
 
         public int TicketTypeId { get; set; }
         public TicketType? TicketType { get; set; }
