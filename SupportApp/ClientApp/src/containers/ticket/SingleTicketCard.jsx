@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FilePdfOutlined,
   MessageOutlined,
   ReconciliationOutlined,
 } from "@ant-design/icons";
 import { Tabs } from "antd";
+import AxiosInstance from "../../router/api";
 
-const SingleTicketCard = (props) => {
+const SingleTicketCard = () => {
+  const [singleTicketData, setSingleTicketData] = useState([]);
+  useEffect(() => {
+    const fetchData = () => {
+      // const response = AxiosInstance.get(
+      //   "/api/Tickets/getTicketDetails",
+      // );
+      // setSingleTicketData(response.data);
+      // console.log(`single ticket data : ${response}`);
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <section className="container p-3">

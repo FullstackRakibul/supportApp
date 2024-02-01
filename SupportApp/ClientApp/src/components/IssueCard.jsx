@@ -34,6 +34,7 @@ const IssueCard = (props) => {
   // ticket status changes
   const [statusModalVisible, setStatusModalVisible] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
+
   const handleUpdateTicketStatus = () => {
     setSelectedStatus(props.issueId);
     setStatusModalVisible(true);
