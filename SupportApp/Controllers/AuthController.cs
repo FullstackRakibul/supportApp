@@ -23,21 +23,10 @@ namespace SupportApp.Controllers
         }
 
         
+
+
         private BaseUser AuthenticateUser(BaseUser baseUser) {
             BaseUser _baseUser = null;
-
-
-            // test auth
-            //if (baseUser.Username == "admin" && baseUser.Password == "12345")
-            //{
-            //    _baseUser = new BaseUser
-            //    {
-            //        Username = "Rakibul Hasan"
-            //    };
-            //}
-            //return _baseUser;
-            //
-
             var userFromDb = _dbContext.BaseUser
                 .FirstOrDefault(u => u.Username == baseUser.Username && u.Password == baseUser.Password);
 
@@ -51,9 +40,6 @@ namespace SupportApp.Controllers
             }
 
             return _baseUser;
-
-
-            //
         }
 
         private string GenerateToken(BaseUser baseUser) {
@@ -75,6 +61,57 @@ namespace SupportApp.Controllers
                     token = token,
                 });
             }   
+            return response;
+        }
+
+
+
+
+
+        private Agent AuthenticateUser(Agent agent)
+        {
+            Agent _agent = null;
+            var userFromDb = _dbContext.Agent
+                .FirstOrDefault(a => a.Username == agent.Username && a.Password == agent.Password);
+
+            if (userFromDb != null)
+            {
+                _agent = new Agent
+                {
+                    Username = userFromDb.Username,
+
+                };
+            }
+
+            return _agent;
+        }
+
+
+        private string GenerateTokenAgent(Agent agent)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Audience"], null, expires: DateTime.Now.AddMinutes(3), signingCredentials: credentials);
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+
+        [AllowAnonymous]
+        [HttpPost("agent")]
+        public IActionResult AgentSignIn(Agent agent)
+        {
+            IActionResult response = Unauthorized();
+            var _agent = AuthenticateUser(agent);
+            if (_agent != null)
+            {
+                var token = GenerateTokenAgent(_agent);
+                response = Ok(new
+                {
+                    token = token,
+                });
+            }
             return response;
         }
     }

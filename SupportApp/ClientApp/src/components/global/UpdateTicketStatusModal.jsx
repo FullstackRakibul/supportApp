@@ -67,7 +67,6 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
             name="status"
             rules={[{ required: true, message: "Please select an status" }]}
           >
-            {/* Replace the options with your actual data source for agents */}
             <Select style={{ width: 470 }}>
               {ticketStatus.map((item, index) => (
                 <Select.Option key={index} value={index}>
@@ -76,12 +75,7 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item
-            label="Select Priority"
-            name="priority"
-            //rules={[{ required: true, message: "Please select an priority" }]}
-          >
-            {/* Replace the options with your actual data source for agents */}
+          <Form.Item label="Select Priority" name="priority">
             <Select style={{ width: 470 }}>
               {ticketPriority.map((item, index) => (
                 <Select.Option key={index} value={index}>

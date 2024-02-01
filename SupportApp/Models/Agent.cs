@@ -17,7 +17,7 @@ namespace SupportApp.Models
 
         public string? Username { get; set; }
         public string? Password { get; set; }
-        //public int? UserLevel { get; set; } 
+        public AgentRole? role { get; set; } = AgentRole.SupportEngineer;
     }
 
     public enum AgentStatus {
@@ -26,4 +26,12 @@ namespace SupportApp.Models
         Offline,
         WeekendOff
     }
+
+public enum AgentRole
+{
+    SupportEngineer,
+    DepartmentAdmin,
+    SystemManager,
+    SystemAdmin
+}
 }

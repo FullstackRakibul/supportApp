@@ -236,5 +236,37 @@ namespace SupportApp.Controllers
         }
 
 
+        [HttpGet("getTicketDetails")]
+        public async Task<ActionResult<Ticket>> GetTicketDetails(int ticketId)
+        {
+            try
+            {
+                var ticketDetails = await _context.Ticket
+                .Where(t => t.Id == ticketId)
+                .FirstOrDefaultAsync();
+
+                if (ticketDetails != null)
+                {
+                    var reviewDetails = await _context.Review
+                        .Where(r => r.TicketId == ticketId)
+                        .ToListAsync();
+
+
+                    Console.WriteLine("Details Data fetched complete !");
+                    return Ok(ticketDetails);
+                }
+                else
+                {
+                    return BadRequest($"Ticket with ID {ticketId} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Server Response Error.");
+            }
+        }
+
+
     }
 }

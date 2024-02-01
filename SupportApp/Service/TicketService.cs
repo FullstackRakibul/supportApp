@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
@@ -160,4 +162,18 @@ public class TicketService
         }
     }
 
+    //public Task<TicketDetailsDto> TicketDetails(int ticketId)
+    //{
+    //    try {
+    //        var ticketDetails = _context.Ticket.Where(t => t.Id == ticketId).FirstOrDefault();
+    //        var reviewDetails = _context.Review.Where(r => r.TicketId == ticketId).ToList();
+
+    //        Console.WriteLine("Details Data fetched complete !");
+    //        return ticketDetails;
+    //    }catch (Exception ex)
+    //    {
+    //        Console.WriteLine("Ticket Details data fetching false", ex);
+    //        return BadRequestResult();
+    //    }
+    //}
 }

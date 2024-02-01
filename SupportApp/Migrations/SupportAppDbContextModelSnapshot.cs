@@ -71,6 +71,9 @@ namespace SupportApp.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("role")
+                        .HasColumnType("int");
+
                     b.HasKey("AgentId");
 
                     b.ToTable("Agent");
@@ -235,7 +238,8 @@ namespace SupportApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TicketId");
+                    b.HasIndex("TicketId")
+                        .IsUnique();
 
                     b.ToTable("Target");
                 });
@@ -399,8 +403,8 @@ namespace SupportApp.Migrations
             modelBuilder.Entity("SupportApp.Models.Target", b =>
                 {
                     b.HasOne("SupportApp.Models.Ticket", "Ticket")
-                        .WithMany()
-                        .HasForeignKey("TicketId")
+                        .WithOne("Target")
+                        .HasForeignKey("SupportApp.Models.Target", "TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -441,6 +445,8 @@ namespace SupportApp.Migrations
             modelBuilder.Entity("SupportApp.Models.Ticket", b =>
                 {
                     b.Navigation("Reviews");
+
+                    b.Navigation("Target");
                 });
 
             modelBuilder.Entity("SupportApp.Models.TicketType", b =>
