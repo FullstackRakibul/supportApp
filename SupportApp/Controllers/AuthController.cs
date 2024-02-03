@@ -129,7 +129,11 @@ namespace SupportApp.Controllers
                 response = Ok(new
                 {
                     token = token,
-                    agentdata = agentData,
+                    agentdata = new { 
+                        email = agentData.Email,
+                        empCode = agentData.EmpCode,
+                        role = agentData.role
+                    },
                     isSuccess = true
                 });
             }
