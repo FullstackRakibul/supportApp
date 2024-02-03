@@ -67,6 +67,7 @@ namespace SupportApp.Controllers
                 var token = GenerateToken(baseUser_);
                 response = Ok(new {
                     token = token,
+                    
                 });
             }   
             return response;
@@ -87,8 +88,12 @@ namespace SupportApp.Controllers
                 _agent = new Agent
                 {
                     Username = userFromDb.Username,
+                    role = userFromDb.role,
+                    PhoneExtension = userFromDb.PhoneExtension,
                 };
+
             }
+            
 
             return _agent;
         }
@@ -114,13 +119,18 @@ namespace SupportApp.Controllers
         {
             IActionResult response = Unauthorized();
             var _agent = AuthenticateUser(agent);
+
+
             if (_agent != null)
             {
                 var token = GenerateTokenAgent(_agent);
+                var agentData = _dbContext.Agent.FirstOrDefault(a => a.Username == _agent.Username);
+
                 response = Ok(new
                 {
                     token = token,
-                    agentdata = agent
+                    agentdata = agentData,
+                    isSuccess = true
                 });
             }
             return response;

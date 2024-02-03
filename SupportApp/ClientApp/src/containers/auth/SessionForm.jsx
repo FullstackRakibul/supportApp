@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Upload, message } from "antd";
+import AxiosInstance from "../../router/api";
 
 const SessionForm = () => {
   //const [token, setToken] = useState([]);
@@ -11,22 +12,33 @@ const SessionForm = () => {
     try {
       const values = await form.validateFields();
       console.log(values);
-      const response = await axios.post(
-        "http://localhost:7002/api/Auth/login",
-        values
-      );
-      // console.log(response.data);
-      const { isSuccess, result, message } = response.data;
+      const response2 = await AxiosInstance.post("api/Auth/agent", values);
+      console.log(response2.data);
+      const { isSuccess, agentdata, token } = response2.data;
+      console.log(`this is agentdata : ${agentdata}`);
+      console.log(`this is token : ${token}`);
+
+      // const response = await axios.post(
+      //   "http://localhost:7002/api/Auth/login",
+      //   values
+      // );
+      //console.log(response.data);
+      //const { isSuccess, result, message } = response.data;
+
+      console.log(isSuccess);
       if (isSuccess) {
-        const { token, user } = result;
+        //const { token, user } = result;
+        const { token, agentdata } = response2.data;
         localStorage.setItem("token", token);
         sessionStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(agentdata));
+        sessionStorage.setItem("user", JSON.stringify(agentdata));
         //message.success("Session in successfully.");
         history("/");
         window.location.reload();
       }
+
+      console.log("code test ");
     } catch (error) {
       console.log(error);
       message.error(error);
