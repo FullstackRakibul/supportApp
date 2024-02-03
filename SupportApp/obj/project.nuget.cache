@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YW9ryuDX9K2BGx8PaLaxocqRJaE4XtBnwfoMyXK4M25RaqymoI469u7S4lgmpyOGmZ5DedkTryC/TLaR1URVAg==",
+  "dgSpecHash": "pDFciLOoMEPRCVfqDBdetoHD3iN6Zo3sLHCuUx8nklXIJIy9cgREbXIQHxLf/TbVYg2ZEHKZnCgbxGyxhZh1mA==",
   "success": true,
   "projectFilePath": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\SupportApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Rakib\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -241,5 +242,16 @@
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BCrypt.Net",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

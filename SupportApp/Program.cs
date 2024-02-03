@@ -5,6 +5,9 @@ using SupportApp.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using SupportApp.Controllers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 
 
 
@@ -26,6 +29,7 @@ builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
 builder.Services.AddScoped<TargetService,TargetService>();
 
+builder.Services.AddTransient<AuthController>();
 
 builder.Services.AddCors(options =>
 {

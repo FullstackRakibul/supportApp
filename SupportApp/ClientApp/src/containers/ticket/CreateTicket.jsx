@@ -11,6 +11,7 @@ import TickeTypeDropDown from "../../components/TicketTypeDropDown.jsx";
 import AxiosInstance from "../../router/api.js";
 import DepartmentDropdown from "../../components/global/DepartmentDropdown.jsx";
 import UnitDropdown from "../../components/global/UnitDropdown.jsx";
+import useAuthCheck from "../../utils/useAuthCheck.jsx";
 
 const props = {
   name: "attachment",
@@ -33,6 +34,8 @@ const props = {
 };
 
 const CreateTicket = () => {
+  useAuthCheck();
+
   const [form] = Form.useForm();
 
   const [selectedTicketTypeId, setSelectedTicketTypeId] = useState(null);

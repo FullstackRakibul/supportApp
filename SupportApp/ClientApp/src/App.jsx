@@ -60,21 +60,21 @@ const App = () => {
   const customRoutes = [
     { path: "/", label: "Dashboard", icon: <DashboardOutlined /> },
     { path: "/agent", label: "Agent", icon: <UserSwitchOutlined /> },
-    { path: "/profile", label: "Profile", icon: <IdcardOutlined /> },
+    // { path: "/profile", label: "Profile", icon: <IdcardOutlined /> },
     { path: "/emailList", label: "Email", icon: <MailOutlined /> },
-    { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
-    {
-      path: "/department",
-      label: "Department",
-      icon: <DatabaseOutlined />,
-    },
-    { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
+    // { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
+    // {
+    //   path: "/department",
+    //   label: "Department",
+    //   icon: <DatabaseOutlined />,
+    // },
+    // { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
     { path: "/targetCreate", label: "target", icon: <TagsOutlined /> },
-    {
-      path: "/sessionform",
-      label: "Session In",
-      icon: <DeploymentUnitOutlined />,
-    },
+    // {
+    //   path: "/sessionform",
+    //   label: "Session In",
+    //   icon: <DeploymentUnitOutlined />,
+    // },
   ];
 
   return (

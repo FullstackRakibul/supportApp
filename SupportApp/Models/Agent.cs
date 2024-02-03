@@ -16,7 +16,7 @@ namespace SupportApp.Models
         public AgentStatus Status { get; set; } = AgentStatus.Available;
 
         public string? Username { get; set; }
-        public string? Password { get; set; }
+        public string? Password { get;  set; }
         public AgentRole? role { get; set; } = AgentRole.SupportEngineer;
     }
 
