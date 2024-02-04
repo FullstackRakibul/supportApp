@@ -14,6 +14,7 @@ import AxiosInstance from "../../router/api.js";
 import useAuthCheck from "../../utils/useAuthCheck.jsx";
 
 const IssueBox = () => {
+  useAuthCheck();
   const [issue, setIssue] = useState([]);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const IssueBox = () => {
                 issueCreateDate={issueData.createdAt}
                 assignAgent={issueData.agentId}
                 issueStatus={issueData.status}
-                assignCreator={"Employee Name"}
+                issueCreator={"Employee Name"}
                 issueId={issueData.id}
               />
             ))}

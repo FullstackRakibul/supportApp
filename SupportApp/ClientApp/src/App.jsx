@@ -147,7 +147,7 @@ const App = () => {
             }}
           >
             <Routes>
-              <Route path="/" element={<Dashboard />}>
+              <Route path="/*" element={<Dashboard />}>
                 <Route path="dashboard/ticketList" element={<TicketCard />} />
                 <Route path="ticket/all" element={<IssueCard />} />
                 <Route path="dashboard/replycard" element={<ReplyCard />} />

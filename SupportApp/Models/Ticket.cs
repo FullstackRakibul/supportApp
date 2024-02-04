@@ -16,9 +16,10 @@ namespace SupportApp.Models
         public bool? IsEmail { get; set; }
         public string? FromEmail { get; set; }
         public string? EmailCc { get; set; }
-        public int? UpdatedBy { get; set; }
+        //public int? UpdatedBy { get; set; }
 
         public string? CreatedAt { get; set; }
+        public string? CreatedBy { get; set; }= string.Empty;
         public string? UpdatedAt { get; set; }
 
         public TicketStatus Status { get; set; } = TicketStatus.Open;

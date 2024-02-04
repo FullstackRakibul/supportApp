@@ -31,6 +31,7 @@ const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
       );
       console.log(response);
       message.success("Ticket Status Updated!");
+      window.location.reload();
     } catch (error) {
       console.log("status update error on form.");
     }

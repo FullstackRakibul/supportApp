@@ -31,7 +31,9 @@ const AgentCard = () => {
               />
               <h3 className="text-lg font-semibold mb-2">{engineer.name}</h3>
               <div className="flex flex-row justify-between">
-                <p className="text-gray-500">{engineer.empCode}</p>
+                <p className="text-gray-500 font-semibold ">
+                  Extension : {engineer.phoneExtension}
+                </p>
                 <p className="text-gray-500">{engineer.mobile}</p>
               </div>
               <p className="text-gray-500">{engineer.email}</p>

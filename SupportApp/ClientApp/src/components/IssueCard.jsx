@@ -68,16 +68,15 @@ const IssueCard = (props) => {
               span={12}
             >{`acknowledge by : ${props.assignAgent}`}</Col>
             <Col className="font-sans" span={8}>
-              {`issue status : ${props.issueStatus}`}
+              {`status : ${props.issueStatus}`}
             </Col>
           </Row>
           <Row>
             <Col
               className="font-sans"
               span={12}
-            >{`create by : ${props.assignCreator}`}</Col>
+            >{`create by : ${props.issueCreator}`}</Col>
             <Col className="font-sans flex gap-2" span={12}>
-              <span>action :</span>
               <span className="flex text-lg gap-2">
                 <NavLink to="/singleticketcard">
                   <EyeOutlined title="Single Issue Details" />

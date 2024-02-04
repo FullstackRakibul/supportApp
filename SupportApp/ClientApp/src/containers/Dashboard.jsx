@@ -3,7 +3,7 @@ import React from "react";
 import DocumentationSection from "./dashboard/DocumentationSection";
 import IssueBox from "./dashboard/IssueBox";
 import { Row, Col, Menu } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Route, Routes } from "react-router-dom";
 import {
   FileAddOutlined,
   SnippetsOutlined,
@@ -12,12 +12,12 @@ import {
   FileExcelOutlined,
 } from "@ant-design/icons";
 import useAuthCheck from "../utils/useAuthCheck";
+import IssueCard from "../components/IssueCard";
+import DashboardDetails from "../components/global/DashboardDetails";
 
 function Dashboard() {
   useAuthCheck();
-  const handleClick = () => {
-    console.log("Button has been clicked.");
-  };
+
   const customRoutes = [
     {
       path: "ticket/all",
@@ -42,8 +42,6 @@ function Dashboard() {
       icon: <MailOutlined />,
     },
   ];
-
-  const isIssueBoxRoute = customRoutes.path === "/ticket/all";
   return (
     <>
       <section>
@@ -73,7 +71,10 @@ function Dashboard() {
             className="p-2 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
             style={{ maxHeight: "600px" }}
           >
-            <Outlet /> <IssueBox />
+            <Routes>
+              <Route path="/" element={<DashboardDetails />} />
+              <Route path="ticket/all" element={<IssueBox />} />
+            </Routes>
           </Col>
         </Row>
       </section>
@@ -83,16 +84,6 @@ function Dashboard() {
 
 export default Dashboard;
 
-{
-  /* <Card
-type="inner"
-title="Create Issue Ticket"
-headStyle={{
-  backgroundColor: "#000",
-  color: "#fff",
-  fontFamily: "Montserrat",
-}}
->
-<p className=" text-xl font-semibold "> 846+ </p>
-</Card> */
-}
+// <Outlet />
+
+// <IssueBox />
