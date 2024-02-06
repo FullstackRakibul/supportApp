@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { Table } from "antd";
+import { Table, Space, Button, message, Modal } from "antd";
+import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
+
+import FetchMailTicket from "../components/global/FetchMailTicket";
+import AxiosInstance from "../router/api";
 
 const EmailList = () => {
   const [tickets, setTickets] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await axios.get("https://localhost:7295/api/Ticket");
+        const response = await AxiosInstance.get(
+          "/api/Tickets/getTicketFromMail"
+        );
         setTickets(response.data);
       } catch (error) {
         console.error("Error fetching tickets:", error);
@@ -18,92 +25,90 @@ const EmailList = () => {
 
     fetchTickets();
   }, []);
-  console.log(tickets);
+
+  const handleShow = (id) => {
+    const fetchData = async () => {
+      try {
+        const response = await AxiosInstance.get(`/api/Tickets/${id}`);
+        setTickets(response.data);
+        //console.log(response.data);
+        //message.success(`Details popup for Ticket id : ${id}`);
+        setIsModalOpen(true);
+        message.success(`issue id : ${id}`);
+      } catch (error) {
+        console.log(`show error ${error}`);
+      }
+    };
+    fetchData();
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
 
   const columns = [
-    {
-      title: "Ticket Number",
-      dataIndex: "ticketNumber",
-      key: "ticketNumber",
-    },
-    {
-      title: "Ticket Description",
-      dataIndex: "description",
-      key: "description",
-      render: (text) => truncateWords(text, 20),
-    },
-    {
-      title: "MessageId",
-      dataIndex: "messageId",
-      key: "messageId",
-    },
     {
       title: "From",
       dataIndex: "fromEmail",
       key: "fromEmail",
     },
+    {
+      title: "Subject",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "Subject",
+      dataIndex: "createdAt",
+      key: "createdAt",
+    },
+
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <Button
+            className="text-primary "
+            type="default"
+            icon={<EyeOutlined />}
+          />
+        </Space>
+      ),
+    },
   ];
 
   return (
-    <section className="flex items-center justify-center">
-      <div className="container p-3 rounded-md">
-        <h1 className="text-2xl font-bold mb-4">Ticket List</h1>
-        <Table dataSource={tickets} columns={columns} />
-      </div>
-    </section>
+    <>
+      <section className="flex items-center justify-center">
+        <div className="container p-3 rounded-md">
+          <div className="flex flex-row p-1 justify-between">
+            <h1 className="text-2xl font-bold mb-4">Issue from mail</h1>
+            <FetchMailTicket />
+          </div>
+          <Table dataSource={tickets} columns={columns} />
+        </div>
+      </section>
+
+      <Modal
+        title={tickets.title}
+        open={isModalOpen}
+        onOk={handleOk}
+        footer={[
+          <Button
+            key="back"
+            className="bg-primary"
+            type="primary"
+            icon={<CheckCircleOutlined />}
+            onClick={handleOk}
+          ></Button>,
+        ]}
+        style={{}}
+      >
+        <h3 className="text-lg font-sans font-semibold">Details:</h3>
+        <p className="font-sans font-semibold">{tickets.description}</p>
+      </Modal>
+    </>
   );
-};
-
-// const EmailList = () => {
-//   const [tickets, setTickets] = useState([]);
-//   useEffect(() => {
-//     const fetchTickets = async () => {
-//       try {
-//         const response = await axios.get("https://localhost:7295/api/Ticket");
-//         setTickets(response.data);
-//       } catch (error) {
-//         console.error("Error fetching tickets:", error);
-//       }
-//     };
-//     fetchTickets();
-//   }, []);
-
-//   return (
-//     <>
-//       <section className="flex items-center justify-center">
-//         <div className="container p-3 rounded-md shadow-lg">
-//           <h1 className="text-2xl font-bold mb-4">Ticket List</h1>
-//           <table className="min-w-full bg-white border border-gray-300">
-//             <thead>
-//               <tr>
-//                 <th className="py-2 px-4 border-b">Ticket Number</th>
-//                 <th className="py-2 px-4 border-b">Ticket Description</th>
-//                 <th className="py-2 px-4 border-b">MessageId</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {tickets !== null &&
-//                 tickets.map((ticket) => (
-//                   <tr key={ticket.id} className="border-b">
-//                     <td className="py-2 px-4">{ticket.ticketNumber}</td>
-//                     <td className="py-2 px-4">{truncateWords(ticket.description, 20)}</td>
-//                     <td className="py-2 px-4">{ticket.messageId}</td>
-//                   </tr>
-//                 ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </section>
-//     </>
-//   );
-// };
-
-const truncateWords = (text, limit) => {
-  const words = text.split(" ");
-  if (words.length > limit) {
-    return words.slice(0, limit).join(" ") + "...";
-  }
-  return text;
 };
 
 export default EmailList;

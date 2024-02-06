@@ -16,6 +16,7 @@ namespace SupportApp.DTO
         public int? UpdatedBy { get; set; }
 
         public string? CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
         public string? UpdatedAt { get; set; }
 
         public TicketStatus Status { get; set; } = TicketStatus.Open;

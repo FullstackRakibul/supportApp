@@ -110,12 +110,14 @@ public class TicketService
                 Description = ticketAndTargetDto.Description,
                 Attachment = ticketAndTargetDto.Attachment,
                 CreatedAt = ticketAndTargetDto.CreatedAt,
+                CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
                 Priority = TicketPriority.Regular,
                 Status = TicketStatus.Open,
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
+
 
             };
 

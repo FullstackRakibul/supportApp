@@ -14,25 +14,26 @@ import {
 import useAuthCheck from "../utils/useAuthCheck";
 import IssueCard from "../components/IssueCard";
 import DashboardDetails from "../components/global/DashboardDetails";
+import EmailList from "./EmailList";
 
 function Dashboard() {
   useAuthCheck();
 
   const customRoutes = [
     {
-      path: "ticket/all",
+      path: "/ticket/all",
       label: "All Tickets",
       icon: <SnippetsOutlined />,
     },
-    { path: "dashboard/unit", label: "Pending", icon: <FileAddOutlined /> },
+    // { path: "/", label: "Pending", icon: <FileAddOutlined /> },
+    // {
+    //   path: "/",
+    //   label: "Complete",
+    //   icon: <FileDoneOutlined />,
+    // },
+    // { path: "/", label: "Un-assigned", icon: <FileExcelOutlined /> },
     {
-      path: "dashboard/department",
-      label: "Complete",
-      icon: <FileDoneOutlined />,
-    },
-    { path: "/", label: "Un-assigned", icon: <FileExcelOutlined /> },
-    {
-      path: "dashboard/ticketList",
+      path: "/emailList",
       label: "Mail Tickets",
       icon: <MailOutlined />,
     },
@@ -73,7 +74,8 @@ function Dashboard() {
           >
             <Routes>
               <Route path="/" element={<DashboardDetails />} />
-              <Route path="ticket/all" element={<IssueBox />} />
+              <Route path="/ticket/all" element={<IssueBox />} />
+              <Route path="/emailList" element={<EmailList />} />
             </Routes>
           </Col>
         </Row>

@@ -258,6 +258,9 @@ namespace SupportApp.Migrations
                     b.Property<string>("CreatedAt")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 

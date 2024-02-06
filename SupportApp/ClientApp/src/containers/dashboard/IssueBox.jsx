@@ -50,7 +50,7 @@ const IssueBox = () => {
                 issueCreateDate={issueData.createdAt}
                 assignAgent={issueData.agentId}
                 issueStatus={issueData.status}
-                issueCreator={"Employee Name"}
+                issueCreator={issueData.createdBy}
                 issueId={issueData.id}
               />
             ))}

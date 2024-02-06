@@ -50,6 +50,22 @@ namespace SupportApp.Controllers
           }
         }
 
+
+        [HttpGet("getTicketFromMail")]
+        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketFromMial()
+        {
+            try
+            {
+                var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true).ToListAsync();
+                return tickets;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Server Response Error.");
+            }
+        }
+
         // GET: api/Ticket/5
 
         [HttpGet("{id}")]

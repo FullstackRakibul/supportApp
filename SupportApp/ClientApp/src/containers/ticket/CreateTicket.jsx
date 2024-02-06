@@ -60,6 +60,9 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
+      const userData = JSON.parse(localStorage.getItem("user"));
+      values.createdBy = userData ? userData.empCode : null;
+
       console.log(values);
       //const response = await AxiosInstance.post("/api/Tickets", values);
       const response = await AxiosInstance.post(

@@ -41,6 +41,7 @@ import ReplyCard from "./containers/ticket/ticketReply/ReplyCard.jsx";
 import CreateReply from "./containers/ticket/ticketReply/CreateReply.jsx";
 import SingleTicketCard from "./containers/ticket/SingleTicketCard.jsx";
 import IssueCard from "./components/IssueCard.jsx";
+import Clock from "./components/global/Clock.jsx";
 
 const { Header, Sider, Content } = Layout;
 
@@ -61,7 +62,7 @@ const App = () => {
     { path: "/", label: "Dashboard", icon: <DashboardOutlined /> },
     { path: "/agent", label: "Agent", icon: <UserSwitchOutlined /> },
     // { path: "/profile", label: "Profile", icon: <IdcardOutlined /> },
-    { path: "/emailList", label: "Email", icon: <MailOutlined /> },
+    // { path: "/emailList", label: "Email", icon: <MailOutlined /> },
     // { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
     // {
     //   path: "/department",
@@ -69,7 +70,7 @@ const App = () => {
     //   icon: <DatabaseOutlined />,
     // },
     // { path: "/unit", label: "Unit", icon: <DeploymentUnitOutlined /> },
-    { path: "/targetCreate", label: "target", icon: <TagsOutlined /> },
+    { path: "/targetCreate", label: "Manage Ticket", icon: <TagsOutlined /> },
     // {
     //   path: "/sessionform",
     //   label: "Session In",
@@ -124,16 +125,7 @@ const App = () => {
                 />
               </div>
               <div className="flex flex-row items-center gap-4 h-16">
-                {/* <PushpinOutlined className="text-2xl text-primary" />
-                <QuestionCircleOutlined className="text-2xl" />
-                <BellOutlined className="text-2xl" />
-                <MessageOutlined className="text-2xl" />
-                <Avatar
-                  //size={28}
-                  shape="circle"
-                  src={userimg}
-                  icon={<UserOutlined />}
-                /> */}
+                <Clock />
               </div>
             </div>
           </Header>
@@ -147,19 +139,11 @@ const App = () => {
             }}
           >
             <Routes>
-              <Route path="/*" element={<Dashboard />}>
-                <Route path="dashboard/ticketList" element={<TicketCard />} />
-                <Route path="ticket/all" element={<IssueCard />} />
-                <Route path="dashboard/replycard" element={<ReplyCard />} />
-                <Route path="dashboard/createreply" element={<CreateReply />} />
-                <Route path="dashboard/unit" element={<UnitCard />} />
-                <Route path="dashboard/department" element={<Department />} />
-              </Route>
+              <Route path="/*" element={<Dashboard />} />
               <Route path="/profile" element={<ProfileCard />} />
               <Route path="/agent" element={<AgentCard />} />
               <Route path="/chat" element={<ChatCard />} />
               <Route path="/ticketList" element={<TicketCard />} />
-              <Route path="/emailList" element={<EmailCard />} />
               <Route path="/createTicket" element={<CreateTicket />} />
               <Route path="/createTicketType" element={<CreateTicketType />} />
               <Route path="/unit" element={<UnitCard />} />
@@ -179,3 +163,13 @@ const App = () => {
 };
 
 export default App;
+
+{
+  /* <Route path="dashboard/ticket/all" element={<IssueCard />} />
+                <Route path="dashboard/emailList" element={<EmailCard />} />
+                <Route path="dashboard/ticketList" element={<TicketCard />} />
+                <Route path="dashboard/replycard" element={<ReplyCard />} />
+                <Route path="dashboard/createreply" element={<CreateReply />} />
+                <Route path="dashboard/unit" element={<UnitCard />} />
+                <Route path="dashboard/department" element={<Department />} /> */
+}

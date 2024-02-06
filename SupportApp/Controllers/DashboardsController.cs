@@ -84,9 +84,9 @@ public class DashboardsController : ControllerBase
 
             var contextData = new
             {
-                Tickets = ticket,
-                Departments = department,
-                Target = target,
+               // Tickets = ticket,
+                //Departments = department,
+                //Target = target,
                 Notification = notification
             };
 

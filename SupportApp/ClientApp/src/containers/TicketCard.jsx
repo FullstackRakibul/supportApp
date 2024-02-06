@@ -105,7 +105,6 @@ const TicketCard = () => {
         console.log(`show error ${error}`);
       }
     };
-
     fetchData();
   };
   const handleOk = () => {

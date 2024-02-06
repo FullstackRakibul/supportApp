@@ -7,7 +7,7 @@ import {
 import { Tabs } from "antd";
 import AxiosInstance from "../../router/api";
 
-const SingleTicketCard = () => {
+const SingleTicketCard = (props) => {
   const [singleTicketData, setSingleTicketData] = useState([]);
   useEffect(() => {
     const fetchData = () => {
