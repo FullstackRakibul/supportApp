@@ -32,6 +32,7 @@ public class DashboardsController : ControllerBase
 
         //var ticket = _context.Ticket.Where(tickets => tickets.Status == TicketStatus.Open).ToList();
         var department = await _context.Department.ToListAsync();
+        //var targets = await _context.Target.Where(t=>t.TicketId == ticket);
 
         var contextData = new
         {

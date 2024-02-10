@@ -5,6 +5,7 @@ import {
   EyeOutlined,
   UsergroupAddOutlined,
   EditOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import AssignAgentModal from "./global/AssignAgentModal";
@@ -89,6 +90,7 @@ const IssueCard = (props) => {
                   title="Update Issue Status"
                   onClick={() => handleUpdateTicketStatus()}
                 />
+                <DeleteOutlined />
               </span>
             </Col>
           </Row>

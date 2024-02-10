@@ -16,6 +16,8 @@ import useAuthCheck from "../../utils/useAuthCheck.jsx";
 const IssueBox = () => {
   useAuthCheck();
   const [issue, setIssue] = useState([]);
+  const [target, setTarget] = useState([]);
+  const [agent, setAgent] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,14 +25,38 @@ const IssueBox = () => {
         const response = await AxiosInstance.get(
           "/dashboard/Dashboards/IssueBox"
         );
-        //console.log(response);
+
+        const responseFromTarget = await AxiosInstance.get("/api/Targets");
+        const responseAgent = await AxiosInstance.get("/api/Supports");
+        console.log(responseAgent.data);
+        setAgent(responseAgent.data);
+        setTarget(responseFromTarget.data);
         setIssue(response.data.tickets);
+
+        // var agent = responseFromTarget.data.ticketId == response.data.tickets.id;
       } catch (error) {
         console.log(`issue data fetch error : ${error}`);
       }
     };
     fetchData();
   }, []);
+
+  const findAgentInfo = (issueId) => {
+    const targetInfo = target.find(
+      (targetData) => targetData.ticketId === issueId
+    );
+    if (!targetInfo) {
+      return "Unassigned";
+    }
+    const agentInfo = agent.find(
+      (agentData) => agentData.agentId === targetInfo.agentId
+    );
+    if (!agentInfo) {
+      return "Unassigned";
+    }
+
+    return agentInfo.name;
+  };
 
   return (
     <>
@@ -48,7 +74,7 @@ const IssueBox = () => {
                 issueTitle={issueData.title}
                 issueDescription={issueData.description}
                 issueCreateDate={issueData.createdAt}
-                assignAgent={issueData.agentId}
+                assignAgent={findAgentInfo(issueData.id)}
                 issueStatus={issueData.status}
                 issueCreator={issueData.createdBy}
                 issueId={issueData.id}

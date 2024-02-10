@@ -30,5 +30,7 @@ namespace SupportApp.Models
         public DbSet<Target>? Target{get; set;}     
         
         public DbSet<Unit>? Unit { get; set; }
+
+        public DbSet<Menu>? Menu { get; set; }
     }
 }

@@ -17,7 +17,7 @@ import DashboardDetails from "../components/global/DashboardDetails";
 import EmailList from "./EmailList";
 
 function Dashboard() {
-  useAuthCheck();
+  // useAuthCheck();
 
   const customRoutes = [
     {

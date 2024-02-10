@@ -3,14 +3,17 @@ import AxiosInstance from "../../router/api";
 import useAuthCheck from "../../utils/useAuthCheck";
 
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
-import { Card, Col, Row, Statistic } from "antd";
+import { Card, Col, Row, Statistic, Typography } from "antd";
+const { Title, Text } = Typography;
+
 import Clock from "./Clock";
 import styled from "styled-components";
 
 import NoticeBoard from "../../containers/dashboard/NoticeBoard.jsx";
+import MarqueeText from "./MarqueeText.jsx";
 
 const DashboardDetails = () => {
-  useAuthCheck();
+  // useAuthCheck();
   const [detailsData, setDetailsdata] = useState([]);
 
   useEffect(() => {
@@ -40,7 +43,16 @@ const DashboardDetails = () => {
   return (
     <>
       <section>
-        <Row className="p-3" gutter={16}>
+        <Row gutter={16}>
+          <div className="container mx-auto">
+            <MarqueeText text="we are currently experiencing some technical difficulties with the HRM (Human Resource Management) dashboard due to lower than usual server configuration. As a result, you may encounter some challenges in loading the HRM dashboard.!" />
+          </div>
+        </Row>
+
+        <Row className="p-3 flex flex-row justify-between" gutter={16}>
+          <Title level={3} className="mb-4 font-sans">
+            Issue Statistics
+          </Title>
           <Clock />
         </Row>
         <Row gutter={16}>

@@ -6,25 +6,35 @@ const { Title, Text } = Typography;
 const NoticeBoard = () => {
   const notices = [
     {
-      title: "Important Notice",
+      title: "New Department add notice !",
       content:
-        "Please be advised that the office will be closed on Friday, January 14th, due to inclement weather.",
+        "In order to add a new department, it is mandatory to provide the corresponding UNIT NAME. This ensures accurate organization and alignment of departments within our system. Thank you for your cooperation.",
     },
     {
-      title: "Maintenance Alert",
+      title: "New Section add notice !",
       content:
-        "Scheduled maintenance will be performed on our servers this Saturday from 9:00 PM to 11:00 PM. Expect temporary service interruptions.",
+        "In order to add a new Section, it is mandatory to provide the corresponding UNIT NAME & DEPARTMENT NAME. This ensures accurate organization and alignment of departments within our system. Thank you for your cooperation.",
     },
     {
-      title: "Holiday Closure",
+      title: "New Designation add notice !",
       content:
-        "In observance of Martin Luther King Jr. Day, our office will be closed on Monday, January 17th. Normal business hours will resume on Tuesday.",
+        "In order to add a new Designation, it is mandatory to provide the corresponding UNIT NAME. This ensures accurate organization and alignment of departments within our system. Thank you for your cooperation.",
+    },
+    {
+      title: "New Wing add notice !",
+      content:
+        "In order to add a new Wing, it is mandatory to provide the corresponding UNIT NAME , DEPARTMENT NAME & SECTION NAME. This ensures accurate organization and alignment of departments within our system. Thank you for your cooperation.",
+    },
+    {
+      title: "New Team add notice !",
+      content:
+        "In order to add a new Team, it is mandatory to provide the corresponding UNIT NAME , DEPARTMENT NAME , SECTION NAME & WING NAME. This ensures accurate organization and alignment of departments within our system. Thank you for your cooperation.",
     },
   ];
   return (
     <>
       <section>
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-4">
           <Title level={3} className="mb-4 font-sans">
             Notice Board
           </Title>

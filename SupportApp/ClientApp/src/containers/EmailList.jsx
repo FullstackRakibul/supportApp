@@ -6,9 +6,13 @@ import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import FetchMailTicket from "../components/global/FetchMailTicket";
 import AxiosInstance from "../router/api";
+import useAuthCheck from "../utils/useAuthCheck";
 
 const EmailList = () => {
+  useAuthCheck();
   const [tickets, setTickets] = useState([]);
+  const [ticketData, setTicketData] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -30,11 +34,11 @@ const EmailList = () => {
     const fetchData = async () => {
       try {
         const response = await AxiosInstance.get(`/api/Tickets/${id}`);
-        setTickets(response.data);
-        //console.log(response.data);
+        setTicketData(response.data);
+        console.log(response.data);
         //message.success(`Details popup for Ticket id : ${id}`);
         setIsModalOpen(true);
-        message.success(`issue id : ${id}`);
+        //message.success(`issue id : ${id}`);
       } catch (error) {
         console.log(`show error ${error}`);
       }
@@ -71,6 +75,7 @@ const EmailList = () => {
             className="text-primary "
             type="default"
             icon={<EyeOutlined />}
+            onClick={() => handleShow(record.id)}
           />
         </Space>
       ),
@@ -90,7 +95,11 @@ const EmailList = () => {
       </section>
 
       <Modal
-        title={tickets.title}
+        title={
+          <h3 className="font-sans text-lg font-semibold ">
+            Issue name : {ticketData.title}
+          </h3>
+        }
         open={isModalOpen}
         onOk={handleOk}
         footer={[
@@ -104,8 +113,8 @@ const EmailList = () => {
         ]}
         style={{}}
       >
-        <h3 className="text-lg font-sans font-semibold">Details:</h3>
-        <p className="font-sans font-semibold">{tickets.description}</p>
+        <h3 className="text-md font-sans font-bold">Details :</h3>
+        <p className="font-sans font-semibold">{ticketData.description}</p>
       </Modal>
     </>
   );
