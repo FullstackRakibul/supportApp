@@ -5,14 +5,14 @@ import { Table, Space, Button, message, Modal } from "antd";
 import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import FetchMailTicket from "../components/global/FetchMailTicket";
-import AxiosInstance from "../router/api";
+import { AxiosInstance } from "../router/api";
 import useAuthCheck from "../utils/useAuthCheck";
+import DeleteTicketButton from "../components/CRUD/DeleteTicketButton.jsx";
 
 const EmailList = () => {
   useAuthCheck();
   const [tickets, setTickets] = useState([]);
   const [ticketData, setTicketData] = useState([]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ const EmailList = () => {
         const response = await AxiosInstance.get(
           "/api/Tickets/getTicketFromMail"
         );
+        console.log(response.data);
         setTickets(response.data);
       } catch (error) {
         console.error("Error fetching tickets:", error);
@@ -47,6 +48,13 @@ const EmailList = () => {
   };
   const handleOk = () => {
     setIsModalOpen(false);
+  };
+
+  // Function to update tickets after deletion
+  const handleTicketDelete = (deletedId) => {
+    setTickets((prevTickets) =>
+      prevTickets.filter((ticket) => ticket.id !== deletedId)
+    );
   };
 
   const columns = [
@@ -77,6 +85,7 @@ const EmailList = () => {
             icon={<EyeOutlined />}
             onClick={() => handleShow(record.id)}
           />
+          <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
         </Space>
       ),
     },
@@ -90,7 +99,7 @@ const EmailList = () => {
             <h1 className="text-2xl font-bold mb-4">Issue from mail</h1>
             <FetchMailTicket />
           </div>
-          <Table dataSource={tickets} columns={columns} />
+          <Table key={tickets.id} dataSource={tickets} columns={columns} />
         </div>
       </section>
 

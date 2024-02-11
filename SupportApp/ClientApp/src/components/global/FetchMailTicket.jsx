@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, message } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 
 const FetchMailTicket = () => {
   const [ticketData, setTicketData] = useState([]);

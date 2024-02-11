@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 import useAuthCheck from "../../utils/useAuthCheck";
 
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";

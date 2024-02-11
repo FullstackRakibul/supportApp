@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input, message, Select } from "antd";
-import AxiosInstance from "../../router/api.js";
+import { AxiosInstance } from "../../router/api.js";
 import useAuthCheck from "../../utils/useAuthCheck.jsx";
 const { TextArea } = Input;
 

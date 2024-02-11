@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Upload, message } from "antd";
-import AxiosInstance from "../../router/api";
+import { AuthenticateInstance, AxiosInstance } from "../../router/api";
 
 const SessionForm = () => {
   //const [token, setToken] = useState([]);
@@ -11,12 +11,16 @@ const SessionForm = () => {
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      console.log(values);
-      const response2 = await AxiosInstance.post("api/Auth/agent", values);
-      console.log(response2.data);
-      const { isSuccess, agentdata, token } = response2.data;
-      console.log(`this is agentdata : ${agentdata}`);
-      console.log(`this is token : ${token}`);
+      //console.log(values);
+      // const response2 = await AxiosInstance.post("api/Auth/agent", values);
+      const response = await AuthenticateInstance.post(
+        "/api/Auth/login",
+        values
+      );
+      console.log(response.data);
+      //const { isSuccess, agentdata, token } = response.data;
+      const { isSuccess, result, message } = response.data;
+      console.log(result);
 
       // const response = await axios.post(
       //   "http://localhost:7002/api/Auth/login",
@@ -27,12 +31,14 @@ const SessionForm = () => {
 
       console.log(isSuccess);
       if (isSuccess) {
-        //const { token, user } = result;
-        const { token, agentdata } = response2.data;
+        const { token, user } = result;
+        //const { token, agentdata } = response.data;
+        console.log(token);
+        console.log(user);
         localStorage.setItem("token", token);
         sessionStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(agentdata));
-        sessionStorage.setItem("user", JSON.stringify(agentdata));
+        localStorage.setItem("user", JSON.stringify(user));
+        //sessionStorage.setItem("user", JSON.stringify(user));
         //message.success("Session in successfully.");
         history("/");
         window.location.reload();

@@ -1,6 +1,6 @@
 import { Form, Button, Input, message } from "antd";
 import React from "react";
-import AxiosInstance from "../../../router/api";
+import { AxiosInstance } from "../../../router/api";
 
 const CreateReply = () => {
   const [form] = Form.useForm();

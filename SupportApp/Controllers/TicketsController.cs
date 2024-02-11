@@ -52,11 +52,15 @@ namespace SupportApp.Controllers
 
 
         [HttpGet("getTicketFromMail")]
-        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketFromMial()
+        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketFromMail()
         {
             try
             {
-                var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true).ToListAsync();
+                //var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true).ToListAsync();
+                var tickets = await _context.Ticket
+               .Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true)
+               .OrderByDescending(ticket => ticket.Status)
+               .ToListAsync();
                 return tickets;
             }
             catch (Exception ex)
@@ -184,8 +188,6 @@ namespace SupportApp.Controllers
         [HttpGet("FetchEmailData")]
         public IActionResult FetchEmailDataToDatabase()
         {
-            
-            Console.WriteLine("API working - test 01");
             try
             {
                 var emailDetailsList = _emailBoxService.GetEmailDetails();

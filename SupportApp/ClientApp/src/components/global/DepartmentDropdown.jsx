@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Select } from "antd";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 const { Option } = Select;
 
 const DepartmentDropdown = ({ onDepartmentSelect }) => {

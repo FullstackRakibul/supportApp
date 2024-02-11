@@ -1,6 +1,6 @@
 import { Row, Col, Card, Form, Input, Button, message } from "antd";
 import React from "react";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 
 function CreateTicketType() {
   const [form] = Form.useForm();

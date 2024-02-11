@@ -15,9 +15,10 @@ import useAuthCheck from "../utils/useAuthCheck";
 import IssueCard from "../components/IssueCard";
 import DashboardDetails from "../components/global/DashboardDetails";
 import EmailList from "./EmailList";
+import { jwtDecode } from "jwt-decode";
 
-function Dashboard() {
-  // useAuthCheck();
+const Dashboard = () => {
+  useAuthCheck();
 
   const customRoutes = [
     {
@@ -43,6 +44,12 @@ function Dashboard() {
       icon: <MailOutlined />,
     },
   ];
+
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  const { name, email, role } = decodedToken;
+
+  console.log(name);
   return (
     <>
       <section>
@@ -72,6 +79,11 @@ function Dashboard() {
             className="p-2 bg-[#f1f1f1] rounded-md flex flex-col gap-3 overflow-auto"
             style={{ maxHeight: "600px" }}
           >
+            <div className="p-3 bg-warning rounded">
+              <p className="font-sans p-1">Name : {name} </p>
+              <p className="font-sans p-1">email : {email} </p>
+              <p className="font-sans p-1">role : {role} </p>
+            </div>
             <Routes>
               <Route path="/" element={<DashboardDetails />} />
               <Route path="/ticket/all" element={<IssueBox />} />
@@ -82,7 +94,7 @@ function Dashboard() {
       </section>
     </>
   );
-}
+};
 
 export default Dashboard;
 

@@ -1,7 +1,7 @@
 import { Button, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 
 const AssignSupportEngineerModal = (props) => {
   const [supportEngineer, setSupportEngineer] = useState([]);

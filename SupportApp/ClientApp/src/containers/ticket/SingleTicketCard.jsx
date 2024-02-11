@@ -5,9 +5,10 @@ import {
   ReconciliationOutlined,
 } from "@ant-design/icons";
 import { Tabs } from "antd";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 
-const SingleTicketCard = (props) => {
+const SingleTicketCard = ({ id }) => {
+  console.log(id);
   const [singleTicketData, setSingleTicketData] = useState([]);
   useEffect(() => {
     const fetchData = () => {
@@ -23,9 +24,7 @@ const SingleTicketCard = (props) => {
     <>
       <section className="container p-3">
         <div className="">
-          <h3 className="font-sans font-semibold text-xl">
-            Here will be issue title
-          </h3>
+          <h3 className="font-sans font-semibold text-xl">Id number : {id}</h3>
           <div className=" flex gap-2">
             <span className="font-sans font-semibold "> 23 Jan 2024</span>
             <span className="font-sans font-semibold">

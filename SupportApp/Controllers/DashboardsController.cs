@@ -28,7 +28,12 @@ public class DashboardsController : ControllerBase
     {
 
         //var ticket = await _context.Ticket.ToListAsync();
-        var ticket = await _context.Ticket.OrderByDescending(t => t.CreatedAt).ToListAsync();
+        //var ticket = await _context.Ticket.OrderByDescending(t => t.CreatedAt).ToListAsync();
+
+        var tickets = await _context.Ticket
+              .Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == false)
+              .OrderByDescending(ticket => ticket.CreatedAt)
+              .ToListAsync();
 
         //var ticket = _context.Ticket.Where(tickets => tickets.Status == TicketStatus.Open).ToList();
         var department = await _context.Department.ToListAsync();
@@ -36,7 +41,7 @@ public class DashboardsController : ControllerBase
 
         var contextData = new
         {
-            Tickets = ticket,
+            Tickets = tickets,
             Departments = department
         };
 

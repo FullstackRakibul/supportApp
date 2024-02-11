@@ -1,6 +1,6 @@
 import { Card } from "antd";
 import React, { useEffect, useState } from "react";
-import AxiosInstance from "../router/api";
+import { AxiosInstance } from "../router/api";
 import useAuthCheck from "../utils/useAuthCheck";
 
 const AgentCard = () => {

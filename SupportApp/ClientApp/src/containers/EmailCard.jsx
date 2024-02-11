@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Form, Row, Input, Upload, message } from "antd";
 import axios from "axios";
-import AxiosInstance from "../router/api";
+import { AxiosInstance } from "../router/api";
 
 const { TextArea } = Input;
 

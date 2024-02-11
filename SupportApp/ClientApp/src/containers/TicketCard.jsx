@@ -10,9 +10,10 @@ import {
   CheckCircleOutlined,
 } from "@ant-design/icons";
 
-import AxiosInstance from "../router/api";
+import { AxiosInstance } from "../router/api";
 import AssignSupportEngineerModal from "./service/AssignSupportEngineerModal";
 import useAuthCheck from "../utils/useAuthCheck";
+import SingleTicketCard from "./ticket/SingleTicketCard";
 
 const TicketCard = () => {
   useAuthCheck();
@@ -149,19 +150,19 @@ const TicketCard = () => {
   };
 
   // handle solf delete ..........
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
-      console.log(`Ticket with id ${id} , deleted successfully.`);
-      setTicket((prevTickets) =>
-        prevTickets.filter((ticket) => ticket.id !== id)
-      );
-      message.error("Ticket Deleted Successfully");
-    } catch (error) {
-      console.log(`Delete operation failed ! ${id}`, error);
-    }
-    console.log(`Delete ticket with ID ${id}`);
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await axios.delete(`https://localhost:7295/api/Ticket/${id}`);
+  //     console.log(`Ticket with id ${id} , deleted successfully.`);
+  //     setTicket((prevTickets) =>
+  //       prevTickets.filter((ticket) => ticket.id !== id)
+  //     );
+  //     message.error("Ticket Deleted Successfully");
+  //   } catch (error) {
+  //     console.log(`Delete operation failed ! ${id}`, error);
+  //   }
+  //   console.log(`Delete ticket with ID ${id}`);
+  // };
 
   return (
     <>

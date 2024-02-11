@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Select, Button, message, Input } from "antd";
-import AxiosInstance from "../../router/api";
+import { AxiosInstance } from "../../router/api";
 
 const AssignAgentModal = ({ visible, onCancel, issueId }) => {
   const [form] = Form.useForm();

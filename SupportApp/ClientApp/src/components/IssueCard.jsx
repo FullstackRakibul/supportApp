@@ -10,13 +10,16 @@ import {
 import { NavLink } from "react-router-dom";
 import AssignAgentModal from "./global/AssignAgentModal";
 import UpdateTicketStatusModal from "./global/UpdateTicketStatusModal";
+import DeleteTicketButton from "./CRUD/DeleteTicketButton";
 
 const IssueCard = (props) => {
   const handleColor = () => {
     if (props.issueStatus == 2) {
-      return "#6DB9EF";
+      return "#132043";
+    } else if (props.issueStatus == 3) {
+      return "#E78895";
     } else if (props.issueStatus == 4) {
-      return "#ff0000";
+      return "#0D9276";
     } else if (props.issueStatus == 5) {
       return "#72D82D";
     } else {
@@ -40,6 +43,17 @@ const IssueCard = (props) => {
     setSelectedStatus(props.issueId);
     setStatusModalVisible(true);
   };
+
+  // Function to update tickets after deletion
+  const handleTicketDelete = (deletedId) => {
+    // setTickets((prevTickets) =>
+    //   prevTickets.filter((ticket) => ticket.id !== deletedId)
+    // );
+    message.error("Issue Delete Successfully !");
+    console.log("Deleted");
+    window.location.reload();
+  };
+
   return (
     <>
       <Card
@@ -80,7 +94,7 @@ const IssueCard = (props) => {
             <Col className="font-sans flex gap-2" span={12}>
               <span className="flex text-lg gap-2">
                 <NavLink to="/singleticketcard">
-                  <EyeOutlined title="See Issue Details" />
+                  <EyeOutlined id={props.id} />
                 </NavLink>
                 <UsergroupAddOutlined
                   title="Assign Agent to this issue"
@@ -90,7 +104,10 @@ const IssueCard = (props) => {
                   title="Update Issue Status"
                   onClick={() => handleUpdateTicketStatus()}
                 />
-                <DeleteOutlined />
+                <DeleteTicketButton
+                  id={props.issueId}
+                  onDelete={handleTicketDelete}
+                />
               </span>
             </Col>
           </Row>

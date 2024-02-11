@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Select } from "antd";
-import AxiosInstance from "../router/api";
+import { AxiosInstance } from "../router/api";
 
 const { Option } = Select;
 

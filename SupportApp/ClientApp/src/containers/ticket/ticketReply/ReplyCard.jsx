@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AxiosInstance from "../../../router/api";
+import { AxiosInstance } from "../../../router/api";
 import { Button, Input, Form, Tabs } from "antd";
 import SingleReplyCard from "./SingleReplyCard";
 import CreateReply from "./CreateReply";
