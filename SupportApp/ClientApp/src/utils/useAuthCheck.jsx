@@ -11,6 +11,10 @@ const useAuthCheck = () => {
         history("/sessionform");
       }
     }
+
+    // const token = localStorage.getItem("token");
+    // const decodedToken = jwtDecode(token);
+    // const { name, email, role } = decodedToken;
   }, [history]);
   return <></>;
 };

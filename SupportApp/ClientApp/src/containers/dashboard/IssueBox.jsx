@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import IssueCard from "../../components/IssueCard";
-
+import hasPermission from "../../utils/hasPermission.jsx";
+import NotFoundPage from "../NotFoundPage.jsx";
 import { Row, Col, Menu } from "antd";
 
 import {
@@ -15,6 +16,12 @@ import useAuthCheck from "../../utils/useAuthCheck.jsx";
 
 const IssueBox = () => {
   useAuthCheck();
+  const requiredRole = "ADMIN";
+  const userHasPermission = hasPermission(requiredRole);
+  if (!userHasPermission) {
+    return <NotFoundPage />;
+  }
+  //////////////////////
   const [issue, setIssue] = useState([]);
   const [target, setTarget] = useState([]);
   const [agent, setAgent] = useState([]);

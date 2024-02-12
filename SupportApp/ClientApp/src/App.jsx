@@ -18,6 +18,7 @@ import SessionForm from "./containers/auth/SessionForm.jsx";
 import ManageIssue from "./containers/service/ManageIssue.jsx";
 import TargetCreate from "./containers/service/TargetCreate.jsx";
 import RoutesList from "./router/Routes.jsx";
+import EmployeeModule from "./router/EmployeeModule.jsx";
 
 //
 import PrivateRoute from "./router/PrivateRoute.jsx";
@@ -151,7 +152,6 @@ const App = () => {
               <Route path="/sessionform" element={<SessionForm />} />
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
-
               <Route path="/singleticketcard" element={<SingleTicketCard />} />
             </Routes>
           </Content>

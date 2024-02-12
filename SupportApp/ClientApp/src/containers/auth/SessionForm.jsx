@@ -36,15 +36,15 @@ const SessionForm = () => {
         console.log(token);
         console.log(user);
         localStorage.setItem("token", token);
-        sessionStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        //sessionStorage.setItem("token", token);
+        //localStorage.setItem("user", JSON.stringify(user));
         //sessionStorage.setItem("user", JSON.stringify(user));
         //message.success("Session in successfully.");
         history("/");
         window.location.reload();
       }
 
-      console.log("code test ");
+      console.log("code test");
     } catch (error) {
       console.log(error);
       message.error(error);
