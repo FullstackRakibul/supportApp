@@ -36,8 +36,6 @@ namespace SupportApp.DTO
 
         public Ticket? Ticket { get; set; }
 
-
-
         public ICollection<Department> Department { get; set; } = new List<Department>();
         public ICollection<Unit> Unit { get; set; } = new List<Unit>();
         public ICollection<Notification> Notification { get; set; } = new List<Notification>();

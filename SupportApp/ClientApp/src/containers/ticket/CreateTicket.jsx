@@ -12,6 +12,7 @@ import { AxiosInstance } from "../../router/api.js";
 import DepartmentDropdown from "../../components/global/DepartmentDropdown.jsx";
 import UnitDropdown from "../../components/global/UnitDropdown.jsx";
 import useAuthCheck from "../../utils/useAuthCheck.jsx";
+import axios from "axios";
 
 const props = {
   name: "attachment",
@@ -60,15 +61,14 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      const userData = JSON.parse(localStorage.getItem("user"));
-      values.createdBy = userData ? userData.empCode : null;
+      values.createdBy = 53324;
 
       console.log(values);
-      //const response = await AxiosInstance.post("/api/Tickets", values);
       const response = await AxiosInstance.post(
         "/api/Tickets/createTicketWithTarget",
         values
       );
+
       console.log(response.data);
       console.log(`status code :${response.status}`);
       if (response.status === 200) {

@@ -104,10 +104,7 @@ const IssueCard = (props) => {
                   title="Update Issue Status"
                   onClick={() => handleUpdateTicketStatus()}
                 />
-                <DeleteTicketButton
-                  id={props.issueId}
-                  onDelete={handleTicketDelete}
-                />
+                <DeleteTicketButton id={props.issueId} />
               </span>
             </Col>
           </Row>

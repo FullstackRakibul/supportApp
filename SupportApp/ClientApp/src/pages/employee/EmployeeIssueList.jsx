@@ -4,17 +4,29 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import { MailOutlined, FileExcelOutlined } from "@ant-design/icons";
 import EmployeeIssueListContainer from "../../containers/dashboard/employee/EmployeeIssueListContainer";
 import EmployeeIssueListAcknowledgeContainer from "../../containers/dashboard/employee/EmployeeIssueListAcknowledgeContainer";
+import EmployeeIssueCreateContainer from "../../containers/dashboard/employee/EmployeeIssueCreateContainer";
+import SingleIssueDetailsShowCard from "../../components/global/SingleIssueDetailsShowCard";
 
 const EmployeeIssueList = () => {
   const customRoutes = [
     {
       path: "/employee/empisuuelist/",
+      label: "Raise Issue",
+      icon: <MailOutlined />,
+    },
+    {
+      path: "/employee/empisuuelist/recent",
       label: "Recent Raises",
       icon: <FileExcelOutlined />,
     },
     {
       path: "/employee/empisuuelist/acknowledge",
-      label: "On hold",
+      label: "Acknowledge",
+      icon: <MailOutlined />,
+    },
+    {
+      path: "/employee/empisuuelist/singleIssueDetailsShowCard",
+      label: "Single Issue Details Show",
       icon: <MailOutlined />,
     },
   ];
@@ -49,10 +61,15 @@ const EmployeeIssueList = () => {
             style={{ maxHeight: "600px" }}
           >
             <Routes>
-              <Route path="/" element={<EmployeeIssueListContainer />} />
+              <Route path="/" element={<EmployeeIssueCreateContainer />} />
+              <Route path="/recent" element={<EmployeeIssueListContainer />} />
               <Route
                 path="/acknowledge"
                 element={<EmployeeIssueListAcknowledgeContainer />}
+              />
+              <Route
+                path="/singleIssueDetailsShowCard"
+                element={<SingleIssueDetailsShowCard />}
               />
             </Routes>
           </Col>

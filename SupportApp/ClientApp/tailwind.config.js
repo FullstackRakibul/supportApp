@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
+      anek: ["Anek-Bangle", "sans-serif"],
     },
     extend: {
       fontFamily: {

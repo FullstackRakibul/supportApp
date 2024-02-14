@@ -41,7 +41,7 @@ const SessionForm = () => {
         //sessionStorage.setItem("user", JSON.stringify(user));
         //message.success("Session in successfully.");
         history("/");
-        window.location.reload();
+        //window.location.reload();
       }
 
       console.log("code test");

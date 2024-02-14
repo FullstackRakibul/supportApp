@@ -15,13 +15,6 @@ import { AxiosInstance } from "../../router/api.js";
 import useAuthCheck from "../../utils/useAuthCheck.jsx";
 
 const IssueBox = () => {
-  useAuthCheck();
-  const requiredRole = "ADMIN";
-  const userHasPermission = hasPermission(requiredRole);
-  if (!userHasPermission) {
-    return <NotFoundPage />;
-  }
-  //////////////////////
   const [issue, setIssue] = useState([]);
   const [target, setTarget] = useState([]);
   const [agent, setAgent] = useState([]);
