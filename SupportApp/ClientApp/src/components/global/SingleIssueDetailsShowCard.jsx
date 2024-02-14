@@ -5,11 +5,13 @@ const SingleIssueDetailsShowCard = () => {
   return (
     <>
       <section className="p-3 rounded border">
-        <div>
-          <h3 className="font-sans font-semibold">Issue Title</h3>
+        <div className="pb-2">
+          <h3 className="font-sans font-semibold">
+            Single Issue Details Show Card{" "}
+          </h3>
         </div>
 
-        <Row className="justify-around mx-auto gap-2">
+        <Row className="justify-around">
           <Col className="bg-primary" span={7}>
             test 01
           </Col>
