@@ -107,7 +107,7 @@ const EmployeeIssueCreateContainer = () => {
               type="inner"
               title="Create Issue Ticket"
               headStyle={{
-                backgroundColor: "#000",
+                backgroundColor: "#002A53",
                 color: "#fff",
                 fontFamily: "Montserrat",
               }}

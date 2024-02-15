@@ -61,11 +61,12 @@ const EmployeeDashboard = () => {
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             {customRoutes.map((route) => (
               <Menu.Item
-                style={{ accentColor: "#000" }}
+              className="hover:bg-primary"
+                style={{ accentColor: "#002A53" }}
                 key={route.path}
                 icon={route.icon}
               >
-                <NavLink className="font-sans font-semibold" to={route.path}>
+                <NavLink className="font-sans font-semibold " to={route.path}>
                   {route.label}
                 </NavLink>
               </Menu.Item>

@@ -26,11 +26,13 @@ const ViewTicketButton = ({ id }) => {
   return (
     <>
       <Button
-        type="default"
-        className=" hover:bg-primary text-primary border font-sans font-xl font-semibol"
+        type="primary"
+        className="bg-primary w-32  text-white font-sans font-xl font-normal hover:bg-white"
         icon={<EyeOutlined />}
         onClick={() => handleShow(id)}
-      ></Button>
+      >
+        View
+      </Button>
 
       <Modal
         title={

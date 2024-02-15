@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit.Encodings;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
@@ -284,6 +285,11 @@ namespace SupportApp.Controllers
                 return StatusCode(500, "Server Response Error.");
             }
         }
+
+
+
+
+        // employee routes apis................
 
 
     }

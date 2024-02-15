@@ -19,11 +19,14 @@ const DeleteTicketButton = ({ id }) => {
   return (
     <>
       <Button
-        className="text-primary "
+        className="font-sans w-32 font-normal"
         danger
+        type="primary"
         icon={<DeleteOutlined />}
         onClick={() => handleDelete(id)}
-      />
+      >
+        Delete
+      </Button>
     </>
   );
 };

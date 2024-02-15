@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 const useAuthCheck = () => {
   const history = useNavigate();
   useEffect(() => {
-    const authToken = localStorage.getItem("token");
-    if (!authToken) {
-      {
-        history("/sessionform");
-        return;
-      }
-    }
+    // const authToken = localStorage.getItem("token");
+    // if (!authToken) {
+    //   {
+    //     history("/sessionform");
+    //     return;
+    //   }
+    // }
     // try {
     //   const decodedToken = jwtDecode(authToken);
     //   const { role } = decodedToken;
