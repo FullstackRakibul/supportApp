@@ -61,7 +61,7 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      values.createdBy = 53324;
+      values.createdBy = "53324";
 
       console.log(values);
       const response = await AxiosInstance.post(
@@ -114,7 +114,7 @@ const CreateTicket = () => {
               type="inner"
               title="Create Issue Ticket"
               headStyle={{
-                backgroundColor: "#000",
+                backgroundColor: "#002A53",
                 color: "#fff",
                 fontFamily: "Montserrat",
               }}
@@ -184,9 +184,6 @@ const CreateTicket = () => {
                   name="attachment"
                   label="Upload Files"
                 >
-                  {/* <Upload {...uploadButtonProps}>
-                    <Button icon={<UploadOutlined />}>Upload</Button>
-                  </Upload> */}
                   <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                       <InboxOutlined />

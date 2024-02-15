@@ -14,13 +14,30 @@ const SingleIssueDetailsShowCard = () => {
         </div>
 
         <Row className="justify-around">
-          <Col className="bg-primary" span={7}>
-            test 01
+          <Col className="border-l-2 pl-2" span={5}>
+            <p className="font-sm">
+              <span className="font-sm font-sans">acknowledge by :</span>
+              <span> Rakibul</span>
+            </p>
+            <p>
+              <span>status :</span>
+              <span>Processing</span>
+            </p>
+            <p>
+              <span>type :</span>
+              <span>Mail Issue</span>
+            </p>
           </Col>
-          <Col className="bg-primary" span={7}>
-            test 01
+          <Col className="border-l-2 pl-2" span={11}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde
+            consectetur ratione hic, nisi cupiditate ex ea recusandae provident
+            quibusdam molestiae maiores vero ab voluptate, dolores sunt quia
+            accusantium voluptas quis.
           </Col>
-          <Col className="border rounded flex justify-around p-1" span={7}>
+          <Col
+            className="border-l-2 pl-2 flex gap-1 flex-col items-center justify-around"
+            span={5}
+          >
             <ViewTicketButton id="69" />
             <DeleteTicketButton id="69" />
           </Col>

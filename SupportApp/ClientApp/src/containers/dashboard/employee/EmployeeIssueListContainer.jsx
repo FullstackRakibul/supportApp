@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, message } from "antd";
-import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  PlusOutlined,
+  UsergroupAddOutlined,
+} from "@ant-design/icons";
 import { AxiosInstance } from "../../../router/api";
 import DeleteTicketButton from "../../../components/CRUD/DeleteTicketButton";
 import ViewTicketButton from "../../../components/CRUD/ViewTicketButton";
@@ -8,6 +13,8 @@ import ViewTicketButton from "../../../components/CRUD/ViewTicketButton";
 const EmployeeIssueListContainer = () => {
   const [dataSource, setDataSource] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [assignModalVisible, setAssignModalVisible] = useState(false);
+  const [statusModalVisible, setStatusModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {

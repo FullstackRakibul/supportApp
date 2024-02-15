@@ -59,8 +59,7 @@ const EmployeeIssueCreateContainer = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      const userData = JSON.parse(localStorage.getItem("user"));
-      values.createdBy = userData ? userData.empCode : null;
+      values.createdBy = "053324";
 
       console.log(values);
       //const response = await AxiosInstance.post("/api/Tickets", values);
@@ -107,7 +106,7 @@ const EmployeeIssueCreateContainer = () => {
               type="inner"
               title="Create Issue Ticket"
               headStyle={{
-                backgroundColor: "#000",
+                backgroundColor: "#002A53",
                 color: "#fff",
                 fontFamily: "Montserrat",
               }}
@@ -164,7 +163,7 @@ const EmployeeIssueCreateContainer = () => {
                 >
                   <TextArea rows={4} />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                   className="font-sans"
                   name="attachment"
                   label="Upload Files"
@@ -181,7 +180,7 @@ const EmployeeIssueCreateContainer = () => {
                       from uploading company data or other banned files.
                     </p>
                   </Dragger>
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item {...footerLayout}>
                   <Button
                     onClick={handleSubmit}
