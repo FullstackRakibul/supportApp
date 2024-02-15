@@ -1,5 +1,7 @@
 import { Row, Col } from "antd";
 import React from "react";
+import ViewTicketButton from "../CRUD/ViewTicketButton";
+import DeleteTicketButton from "../CRUD/DeleteTicketButton";
 
 const SingleIssueDetailsShowCard = () => {
   return (
@@ -18,8 +20,9 @@ const SingleIssueDetailsShowCard = () => {
           <Col className="bg-primary" span={7}>
             test 01
           </Col>
-          <Col className="bg-primary" span={7}>
-            test 01
+          <Col className="border rounded flex justify-around p-1" span={7}>
+            <ViewTicketButton id="69" />
+            <DeleteTicketButton id="69" />
           </Col>
         </Row>
       </section>
