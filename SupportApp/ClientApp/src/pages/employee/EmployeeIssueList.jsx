@@ -2,10 +2,12 @@ import React from "react";
 import { Row, Col, Menu, Card } from "antd";
 import { NavLink, Route, Routes } from "react-router-dom";
 import { MailOutlined, FileExcelOutlined } from "@ant-design/icons";
+
 import EmployeeIssueListContainer from "../../containers/dashboard/employee/EmployeeIssueListContainer";
 import EmployeeIssueListAcknowledgeContainer from "../../containers/dashboard/employee/EmployeeIssueListAcknowledgeContainer";
 import EmployeeIssueCreateContainer from "../../containers/dashboard/employee/EmployeeIssueCreateContainer";
-import SingleIssueDetailsShowCard from "../../components/global/SingleIssueDetailsShowCard";
+
+import ChatCard from "../../containers/ticket/ChatCard";
 
 const EmployeeIssueList = () => {
   const customRoutes = [
@@ -25,8 +27,8 @@ const EmployeeIssueList = () => {
       icon: <MailOutlined />,
     },
     {
-      path: "/employee/empisuuelist/singleIssueDetailsShowCard",
-      label: "Single Issue Details Show",
+      path: "/employee/empisuuelist/chatCard",
+      label: "Chatbox",
       icon: <MailOutlined />,
     },
   ];
@@ -67,10 +69,7 @@ const EmployeeIssueList = () => {
                 path="/acknowledge"
                 element={<EmployeeIssueListAcknowledgeContainer />}
               />
-              <Route
-                path="/singleIssueDetailsShowCard"
-                element={<SingleIssueDetailsShowCard />}
-              />
+              <Route path="/chatCard" element={<ChatCard />} />
             </Routes>
           </Col>
         </Row>

@@ -27,11 +27,7 @@ const ViewTicketButton = ({ id }) => {
     <>
       <Button
         type="primary"
-<<<<<<< HEAD
         className="bg-primary w-32  text-white font-sans font-xl font-normal hover:bg-white"
-=======
-        className="bg-primary text-white font-sans font-xl font-semibold hover:bg-white"
->>>>>>> 1dd5b6f02ce755c9e1ebb59532ea32102756ce15
         icon={<EyeOutlined />}
         onClick={() => handleShow(id)}
       >
