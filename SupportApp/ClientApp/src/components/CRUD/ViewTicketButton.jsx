@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, Row, Col } from "antd";
 import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { AxiosInstance } from "../../router/api";
 
@@ -55,6 +55,22 @@ const ViewTicketButton = ({ id }) => {
       >
         <h3 className="text-md font-sans font-bold">Details :</h3>
         <p className="font-sans font-semibold">{ticketData.description}</p>
+        <Row className="bg-[#f1f1f1] , p-2 rounded">
+          <Col className="" xs={20} sm={20} md={20}>
+            <p className="text-sm">
+              <span className="font-semibold">Acknowledged By:</span> Rakibul
+            </p>
+            <p>
+              <span className="font-semibold">Status:</span> {ticketData.status}
+            </p>
+            <p>
+              <span className="font-semibold">Type:</span> Mail Issue
+            </p>
+            <p>
+              <span className="font-semibold">Raised By:</span> employee01
+            </p>
+          </Col>
+        </Row>
       </Modal>
     </>
   );

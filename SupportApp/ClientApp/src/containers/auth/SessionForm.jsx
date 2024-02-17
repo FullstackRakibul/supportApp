@@ -43,8 +43,6 @@ const SessionForm = () => {
         history("/");
         //window.location.reload();
       }
-
-      console.log("code test");
     } catch (error) {
       console.log(error);
       message.error(error);

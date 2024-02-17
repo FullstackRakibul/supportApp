@@ -41,8 +41,9 @@ namespace SupportApp.Controllers
           // return await _context.Ticket.ToListAsync();
           try
           {
-              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).ToListAsync();
-              return tickets;
+              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).OrderByDescending(ticket => ticket.CreatedAt)
+               .ToListAsync();
+                return tickets;
           }
           catch (Exception ex)
           {

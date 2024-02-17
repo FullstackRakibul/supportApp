@@ -28,10 +28,10 @@ const SingleIssueDetailsShowCard = (props) => {
             </p>
           </Col>
           <Col className="border-l-2 pl-2" span={11}>
-            <Paragraph ellipsis={{ rows: 2 }}>{props.description}</Paragraph>
+            <Paragraph ellipsis={{ rows: 3 }}>{props.description}</Paragraph>
           </Col>
           <Col
-            className="pl-2 flex gap-1 flex-col items-center justify-around"
+            className="flex gap-1 flex-col items-center justify-around"
             span={5}
           >
             <ViewTicketButton id={props.id} />
