@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Dashboard from "./containers/Dashboard.jsx";
 import AgentCard from "./containers/AgentCard.jsx";
 import ProfileCard from "./containers/ProfileCard.jsx";
-import ChatCard from "./containers/ChatCard.jsx";
 import TicketCard from "./containers/TicketCard.jsx";
 import HeaderComponet from "./components/HeaderComponent.jsx";
 import CreateTicket from "./containers/ticket/CreateTicket.jsx";
@@ -143,7 +142,6 @@ const App = () => {
               <Route path="/*" element={<Dashboard />} />
               <Route path="/profile" element={<ProfileCard />} />
               <Route path="/agent" element={<AgentCard />} />
-              <Route path="/chat" element={<ChatCard />} />
               <Route path="/ticketList" element={<TicketCard />} />
               <Route path="/createTicket" element={<CreateTicket />} />
               <Route path="/createTicketType" element={<CreateTicketType />} />
