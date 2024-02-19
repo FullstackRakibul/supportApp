@@ -7,7 +7,7 @@ import EmployeeIssueListContainer from "../../containers/dashboard/employee/Empl
 import EmployeeIssueListAcknowledgeContainer from "../../containers/dashboard/employee/EmployeeIssueListAcknowledgeContainer";
 import EmployeeIssueCreateContainer from "../../containers/dashboard/employee/EmployeeIssueCreateContainer";
 
-import ChatCard from "../../containers/ticket/ChatCard";
+import ReviewCard from "../../containers/ticket/ReviewCard";
 
 const EmployeeIssueList = () => {
   const customRoutes = [
@@ -27,8 +27,8 @@ const EmployeeIssueList = () => {
       icon: <MailOutlined />,
     },
     {
-      path: "/employee/empisuuelist/chatCard",
-      label: "Chatbox",
+      path: "/employee/empisuuelist/reviewCard",
+      label: "Review Issue",
       icon: <MailOutlined />,
     },
   ];
@@ -69,7 +69,7 @@ const EmployeeIssueList = () => {
                 path="/acknowledge"
                 element={<EmployeeIssueListAcknowledgeContainer />}
               />
-              <Route path="/chatCard" element={<ChatCard />} />
+              <Route path="/reviewCard" element={<ReviewCard />} />
             </Routes>
           </Col>
         </Row>
