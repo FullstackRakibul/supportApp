@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AxiosInstance } from "../../router/api";
 import { useParams } from "react-router-dom";
+import userRole from "../../utils/userRole";
 import {
   Button,
   Input,
@@ -16,11 +17,6 @@ import moment from "moment";
 import { UserOutlined } from "@ant-design/icons";
 
 const ReviewCard = (ticketId) => {
-  const { id } = useParams();
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
   const [replies, setReplies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,7 +28,7 @@ const ReviewCard = (ticketId) => {
       setError(null);
 
       try {
-        const ticketId = id;
+        const ticketId = 5;
         const response = await AxiosInstance.get(
           `/api/Reviews/TicketWiseReply?id=${ticketId}`
         );
@@ -57,7 +53,7 @@ const ReviewCard = (ticketId) => {
 
     try {
       values.ticketId = 5;
-      values.reviewerId = 66576;
+      values.reviewerId = userRole();
       const response = await AxiosInstance.post("/api/Reviews", values);
       console.log(response.data);
       setReplies([...replies, response.data]);

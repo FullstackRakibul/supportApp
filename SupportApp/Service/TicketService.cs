@@ -113,7 +113,7 @@ public class TicketService
                 CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
                 Priority = TicketPriority.Regular,
-                Status = Enum.Parse(Type(TicketType.Open)),
+                Status = TicketStatus.Open,
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
