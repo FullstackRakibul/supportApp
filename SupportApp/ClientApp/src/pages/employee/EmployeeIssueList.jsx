@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Menu, Card } from "antd";
 import { NavLink, Route, Routes } from "react-router-dom";
 import { MailOutlined, FileExcelOutlined } from "@ant-design/icons";
@@ -10,6 +10,13 @@ import EmployeeIssueCreateContainer from "../../containers/dashboard/employee/Em
 import ReviewCard from "../../containers/ticket/ReviewCard";
 
 const EmployeeIssueList = () => {
+  const [activeButton, setActiveButton] = useState(1);
+  const [ticketId, setTicketId] = useState(0);
+
+  const handleButtonAndKey = (btnId, id) => {
+    setActiveButton(btnId);
+    setTicketId(id);
+  };
   const customRoutes = [
     {
       path: "/employee/empisuuelist/",
@@ -32,6 +39,9 @@ const EmployeeIssueList = () => {
       icon: <MailOutlined />,
     },
   ];
+
+  console.log("Ticket : ", ticketId);
+  console.log("Button : ", activeButton);
 
   return (
     <>
@@ -63,13 +73,34 @@ const EmployeeIssueList = () => {
             style={{ maxHeight: "600px" }}
           >
             <Routes>
-              <Route path="/" element={<EmployeeIssueCreateContainer />} />
-              <Route path="/recent" element={<EmployeeIssueListContainer />} />
+              <Route
+                path="/"
+                element={
+                  <EmployeeIssueCreateContainer
+                    handleFunction={handleButtonAndKey}
+                  />
+                }
+              />
+              <Route
+                path="/recent"
+                element={
+                  <EmployeeIssueListContainer
+                    handleFunction={handleButtonAndKey}
+                  />
+                }
+              />
               <Route
                 path="/acknowledge"
-                element={<EmployeeIssueListAcknowledgeContainer />}
+                element={
+                  <EmployeeIssueListAcknowledgeContainer
+                    handleFunction={handleButtonAndKey}
+                  />
+                }
               />
-              <Route path="/reviewCard" element={<ReviewCard />} />
+              <Route
+                path="/reviewCard/*"
+                element={<ReviewCard handleFunction={handleButtonAndKey} />}
+              />
             </Routes>
           </Col>
         </Row>

@@ -3,7 +3,6 @@ import React from "react";
 import Dashboard from "../containers/Dashboard.jsx";
 import ProfileCard from "../containers/ProfileCard.jsx";
 import AgentCard from "../containers/AgentCard.jsx";
-import ChatCard from "../containers/ChatCard.jsx";
 import NotFoundPage from "../containers/NotFoundPage.jsx";
 import EmailCard from "../containers/EmailCard.jsx";
 import EmailList from "../containers/EmailList.jsx";
@@ -34,10 +33,6 @@ const routes =
   {
     path: "/agent",
     element: <AgentCard />,
-  },
-  {
-    path: "/chat",
-    element: <ChatCard />,
   },
   {
     path: "/emailBox",

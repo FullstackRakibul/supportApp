@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SingleIssueDetailsShowCard from "../../../components/global/SingleIssueDetailsShowCard";
 import { AxiosInstance } from "../../../router/api";
 
-const EmployeeIssueListContainer = () => {
+const EmployeeIssueListContainer = ({ handleFunction }) => {
   const [ticketData, setTicketData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +21,7 @@ const EmployeeIssueListContainer = () => {
           title={ticket.title}
           description={ticket.description}
           status={ticket.status}
+          handleFunction={handleFunction}
         />
       ))}
     </>

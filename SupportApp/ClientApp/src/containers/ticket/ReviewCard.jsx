@@ -1,125 +1,161 @@
-import { Button } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { AxiosInstance } from "../../router/api";
+import { useParams } from "react-router-dom";
+import {
+  Button,
+  Input,
+  Form,
+  Tabs,
+  List,
+  Tooltip,
+  Tag,
+  Avatar,
+  message,
+} from "antd";
+import moment from "moment";
+import { UserOutlined } from "@ant-design/icons";
 
-const ReviewCard = () => {
-  const [messages, setMessages] = useState([
-    { id: 1, sender: "John", message: "Hey there!" },
-    { id: 2, sender: "You", message: "Hi John! How are you?" },
-    { id: 3, sender: "John", message: "I'm good, thanks! How about you?" },
-    // Add more messages as needed
-  ]);
+const ReviewCard = (ticketId) => {
+  const { id } = useParams();
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  const [replies, setReplies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const [selectedMessage, setSelectedMessage] = useState(null);
-  const [newMessage, setNewMessage] = useState("");
-  const [sentMessages, setSentMessages] = useState([]);
+  // Fetch reviews on component mount and ticket ID change
+  useEffect(() => {
+    const fetchReviews = async () => {
+      setLoading(true);
+      setError(null);
 
-  const handleSelectMessage = (message) => {
-    setSelectedMessage(message);
-  };
-
-  const handleSendMessage = () => {
-    // Simulate sending the message to the server
-    const newMessageObj = {
-      id: messages.length + 1,
-      sender: "You", // You're sending the message
-      message: newMessage,
+      try {
+        const ticketId = id;
+        const response = await AxiosInstance.get(
+          `/api/Reviews/TicketWiseReply?id=${ticketId}`
+        );
+        console.log(response.data);
+        setReplies(response.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    setMessages([...messages, newMessageObj]);
-    setSentMessages([...sentMessages, newMessageObj]);
-    setNewMessage("");
+    fetchReviews();
+  }, [ticketId]);
+
+  const handleSubmit = async () => {
+    const values = await form.validateFields();
+    console.log(values);
+    // if (!values.reviewNote) {
+    //   return console.error("Reply content is required");
+    // }
+
+    try {
+      values.ticketId = 5;
+      values.reviewerId = 66576;
+      const response = await AxiosInstance.post("/api/Reviews", values);
+      console.log(response.data);
+      setReplies([...replies, response.data]);
+      form.resetFields();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const renderConversation = () => {
-    const conversation = [];
-    let currentSender = null;
+  const [form] = Form.useForm();
 
-    messages.forEach((message) => {
-      if (currentSender !== message.sender) {
-        // Start a new conversation section for a new sender
-        currentSender = message.sender;
-        conversation.push(
-          <div key={message.sender} className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">
-              {message.sender}'s Conversation
-            </h3>
-          </div>
-        );
-      }
-
-      conversation.push(
-        <div
-          key={message.id}
-          className={`mb-2 ${
-            selectedMessage?.id === message.id ? "bg-blue-100" : ""
-          }`}
-        >
-          <span className="font-bold">{message.sender}:</span> {message.message}
-        </div>
-      );
-    });
-
-    return conversation;
-  };
   return (
     <>
-      <div className="flex h-screen">
-        {/* Sidebar */}
-        <div className="w-1/4 bg-gray-200 p-4">
-          <h2 className="text-xl font-semibold mb-4">Inbox</h2>
-          <ul>
-            {messages.map((message) => (
-              <li
-                key={message.id}
-                className={`cursor-pointer p-2 mb-2 rounded-md ${
-                  selectedMessage?.id === message.id ? "bg-blue-200" : ""
-                }`}
-                onClick={() => handleSelectMessage(message)}
-              >
-                {message.sender}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 p-4">
-          <h2 className="text-xl font-semibold mb-4">Message</h2>
-          {selectedMessage ? (
-            <div>
-              <p className="font-bold">{selectedMessage.sender}</p>
-              <p>{selectedMessage.message}</p>
-            </div>
-          ) : (
-            <p>Select a message from the inbox.</p>
-          )}
-
-          {/* Conversation Section */}
-          <div className="mt-4">
-            <h3 className="text-xl font-semibold mb-2">Conversation</h3>
-            {renderConversation()}
-          </div>
-
-          {/* Fixed Footer for Send Message Section */}
-          <div className="p-4 bg-gray-200">
-            <div className="flex items-center">
-              <textarea
-                rows="3"
-                placeholder="Type your message..."
-                className="flex-1 p-2 border rounded-md resize-none mr-2"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-              ></textarea>
-
-              <Button
-                onClick={handleSendMessage}
-                type="primary"
-                className="bg-primary text-white font-sans font-xl font-semibold hover:bg-white"
-              >
-                Send Message
-              </Button>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 py-8">
+        {loading && (
+          <p className="text-center mt-4 font-normal">Loading comments...</p>
+        )}
+        {error && (
+          <p className="text-center mt-4 text-red-500">Error: {error}</p>
+        )}
+        {replies.length > 0 && (
+          <List
+            itemLayout="horizontal"
+            dataSource={replies}
+            renderItem={(item) => (
+              <List.Item key={item.id}>
+                <List.Item.Meta
+                  avatar={
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200">
+                      <span className="font-semibold text-xl">
+                        <Avatar
+                          style={{
+                            backgroundColor: "#87d068",
+                          }}
+                          icon={<UserOutlined />}
+                        />
+                      </span>
+                    </div>
+                  }
+                  title={
+                    <div className="font-semibold font-sans text-primary">
+                      ID : {item.reviewerId} -
+                      <Tooltip
+                        title={moment(item.createdAt).format(
+                          "MMMM Do YYYY, hh:mm a"
+                        )}
+                      >
+                        <span className="ml-2 text-gray-500 font-normal">
+                          {moment(item.createdAt).fromNow()}
+                        </span>
+                      </Tooltip>
+                    </div>
+                  }
+                  description={
+                    <span className="font-sans text-primary ">
+                      {item.reviewNote}
+                    </span>
+                  }
+                />
+                {item.tags && (
+                  <List.Item.Meta
+                    avatar={
+                      <span className="w-7 h-7 rounded-full bg-green-100 text-green-500 font-bold">
+                        {item.tags.join(", ")}
+                      </span>
+                    }
+                    title={<span className="font-semibold">Tags:</span>}
+                  />
+                )}
+              </List.Item>
+            )}
+          />
+        )}
+        <div className="  bg-white p-4 border-t border-gray-200">
+          <h3 className="text-2xl font-semibold mb-4">
+            Review and Conversation
+          </h3>
+          <Form form={form} onFinish={handleSubmit} layout="vertical">
+            <Form.Item
+              name="reviewNote"
+              label="Write a review or reply"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your review or reply",
+                },
+              ]}
+            >
+              <Input.TextArea rows={4} />
+            </Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="bg-primary text-white"
+            >
+              Submit
+            </Button>
+          </Form>
         </div>
       </div>
     </>

@@ -1,8 +1,11 @@
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import React from "react";
 import ViewTicketButton from "../CRUD/ViewTicketButton";
 import DeleteTicketButton from "../CRUD/DeleteTicketButton";
 import { Typography } from "antd";
+import ReviewTicketButton from "./button/ReviewTicketButton";
+import { NavLink } from "react-router-dom";
+import ReviewCard from "../../containers/ticket/ReviewCard";
 const { Paragraph } = Typography;
 const SingleIssueDetailsShowCard = (props) => {
   return (
@@ -36,6 +39,17 @@ const SingleIssueDetailsShowCard = (props) => {
           >
             <ViewTicketButton id={props.id} />
             <DeleteTicketButton id={props.id} />
+            {/* <NavLink to={`/employee/empisuuelist/reviewCard/${props.id}`}> */}
+            <Button
+              onClick={() => {
+                props.handleFunction(2, props.id);
+              }}
+            >
+              Testr
+            </Button>
+            {/* <ReviewTicketButton ticketId={props.id} /> */}
+            {/* </NavLink> */}
+            {/* <ReviewTicketButton ticketId={props.id} /> */}
           </Col>
         </Row>
       </section>

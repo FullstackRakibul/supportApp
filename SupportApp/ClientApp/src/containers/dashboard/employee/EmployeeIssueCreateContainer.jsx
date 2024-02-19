@@ -32,7 +32,7 @@ const props = {
   },
 };
 
-const EmployeeIssueCreateContainer = () => {
+const EmployeeIssueCreateContainer = ({ handleFunction }) => {
   useAuthCheck();
 
   const [form] = Form.useForm();

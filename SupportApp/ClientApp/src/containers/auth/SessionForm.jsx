@@ -17,10 +17,10 @@ const SessionForm = () => {
         "/api/Auth/login",
         values
       );
-      console.log(response.data);
+      //console.log(response.data);
       //const { isSuccess, agentdata, token } = response.data;
       const { isSuccess, result, message } = response.data;
-      console.log(result);
+      //console.log(result);
 
       // const response = await axios.post(
       //   "http://localhost:7002/api/Auth/login",
@@ -36,6 +36,7 @@ const SessionForm = () => {
         console.log(token);
         console.log(user);
         localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
         //sessionStorage.setItem("token", token);
         //localStorage.setItem("user", JSON.stringify(user));
         //sessionStorage.setItem("user", JSON.stringify(user));

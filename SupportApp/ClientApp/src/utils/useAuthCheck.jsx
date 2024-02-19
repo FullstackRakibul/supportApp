@@ -7,6 +7,7 @@ const useAuthCheck = () => {
   const history = useNavigate();
   useEffect(() => {
     const authToken = localStorage.getItem("token");
+
     // if (!authToken) {
     //   {
     //     history("/sessionform");
@@ -18,25 +19,15 @@ const useAuthCheck = () => {
         history("/sessionform");
         return;
       }
-      // } else {
-      //   const decodedToken = jwtDecode(authToken);
-      //   const { role } = decodedToken;
-      //   if (role === "EMPLOYEE") {
-      //     history("/employee/");
-      //   } else if (role === "ADMIN") {
-      //     history("/");
-      //   } else {
-      //     history("/");
-      //   }
+    } else {
+      const roleData = localStorage.getItem("token");
+      const decodedToken = jwtDecode(roleData);
+      const { role } = decodedToken;
+
+      // based on this role , if the role is "SUPPORTAGENT" then i will redirect to "/employee" route , if the role is "ADMIN" then it will redirect to "/" route
     }
   }, [history]);
   return <></>;
 };
 
 export default useAuthCheck;
-
-// const requiredRole = "ADMIN";
-// const userHasPermission = hasPermission(requiredRole);
-// if (!userHasPermission) {
-//   return <NotFoundPage />;
-// }
