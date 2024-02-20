@@ -49,7 +49,7 @@ const ReviewCard = (ticketId) => {
   }, [ticketId]);
 
   const handleSubmit = async () => {
-    const values = await form.validateFields();
+    const values = await form.validateFuseields();
     console.log(values);
     // if (!values.reviewNote) {
     //   return console.error("Reply content is required");
