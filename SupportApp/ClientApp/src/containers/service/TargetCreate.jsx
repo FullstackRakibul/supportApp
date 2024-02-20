@@ -49,6 +49,9 @@ const TargetCreate = () => {
     try {
       const values = await form.validateFields();
       console.log(values);
+      // check if the targeted ticket is already assigned.
+      values.ticketId;
+
       const response = await AxiosInstance.post("/api/Targets", values);
       console.log(response.data);
       console.log(`this is a response code : ${response.status}`);
@@ -56,11 +59,11 @@ const TargetCreate = () => {
         message.success("Ticket Assign Successfully.");
         form.resetFields();
       } else {
-        message.error("Error in Creating Ticket.");
+        message.success("Already Assigned !");
       }
     } catch (error) {
       console.log(`create target record error : ${error}`);
-      message.error("Error in Creating Ticket.");
+      message.error("Error in Assignig Ticket.");
     }
   };
   return (

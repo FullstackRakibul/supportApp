@@ -178,6 +178,20 @@ namespace SupportApp.Controllers
                 return BadRequest("Failed to assign support engineer.");
             }
         }
+
+        [HttpGet("assign/ticket/{id}")]
+        public async Task<IActionResult> GetAssignDetails(int id)
+        {
+            var ticketDetailsData = await _context.Target.FirstOrDefaultAsync(t => t.TicketId == id);
+
+            if (ticketDetailsData == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ticketDetailsData);
+        }
+
     }
 
 }

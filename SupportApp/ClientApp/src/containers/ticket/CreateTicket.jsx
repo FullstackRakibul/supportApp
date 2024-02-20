@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 const { TextArea } = Input;
 import { InboxOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Col, Row, Card, Form, Input, Button, Upload, message } from "antd";
+import tokenDetails from "../../utils/tokenDetails.jsx";
+
 const { Dragger } = Upload;
 
 // component load
@@ -36,6 +38,7 @@ const props = {
 
 const CreateTicket = () => {
   useAuthCheck();
+  const { role, EmpCode } = tokenDetails();
 
   const [form] = Form.useForm();
 
@@ -61,7 +64,7 @@ const CreateTicket = () => {
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      values.createdBy = "53324";
+      values.createdBy = EmpCode;
 
       console.log(values);
       const response = await AxiosInstance.post(

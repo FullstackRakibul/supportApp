@@ -11,7 +11,7 @@ import { AxiosInstance } from "../../../router/api.js";
 import DepartmentDropdown from "../../../components/global/DepartmentDropdown.jsx";
 import UnitDropdown from "../../../components/global/UnitDropdown.jsx";
 import useAuthCheck from "../../../utils/useAuthCheck.jsx";
-import userRole from "../../../utils/userRole.jsx";
+import tokenDetails from "../../../utils/tokenDetails.jsx";
 
 const props = {
   name: "attachment",
@@ -55,12 +55,13 @@ const EmployeeIssueCreateContainer = ({ handleFunction }) => {
   };
 
   const handleSubmit = async () => {
+    const { role, EmpCode } = tokenDetails();
     try {
       const values = await form.validateFields();
       values.ticketTypeId = selectedTicketTypeId;
       values.departmentId = selectedDepartmentId;
       values.unitId = selectedUnitId;
-      values.createdBy = userRole();
+      values.createdBy = EmpCode;
 
       console.log(values);
       //const response = await AxiosInstance.post("/api/Tickets", values);

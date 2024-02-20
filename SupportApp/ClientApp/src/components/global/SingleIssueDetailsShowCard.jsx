@@ -1,13 +1,21 @@
 import { Row, Col, Button } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ViewTicketButton from "../CRUD/ViewTicketButton";
 import DeleteTicketButton from "../CRUD/DeleteTicketButton";
 import { Typography } from "antd";
 import ReviewTicketButton from "./button/ReviewTicketButton";
 import { NavLink } from "react-router-dom";
 import ReviewCard from "../../containers/ticket/ReviewCard";
+import { AxiosInstance } from "../../router/api";
 const { Paragraph } = Typography;
 const SingleIssueDetailsShowCard = (props) => {
+  const { agent, setAgent } = useState();
+  // useEffect(()=>{
+  //   const fetchData = async ()=>{
+  //     const response = await AxiosInstance.get()
+  //   }
+  // });
+
   return (
     <>
       <section className="border-l-2 border-blue-500 pl-4 py-2 bg-white rounded-lg shadow-md">
@@ -18,7 +26,7 @@ const SingleIssueDetailsShowCard = (props) => {
         <Row className="justify-around">
           <Col className="pl-4" xs={24} sm={24} md={8}>
             <p className="text-sm">
-              <span className="font-semibold">Acknowledged By:</span> Rakibul
+              <span className="font-semibold">Acknowledged By:</span>AGENTname
             </p>
             <p>
               <span className="font-semibold">Status:</span> {props.status}
