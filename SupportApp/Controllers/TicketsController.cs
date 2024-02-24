@@ -292,6 +292,29 @@ namespace SupportApp.Controllers
 
         // employee routes apis................
 
+        [HttpGet("getTicketByCreator")]
+        public async Task<ActionResult<Ticket>> GetTicketByCreator(string EmpCode)
+        {
+            try
+            {
+                var ticketDetails = await _context.Ticket
+                .Where(t => t.CreatedBy == EmpCode)
+                .FirstOrDefaultAsync();
+                if (ticketDetails == null)
+                {
+                    return NotFound(); // Return 404 if no ticket is found for the given empCode
+                }
 
-    }
+                return Ok(ticketDetails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+        }
+
+
+
+	}
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Upload, message } from "antd";
 import { AuthenticateInstance, AxiosInstance } from "../../router/api";
+import tokenDetails from "../../utils/tokenDetails";
 
 const SessionForm = () => {
   //const [token, setToken] = useState([]);
@@ -17,37 +18,46 @@ const SessionForm = () => {
         "/api/Auth/login",
         values
       );
+      const { isSuccess, result, message } = response.data;
       //console.log(response.data);
       //const { isSuccess, agentdata, token } = response.data;
-      const { isSuccess, result, message } = response.data;
-      //console.log(result);
+      if (isSuccess == false) {
+      } else {
+        //const { isSuccess, result, message } = response.data;
+        //console.log(result);
 
-      // const response = await axios.post(
-      //   "http://localhost:7002/api/Auth/login",
-      //   values
-      // );
-      //console.log(response.data);
-      //const { isSuccess, result, message } = response.data;
+        // const response = await axios.post(
+        //   "http://localhost:7002/api/Auth/login",
+        //   values
+        // );
+        //console.log(response.data);
+        //const { isSuccess, result, message } = response.data;
 
-      console.log(isSuccess);
-      if (isSuccess) {
-        const { token, user } = result;
-        //const { token, agentdata } = response.data;
-        console.log(token);
-        console.log(user);
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        if (isSuccess) {
+          const { token, user } = result;
+          console.log(token);
+          console.log(user);
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(user));
+          const { role, EmpCode } = tokenDetails();
 
-        //sessionStorage.setItem("token", token);
-        //localStorage.setItem("user", JSON.stringify(user));
-        //sessionStorage.setItem("user", JSON.stringify(user));
-        //message.success("Session in successfully.");
-        history("/");
-        window.location.reload();
+          if (role == "ADMIN") {
+            {
+              history("/");
+            }
+          } else if (role == "EMPLOYEE") {
+            history("/employee");
+          } else if (role == "SUPPORTAGENT") {
+            history("/agent");
+          } else {
+            history("/sessionform");
+          }
+          //window.location.reload();
+        }
       }
     } catch (error) {
       console.log(error);
-      message.error(error);
+      console.log("User Not Found !!");
     }
   };
 

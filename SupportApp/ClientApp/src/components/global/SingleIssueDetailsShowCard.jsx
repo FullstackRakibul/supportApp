@@ -7,6 +7,7 @@ import ReviewTicketButton from "./button/ReviewTicketButton";
 import { NavLink } from "react-router-dom";
 import ReviewCard from "../../containers/ticket/ReviewCard";
 import { AxiosInstance } from "../../router/api";
+import { MessageOutlined } from "@ant-design/icons";
 const { Paragraph } = Typography;
 const SingleIssueDetailsShowCard = (props) => {
   const { agent, setAgent } = useState();
@@ -49,11 +50,13 @@ const SingleIssueDetailsShowCard = (props) => {
             <DeleteTicketButton id={props.id} />
             {/* <NavLink to={`/employee/empisuuelist/reviewCard/${props.id}`}> */}
             <Button
+              className="w-32 font-sans text-primary border border-primary  font-xl font-normal"
               onClick={() => {
                 props.handleFunction(2, props.id);
               }}
+              icon={<MessageOutlined />}
             >
-              Testr
+              Chat
             </Button>
             {/* <ReviewTicketButton ticketId={props.id} /> */}
             {/* </NavLink> */}

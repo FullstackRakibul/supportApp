@@ -71,6 +71,7 @@ public class TicketService
                 FromEmail = emailDetails.From.ToString(),
                 EmailCc = emailDetails.Cc,
                 TicketTypeId = 1,
+                CreatedBy = "EMAIL"
             };
 
             // Format CreatedAt property to "yyyy-MM-dd HH:mm:ss"

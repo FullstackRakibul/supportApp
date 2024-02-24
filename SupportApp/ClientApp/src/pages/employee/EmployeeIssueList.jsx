@@ -14,6 +14,8 @@ const EmployeeIssueList = () => {
   const [ticketId, setTicketId] = useState(0);
 
   const handleButtonAndKey = (btnId, id) => {
+    ReviewCard(id);
+
     setActiveButton(btnId);
     setTicketId(id);
   };

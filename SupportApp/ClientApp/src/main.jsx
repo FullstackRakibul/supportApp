@@ -14,12 +14,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/*" element={<App />} />
         <Route path="/employee/*" element={<EmployeeModule />} />
         <Route path="/agent/*" element={<AgentModule />} />
-        {/* <PrivateRoute path="/" role="ADMIN" component={App} />
-        <PrivateRoute
-          path="/employee/*"
-          role="EMPLOYEE"
-          component={EmployeeModule}
-        /> */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

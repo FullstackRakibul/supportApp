@@ -74,7 +74,7 @@ const Header = () => {
           <div className="w-11/12 flex flex-row justify-end gap-3">
             <section className="container mx-auto">
               <div className="flex flex-row justify-end items-center font-sans">
-                <NavLink to="/createTicket">
+                {/* <NavLink to="/createTicket">
                   <Button
                     type="primary"
                     className="font-sans font-semibold bg-primary"
@@ -82,7 +82,7 @@ const Header = () => {
                   >
                     Create New Ticket
                   </Button>
-                </NavLink>
+                </NavLink> */}
               </div>
             </section>
             <p>.</p>
