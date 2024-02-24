@@ -8,7 +8,7 @@ const AgentModule = () => {
     <>
       <Routes>
         <Route path="/*" element={<AgnetDashboard />} />
-        <Route path="setting/*" element={<AgentSetting />} />
+        <Route path="setting/" element={<AgentSetting />} />
       </Routes>
     </>
   );

@@ -30,14 +30,14 @@ const AgnetDashboard = () => {
   } = theme.useToken();
 
   const customRoutes = [
-    { path: "/overview/", label: "OverView", icon: <DashboardOutlined /> },
+    { path: "/agent/", label: "OverView", icon: <DashboardOutlined /> },
     {
-      path: "/agentIsuues/",
+      path: "/agent/agentIsuues/",
       label: "Issues",
       icon: <TagsOutlined />,
     },
     {
-      path: "/settings/",
+      path: "/agent/settings/",
       label: "Setting",
       icon: <UserSwitchOutlined />,
     },
@@ -107,7 +107,7 @@ const AgnetDashboard = () => {
             <Routes>
               <Route path="/*" element={<AgentOverview />} />
               <Route path="/agentIsuues/*" element={<AgentIssue />} />
-              <Route path="/agentSetting" element={<AgentSetting />} />
+              <Route path="/settings" element={<AgentSetting />} />
             </Routes>
           </Content>
           <Footer />
