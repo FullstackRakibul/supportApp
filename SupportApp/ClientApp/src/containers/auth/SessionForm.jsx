@@ -70,8 +70,15 @@ const SessionForm = () => {
 
   return (
     <>
-      <div className=" h-96 flex items-center justify-center bg-gray-50">
-        <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+      <div className="flex flex-col items-center bg-[#f1f1f1] h-screen justify-center bg-white">
+        <div class="text-center">
+          <img
+            src="https://media.licdn.com/dms/image/C4D0BAQFVg4rc_GGKHw/company-logo_200_200/0/1673356091576?e=2147483647&v=beta&t=cg_iA-SIr_FlWkUo0pySCCSAbFOSd0_J2kFi-7oNWNg"
+            class="w-20 mx-auto"
+            alt="Company Logo"
+          />
+        </div>
+        <div className="max-w-md w-full p-6 bg-[#f1f1f1]  rounded-md shadow-md">
           <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">
             Login
           </h2>
