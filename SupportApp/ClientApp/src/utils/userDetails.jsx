@@ -1,17 +1,10 @@
-// const useDetails = () => {
-//   const userData = localStorage.getItem("user");
-//   console.log(userData);
-//   const { email, name, empCode, phoneNumber } = JSON.parse(userData);
-
-//   return { email, name, empCode, phoneNumber };
-// };
-
-// export default useDetails;
-
 const useDetails = () => {
   const userData = localStorage.getItem("user");
   console.log(userData);
+<<<<<<< HEAD
 
+=======
+>>>>>>> b8822d5cdc2d84fc3203793d3b3dda524d36a7e2
   let email = "";
   let name = "";
   let empCode = "";

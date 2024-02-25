@@ -1,9 +1,12 @@
 import React from "react";
+import AgentIssueList from "../../containers/dashboard/agent/AgentIssueList";
+import AgentMailIssueList from "../../containers/dashboard/agent/AgentMailIssueList";
 
 const AgentIssue = () => {
   return (
     <>
-      <section>Agent Issue Page....</section>
+      <AgentIssueList />
+      <AgentMailIssueList />
     </>
   );
 };

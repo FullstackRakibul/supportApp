@@ -17,6 +17,9 @@ import {
   UserSwitchOutlined,
   DashboardOutlined,
   TagsOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+  CheckCircleOutlined,
 } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
@@ -35,6 +38,23 @@ const AgnetDashboard = () => {
       path: "/agent/agentIsuues/",
       label: "Issues",
       icon: <TagsOutlined />,
+      subMenu: [
+        {
+          path: "/agent/agentIsuues/open",
+          label: "Open",
+          icon: <ExclamationCircleOutlined />,
+        },
+        {
+          path: "/agent/agentIsuues/pending",
+          label: "Pending",
+          icon: <ClockCircleOutlined />,
+        },
+        {
+          path: "/agent/agentIsuues/resolved",
+          label: "Resolved",
+          icon: <CheckCircleOutlined />,
+        },
+      ],
     },
     {
       path: "/agent/settings/",
@@ -54,18 +74,33 @@ const AgnetDashboard = () => {
           style={{ backgroundColor: "#ffff" }}
         >
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-            {customRoutes.map((route) => (
-              <Menu.Item
-                className="hover:bg-primary"
-                style={{ accentColor: "#002A53" }}
-                key={route.path}
-                icon={route.icon}
-              >
-                <NavLink className="font-sans font-semibold " to={route.path}>
-                  {route.label}
-                </NavLink>
-              </Menu.Item>
-            ))}
+            {customRoutes.map((route) =>
+              route.subMenu ? (
+                <Menu.SubMenu
+                  className="font-sans font-semibold"
+                  key={route.path}
+                  title={route.label}
+                  icon={route.icon}
+                >
+                  {route.subMenu.map((submenu) => (
+                    <Menu.Item key={submenu.path} icon={submenu.icon}>
+                      <NavLink
+                        className="font-sans font-semibold"
+                        to={submenu.path}
+                      >
+                        {submenu.label}
+                      </NavLink>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ) : (
+                <Menu.Item key={route.path} icon={route.icon}>
+                  <NavLink className="font-sans font-semibold" to={route.path}>
+                    {route.label}
+                  </NavLink>
+                </Menu.Item>
+              )
+            )}
           </Menu>
         </Sider>
         <Layout className="">

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Table, Space, Button, message, Modal } from "antd";
+import { AxiosInstance } from "../../../router/api";
+import FetchMailTicket from "../../../components/global/FetchMailTicket";
+import useAuthCheck from "../../../utils/useAuthCheck";
 import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
-
-import FetchMailTicket from "../components/global/FetchMailTicket";
-import { AxiosInstance } from "../router/api";
-import useAuthCheck from "../utils/useAuthCheck";
-import DeleteTicketButton from "../components/CRUD/DeleteTicketButton.jsx";
-
-const EmailList = () => {
+import DeleteTicketButton from "../../../components/CRUD/DeleteTicketButton";
+const AgentIssueList = () => {
   useAuthCheck();
   const [tickets, setTickets] = useState([]);
   const [ticketData, setTicketData] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -54,7 +51,6 @@ const EmailList = () => {
       prevTickets.filter((ticket) => ticket.id !== deletedId)
     );
   };
-
   const columns = [
     {
       title: "From",
@@ -88,43 +84,19 @@ const EmailList = () => {
       ),
     },
   ];
-
   return (
     <>
       <section className="flex items-center justify-center">
         <div className="container p-3 rounded-md">
           <div className="flex flex-row p-1 justify-between">
-            <h1 className="text-2xl font-bold mb-4">Issue from mail</h1>
+            <h1 className="text-2xl font-bold mb-4">Mail Issue List</h1>
             <FetchMailTicket />
           </div>
           <Table key={tickets.id} dataSource={tickets} columns={columns} />
         </div>
       </section>
-
-      <Modal
-        title={
-          <h3 className="font-sans text-lg font-semibold ">
-            Issue name : {ticketData.title}
-          </h3>
-        }
-        open={isModalOpen}
-        onOk={handleOk}
-        footer={[
-          <Button
-            key="back"
-            className="bg-primary"
-            type="primary"
-            icon={<CheckCircleOutlined />}
-            onClick={handleOk}
-          ></Button>,
-        ]}
-        style={{}}
-      >
-        <h3 className="text-md font-sans font-bold">Details :</h3>
-        <p className="font-sans font-semibold">{ticketData.description}</p>
-      </Modal>
     </>
   );
 };
 
-export default EmailList;
+export default AgentIssueList;
