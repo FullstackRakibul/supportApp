@@ -71,7 +71,7 @@ const SessionForm = () => {
   return (
     <>
       <div className="flex flex-col items-center h-screen justify-center bg-white">
-        <div class="text-center">
+        <div className="text-center">
           <img
             src="https://media.licdn.com/dms/image/C4D0BAQFVg4rc_GGKHw/company-logo_200_200/0/1673356091576?e=2147483647&v=beta&t=cg_iA-SIr_FlWkUo0pySCCSAbFOSd0_J2kFi-7oNWNg"
             class="w-20 mx-auto"

@@ -27,23 +27,14 @@ const AgentIssueList = () => {
 
     fetchTickets();
   }, []);
-  {
-    /* need to change code here  */
-  }
+
   // Function to update tickets after deletion
   const handleTicketDelete = (deletedId) => {
     setTickets((prevTickets) =>
       prevTickets.filter((ticket) => ticket.id !== deletedId)
     );
   };
-  const handleUpdateTicketStatus = () => {
-    setSelectedStatus(id);
-    setStatusModalVisible(true);
-  };
-  const [selectedStatus, setSelectedStatus] = useState(null);
-  {
-    /* need to change code here  */
-  }
+
   const columns = [
     {
       title: "From",
@@ -69,20 +60,13 @@ const AgentIssueList = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
           <ViewTicketButton id={record.id} />
-
-          {/* need to change code here  */}
           <UpdateStatusTicketButton
             visible={statusModalVisible}
             onCancel={() => setStatusModalVisible(false)}
             issueId={record.id}
           />
-          <EditOutlined
-            title="Update Issue Status"
-            onClick={() => handleUpdateTicketStatus()}
-          />
-          {/* need to change code here  */}
+          <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
         </Space>
       ),
     },

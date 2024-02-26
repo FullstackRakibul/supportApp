@@ -755,6 +755,22 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TargetsController",
+    "Method": "AgentIssueList",
+    "RelativePath": "api/Targets/agentIssueList/{agentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TargetsController",
     "Method": "GetAssignDetails",
     "RelativePath": "api/Targets/assign/ticket/{id}",
     "HttpMethod": "GET",

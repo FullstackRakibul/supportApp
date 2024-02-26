@@ -116,7 +116,7 @@
               "RelativeDocumentMoniker": "SupportApp\\appsettings.json",
               "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\appsettings.json",
               "RelativeToolTip": "SupportApp\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-02-15T05:32:25.158Z",
               "EditorCaption": ""
@@ -131,8 +131,7 @@
               "RelativeToolTip": "SupportApp\\Controllers\\TargetsController.cs",
               "ViewState": "AQIAAKEAAAAAAAAAAAD4v6oAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-18T18:52:33.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-18T18:52:33.32Z"
             },
             {
               "$type": "Document",

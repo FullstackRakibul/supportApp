@@ -1,94 +1,85 @@
-import { useState, React, useEffect } from "react";
-import { Modal, Form, Select, Button, message, Input } from "antd";
+import React, { useState } from "react";
+import { Modal, Button, Select, message } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+
 import { AxiosInstance } from "../../router/api";
 
-const UpdateStatusTicketButton = ({ visible, onCancel, issueId }) => {
-  const [form] = Form.useForm();
-  const [ticketStatus, setTicketStatus] = useState([]);
-  const [ticketPriority, setTicketPriority] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const responseStatus = await AxiosInstance.get(
-        "/api/Tickets/ticketStatus"
-      );
-      const responsePriority = await AxiosInstance.get(
-        "/api/Tickets/ticketPriority"
-      );
-      setTicketStatus(responseStatus.data);
-      setTicketPriority(responsePriority.data);
-    };
-    fetchData();
-  }, []);
+const UpdateTicketStatusModal = ({ visible, onCancel, issueId }) => {
+  const [loading, setLoading] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const { Option } = Select;
 
-  const handleStatusUpdate = async () => {
+  const handleStatusChange = (value) => {
+    setSelectedStatus(value);
+  };
+
+  const handleUpdateStatus = async () => {
     try {
-      const values = await form.validateFields();
-      values.id = issueId;
-      console.log(values);
-      const response = AxiosInstance.put(
-        "/api/Tickets/updateTicketStatus",
-        values
+      setLoading(true);
+      const response = await AxiosInstance.put(
+        `/api/Targets/updateStatus/${issueId}`,
+        {
+          status: selectedStatus,
+        }
       );
-      console.log(response);
-      message.success("Ticket Status Updated!");
-      window.location.reload();
+      message.success("Ticket status updated successfully");
+      setLoading(false);
+      onCancel();
     } catch (error) {
-      console.log("status update error on form.");
+      message.error("Error updating ticket status");
+      setLoading(false);
     }
+  };
+  const [selectedTicketId, setSelectedTicketId] = useState(null);
+  const [statusModalVisible, setStatusModalVisible] = useState(false);
+
+  const handleUpdateTicketStatus = (id) => {
+    setSelectedTicketId(id);
+    setStatusModalVisible(true);
   };
 
   return (
     <>
+      <Button
+        type="primary"
+        className="bg-primary w-32  text-white font-sans font-xl font-normal hover:bg-white"
+        icon={<EditOutlined />}
+        onClick={() => handleUpdateTicketStatus(issueId)}
+      >
+        Update
+      </Button>
+
       <Modal
-        title="Ticket Status"
-        open={visible}
+        visible={visible}
+        title="Update Ticket Status"
         onCancel={onCancel}
         footer={[
-          <Button
-            className="bg-primary"
-            type="primary"
-            key="cancel"
-            onClick={onCancel}
-          >
+          <Button key="cancel" onClick={onCancel}>
             Cancel
           </Button>,
           <Button
-            key="submit"
-            className="bg-primary"
+            key="update"
             type="primary"
-            onClick={handleStatusUpdate}
+            loading={loading}
+            onClick={handleUpdateStatus}
           >
-            Update Status
+            Update
           </Button>,
         ]}
       >
-        <Form form={form} layout="vertical">
-          <Form.Item
-            label="Select Status"
-            name="status"
-            rules={[{ required: true, message: "Please select an status" }]}
-          >
-            <Select style={{ width: 470 }}>
-              {ticketStatus.map((item, index) => (
-                <Select.Option key={index} value={index}>
-                  {item}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item label="Select Priority" name="priority">
-            <Select style={{ width: 470 }}>
-              {ticketPriority.map((item, index) => (
-                <Select.Option key={index} value={index}>
-                  {item}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        </Form>
+        <p>Select status:</p>
+        <Select
+          defaultValue="Select status"
+          style={{ width: 200 }}
+          onChange={handleStatusChange}
+        >
+          <Option value="InProgress">In Progress</Option>
+          <Option value="Resolved">Resolved</Option>
+          <Option value="Closed">Closed</Option>
+        </Select>
       </Modal>
     </>
   );
 };
 
-export default UpdateStatusTicketButton;
+export default UpdateTicketStatusModal;

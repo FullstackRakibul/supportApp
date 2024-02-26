@@ -16,10 +16,10 @@ import {
   MenuUnfoldOutlined,
   UserSwitchOutlined,
   DashboardOutlined,
-  TagsOutlined,
+  UnorderedListOutlined,
   ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  CheckCircleOutlined,
+  MailOutlined,
+  OrderedListOutlined,
 } from "@ant-design/icons";
 import AgentIssueList from "../../containers/dashboard/agent/AgentIssueList";
 import AgentMailIssueList from "../../containers/dashboard/agent/AgentMailIssueList";
@@ -38,17 +38,17 @@ const AgnetDashboard = () => {
     {
       path: "/agent/agentIsuues/",
       label: "Issues",
-      icon: <TagsOutlined />,
+      icon: <UnorderedListOutlined />,
       subMenu: [
         {
           path: "/agent/agentIsuues/issueList",
           label: "Issue List",
-          icon: <ExclamationCircleOutlined />,
+          icon: <OrderedListOutlined />,
         },
         {
           path: "/agent/agentIsuues/mailIssueList",
           label: "Mail Issue List",
-          icon: <ClockCircleOutlined />,
+          icon: <MailOutlined />,
         },
       ],
     },

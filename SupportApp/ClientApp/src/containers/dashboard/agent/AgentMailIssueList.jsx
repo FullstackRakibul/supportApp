@@ -6,6 +6,7 @@ import useAuthCheck from "../../../utils/useAuthCheck";
 import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import DeleteTicketButton from "../../../components/CRUD/DeleteTicketButton";
 import ViewTicketButton from "../../../components/CRUD/ViewTicketButton";
+import MailReplyTicketButton from "../../../components/CRUD/MailReplyTicketButton";
 const AgentIssueList = () => {
   useAuthCheck();
   const [tickets, setTickets] = useState([]);
@@ -56,8 +57,9 @@ const AgentIssueList = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
           <ViewTicketButton id={record.id} />
+          <MailReplyTicketButton />
+          <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
         </Space>
       ),
     },
