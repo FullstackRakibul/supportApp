@@ -21,7 +21,6 @@ import SessionIn from "../containers/auth/SessionIn";
 
 const Header = () => {
   const { email, name, empCode, phoneNumber } = userDetails();
-  console.log(name);
 
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [token, setToken] = useState(null);

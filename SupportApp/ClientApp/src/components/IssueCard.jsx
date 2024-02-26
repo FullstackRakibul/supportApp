@@ -46,9 +46,9 @@ const IssueCard = (props) => {
 
   // Function to update tickets after deletion
   const handleTicketDelete = (deletedId) => {
-    // setTickets((prevTickets) =>
-    //   prevTickets.filter((ticket) => ticket.id !== deletedId)
-    // );
+    setTickets((prevTickets) =>
+      prevTickets.filter((ticket) => ticket.id !== deletedId)
+    );
     message.error("Issue Delete Successfully !");
     console.log("Deleted");
     window.location.reload();
@@ -104,7 +104,11 @@ const IssueCard = (props) => {
                   title="Update Issue Status"
                   onClick={() => handleUpdateTicketStatus()}
                 />
-                <DeleteTicketButton id={props.issueId} />
+                <DeleteOutlined
+                  title="Delete Issue"
+                  onClick={() => handleTicketDelete()}
+                />
+                {/* <DeleteTicketButton id={props.issueId} /> */}
               </span>
             </Col>
           </Row>

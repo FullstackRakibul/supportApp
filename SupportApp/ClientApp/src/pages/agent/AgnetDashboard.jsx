@@ -21,7 +21,8 @@ import {
   ClockCircleOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons";
-
+import AgentIssueList from "../../containers/dashboard/agent/AgentIssueList";
+import AgentMailIssueList from "../../containers/dashboard/agent/AgentMailIssueList";
 const { Header, Sider, Content } = Layout;
 
 const AgnetDashboard = () => {
@@ -40,27 +41,22 @@ const AgnetDashboard = () => {
       icon: <TagsOutlined />,
       subMenu: [
         {
-          path: "/agent/agentIsuues/open",
-          label: "Open",
+          path: "/agent/agentIsuues/issueList",
+          label: "Issue List",
           icon: <ExclamationCircleOutlined />,
         },
         {
-          path: "/agent/agentIsuues/pending",
-          label: "Pending",
+          path: "/agent/agentIsuues/mailIssueList",
+          label: "Mail Issue List",
           icon: <ClockCircleOutlined />,
-        },
-        {
-          path: "/agent/agentIsuues/resolved",
-          label: "Resolved",
-          icon: <CheckCircleOutlined />,
         },
       ],
     },
-    {
-      path: "/agent/settings/",
-      label: "Setting",
-      icon: <UserSwitchOutlined />,
-    },
+    // {
+    //   path: "/agent/settings/",
+    //   label: "Setting",
+    //   icon: <UserSwitchOutlined />,
+    // },
   ];
 
   return (
@@ -141,7 +137,16 @@ const AgnetDashboard = () => {
           >
             <Routes>
               <Route path="/*" element={<AgentOverview />} />
-              <Route path="/agentIsuues/*" element={<AgentIssue />} />
+              <Route path="/agentIsuues/" element={<AgentIssue />}>
+                <Route
+                  path="/agentIsuues/issueList"
+                  element={<AgentIssueList />}
+                />
+                <Route
+                  path="/agentIsuues/mailIssueList"
+                  element={<AgentMailIssueList />}
+                />
+              </Route>
               <Route path="/settings" element={<AgentSetting />} />
             </Routes>
           </Content>

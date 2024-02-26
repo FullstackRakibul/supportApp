@@ -25,7 +25,7 @@ const AssignAgentModal = ({ visible, onCancel, issueId }) => {
         values
       );
       message.success("Agent assigned successfully!");
-      window.location.reload();
+      //window.location.reload();
       onCancel();
     } catch (error) {
       console.error("Error assigning agent:", error);

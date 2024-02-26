@@ -161,23 +161,6 @@ namespace SupportApp.Controllers
         }
 
 
-        [HttpPost("assignSupportEngineer")]
-        public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
-        {
-            try
-            {
-                int ticketId = targetSupportEngineerDto.TicketId;
-                int agentId = targetSupportEngineerDto.AgentId;
-
-                _targetService.AssignSupportEngineer(ticketId,agentId);
-                return Ok("Support engineer assigned successfully.");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it based on your application's requirements
-                return BadRequest("Failed to assign support engineer.");
-            }
-        }
 
         [HttpGet("assign/ticket/{id}")]
         public async Task<IActionResult> GetAssignDetails(int id)
@@ -192,6 +175,51 @@ namespace SupportApp.Controllers
             return Ok(ticketDetailsData);
         }
 
-    }
+
+        // ..............................................Agent API's........................................
+
+		[HttpGet("agentIssueList/{agentId}")]
+		public async Task<IActionResult> AgentIssueList(string agentId)
+		{
+			var agentData = await _context.Agent.FirstOrDefaultAsync(agent => agent.EmpCode == agentId);
+			if (agentData == null) { 
+                return NotFound("No data for this agent .");
+            }
+
+			var ticketDetailsData = await _context.Target
+									.Include(t => t.Ticket) 
+									.Where(t => t.AgentId == agentData.AgentId) 
+									.Select(t => t.Ticket) 
+									.ToListAsync();
+
+			if (ticketDetailsData == null || ticketDetailsData.Count == 0)
+			{
+				return NotFound("No ticket details found for this agent.");
+			}
+
+			return Ok(ticketDetailsData);
+		}
+
+        // assign support engineer ............
+
+		[HttpPost("assignSupportEngineer")]
+		public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
+		{
+			try
+			{
+				int ticketId = targetSupportEngineerDto.TicketId;
+				int agentId = targetSupportEngineerDto.AgentId;
+
+				_targetService.AssignSupportEngineer(ticketId, agentId);
+				return Ok("Support engineer assigned successfully.");
+			}
+			catch (Exception ex)
+			{
+				// Log the exception or handle it based on your application's requirements
+				return BadRequest("Failed to assign support engineer.");
+			}
+		}
+
+	}
 
 }
