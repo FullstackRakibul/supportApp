@@ -1,60 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { Table, Space, Button, message, Modal } from "antd";
+import { UsergroupAddOutlined, EditOutlined } from "@ant-design/icons";
 import { AxiosInstance } from "../../../router/api";
 import useAuthCheck from "../../../utils/useAuthCheck";
-import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import DeleteTicketButton from "../../../components/CRUD/DeleteTicketButton";
+import tokenDetails from "../../../utils/tokenDetails";
+import ViewTicketButton from "../../../components/CRUD/ViewTicketButton";
+import UpdateStatusTicketButton from "../../../components/CRUD/UpdateStatusTicketButton";
 const AgentIssueList = () => {
   useAuthCheck();
+  const { role, EmpCode } = tokenDetails();
   const [tickets, setTickets] = useState([]);
-  const [ticketData, setTicketData] = useState([]);
+  const [statusModalVisible, setStatusModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
         const response = await AxiosInstance.get(
-          "/api/Tickets/getTicketFromMail"
+          `/api/Targets/agentIssueList/${EmpCode}`
         );
-        console.log(response.data);
         setTickets(response.data);
       } catch (error) {
-        console.error("Error fetching tickets:", error);
+        message.error("Error fetching tickets:", error);
       }
     };
 
     fetchTickets();
   }, []);
-
-  const handleShow = (id) => {
-    const fetchData = async () => {
-      try {
-        const response = await AxiosInstance.get(`/api/Tickets/${id}`);
-        setTicketData(response.data);
-        console.log(response.data);
-        //message.success(`Details popup for Ticket id : ${id}`);
-        setIsModalOpen(true);
-        //message.success(`issue id : ${id}`);
-      } catch (error) {
-        console.log(`show error ${error}`);
-      }
-    };
-    fetchData();
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
+  {
+    /* need to change code here  */
+  }
   // Function to update tickets after deletion
   const handleTicketDelete = (deletedId) => {
     setTickets((prevTickets) =>
       prevTickets.filter((ticket) => ticket.id !== deletedId)
     );
   };
+  const handleUpdateTicketStatus = () => {
+    setSelectedStatus(id);
+    setStatusModalVisible(true);
+  };
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  {
+    /* need to change code here  */
+  }
   const columns = [
     {
       title: "From",
       dataIndex: "fromEmail",
       key: "fromEmail",
+      render: (text, record) => {
+        return text ? text : record.createdBy;
+      },
     },
     {
       title: "Subject",
@@ -62,7 +59,7 @@ const AgentIssueList = () => {
       key: "title",
     },
     {
-      title: "Subject",
+      title: "Issue Raise Time",
       dataIndex: "createdAt",
       key: "createdAt",
     },
@@ -72,13 +69,20 @@ const AgentIssueList = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button
-            className="text-primary "
-            type="default"
-            icon={<EyeOutlined />}
-            onClick={() => handleShow(record.id)}
-          />
           <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
+          <ViewTicketButton id={record.id} />
+
+          {/* need to change code here  */}
+          <UpdateStatusTicketButton
+            visible={statusModalVisible}
+            onCancel={() => setStatusModalVisible(false)}
+            issueId={record.id}
+          />
+          <EditOutlined
+            title="Update Issue Status"
+            onClick={() => handleUpdateTicketStatus()}
+          />
+          {/* need to change code here  */}
         </Space>
       ),
     },

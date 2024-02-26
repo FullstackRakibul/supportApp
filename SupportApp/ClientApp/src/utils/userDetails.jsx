@@ -1,6 +1,6 @@
 const useDetails = () => {
   const userData = localStorage.getItem("user");
-  console.log(userData);
+
   let email = "";
   let name = "";
   let empCode = "";

@@ -5,10 +5,10 @@ import FetchMailTicket from "../../../components/global/FetchMailTicket";
 import useAuthCheck from "../../../utils/useAuthCheck";
 import { EyeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import DeleteTicketButton from "../../../components/CRUD/DeleteTicketButton";
+import ViewTicketButton from "../../../components/CRUD/ViewTicketButton";
 const AgentIssueList = () => {
   useAuthCheck();
   const [tickets, setTickets] = useState([]);
-  const [ticketData, setTicketData] = useState([]);
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -16,34 +16,14 @@ const AgentIssueList = () => {
         const response = await AxiosInstance.get(
           "/api/Tickets/getTicketFromMail"
         );
-        console.log(response.data);
         setTickets(response.data);
       } catch (error) {
-        console.error("Error fetching tickets:", error);
+        message.error("Error fetching tickets:", error);
       }
     };
 
     fetchTickets();
   }, []);
-
-  const handleShow = (id) => {
-    const fetchData = async () => {
-      try {
-        const response = await AxiosInstance.get(`/api/Tickets/${id}`);
-        setTicketData(response.data);
-        console.log(response.data);
-        //message.success(`Details popup for Ticket id : ${id}`);
-        setIsModalOpen(true);
-        //message.success(`issue id : ${id}`);
-      } catch (error) {
-        console.log(`show error ${error}`);
-      }
-    };
-    fetchData();
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
 
   // Function to update tickets after deletion
   const handleTicketDelete = (deletedId) => {
@@ -56,6 +36,9 @@ const AgentIssueList = () => {
       title: "From",
       dataIndex: "fromEmail",
       key: "fromEmail",
+      render: (text, record) => {
+        return text ? text : record.createdBy;
+      },
     },
     {
       title: "Subject",
@@ -63,7 +46,7 @@ const AgentIssueList = () => {
       key: "title",
     },
     {
-      title: "Subject",
+      title: "create date",
       dataIndex: "createdAt",
       key: "createdAt",
     },
@@ -73,13 +56,8 @@ const AgentIssueList = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button
-            className="text-primary "
-            type="default"
-            icon={<EyeOutlined />}
-            onClick={() => handleShow(record.id)}
-          />
           <DeleteTicketButton id={record.id} onDelete={handleTicketDelete} />
+          <ViewTicketButton id={record.id} />
         </Space>
       ),
     },
