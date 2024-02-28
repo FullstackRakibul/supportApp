@@ -9,12 +9,11 @@ const EmployeeIssueListContainer = ({ handleFunction }) => {
   useEffect(() => {
     const fetchData = async () => {
       console.log(EmpCode);
-      // const response = await AxiosInstance.get(
-      //   "/api/Tickets/getTicketByCreator",
-      //   EmpCode
-      // );
-      //console.log(response.data);
-      //setTicketData(response.data);
+      const response = await AxiosInstance.get(
+        `/api/Tickets/getTicketByCreator/${EmpCode}`
+      );
+      console.log(response.data);
+      setTicketData(response.data);
     };
     fetchData();
   }, []);
