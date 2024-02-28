@@ -30,7 +30,13 @@ namespace SupportApp.Models
        public Target? Target { get; set; }
 
         public ICollection<Review>? Reviews { get; set; }
-        
+
+
+
+        ///////////// addition 
+        public string? agentName { get; set; }
+        public string? phoneEXT { get; set; }
+
 
     }
 
@@ -47,8 +53,8 @@ namespace SupportApp.Models
         Open,
         Acknowledged,
         InProgress,
-        Closed,
         Complete,
+        Closed,
         Deleted
     }
 }

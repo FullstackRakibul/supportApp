@@ -178,6 +178,8 @@ namespace SupportApp.Controllers
 
         // ..............................................Agent API's........................................
 
+
+        // assign ticket list for Agnet
 		[HttpGet("agentIssueList/{agentId}")]
 		public async Task<IActionResult> AgentIssueList(string agentId)
 		{
@@ -200,7 +202,19 @@ namespace SupportApp.Controllers
 			return Ok(ticketDetailsData);
 		}
 
-        // assign support engineer ............
+		// assign support engineer ............
+
+
+
+
+		// ..............................................Agent API's........................................
+
+
+
+
+		// ..............................................Admin API's........................................
+
+
 
 		[HttpPost("assignSupportEngineer")]
 		public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
@@ -219,6 +233,9 @@ namespace SupportApp.Controllers
 				return BadRequest("Failed to assign support engineer.");
 			}
 		}
+
+
+
 
 	}
 

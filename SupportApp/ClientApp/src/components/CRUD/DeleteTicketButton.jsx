@@ -10,7 +10,7 @@ const DeleteTicketButton = ({ id }) => {
     try {
       await AxiosInstance.delete(`/api/Tickets/${id}`);
       message.success("Ticket Deleted Successfully");
-      window.location.reload();
+      //window.location.reload();
     } catch (error) {
       console.log(`Delete operation failed ! ${id}`, error);
     }

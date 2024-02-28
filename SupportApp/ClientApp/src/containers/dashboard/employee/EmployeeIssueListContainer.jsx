@@ -8,9 +8,8 @@ const EmployeeIssueListContainer = ({ handleFunction }) => {
   const [ticketData, setTicketData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      console.log(EmpCode);
       const response = await AxiosInstance.get(
-        `/api/Tickets/getTicketByCreator/${EmpCode}`
+        `/api/Tickets/getRecentRaisedTicketByCreator/${EmpCode}`
       );
       console.log(response.data);
       setTicketData(response.data);
@@ -19,7 +18,7 @@ const EmployeeIssueListContainer = ({ handleFunction }) => {
   }, []);
   return (
     <>
-      {ticketData.map((ticket) => (
+      {/* {ticketData.map((ticket) => (
         <SingleIssueDetailsShowCard
           key={ticket.id}
           id={ticket.id}
@@ -28,7 +27,30 @@ const EmployeeIssueListContainer = ({ handleFunction }) => {
           status={ticket.status}
           handleFunction={handleFunction}
         />
-      ))}
+      ))} */}
+      {Array.isArray(ticketData) ? (
+        ticketData.map((ticket) => (
+          <SingleIssueDetailsShowCard
+            key={ticket.id}
+            id={ticket.id}
+            title={ticket.title}
+            description={ticket.description}
+            status={ticket.status}
+            raisedBy={ticket.createdBy}
+            handleFunction={handleFunction}
+          />
+        ))
+      ) : (
+        <SingleIssueDetailsShowCard
+          key={ticketData.id}
+          id={ticketData.id}
+          title={ticketData.title}
+          description={ticketData.description}
+          status={ticketData.status}
+          raisedBy={ticketData.createdBy}
+          handleFunction={handleFunction}
+        />
+      )}
     </>
   );
 };

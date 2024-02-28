@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Optional: Base Styles File */
+.base-font {
+  @apply font-anekBangla;
+}
+
 :root {
   font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  /*background-color: rgb(255, 245, 245);*/
+  background-color: rgb(255, 245, 245);
 
   padding: 0;
   margin: 0;

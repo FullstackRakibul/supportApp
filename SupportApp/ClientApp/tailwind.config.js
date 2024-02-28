@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,}", "./src/index.css"],
   theme: {
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
-      anek: ["Anek-Bangle", "sans-serif"],
+      anekBangla: ['"Anek Bangla"', "sans-serif"],
     },
     extend: {
       fontFamily: {
