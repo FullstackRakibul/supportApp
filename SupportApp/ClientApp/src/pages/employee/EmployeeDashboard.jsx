@@ -39,7 +39,7 @@ const EmployeeDashboard = () => {
     { path: "/employee/", label: "Dashboard", icon: <DashboardOutlined /> },
     {
       path: "/employee/empisuuelist/",
-      label: "Issue List",
+      label: "Issues",
       icon: <TagsOutlined />,
     },
     {
@@ -61,7 +61,7 @@ const EmployeeDashboard = () => {
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             {customRoutes.map((route) => (
               <Menu.Item
-              className="hover:bg-primary"
+                className="hover:bg-primary"
                 style={{ accentColor: "#002A53" }}
                 key={route.path}
                 icon={route.icon}

@@ -9,10 +9,9 @@ import {
   PoweroffOutlined,
 } from "@ant-design/icons";
 
-import { Avatar, Button } from "antd";
+import { Avatar, Button, Tooltip } from "antd";
 
-import { NavLink } from "react-router-dom";
-
+import userDetails from "../utils/userDetails";
 //media
 import logo from "../assets/hameemgroup-software-logo-new.png";
 import userimg from "../assets/user01.png";
@@ -21,6 +20,8 @@ import SessionOut from "../containers/auth/SessionOut";
 import SessionIn from "../containers/auth/SessionIn";
 
 const Header = () => {
+  const { email, name, empCode, phoneNumber } = userDetails();
+
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [token, setToken] = useState(null);
   useEffect(() => {
@@ -40,21 +41,28 @@ const Header = () => {
             <div className=""></div>
             <img src={logo} className=" h-7 " />
           </div>
-          <div className="w-7/12 flex justify-center items-between h-10">
+          <div className="w-5/12 flex justify-center items-between h-10">
             <div className="text-primary p-1"></div>
           </div>
-          <div className="w-2/12 flex flex-row justify-end">
+          <div className="w-4/12 flex flex-row justify-end">
             <div className="text-xl flex flex-row justify-around items-center gap-4">
               <PushpinOutlined className="text-2xl text-primary" />
               <QuestionCircleOutlined className="text-2xl" />
               <BellOutlined className="text-2xl" />
               <MessageOutlined className="text-2xl" />
-              {/* <Avatar
+
+              <Avatar
                 size={28}
                 shape="circle"
                 src={userimg}
                 icon={<UserOutlined />}
-              /> */}
+              />
+              {name ? (
+                <p className="font-sans text-sm ">Hello,{name}</p>
+              ) : (
+                <p className="font-sans text-sm ">Hello,guest</p>
+              )}
+
               {token ? <SessionOut /> : <SessionIn />}
             </div>
           </div>
@@ -74,7 +82,7 @@ const Header = () => {
           <div className="w-11/12 flex flex-row justify-end gap-3">
             <section className="container mx-auto">
               <div className="flex flex-row justify-end items-center font-sans">
-                <NavLink to="/createTicket">
+                {/* <NavLink to="/createTicket">
                   <Button
                     type="primary"
                     className="font-sans font-semibold bg-primary"
@@ -82,7 +90,7 @@ const Header = () => {
                   >
                     Create New Ticket
                   </Button>
-                </NavLink>
+                </NavLink> */}
               </div>
             </section>
             <p>.</p>

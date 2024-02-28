@@ -42,10 +42,12 @@ import CreateReply from "./containers/ticket/ticketReply/CreateReply.jsx";
 import SingleTicketCard from "./containers/ticket/SingleTicketCard.jsx";
 import IssueCard from "./components/IssueCard.jsx";
 import Clock from "./components/global/Clock.jsx";
+import useAuthCheck from "./utils/useAuthCheck.jsx";
 
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
+  useAuthCheck();
   const [token, setToken] = useState(null);
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -60,7 +62,7 @@ const App = () => {
 
   const customRoutes = [
     { path: "/", label: "Dashboard", icon: <DashboardOutlined /> },
-    { path: "/agent", label: "Agent", icon: <UserSwitchOutlined /> },
+    { path: "/manageAgent", label: "Agent", icon: <UserSwitchOutlined /> },
     // { path: "/profile", label: "Profile", icon: <IdcardOutlined /> },
     // { path: "/emailList", label: "Email", icon: <MailOutlined /> },
     // { path: "/ticketList", label: "Ticket", icon: <TagsOutlined /> },
@@ -141,13 +143,13 @@ const App = () => {
             <Routes>
               <Route path="/*" element={<Dashboard />} />
               <Route path="/profile" element={<ProfileCard />} />
-              <Route path="/agent" element={<AgentCard />} />
+              <Route path="/manageAgent" element={<AgentCard />} />
               <Route path="/ticketList" element={<TicketCard />} />
               <Route path="/createTicket" element={<CreateTicket />} />
               <Route path="/createTicketType" element={<CreateTicketType />} />
               <Route path="/unit" element={<UnitCard />} />
               <Route path="/department" element={<Department />} />
-              <Route path="/sessionform" element={<SessionForm />} />
+              {/* <Route path="/sessionform" element={<SessionForm />} /> */}
               <Route path="/manageIssue" element={<ManageIssue />} />
               <Route path="/targetCreate" element={<TargetCreate />} />
               <Route path="/singleticketcard" element={<SingleTicketCard />} />

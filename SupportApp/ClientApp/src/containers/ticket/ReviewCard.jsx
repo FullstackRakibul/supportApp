@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AxiosInstance } from "../../router/api";
 import { useParams } from "react-router-dom";
-import userRole from "../../utils/userRole";
+import userRole from "../../utils/userDetails";
 import {
   Button,
   Input,
