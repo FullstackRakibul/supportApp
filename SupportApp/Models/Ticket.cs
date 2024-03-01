@@ -30,9 +30,10 @@ namespace SupportApp.Models
        public Target? Target { get; set; }
 
         public ICollection<Review>? Reviews { get; set; }
-        
-
     }
+
+
+
 
     public enum TicketPriority
     {
@@ -47,8 +48,8 @@ namespace SupportApp.Models
         Open,
         Acknowledged,
         InProgress,
-        Closed,
         Complete,
+        Closed,
         Deleted
     }
 }

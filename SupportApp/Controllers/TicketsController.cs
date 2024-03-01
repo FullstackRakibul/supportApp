@@ -290,19 +290,20 @@ namespace SupportApp.Controllers
 
 
 
-        // employee routes apis................
+        //------------------------------------------- employee routes apis................
 
-        [HttpGet("getTicketByCreator")]
+        // get ticket list by ticket creator ID
+        [HttpGet("getTicketByCreator/{EmpCode}")]
         public async Task<ActionResult<Ticket>> GetTicketByCreator(string EmpCode)
         {
             try
             {
                 var ticketDetails = await _context.Ticket
                 .Where(t => t.CreatedBy == EmpCode)
-                .FirstOrDefaultAsync();
+                .ToListAsync();
                 if (ticketDetails == null)
                 {
-                    return NotFound(); // Return 404 if no ticket is found for the given empCode
+                    return NotFound(); 
                 }
 
                 return Ok(ticketDetails);
@@ -314,7 +315,39 @@ namespace SupportApp.Controllers
             }
         }
 
+		// get ticket list by ticket creator ID
+		[HttpGet("getAcknowledgeTicketByCreator/{EmpCode}")]
+		public async Task<ActionResult<Ticket>> GetAcknowledgeTicketByCreator(string EmpCode)
+		{
+			try
+			{
+                var acknowledgeTicketData = await _ticketService.GetAcknowledgeTicketListByCreatorAsync(EmpCode);
+                return Ok(acknowledgeTicketData);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500);
+			}
+		}
+
+		//------------------------------------------- agent routes apis................
 
 
+		// get ticket list by ticket creator ID
+		[HttpGet("getRecentRaisedTicketByCreator/{EmpCode}")]
+		public async Task<ActionResult<Ticket>> GetRecentRaisedTicketByCreator(string EmpCode)
+		{
+			try
+			{
+				var acknowledgeTicketData = await _ticketService.GetRecentRaisedTicketListByCreatorAsync(EmpCode);
+				return Ok(acknowledgeTicketData);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500);
+			}
+		}
 	}
 }

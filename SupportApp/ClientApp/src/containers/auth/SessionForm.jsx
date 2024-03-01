@@ -86,8 +86,13 @@ const SessionForm = () => {
             <Form.Item className="font-sans" name="username" label="username">
               <Input />
             </Form.Item>
-            <Form.Item className="font-sans" name="password" label="password">
-              <Input />
+            <Form.Item
+              className="font-sans"
+              type="password"
+              name="password"
+              label="password"
+            >
+              <Input.Password />
             </Form.Item>
             <Form.Item>
               <Button
