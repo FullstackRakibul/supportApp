@@ -8,9 +8,11 @@ namespace SupportApp.Service;
 public class TicketService
 {
     private readonly SupportAppDbContext _context;
-    public TicketService(SupportAppDbContext context )
+    private readonly TicketAndTargetDto _ticketAndTargetDto;
+    public TicketService(SupportAppDbContext context , TicketAndTargetDto ticketAndTargetDto )
     {
         _context = context;
+        _ticketAndTargetDto = ticketAndTargetDto;
         
     }
     // private string GenerateTicketNumber()
@@ -226,7 +228,7 @@ public class TicketService
 	public async Task<IEnumerable<Ticket>> GetRecentRaisedTicketListByCreatorAsync(string EmpCode)
 	{
 		var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
-		return await _context.Ticket.FromSqlRaw("SELECT ticket.* , agent.Name as agentName , agent.PhoneExtension as phoneEXT FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
+		return await _context.Ticket.FromSqlRaw("SELECT ticket.* ,  agent.Name as agentName , agent.PhoneExtension FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId   WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
 			empCodeParam).ToListAsync();
 	}
 
