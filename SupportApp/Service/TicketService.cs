@@ -212,23 +212,58 @@ public class TicketService
 	}
 
 
-	//------------------------------ EMPLOYEE API ----------------------------------
+    //------------------------------ EMPLOYEE API ----------------------------------
 
 
-	// get ticket list by ticket creator ID
+    //get ticket list by ticket creator ID
 
-	public async Task<IEnumerable<Ticket>> GetAcknowledgeTicketListByCreatorAsync(string EmpCode) {
-		var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
-		return await _context.Ticket.FromSqlRaw(
-			"SELECT ticket. * ,  agent.Name as agentName , agent.PhoneExtension as phoneEXT FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
-			empCodeParam).ToListAsync();
+    public async Task<IEnumerable<Ticket>> GetAcknowledgeTicketListByCreatorAsync(string EmpCode)
+    {
+        var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
+        return await _context.Ticket.FromSqlRaw(
+            "SELECT ticket. * FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
+            empCodeParam).ToListAsync();
 
     }
 
-	public async Task<IEnumerable<Ticket>> GetRecentRaisedTicketListByCreatorAsync(string EmpCode)
+    //public async Task<IEnumerable<SingleIssueDetailsDto>> GetAcknowledgeTicketListByCreatorAsync(string EmpCode) {
+    //    var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
+    //    var ticketsWithAgentInfo = await _context.Ticket
+    //        .FromSqlRaw(
+    //            "SELECT ticket.*, agent.Name as AgentName, agent.PhoneExtension as PhoneEXT FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
+    //            empCodeParam)
+    //        .Select(ticket => new SingleIssueDetailsDto {
+    //            Id = ticket.Id,
+    //            Title = ticket.Title,
+    //            Description = ticket.Description,
+    //            IsEmail = ticket.IsEmail,
+    //            FromEmail = ticket.FromEmail,
+    //            UpdatedBy = ticket.UpdatedBy,
+    //            CreatedAt = ticket.CreatedAt,
+    //            CreatedBy = ticket.CreatedBy,
+    //            Status = ticket.Status,
+    //            Priority = ticket.Priority,
+    //            TicketType = ticket.TicketType,
+    //            AgentName = ticket.AgentName,
+    //            PhoneEXT = ticket.PhoneEXT
+    //        })
+    //        .ToListAsync();
+
+    //    return ticketsWithAgentInfo;
+    //}
+
+
+
+
+
+    public async Task<IEnumerable<Ticket>> GetRecentRaisedTicketListByCreatorAsync(string EmpCode)
 	{
 		var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
+<<<<<<< HEAD
 		return await _context.Ticket.FromSqlRaw("SELECT ticket.* ,  agent.Name as agentName , agent.PhoneExtension FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId   WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
+=======
+		return await _context.Ticket.FromSqlRaw("SELECT ticket.*  FROM Ticket ticket LEFT JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
+>>>>>>> 14a560c7d2b2bdda3fcc5d0d09c056cfa18fce33
 			empCodeParam).ToListAsync();
 	}
 
