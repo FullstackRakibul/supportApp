@@ -8,11 +8,10 @@ namespace SupportApp.Service;
 public class TicketService
 {
     private readonly SupportAppDbContext _context;
-    private readonly TicketAndTargetDto _ticketAndTargetDto;
-    public TicketService(SupportAppDbContext context , TicketAndTargetDto ticketAndTargetDto )
+
+    public TicketService(SupportAppDbContext context )
     {
         _context = context;
-        _ticketAndTargetDto = ticketAndTargetDto;
         
     }
     // private string GenerateTicketNumber()
@@ -221,7 +220,7 @@ public class TicketService
     {
         var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
         return await _context.Ticket.FromSqlRaw(
-            "SELECT ticket. * FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
+            "SELECT ticket. * FROM Ticket ticket left JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
             empCodeParam).ToListAsync();
 
     }
@@ -259,12 +258,10 @@ public class TicketService
     public async Task<IEnumerable<Ticket>> GetRecentRaisedTicketListByCreatorAsync(string EmpCode)
 	{
 		var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
-<<<<<<< HEAD
-		return await _context.Ticket.FromSqlRaw("SELECT ticket.* ,  agent.Name as agentName , agent.PhoneExtension FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId LEFT JOIN Agent agent ON target.AgentId = agent.AgentId   WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
-=======
-		return await _context.Ticket.FromSqlRaw("SELECT ticket.*  FROM Ticket ticket LEFT JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
->>>>>>> 14a560c7d2b2bdda3fcc5d0d09c056cfa18fce33
-			empCodeParam).ToListAsync();
+
+        return await _context.Ticket.FromSqlRaw("SELECT ticket.*  FROM Ticket ticket LEFT JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
+
+            empCodeParam).ToListAsync();
 	}
 
 	//------------------------------ Agent API ----------------------------------

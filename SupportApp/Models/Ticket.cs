@@ -30,17 +30,7 @@ namespace SupportApp.Models
        public Target? Target { get; set; }
 
         public ICollection<Review>? Reviews { get; set; }
-<<<<<<< HEAD
 
-
-
-        /////////////// addition 
-        public string? agentName { get; set; }
-        public string? phoneEXT { get; set; }
-
-
-=======
->>>>>>> 14a560c7d2b2bdda3fcc5d0d09c056cfa18fce33
     }
 
 
