@@ -39,9 +39,7 @@ const props = {
 const CreateTicket = () => {
   useAuthCheck();
   const { role, EmpCode } = tokenDetails();
-
   const [form] = Form.useForm();
-
   const [selectedTicketTypeId, setSelectedTicketTypeId] = useState(null);
   const [selectedDepartmentId, setselectedDepartmentId] = useState(null);
   const [selectedUnitId, setselectedUnitId] = useState(null);
