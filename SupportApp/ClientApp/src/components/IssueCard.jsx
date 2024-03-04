@@ -93,9 +93,9 @@ const IssueCard = (props) => {
             >{`creator ID : ${props.issueCreator}`}</Col>
             <Col className="font-sans flex gap-2" span={12}>
               <span className="flex text-lg gap-2">
-                <NavLink to="/singleticketcard">
+                {/* <NavLink to="/singleticketcard">
                   <EyeOutlined id={props.id} />
-                </NavLink>
+                </NavLink> */}
                 <UsergroupAddOutlined
                   title="Assign Agent to this issue"
                   onClick={() => handleAssignAgentClick()}

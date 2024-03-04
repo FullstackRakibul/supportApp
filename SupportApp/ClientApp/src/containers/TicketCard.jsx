@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Table, Space, Button, message, Modal, Form, Select } from "antd";
 import {
   RollbackOutlined,
@@ -23,7 +22,7 @@ const TicketCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://localhost:7295/api/Tickets");
+        const response = await AxiosInstance.get("api/Tickets");
         setTicket(response.data);
         setLoading(false);
 

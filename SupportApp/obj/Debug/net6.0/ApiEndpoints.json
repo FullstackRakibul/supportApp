@@ -938,8 +938,8 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
-    "Method": "GetTicketByCreator",
-    "RelativePath": "api/Tickets/getTicketByCreator",
+    "Method": "GetAcknowledgeTicketByCreator",
+    "RelativePath": "api/Tickets/getAcknowledgeTicketByCreator/{EmpCode}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -947,7 +947,59 @@
       {
         "Name": "EmpCode",
         "Type": "System.String",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.Ticket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "GetRecentRaisedTicketByCreator",
+    "RelativePath": "api/Tickets/getRecentRaisedTicketByCreator/{EmpCode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpCode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.Ticket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "GetTicketByCreator",
+    "RelativePath": "api/Tickets/getTicketByCreator/{EmpCode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpCode",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
