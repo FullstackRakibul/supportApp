@@ -219,7 +219,7 @@ public class TicketService
     {
         var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
         return await _context.Ticket.FromSqlRaw(
-            "SELECT ticket. * FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
+            "SELECT ticket. * FROM Ticket ticket left JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
             empCodeParam).ToListAsync();
 
     }
