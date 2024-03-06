@@ -44,8 +44,6 @@ public class DashboardsController : ControllerBase
             Tickets = tickets,
             Departments = department
         };
-
-
         return Ok(contextData) ;
     }
 

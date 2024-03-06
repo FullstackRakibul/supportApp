@@ -15,7 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SupportApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09aa0f7ebf63c588664b12b3a5f17dcb4dbdb941")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abec1c92cc43c5ecaa9f80ea7502ce3324151059")]
+>>>>>>> 2d4a05cc1805bcea519e371c2f3d297fac3efd1c
 [assembly: System.Reflection.AssemblyProductAttribute("SupportApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SupportApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
