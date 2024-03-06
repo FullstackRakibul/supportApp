@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -342,6 +343,27 @@ namespace SupportApp.Controllers
 			{
 				var acknowledgeTicketData = await _ticketService.GetRecentRaisedTicketListByCreatorAsync(EmpCode);
 				return Ok(acknowledgeTicketData);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500);
+			}
+		}
+
+		[HttpGet("updateForCheck/{ticketId}")]
+		public async Task<ActionResult<Ticket>> UpdateForCheck(int ticketId)
+		{
+			try
+			{
+				var updateticketStatus = await _context.Ticket
+				.Where(t => t.Id == ticketId).SingleOrDefaultAsync();
+
+                updateticketStatus.Status ++;
+				_context.Ticket.Update(updateticketStatus);
+				await _context.SaveChangesAsync();
+
+				return Ok("Ticket Status Updated .");
 			}
 			catch (Exception ex)
 			{
