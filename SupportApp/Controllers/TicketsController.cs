@@ -11,6 +11,7 @@ using MimeKit.Encodings;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
+using SupportApp.Service.Pagination;
 
 namespace SupportApp.Controllers
 {
@@ -22,13 +23,15 @@ namespace SupportApp.Controllers
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
+        private readonly PaginationService _paginationService;
        
 
-        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService )
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService  , PaginationService paginationService )
         {
             _context = context;
             _ticketService = ticketService;
             _emailBoxService = emailBoxService;
+            _paginationService = paginationService;
         }
 
         // GET: api/Ticket
@@ -370,6 +373,20 @@ namespace SupportApp.Controllers
 				Console.WriteLine(ex);
 				return StatusCode(500);
 			}
-		}
-	}
+
+
+           
+
+            
+        }
+
+
+        // Pagination API
+        [HttpGet("getPaginationList/{currentPage}/{pageSize}")]
+        public IActionResult GetPaginationList(int currentPage , int pageSize)
+        {
+            var tickets = _paginationService.GetPaginationList(currentPage, pageSize);
+            return Ok(tickets);
+        }
+    }
 }
