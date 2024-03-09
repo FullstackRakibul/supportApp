@@ -264,6 +264,50 @@ public class TicketService
             empCodeParam).ToListAsync();
 	}
 
+
+
+    // pagination API for tickets
+
+	public IEnumerable<Ticket> GetPaginationList(int currentPage, int pageSize)
+	{
+		int skip = (currentPage - 1) * pageSize;
+		return _context.Ticket.OrderByDescending(t => t.CreatedAt)
+							   .Skip(skip)
+							   .Take(pageSize)
+							   .ToList();
+	}
+
+	// update for check ................
+
+	public async Task<string> UpdateForCheckTicketStatus(int ticketId)
+	{
+		try
+		{
+			var ticketToUpdate = await _context.Ticket
+				.Where(t => t.Id == ticketId)
+				.SingleOrDefaultAsync();
+
+			if (ticketToUpdate != null)
+			{
+				ticketToUpdate.Status++;
+				_context.Ticket.Update(ticketToUpdate);
+				await _context.SaveChangesAsync();
+
+				return "Ticket Status Updated.";
+			}
+			else
+			{
+				return "Ticket not found.";
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return "Failed to update ticket status.";
+		}
+	}
+
+
 	//------------------------------ Agent API ----------------------------------
 
 

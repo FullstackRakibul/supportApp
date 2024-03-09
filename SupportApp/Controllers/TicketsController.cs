@@ -354,38 +354,22 @@ namespace SupportApp.Controllers
 			}
 		}
 
-		[HttpGet("updateForCheck/{ticketId}")]
-		public async Task<ActionResult<Ticket>> UpdateForCheck(int ticketId)
+
+		// UpdateForCheckTicketStatus API 
+
+		[HttpGet("UpdateForCheckTicketStatus/{ticketId}")]
+		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
 		{
-			try
-			{
-				var updateticketStatus = await _context.Ticket
-				.Where(t => t.Id == ticketId).SingleOrDefaultAsync();
-
-                updateticketStatus.Status ++;
-				_context.Ticket.Update(updateticketStatus);
-				await _context.SaveChangesAsync();
-
-				return Ok("Ticket Status Updated .");
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-				return StatusCode(500);
-			}
+			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
+			return Ok(result);
+		}
 
 
-           
-
-            
-        }
-
-
-        // Pagination API
-        [HttpGet("getPaginationList/{currentPage}/{pageSize}")]
+		// Pagination API
+		[HttpGet("getPaginationList/{currentPage}/{pageSize}")]
         public IActionResult GetPaginationList(int currentPage , int pageSize)
         {
-            var tickets = _paginationService.GetPaginationList(currentPage, pageSize);
+            var tickets = _ticketService.GetPaginationList(currentPage, pageSize);
             return Ok(tickets);
         }
     }
