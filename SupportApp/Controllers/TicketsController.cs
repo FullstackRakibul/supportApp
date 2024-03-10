@@ -364,13 +364,38 @@ namespace SupportApp.Controllers
 			return Ok(result);
 		}
 
-
 		// Pagination API
-		[HttpGet("getPaginationList/{currentPage}/{pageSize}")]
-        public IActionResult GetPaginationList(int currentPage , int pageSize)
+		[HttpGet("getPaginationList/{Skip}/{Take}")]
+        public IActionResult GetPaginationList(int Skip, int Take)
         {
-            var tickets = _ticketService.GetPaginationList(currentPage, pageSize);
-            return Ok(tickets);
-        }
-    }
+
+			try
+			{
+				var tickets = _ticketService.GetPaginationList(Skip, Take);
+				return Ok(tickets);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+
+
+        // Email List API
+		[HttpGet("GetMailTicketList/{Skip}/{Take}")]
+		public IActionResult GetMailTicketList(int Skip, int Take)
+		{
+			try
+			{
+                var getMailTicketList = _ticketService.GetMailTicketList(Skip, Take);
+                return Ok(getMailTicketList);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+	}
 }

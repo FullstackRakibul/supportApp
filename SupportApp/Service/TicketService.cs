@@ -308,6 +308,30 @@ public class TicketService
 	}
 
 
+
+
+	// get mail ticket list 
+
+	public IEnumerable<Ticket> GetMailTicketList(int currentPage, int pageSize)
+	{
+		try
+		{
+			int skip = (currentPage - 1) * pageSize;
+
+			return  _context.Ticket.Where(t => t.IsEmail == true)
+						.OrderByDescending(t => t.CreatedAt)
+						.Skip(skip)
+						.Take(pageSize)
+						.ToList();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return Enumerable.Empty<Ticket>();
+		}
+	}
+
+
 	//------------------------------ Agent API ----------------------------------
 
 
