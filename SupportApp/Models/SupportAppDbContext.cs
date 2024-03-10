@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SupportApp.Models;
 
 namespace SupportApp.Models
 {
