@@ -1273,6 +1273,52 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "CreateTicketType",
+    "RelativePath": "api/TicketTypes/ticket/type/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketType",
+        "Type": "SupportApp.Models.TicketType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "GetTicketTypeList",
+    "RelativePath": "api/TicketTypes/ticket/type/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "SupportApp.Controllers.UnitsController",
     "Method": "GetUnit",
     "RelativePath": "api/Units",
