@@ -1258,7 +1258,7 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketTypesController",
-    "Method": "DeleteTicketType",
+    "Method": "DeleteTicketTypeAPI",
     "RelativePath": "api/TicketTypes/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -1271,6 +1271,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "DeleteTicketType",
+    "RelativePath": "api/TicketTypes/ticket/type/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketTypesController",

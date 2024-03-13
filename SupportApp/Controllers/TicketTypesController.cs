@@ -100,7 +100,7 @@ namespace SupportApp.Controllers
 
         // DELETE: api/TicketType/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTicketType(int id)
+        public async Task<IActionResult> DeleteTicketTypeAPI(int id)
         {
             if (_context.TicketType == null)
             {
@@ -134,7 +134,7 @@ namespace SupportApp.Controllers
                     throw new ArgumentException("Subject cannot be empty.");
                 }
                 await _ticketTypeService.CreateTickeType(ticketType);
-                return Ok();
+                return Ok("Type will create successfully.");
             }
             catch(Exception exception) {
                 Console.WriteLine(exception.Message);
@@ -148,6 +148,21 @@ namespace SupportApp.Controllers
             try
             {
                 var getTicketTypeList = await _ticketTypeService.GetTicketTypeListAsync();
+                return Ok(getTicketTypeList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+        }
+
+        [HttpDelete("ticket/type/{id}")]
+        public async Task<ActionResult<TicketType>> DeleteTicketType(int id)
+        {
+            try
+            {
+                var getTicketTypeList = await _ticketTypeService.DeleteTicketTypeListAsync(id);
                 return Ok(getTicketTypeList);
             }
             catch (Exception ex)
