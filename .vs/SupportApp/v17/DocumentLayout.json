@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\alpha\\dotnet\\SupportApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\service\\tickettypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\service\\tickettypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\service\\targetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\service\\targetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\controllers\\tickettypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\tickettypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\controllers\\tickettypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\tickettypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,10 +35,6 @@
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\models\\tickettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\supportapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\supportapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -47,16 +47,8 @@
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\service\\pagination\\paginationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\repository\\pagination\\paginationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\repository\\pagination\\paginationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\service\\targetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\service\\targetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportapp\\supportapp\\dto\\singleissuedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,37 +78,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TicketTypesController.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketTypesController.cs",
-              "RelativeDocumentMoniker": "SupportApp\\Controllers\\TicketTypesController.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketTypesController.cs",
-              "RelativeToolTip": "SupportApp\\Controllers\\TicketTypesController.cs",
-              "ViewState": "AQIAAG4AAAAAAAAAAAAswFsAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T17:06:33.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TicketsController.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketsController.cs",
-              "RelativeDocumentMoniker": "SupportApp\\Controllers\\TicketsController.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketsController.cs",
-              "RelativeToolTip": "SupportApp\\Controllers\\TicketsController.cs",
-              "ViewState": "AQIAAKcAAAAAAAAAAAAhwLAAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-15T05:32:25.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TicketService.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TicketService.cs",
               "RelativeDocumentMoniker": "SupportApp\\Service\\TicketService.cs",
@@ -124,12 +90,11 @@
               "RelativeToolTip": "SupportApp\\Service\\TicketService.cs",
               "ViewState": "AQIAAPQAAAAAAAAAAADwv+AAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-15T05:32:25.145Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-15T05:32:25.145Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Program.cs",
               "RelativeDocumentMoniker": "SupportApp\\Program.cs",
@@ -141,45 +106,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PaginationClass.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Repository\\Pagination\\PaginationClass.cs",
-              "RelativeDocumentMoniker": "SupportApp\\Repository\\Pagination\\PaginationClass.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Repository\\Pagination\\PaginationClass.cs",
-              "RelativeToolTip": "SupportApp\\Repository\\Pagination\\PaginationClass.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T18:37:21.781Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "TargetsController.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TargetsController.cs",
               "RelativeDocumentMoniker": "SupportApp\\Controllers\\TargetsController.cs",
               "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TargetsController.cs",
               "RelativeToolTip": "SupportApp\\Controllers\\TargetsController.cs",
-              "ViewState": "AQIAAM4AAAAAAAAAAAAuwOMAAAA5AAAA",
+              "ViewState": "AQIAANUAAAAAAAAAAADgv+MAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-18T18:52:33.32Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\appsettings.json",
+              "RelativeDocumentMoniker": "SupportApp\\appsettings.json",
+              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\appsettings.json",
+              "RelativeToolTip": "SupportApp\\appsettings.json",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAAcAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-02-15T05:32:25.158Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TicketTypeService.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TicketTypeService.cs",
-              "RelativeDocumentMoniker": "SupportApp\\Service\\TicketTypeService.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TicketTypeService.cs",
-              "RelativeToolTip": "SupportApp\\Service\\TicketTypeService.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAYwEAAAAAJAAAA",
+              "Title": "TargetService.cs",
+              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TargetService.cs",
+              "RelativeDocumentMoniker": "SupportApp\\Service\\TargetService.cs",
+              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TargetService.cs",
+              "RelativeToolTip": "SupportApp\\Service\\TargetService.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAUwEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T16:59:52.227Z",
+              "WhenOpened": "2024-03-04T19:06:15.663Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "TicketsController.cs",
+              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketsController.cs",
+              "RelativeDocumentMoniker": "SupportApp\\Controllers\\TicketsController.cs",
+              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketsController.cs",
+              "RelativeToolTip": "SupportApp\\Controllers\\TicketsController.cs",
+              "ViewState": "AQIAAKcAAAAAAAAAAAAhwLAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T05:32:25.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TicketTypesController.cs",
+              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketTypesController.cs",
+              "RelativeDocumentMoniker": "SupportApp\\Controllers\\TicketTypesController.cs",
+              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\TicketTypesController.cs",
+              "RelativeToolTip": "SupportApp\\Controllers\\TicketTypesController.cs",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAswFsAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T17:06:33.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TicketType.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Models\\TicketType.cs",
               "RelativeDocumentMoniker": "SupportApp\\Models\\TicketType.cs",
@@ -200,18 +189,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-03-09T15:20:37.816Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\appsettings.json",
-              "RelativeDocumentMoniker": "SupportApp\\appsettings.json",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\appsettings.json",
-              "RelativeToolTip": "SupportApp\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-02-15T05:32:25.158Z"
             },
             {
               "$type": "Document",
@@ -239,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 13,
               "Title": "AgentRegistrationDto.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\DTO\\AgentRegistrationDto.cs",
               "RelativeDocumentMoniker": "SupportApp\\DTO\\AgentRegistrationDto.cs",
@@ -251,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "Ticket.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Models\\Ticket.cs",
               "RelativeDocumentMoniker": "SupportApp\\Models\\Ticket.cs",
@@ -263,19 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TargetService.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TargetService.cs",
-              "RelativeDocumentMoniker": "SupportApp\\Service\\TargetService.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\TargetService.cs",
-              "RelativeToolTip": "SupportApp\\Service\\TargetService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-04T19:06:15.663Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 12,
               "Title": "SingleIssueDetailsDto.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\DTO\\SingleIssueDetailsDto.cs",
               "RelativeDocumentMoniker": "SupportApp\\DTO\\SingleIssueDetailsDto.cs",
@@ -287,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 16,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\EmailService.cs",
               "RelativeDocumentMoniker": "SupportApp\\Service\\EmailService.cs",
@@ -299,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 15,
               "Title": "EmailBoxService.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Service\\EmailBoxService.cs",
               "RelativeDocumentMoniker": "SupportApp\\Service\\EmailBoxService.cs",
@@ -311,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 14,
               "Title": "DashboardsController.cs",
               "DocumentMoniker": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\Controllers\\DashboardsController.cs",
               "RelativeDocumentMoniker": "SupportApp\\Controllers\\DashboardsController.cs",

@@ -218,14 +218,15 @@ namespace SupportApp.Controllers
 
 		[HttpPost("assignSupportEngineer")]
 		public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
-		{
+        //public IActionResult AssignSupportEngineer(int ticketId, int agentId)
+        {
 			try
 			{
 				int ticketId = targetSupportEngineerDto.TicketId;
 				int agentId = targetSupportEngineerDto.AgentId;
 
 				_targetService.AssignSupportEngineer(ticketId, agentId);
-				return Ok("Support engineer assigned successfully.");
+				return Ok("Support engineer assigned successfully #$.");
 			}
 			catch (Exception ex)
 			{

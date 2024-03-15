@@ -47,18 +47,20 @@ namespace SupportApp.Service
                 {
                     selectTarget.AgentId = agentId;
                     _context.SaveChanges();
-                    Console.WriteLine("Assign upport engineer service error !");
+                    Console.WriteLine("Assign support engineer service successfully !");
 
-                    var newNotification = new Notification
-                    {
-                        UserId = agentId.ToString(),
-                        IsRead = false,
-                        Message = "A new ticket has been raised !",
-                        TargetId = selectTarget.Id,
-                        CreatedAt = DateTime.Now,
-                    };
-                    _context.Notification.Add(newNotification);
-                    _context.SaveChanges();
+
+                    // create notification ................
+                    //var newNotification = new Notification
+                    //{
+                    //    UserId = agentId.ToString(),
+                    //    IsRead = false,
+                    //    Message = "A new ticket has been raised !",
+                    //    TargetId = selectTarget.Id,
+                    //    CreatedAt = DateTime.Now,
+                    //};
+                    //_context.Notification.Add(newNotification);
+                    //_context.SaveChanges();
                 }
                 else {
 
@@ -72,6 +74,19 @@ namespace SupportApp.Service
 
                     _context.Target.Add(newTarget);
                     _context.SaveChangesAsync();
+
+                    // create notification ................
+                //    var newNotification = new Notification
+                //    {
+                //        UserId = agentId.ToString(),
+                //        IsRead = false,
+                //        Message = "A new ticket has been raised !",
+                //        TargetId = selectTarget.Id,
+                //        CreatedAt = DateTime.Now,
+                //    };
+                //    _context.Notification.Add(newNotification);
+                //    _context.SaveChanges();
+                //
                 }
 
 
