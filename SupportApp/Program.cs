@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SupportApp.Controllers;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
 
 
@@ -28,6 +27,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
+builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
 builder.Services.AddTransient<PaginationService, PaginationService>();
 builder.Services.AddScoped<TargetService,TargetService>();
 
