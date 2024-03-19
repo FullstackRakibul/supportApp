@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service.NotificationService;
 
 namespace SupportApp.Controllers
 {
@@ -14,10 +16,11 @@ namespace SupportApp.Controllers
     public class NotificationsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
-
-        public NotificationsController(SupportAppDbContext context)
+        private readonly INotificationService _notificationService;
+        public NotificationsController(SupportAppDbContext context , NotificationService notificationService)
         {
             _context = context;
+            _notificationService = notificationService;
         }
 
         // GET: api/Notifications
@@ -119,5 +122,22 @@ namespace SupportApp.Controllers
         {
             return (_context.Notification?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
+
+
+        [HttpPost("createNotification")]
+        public async Task<IActionResult> CreateNotification([FromBody] NotificationDto notificationDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // Return bad request with validation errors
+            }
+
+            //await _notificationService.CreateNotification(notificationDTO);
+            return Ok("this is ok controller"); // Return success response
+        }
+
+
     }
 }

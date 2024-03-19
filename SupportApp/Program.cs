@@ -8,12 +8,24 @@ using System.Text;
 using SupportApp.Controllers;
 using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
+using SupportApp.Service.NotificationService;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//------------------------ Service Extention Register ---------------------
+try {
+    builder.Services.AddTransientServices();
+    builder.Services.AddScopedServices();
+    builder.Services.AddSingletonServices();
+}
+catch(Exception ex) {
+    Console.WriteLine(ex);
+    throw;
+}
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,7 +42,6 @@ builder.Services.AddTransient<TicketService , TicketService>();
 builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
 builder.Services.AddTransient<PaginationService, PaginationService>();
 builder.Services.AddScoped<TargetService,TargetService>();
-
 builder.Services.AddTransient<AuthController>();
 
 builder.Services.AddCors(options =>
@@ -38,6 +49,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builders =>
     {
         builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+        
     });
 });
 
