@@ -38,5 +38,12 @@ namespace SupportApp.DTO
         public ICollection<Department> Department { get; set; } = new List<Department>();
         public ICollection<Unit> Unit { get; set; } = new List<Unit>();
         public ICollection<Notification> Notification { get; set; } = new List<Notification>();
-    }
+
+        // add proparties for Notification 
+		public bool IsRead { get; set; }
+		public string Message { get; set; } = "A new issue has been raised.";
+		public int TargetId { get; set; }
+
+
+	}
 }

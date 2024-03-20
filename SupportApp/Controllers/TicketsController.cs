@@ -354,39 +354,48 @@ namespace SupportApp.Controllers
 			}
 		}
 
-		[HttpGet("updateForCheck/{ticketId}")]
-		public async Task<ActionResult<Ticket>> UpdateForCheck(int ticketId)
+
+		// UpdateForCheckTicketStatus API 
+
+		[HttpGet("UpdateForCheckTicketStatus/{ticketId}")]
+		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
 		{
+			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
+			return Ok(result);
+		}
+
+		// Pagination API
+		[HttpGet("getPaginationList/{Skip}/{Take}")]
+        public IActionResult GetPaginationList(int Skip, int Take)
+        {
+
 			try
 			{
-				var updateticketStatus = await _context.Ticket
-				.Where(t => t.Id == ticketId).SingleOrDefaultAsync();
-
-                updateticketStatus.Status ++;
-				_context.Ticket.Update(updateticketStatus);
-				await _context.SaveChangesAsync();
-
-				return Ok("Ticket Status Updated .");
+				var tickets = _ticketService.GetPaginationList(Skip, Take);
+				return Ok(tickets);
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex);
-				return StatusCode(500);
+				return StatusCode(500, "Server Response Error.");
 			}
+		}
 
 
-           
-
-            
-        }
-
-
-        // Pagination API
-        [HttpGet("getPaginationList/{currentPage}/{pageSize}")]
-        public IActionResult GetPaginationList(int currentPage , int pageSize)
-        {
-            var tickets = _paginationService.GetPaginationList(currentPage, pageSize);
-            return Ok(tickets);
-        }
-    }
+        // Email List API
+		[HttpGet("GetMailTicketList/{Skip}/{Take}")]
+		public IActionResult GetMailTicketList(int Skip, int Take)
+		{
+			try
+			{
+                var getMailTicketList = _ticketService.GetMailTicketList(Skip, Take);
+                return Ok(getMailTicketList);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+	}
 }

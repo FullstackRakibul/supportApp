@@ -1,4 +1,4 @@
-﻿namespace SupportApp.Repository.Pagination
+﻿ namespace SupportApp.Repository.Pagination
 {
     public interface IPagination
     {

@@ -8,7 +8,7 @@ using System.Text;
 using SupportApp.Controllers;
 using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
-using SupportApp.Service.NotificationService;
+using SupportApp.Service.Notifications;
 
 
 
@@ -41,6 +41,9 @@ builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
 builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
 builder.Services.AddTransient<PaginationService, PaginationService>();
+
+//builder.Services.AddTransient<NotificationService, NotificationService>();
+
 builder.Services.AddScoped<TargetService,TargetService>();
 builder.Services.AddTransient<AuthController>();
 

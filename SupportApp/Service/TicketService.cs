@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service.Notifications;
 namespace SupportApp.Service;
 public class TicketService
 {
@@ -97,6 +98,7 @@ public class TicketService
             Console.WriteLine($" This Ticket:'{emailDetails.MessageId}'is already exits.");
         }
     }
+
     // create ticket from frontend form 
     public async void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
     {
@@ -110,7 +112,10 @@ public class TicketService
                 Title = ticketAndTargetDto.Title,
                 TicketNumber = generatedTicketNumber,
                 Description = ticketAndTargetDto.Description,
-                Attachment = ticketAndTargetDto.Attachment,
+
+                // need to save the file on my local ................
+                Attachment = ticketAndTargetDto.Attachment.ToString(),
+
                 CreatedAt = ticketAndTargetDto.CreatedAt,
                 CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
@@ -119,13 +124,12 @@ public class TicketService
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
-
-
             };
 
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
+            // create target after ticket has been created 
             int newTicketId = ticketData.Id;
             var newTarget = new Target
             {
@@ -133,20 +137,18 @@ public class TicketService
                 DepartmentId = ticketAndTargetDto.DepartmentId,
                 UnitId = ticketAndTargetDto.UnitId,
             };
-
             _context.Target.Add(newTarget);
             await _context.SaveChangesAsync();
 
-
-
-            Console.WriteLine("Create Ticket Successfully.");
+		Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {
             Console.WriteLine("This is Service layer error.", ex.Message);
-
         }
     }
+
+
 
     public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
     {
@@ -262,6 +264,74 @@ public class TicketService
 
             empCodeParam).ToListAsync();
 	}
+
+
+
+    // pagination API for tickets
+
+	public IEnumerable<Ticket> GetPaginationList(int currentPage, int pageSize)
+	{
+		int skip = (currentPage - 1) * pageSize;
+		return _context.Ticket.OrderByDescending(t => t.CreatedAt)
+							   .Skip(skip)
+							   .Take(pageSize)
+							   .ToList();
+	}
+
+	// update for check ................
+
+	public async Task<string> UpdateForCheckTicketStatus(int ticketId)
+	{
+		try
+		{
+			var ticketToUpdate = await _context.Ticket
+				.Where(t => t.Id == ticketId)
+				.SingleOrDefaultAsync();
+
+			if (ticketToUpdate != null)
+			{
+				ticketToUpdate.Status++;
+				_context.Ticket.Update(ticketToUpdate);
+				await _context.SaveChangesAsync();
+
+				return "Ticket Status Updated.";
+			}
+			else
+			{
+				return "Ticket not found.";
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return "Failed to update ticket status.";
+		}
+	}
+
+
+
+
+	// get mail ticket list 
+
+	public IEnumerable<Ticket> GetMailTicketList(int currentPage, int pageSize)
+	{
+		try
+		{
+			int skip = (currentPage - 1) * pageSize;
+
+			return  _context.Ticket.Where(t => t.IsEmail == true)
+						.OrderByDescending(t => t.CreatedAt)
+						.Skip(skip)
+						.Take(pageSize)
+						.ToList();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return Enumerable.Empty<Ticket>();
+		}
+	}
+
 
 	//------------------------------ Agent API ----------------------------------
 

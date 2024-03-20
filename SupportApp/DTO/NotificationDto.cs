@@ -7,6 +7,4 @@
         public string Message { get; set; } = "A new issue has been raised.";
         public int TargetId { get; set; }
     }
-
-
 }
