@@ -5,7 +5,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\Rakibul hasan\alpha projects\publish App</_PublishTargetUrl>
-    <History>True|2024-02-27T07:02:26.5516012Z;True|2024-02-27T12:05:05.3675958+06:00;False|2024-02-27T12:04:45.6515747+06:00;True|2024-02-27T11:39:03.0129724+06:00;True|2024-02-27T11:14:11.8976297+06:00;True|2024-02-27T11:13:50.8372064+06:00;True|2024-02-27T10:46:34.3821268+06:00;True|2024-02-27T10:19:55.9950532+06:00;True|2024-02-27T10:02:10.4634972+06:00;True|2024-02-03T14:12:39.2818042+06:00;True|2024-02-03T13:53:39.1313960+06:00;True|2024-02-03T13:03:29.4708164+06:00;True|2024-02-03T13:02:23.1005232+06:00;</History>
+    <History>True|2024-03-16T07:55:14.8425000Z;True|2024-03-16T12:51:35.1776110+06:00;True|2024-02-29T08:54:15.0943220+06:00;True|2024-02-29T08:36:24.2057161+06:00;True|2024-02-29T08:35:52.1352891+06:00;True|2024-02-27T13:02:26.5516012+06:00;True|2024-02-27T12:05:05.3675958+06:00;False|2024-02-27T12:04:45.6515747+06:00;True|2024-02-27T11:39:03.0129724+06:00;True|2024-02-27T11:14:11.8976297+06:00;True|2024-02-27T11:13:50.8372064+06:00;True|2024-02-27T10:46:34.3821268+06:00;True|2024-02-27T10:19:55.9950532+06:00;True|2024-02-27T10:02:10.4634972+06:00;True|2024-02-03T14:12:39.2818042+06:00;True|2024-02-03T13:53:39.1313960+06:00;True|2024-02-03T13:03:29.4708164+06:00;True|2024-02-03T13:02:23.1005232+06:00;</History>
     <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultDatabase">
+      <Value>Server=45.114.84.19,4368%3b Database=SupportApp%3b User Id=rakib%3b Password=Rakibul979%3b Integrated Security=false%3b TrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="SupportApp.Models.SupportAppDbContext">
+      <Value>Server=45.114.84.19,4368%3b Database=SupportApp%3b User Id=rakib%3b Password=Rakibul979%3b Integrated Security=false%3b TrustServerCertificate=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
 </Project>

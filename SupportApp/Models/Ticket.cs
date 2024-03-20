@@ -30,6 +30,7 @@ namespace SupportApp.Models
        public Target? Target { get; set; }
 
         public ICollection<Review>? Reviews { get; set; }
+
     }
 
 

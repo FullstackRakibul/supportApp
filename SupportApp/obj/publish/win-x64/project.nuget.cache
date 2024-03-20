@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9+FrrUfD/WG3rdlbgQWtRbrNdvX+xQFvNMe/BaTHNkH0KdZzoP6skSoKHeOIMJGsvHMmoBBzZzUd3P/HnIkzFQ==",
+  "dgSpecHash": "xh3agQ9zkGG3ynTn4B0/gs1o0+B27EXIVs9jxo3EhL03Bf6ZTA0MBy6YviuLc7ox1gdGtzzOuBb5wURtX5mHhw==",
   "success": true,
   "projectFilePath": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\SupportApp.csproj",
   "expectedPackageFiles": [
@@ -265,11 +265,8 @@
     "C:\\Users\\Rakib\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.26\\microsoft.netcore.app.runtime.win-x64.6.0.26.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.26\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.26.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.26\\microsoft.aspnetcore.app.runtime.win-x64.6.0.26.nupkg.sha512",
     "C:\\Users\\Rakib\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
   ],
   "logs": [

@@ -411,6 +411,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SupportApp.Controllers.NotificationsController",
+    "Method": "CreateNotification",
+    "RelativePath": "api/Notifications/createNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationDTO",
+        "Type": "SupportApp.DTO.NotificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SupportApp.Controllers.ReviewsController",
     "Method": "GetReview",
     "RelativePath": "api/Reviews",
@@ -964,6 +980,27 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "GetPaginationList",
+    "RelativePath": "api/Tickets/getPaginationList/{currentPage}/{pageSize}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "currentPage",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
     "Method": "GetRecentRaisedTicketByCreator",
     "RelativePath": "api/Tickets/getRecentRaisedTicketByCreator/{EmpCode}",
     "HttpMethod": "GET",
@@ -1092,6 +1129,32 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "UpdateForCheck",
+    "RelativePath": "api/Tickets/updateForCheck/{ticketId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.Ticket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
     "Method": "UpdateTicketstatus",
     "RelativePath": "api/Tickets/updateTicketStatus",
     "HttpMethod": "PUT",
@@ -1211,7 +1274,7 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketTypesController",
-    "Method": "DeleteTicketType",
+    "Method": "DeleteTicketTypeAPI",
     "RelativePath": "api/TicketTypes/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -1224,6 +1287,78 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "DeleteTicketType",
+    "RelativePath": "api/TicketTypes/ticket/type/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "CreateTicketType",
+    "RelativePath": "api/TicketTypes/ticket/type/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketType",
+        "Type": "SupportApp.Models.TicketType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketTypesController",
+    "Method": "GetTicketTypeList",
+    "RelativePath": "api/TicketTypes/ticket/type/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.TicketType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "SupportApp.Controllers.UnitsController",

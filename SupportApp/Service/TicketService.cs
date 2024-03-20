@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service.Notifications;
 namespace SupportApp.Service;
 public class TicketService
 {
     private readonly SupportAppDbContext _context;
+
     public TicketService(SupportAppDbContext context )
     {
         _context = context;
@@ -51,7 +53,6 @@ public class TicketService
         // Find the "Date" header
         var dateHeader = emailDetails.Headers.FirstOrDefault(header => header.Key == "Date");
         //Console.WriteLine($"This is create ticket from mail , date test : {dateHeader}");
-
         if (existingTicket == null && DateTime.TryParse(dateHeader.Value, out var createdDate))
         {
             var ticket = new Ticket
@@ -137,9 +138,19 @@ public class TicketService
             _context.Target.Add(newTarget);
             await _context.SaveChangesAsync();
 
+            // auto create new notification for the raised ticket
+   //         int newTargetId = newTarget.Id;
+   //         var newNotification = new Notification
+   //         {
+			//	  UserId: ticketAndTargetDto.UserId,
+   //               IsRead: false,
+   //               TargetId: newTargetId
+			//};
+   //         _context.Notification.Add(newNotification);
+		 //   await _context.SaveChangesAsync();
 
 
-            Console.WriteLine("Create Ticket Successfully.");
+		Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {
@@ -219,7 +230,7 @@ public class TicketService
     {
         var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
         return await _context.Ticket.FromSqlRaw(
-            "SELECT ticket. * FROM Ticket ticket JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
+            "SELECT ticket. * FROM Ticket ticket left JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NOT NULL;",
             empCodeParam).ToListAsync();
 
     }
@@ -257,9 +268,79 @@ public class TicketService
     public async Task<IEnumerable<Ticket>> GetRecentRaisedTicketListByCreatorAsync(string EmpCode)
 	{
 		var empCodeParam = new SqlParameter("@EmpCode", EmpCode);
-		return await _context.Ticket.FromSqlRaw("SELECT ticket.*  FROM Ticket ticket LEFT JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
-			empCodeParam).ToListAsync();
+
+        return await _context.Ticket.FromSqlRaw("SELECT ticket.*  FROM Ticket ticket LEFT JOIN Target target ON ticket.Id = target.TicketId  WHERE ticket.CreatedBy = @EmpCode AND target.AgentId IS NULL;",
+
+            empCodeParam).ToListAsync();
 	}
+
+
+
+    // pagination API for tickets
+
+	public IEnumerable<Ticket> GetPaginationList(int currentPage, int pageSize)
+	{
+		int skip = (currentPage - 1) * pageSize;
+		return _context.Ticket.OrderByDescending(t => t.CreatedAt)
+							   .Skip(skip)
+							   .Take(pageSize)
+							   .ToList();
+	}
+
+	// update for check ................
+
+	public async Task<string> UpdateForCheckTicketStatus(int ticketId)
+	{
+		try
+		{
+			var ticketToUpdate = await _context.Ticket
+				.Where(t => t.Id == ticketId)
+				.SingleOrDefaultAsync();
+
+			if (ticketToUpdate != null)
+			{
+				ticketToUpdate.Status++;
+				_context.Ticket.Update(ticketToUpdate);
+				await _context.SaveChangesAsync();
+
+				return "Ticket Status Updated.";
+			}
+			else
+			{
+				return "Ticket not found.";
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return "Failed to update ticket status.";
+		}
+	}
+
+
+
+
+	// get mail ticket list 
+
+	public IEnumerable<Ticket> GetMailTicketList(int currentPage, int pageSize)
+	{
+		try
+		{
+			int skip = (currentPage - 1) * pageSize;
+
+			return  _context.Ticket.Where(t => t.IsEmail == true)
+						.OrderByDescending(t => t.CreatedAt)
+						.Skip(skip)
+						.Take(pageSize)
+						.ToList();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return Enumerable.Empty<Ticket>();
+		}
+	}
+
 
 	//------------------------------ Agent API ----------------------------------
 

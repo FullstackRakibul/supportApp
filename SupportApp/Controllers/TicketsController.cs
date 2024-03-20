@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using MimeKit.Encodings;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
+using SupportApp.Service.Pagination;
 
 namespace SupportApp.Controllers
 {
@@ -21,13 +23,15 @@ namespace SupportApp.Controllers
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
+        private readonly PaginationService _paginationService;
        
 
-        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService )
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService  , PaginationService paginationService )
         {
             _context = context;
             _ticketService = ticketService;
             _emailBoxService = emailBoxService;
+            _paginationService = paginationService;
         }
 
         // GET: api/Ticket
@@ -347,6 +351,50 @@ namespace SupportApp.Controllers
 			{
 				Console.WriteLine(ex);
 				return StatusCode(500);
+			}
+		}
+
+
+		// UpdateForCheckTicketStatus API 
+
+		[HttpGet("UpdateForCheckTicketStatus/{ticketId}")]
+		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
+		{
+			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
+			return Ok(result);
+		}
+
+		// Pagination API
+		[HttpGet("getPaginationList/{Skip}/{Take}")]
+        public IActionResult GetPaginationList(int Skip, int Take)
+        {
+
+			try
+			{
+				var tickets = _ticketService.GetPaginationList(Skip, Take);
+				return Ok(tickets);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+
+
+        // Email List API
+		[HttpGet("GetMailTicketList/{Skip}/{Take}")]
+		public IActionResult GetMailTicketList(int Skip, int Take)
+		{
+			try
+			{
+                var getMailTicketList = _ticketService.GetMailTicketList(Skip, Take);
+                return Ok(getMailTicketList);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
 			}
 		}
 	}

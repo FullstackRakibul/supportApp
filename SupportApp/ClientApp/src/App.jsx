@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { HashRouter, NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Footer from "./components/Footer";

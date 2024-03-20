@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportApp.Models;
+using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
@@ -14,10 +16,11 @@ namespace SupportApp.Controllers
     public class TicketTypesController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
-
-        public TicketTypesController(SupportAppDbContext context)
+        private readonly TicketTypeService _ticketTypeService;
+       public TicketTypesController(SupportAppDbContext context , TicketTypeService ticketTypeService )
         {
             _context = context;
+            _ticketTypeService = ticketTypeService;
         }
 
         // GET: api/TicketType
@@ -97,7 +100,7 @@ namespace SupportApp.Controllers
 
         // DELETE: api/TicketType/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTicketType(int id)
+        public async Task<IActionResult> DeleteTicketTypeAPI(int id)
         {
             if (_context.TicketType == null)
             {
@@ -118,6 +121,55 @@ namespace SupportApp.Controllers
         private bool TicketTypeExists(int id)
         {
             return (_context.TicketType?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+
+        // .......................... ticket type apis..............
+
+        [HttpPost("ticket/type/create")]
+        public async Task<ActionResult<TicketType>> CreateTicketType(TicketType ticketType) {
+            try {
+                if (string.IsNullOrWhiteSpace(ticketType.TypeName))
+                {
+                    throw new ArgumentException("Subject cannot be empty.");
+                }
+                await _ticketTypeService.CreateTickeType(ticketType);
+                return Ok("Type will create successfully.");
+            }
+            catch(Exception exception) {
+                Console.WriteLine(exception.Message);
+                return BadRequest();
+            }
+
+        }
+
+        [HttpGet("ticket/type/list")]
+        public async Task<ActionResult<TicketType>> GetTicketTypeList() {
+            try
+            {
+                var getTicketTypeList = await _ticketTypeService.GetTicketTypeListAsync();
+                return Ok(getTicketTypeList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+        }
+
+        [HttpDelete("ticket/type/{id}")]
+        public async Task<ActionResult<TicketType>> DeleteTicketType(int id)
+        {
+            try
+            {
+                var getTicketTypeList = await _ticketTypeService.DeleteTicketTypeListAsync(id);
+                return Ok(getTicketTypeList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
         }
     }
 }

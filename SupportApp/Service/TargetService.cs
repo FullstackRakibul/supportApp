@@ -47,19 +47,21 @@ namespace SupportApp.Service
                 {
                     selectTarget.AgentId = agentId;
                     _context.SaveChanges();
-                    Console.WriteLine("Assign upport engineer service error !");
+                    Console.WriteLine("Assign support engineer service successfully !");
 
-                    var newNotification = new Notification
-                    {
-                        UserId = agentId.ToString(),
-                        IsRead = false,
-                        Message = "A new ticket has been raised !",
-                        TargetId = selectTarget.Id,
-                        CreatedAt = DateTime.Now,
-                    };
-                    _context.Notification.Add(newNotification);
-                    _context.SaveChanges();
-                }
+
+					int newTargetId = selectTarget.Id;
+					var newNotification = new Notification
+					{
+						UserId = "088100",
+						IsRead = false,
+						TargetId = newTargetId,
+						Message = $"A new ticket Ticket has been created.",
+						CreatedAt = DateTime.UtcNow.AddHours(6)
+					};
+					_context.Notification.Add(newNotification);
+					await _context.SaveChangesAsync();
+				}
                 else {
 
                     var newTarget = new Target
@@ -72,7 +74,19 @@ namespace SupportApp.Service
 
                     _context.Target.Add(newTarget);
                     _context.SaveChangesAsync();
-                }
+
+					int newTargetId = selectTarget.Id;
+					var newNotification = new Notification
+					{
+						UserId = "088100",
+						IsRead = false,
+						TargetId = newTargetId,
+						Message = $"A new ticket Ticket has been created.",
+						CreatedAt = DateTime.UtcNow.AddHours(6)
+					};
+					_context.Notification.Add(newNotification);
+					await _context.SaveChangesAsync();
+				}
 
 
             }
