@@ -98,6 +98,7 @@ public class TicketService
             Console.WriteLine($" This Ticket:'{emailDetails.MessageId}'is already exits.");
         }
     }
+
     // create ticket from frontend form 
     public async void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
     {
@@ -111,7 +112,10 @@ public class TicketService
                 Title = ticketAndTargetDto.Title,
                 TicketNumber = generatedTicketNumber,
                 Description = ticketAndTargetDto.Description,
-                Attachment = ticketAndTargetDto.Attachment,
+
+                // need to save the file on my local ................
+                Attachment = ticketAndTargetDto.Attachment.ToString(),
+
                 CreatedAt = ticketAndTargetDto.CreatedAt,
                 CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
@@ -120,13 +124,12 @@ public class TicketService
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
-
-
             };
 
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
+            // create target after ticket has been created 
             int newTicketId = ticketData.Id;
             var newTarget = new Target
             {
@@ -134,30 +137,18 @@ public class TicketService
                 DepartmentId = ticketAndTargetDto.DepartmentId,
                 UnitId = ticketAndTargetDto.UnitId,
             };
-
             _context.Target.Add(newTarget);
             await _context.SaveChangesAsync();
-
-            // auto create new notification for the raised ticket
-   //         int newTargetId = newTarget.Id;
-   //         var newNotification = new Notification
-   //         {
-			//	  UserId: ticketAndTargetDto.UserId,
-   //               IsRead: false,
-   //               TargetId: newTargetId
-			//};
-   //         _context.Notification.Add(newNotification);
-		 //   await _context.SaveChangesAsync();
-
 
 		Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {
             Console.WriteLine("This is Service layer error.", ex.Message);
-
         }
     }
+
+
 
     public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
     {
