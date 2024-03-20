@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service.Notifications;
 namespace SupportApp.Service;
 public class TicketService
 {
@@ -137,9 +138,19 @@ public class TicketService
             _context.Target.Add(newTarget);
             await _context.SaveChangesAsync();
 
+            // auto create new notification for the raised ticket
+   //         int newTargetId = newTarget.Id;
+   //         var newNotification = new Notification
+   //         {
+			//	  UserId: ticketAndTargetDto.UserId,
+   //               IsRead: false,
+   //               TargetId: newTargetId
+			//};
+   //         _context.Notification.Add(newNotification);
+		 //   await _context.SaveChangesAsync();
 
 
-            Console.WriteLine("Create Ticket Successfully.");
+		Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {

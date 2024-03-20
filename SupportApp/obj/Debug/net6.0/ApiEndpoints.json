@@ -411,6 +411,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SupportApp.Controllers.NotificationsController",
+    "Method": "CreateNotification",
+    "RelativePath": "api/Notifications/createNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationDTO",
+        "Type": "SupportApp.DTO.NotificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SupportApp.Controllers.ReviewsController",
     "Method": "GetReview",
     "RelativePath": "api/Reviews",
