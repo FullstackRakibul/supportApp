@@ -65,19 +65,19 @@ const CreateTicket = () => {
       values.createdBy = EmpCode;
 
       console.log(values);
-      const response = await AxiosInstance.post(
-        "/api/Tickets/createTicketWithTarget",
-        values
-      );
+      // const response = await AxiosInstance.post(
+      //   "/api/Tickets/createTicketWithTarget",
+      //   values
+      // );
 
-      console.log(response.data);
-      console.log(`status code :${response.status}`);
-      if (response.status === 200) {
-        message.success("Ticket Create Successfully.");
-        form.resetFields();
-      } else {
-        message.error("Error in Creating Ticket.");
-      }
+      // console.log(response.data);
+      // console.log(`status code :${response.status}`);
+      // if (response.status === 200) {
+      //   message.success("Ticket Create Successfully.");
+      //   form.resetFields();
+      // } else {
+      //   message.error("Error in Creating Ticket.");
+      // }
     } catch (error) {
       console.log(`catching formData error : ${error}`);
       message.error("catch Error in Creating Ticket.");
