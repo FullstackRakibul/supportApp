@@ -72,8 +72,8 @@ namespace SupportApp.Service
                         UnitId = _context.Unit.Where(u => u.Name == "Corporate Office").FirstOrDefault().Id,
                     };
 
-                    _context.Target.Add(newTarget);
-                    _context.SaveChangesAsync();
+                     _context.Target.Add(newTarget);
+                    await _context.SaveChangesAsync();
 
 					int newTargetId = selectTarget.Id;
 					var newNotification = new Notification
