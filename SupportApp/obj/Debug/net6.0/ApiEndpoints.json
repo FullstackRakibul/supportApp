@@ -428,6 +428,32 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.ReviewsController",
+    "Method": "createReviewNote",
+    "RelativePath": "api/Reviews/create-review-note",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reviewDto",
+        "Type": "SupportApp.DTO.ReviewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.ReviewsController",
     "Method": "TicketWiseReply",
     "RelativePath": "api/Reviews/TicketWiseReply",
     "HttpMethod": "GET",

@@ -9,6 +9,7 @@ namespace SupportApp.Service {
            
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<NotificationService, NotificationService>();
+            services.AddTransient<ReviewService, ReviewService>();
             
             return services;
         }
