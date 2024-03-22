@@ -1069,7 +1069,7 @@
     "ContainingType": "SupportApp.Controllers.TicketsController",
     "Method": "UpdateForCheckTicketStatus",
     "RelativePath": "api/Tickets/UpdateForCheckTicketStatus/{ticketId}",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

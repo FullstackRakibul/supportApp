@@ -357,7 +357,7 @@ namespace SupportApp.Controllers
 
 		// UpdateForCheckTicketStatus API 
 
-		[HttpGet("UpdateForCheckTicketStatus/{ticketId}")]
+		[HttpPost("UpdateForCheckTicketStatus/{ticketId}")]
 		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
 		{
 			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
