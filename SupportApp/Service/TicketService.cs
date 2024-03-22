@@ -114,9 +114,10 @@ public class TicketService
                 Description = ticketAndTargetDto.Description,
 
                 // need to save the file on my local ................
-                Attachment = ticketAndTargetDto.Attachment.ToString(),
+                //Attachment = ticketAndTargetDto.Attachment.ToString(),
 
-                CreatedAt = ticketAndTargetDto.CreatedAt,
+
+			    CreatedAt = ticketAndTargetDto.CreatedAt,
                 CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
                 Priority = TicketPriority.Regular,
@@ -126,8 +127,42 @@ public class TicketService
                 UpdatedAt = null,
             };
 
+
+            //---------------------------------------------------------------
+
+            // Attachment handling (assuming attachment object exists in ticketAndTargetDto)
+            if (ticketAndTargetDto.Attachment != null)
+            {
+                // Extract attachment information
+                var attachment = ticketAndTargetDto.Attachment;
+                string fileName = ticketAndTargetDto.Attachment.ToString();
+
+                // Get the project root folder path
+                var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Navigate up two levels
+
+                // Combine path for "media" subfolder
+                string folderPath = Path.Combine(projectRootPath, "UploadMedia");
+
+                // Check if the folder exists, if not, create it
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Combine folder path and filename
+                string filePath = Path.Combine(folderPath, fileName);
+                //System.IO.File.WriteAllBytes(filePath, attachment);
+                ticketData.Attachment = filePath;
+            }
+
+
+            //---------------------------------------------------------------
+
             _context.Ticket.Add(ticketData);
             _context.SaveChanges();
+
+
+
 
             // create target after ticket has been created 
             int newTicketId = ticketData.Id;
