@@ -397,5 +397,21 @@ namespace SupportApp.Controllers
 				return StatusCode(500, "Server Response Error.");
 			}
 		}
+
+        [HttpPost("soft-reminder/{ticketId}")]
+		public async Task<IActionResult> SoftReminder(int ticketId)
+		{
+            try
+            {
+                var reminder = await _ticketService.Softreminder(ticketId);
+                return Ok(reminder);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Server Response Error.");
+            }
+        }
+
 	}
 }

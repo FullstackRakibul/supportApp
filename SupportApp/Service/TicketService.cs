@@ -354,7 +354,7 @@ public class TicketService
 		{
 			int skip = (currentPage - 1) * pageSize;
 
-			return  _context.Ticket.Where(t => t.IsEmail == false && (int)t.Status < 4)
+			return  _context.Ticket.Where(t => t.IsEmail == true && (int)t.Status < 4)
 						.OrderByDescending(t => t.CreatedAt)
 						.Skip(skip)
 						.Take(pageSize)
@@ -364,6 +364,43 @@ public class TicketService
 		{
 			Console.WriteLine(ex);
 			return Enumerable.Empty<Ticket>();
+		}
+	}
+
+	// add soft reminder to an agent ..............
+
+	public async Task<string> Softreminder(int ticketId)
+	{
+		try
+		{
+			var targetData = await _context.Target.Where(t => t.TicketId == ticketId).FirstOrDefaultAsync();
+
+			if (targetData != null)
+			{
+				var notificationToUpdate = await _context.Notification.Where(n => n.TargetId == targetData.Id).FirstOrDefaultAsync();
+
+				if (notificationToUpdate != null)
+				{
+					notificationToUpdate.IsRead = true;
+                    
+					await _context.SaveChangesAsync();
+
+					return ("Notification marked as read successfully.");
+				}
+				else
+				{
+					return ("No notification found for the specified target.");
+				}
+			}
+			else
+			{
+				return ("Target not found for the ticket ID.");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return ("Internal server error."); 
 		}
 	}
 
