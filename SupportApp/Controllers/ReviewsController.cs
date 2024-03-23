@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service;
 
 namespace SupportApp.Controllers
 {
@@ -14,10 +16,12 @@ namespace SupportApp.Controllers
     public class ReviewsController : ControllerBase
     {
         private readonly SupportAppDbContext _context;
+        private readonly ReviewService _reviewService;
 
-        public ReviewsController(SupportAppDbContext context)
+        public ReviewsController(SupportAppDbContext context, ReviewService reviewService)
         {
             _context = context;
+            _reviewService = reviewService; 
         }
 
         // GET: api/Reviews
@@ -136,5 +140,23 @@ namespace SupportApp.Controllers
 
             return Ok(singleTicketReplyData);
         }
+
+
+        // create a new review for each note....
+        [HttpPost("create-review-note")]
+        public async Task<ActionResult<Review>> createReviewNote([FromBody] ReviewDto reviewDto)
+        {
+            try
+            {
+                await _reviewService.createReview(reviewDto);
+                return Ok("Review added successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

@@ -307,7 +307,7 @@ public class TicketService
 	public IEnumerable<Ticket> GetPaginationList(int currentPage, int pageSize)
 	{
 		int skip = (currentPage - 1) * pageSize;
-		return _context.Ticket.OrderByDescending(t => t.CreatedAt)
+		return _context.Ticket.OrderByDescending(t => t.CreatedAt).Where(t => (int)t.Status < 5)
 							   .Skip(skip)
 							   .Take(pageSize)
 							   .ToList();
@@ -354,7 +354,7 @@ public class TicketService
 		{
 			int skip = (currentPage - 1) * pageSize;
 
-			return  _context.Ticket.Where(t => t.IsEmail == true)
+			return  _context.Ticket.Where(t => t.IsEmail == false && (int)t.Status < 4)
 						.OrderByDescending(t => t.CreatedAt)
 						.Skip(skip)
 						.Take(pageSize)
