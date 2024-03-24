@@ -165,10 +165,10 @@ public class TicketService
 
 
             // create target after ticket has been created 
-            int newTicketId = ticketData.Id;
+            //int newTicketId = ticketData.Id;
             var newTarget = new Target
             {
-                TicketId = newTicketId,
+                TicketId = ticketData.Id,
                 DepartmentId = ticketAndTargetDto.DepartmentId,
                 UnitId = ticketAndTargetDto.UnitId,
             };
@@ -372,12 +372,14 @@ public class TicketService
 	public async Task<string> Softreminder(int ticketId)
 	{
 		try
-		{
-			var targetData = await _context.Target.Where(t => t.TicketId == ticketId).FirstOrDefaultAsync();
+
+            //_context.Target.FirstOrDefault(t => t.TicketId == ticketId);
+        {
+			var targetData = await _context.Target.SingleOrDefaultAsync(t => t.TicketId == ticketId);
 
 			if (targetData != null)
 			{
-				var notificationToUpdate = await _context.Notification.Where(n => n.TargetId == targetData.Id).FirstOrDefaultAsync();
+				var notificationToUpdate = await _context.Notification.SingleOrDefaultAsync(n => n.TargetId == targetData.Id);
 
 				if (notificationToUpdate != null)
 				{
