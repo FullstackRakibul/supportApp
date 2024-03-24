@@ -1047,6 +1047,22 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "SoftReminder",
+    "RelativePath": "api/Tickets/soft-reminder/{ticketId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
     "Method": "GetTicketPriorityEnum",
     "RelativePath": "api/Tickets/ticketPriority",
     "HttpMethod": "GET",
