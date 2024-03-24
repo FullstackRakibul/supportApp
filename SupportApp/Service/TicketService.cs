@@ -375,11 +375,11 @@ public class TicketService
 
             //_context.Target.FirstOrDefault(t => t.TicketId == ticketId);
         {
-			var targetData = await _context.Target.SingleOrDefaultAsync(t => t.TicketId == ticketId);
+			var targetData = await _context.Target.FirstOrDefaultAsync(t => t.TicketId == ticketId);
 
 			if (targetData != null)
 			{
-				var notificationToUpdate = await _context.Notification.SingleOrDefaultAsync(n => n.TargetId == targetData.Id);
+				var notificationToUpdate = await _context.Notification.FirstOrDefaultAsync(n => n.TargetId == targetData.Id);
 
 				if (notificationToUpdate != null)
 				{
