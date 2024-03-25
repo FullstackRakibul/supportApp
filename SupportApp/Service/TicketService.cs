@@ -353,7 +353,6 @@ public class TicketService
 		try
 		{
 			int skip = (currentPage - 1) * pageSize;
-
 			return  _context.Ticket.Where(t => t.IsEmail == true && (int)t.Status < 4)
 						.OrderByDescending(t => t.CreatedAt)
 						.Skip(skip)
