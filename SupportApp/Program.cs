@@ -9,6 +9,7 @@ using SupportApp.Controllers;
 using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
 using SupportApp.Service.Notifications;
+using SupportApp.SignalR;
 
 
 
@@ -26,7 +27,8 @@ catch(Exception ex) {
     Console.WriteLine(ex);
     throw;
 }
-
+// SignalR Hub 
+builder.Services.AddSignalR();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -47,14 +49,23 @@ builder.Services.AddTransient<PaginationService, PaginationService>();
 builder.Services.AddScoped<TargetService,TargetService>();
 builder.Services.AddTransient<AuthController>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builders =>
-    {
-        builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+//builder.Services.AddCors(options =>
+//{
+//    options.AddDefaultPolicy(builders =>
+//    {
+//        builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
         
-    });
-});
+//    });
+
+//});
+
+builder.Services.AddCors(options =>
+	options.AddPolicy("Open", builder => builder.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
+
+
+
+
+
 
 // config Dependency Injection
 builder.Services.AddDbContext<SupportAppDbContext>(options =>
@@ -101,4 +112,5 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<ReviewHub>("/reviewHub").RequireCors("Open");
 app.Run();
