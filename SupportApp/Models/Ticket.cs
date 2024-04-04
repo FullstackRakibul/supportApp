@@ -13,7 +13,8 @@ namespace SupportApp.Models
         public string MessageId { get; set; } = string.Empty;
         public int? UserId { get; set; }
         public string? Attachment { get; set; }
-        public bool? IsEmail { get; set; }
+
+		public bool? IsEmail { get; set; }
         public string? FromEmail { get; set; }
         public string? EmailCc { get; set; }
         public int? UpdatedBy { get; set; }

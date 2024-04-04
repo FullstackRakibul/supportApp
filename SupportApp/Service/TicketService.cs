@@ -5,6 +5,7 @@ using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service.Notifications;
+using System;
 namespace SupportApp.Service;
 public class TicketService
 {
@@ -128,37 +129,43 @@ public class TicketService
             };
 
 
-            //---------------------------------------------------------------
+			//---------------------------------------------------------------
 
-            // Attachment handling (assuming attachment object exists in ticketAndTargetDto)
-            if (ticketAndTargetDto.Attachment != null)
-            {
-                // Extract attachment information
-                var attachment = ticketAndTargetDto.Attachment;
-                string fileName = ticketAndTargetDto.Attachment.ToString();
+			// Attachment handling (assuming attachment object exists in ticketAndTargetDto)
+			//         if (ticketAndTargetDto.Attachment != null)
+			//         {
+			//             // Extract attachment information
+			//             var attachment = ticketAndTargetDto.Attachment;
+			//             string fileName = ticketAndTargetDto.Attachment.ToString();
 
-                // Get the project root folder path
-                var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Navigate up two levels
+			//             // Get the project root folder path
+			//             var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Navigate up two levels
 
-                // Combine path for "media" subfolder
-                string folderPath = Path.Combine(projectRootPath, "UploadMedia");
+			//             // Combine path for "media" subfolder
+			//             string folderPath = Path.Combine(projectRootPath, "UploadMedia");
 
-                // Check if the folder exists, if not, create it
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
+			//             // Check if the folder exists, if not, create it
+			//             if (!Directory.Exists(folderPath))
+			//             {
+			//                 Directory.CreateDirectory(folderPath);
+			//             }
 
-                // Combine folder path and filename
-                string filePath = Path.Combine(folderPath, fileName);
-                //System.IO.File.WriteAllBytes(filePath, attachment);
-                ticketData.Attachment = filePath;
-            }
+			//             // Combine folder path and filename
+			//             string filePath = Path.Combine(folderPath, fileName);
+			//	//System.IO.File.WriteAllBytes(filePath, attachment);
+			//	ticketData.Attachment = filePath;
+			//         }
+
+			////---------------------------------------------------------------
+
+			//________________________________________
 
 
-            //---------------------------------------------------------------
+			
 
-            _context.Ticket.Add(ticketData);
+			//________________________________________
+
+			_context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
 
@@ -184,8 +191,57 @@ public class TicketService
     }
 
 
+	//private readonly Random _random = new Random();
 
-    public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
+	//private string GenerateUniqueFilename(string originalFilename)
+	//{
+	//	// Extract original file extension
+	//	string extension = Path.GetExtension(originalFilename);
+
+	//	// Generate a unique timestamped filename with a number postfix
+	//	string uniqueFilename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + _random.Next(1000, 9999) + extension;
+
+	//	return uniqueFilename;
+	//}
+
+
+	//--------------------------
+	private string SaveAttachment(IFormFile attachment, string fileName)
+	{
+		// Determine the path to store the file
+		var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Or use a different path
+		string folderPath = Path.Combine(projectRootPath, "UploadMedia"); // Create a subfolder for organization
+
+		// Ensure the folder exists
+		if (!Directory.Exists(folderPath))
+		{
+			Directory.CreateDirectory(folderPath);
+		}
+
+		// Construct the full file path
+		string filePath = Path.Combine(folderPath, fileName);
+
+		try
+		{
+			// Write the file contents to the designated path
+			using (Stream stream = new FileStream(filePath, FileMode.Create))
+			{
+				attachment.CopyTo(stream);
+			}
+
+			return filePath; // Return the saved file path for reference
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("Error saving attachment: " + ex.Message);
+			throw; // Re-throw for higher-level handling
+		}
+	}
+
+	//----------------------------
+
+
+	public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
     {
         try {
             var ticketData = _context.Ticket.Where(t => t.Id == updateTicketStatusDto.Id).FirstOrDefault();
