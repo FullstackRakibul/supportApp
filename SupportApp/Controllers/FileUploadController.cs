@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging.Signing;
 using SupportApp.DTO;
 using SupportApp.Models;
+using SupportApp.Service;
 using System.Net.Mail;
 
 namespace SupportApp.Controllers
@@ -11,10 +13,12 @@ namespace SupportApp.Controllers
 	public class FileUploadController : ControllerBase
 	{
 		private readonly SupportAppDbContext _context;
+		private readonly GlobalFileUploadService _globalFileUploadService;
 
-		public FileUploadController (SupportAppDbContext context)
+		public FileUploadController (SupportAppDbContext context, GlobalFileUploadService globalFileUploadService)
 		{
 			_context = context;
+			_globalFileUploadService = globalFileUploadService;
 		}
 
 		[HttpGet]
@@ -51,9 +55,15 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create()
+		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto )
 		{
-			return Ok("Success");
+			try {
+				return Ok("This is a Service Test");
+			}catch(Exception ex) {
+				return BadRequest("service is not working. . .");
+			}
+
+			//return Ok("File Upload Successfully...");
 		}
 
 	}
