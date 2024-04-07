@@ -58,7 +58,14 @@ namespace SupportApp.Controllers
 		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto )
 		{
 			try {
-				return Ok("This is a Service Test");
+
+				//string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", globalFileUploadDto.FilePathUrl);
+				//using (Stream stream = new FileStream(path, FileMode.Create)) {
+				//	globalFileUploadDto.UploadFile.CopyTo(stream);
+				//}
+
+				return Ok("Upload File saved success...");
+
 			}catch(Exception ex) {
 				return BadRequest("service is not working. . .");
 			}
