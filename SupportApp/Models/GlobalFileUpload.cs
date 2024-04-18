@@ -7,7 +7,6 @@ namespace SupportApp.Models
 		public int Id { get; set; }
 		public int TicketId { get; set; }
 		public string FolderIndex { get; set; }
-		public List<IFormFile> UploadFile { get; set; }
 		public bool IsActive { get; set; }=true;
 		public DateTime? CreatedAt { get; set; }
 		public DateTime? UpdatedAt { get; set; } // Nullable for updates
