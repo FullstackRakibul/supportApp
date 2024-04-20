@@ -9,7 +9,7 @@ namespace SupportApp.Models
 		public string FolderIndex { get; set; }
 		public bool IsActive { get; set; }=true;
 		public DateTime? CreatedAt { get; set; }
-		public DateTime? UpdatedAt { get; set; } // Nullable for updates
+		public DateTime UpdatedAt { get; set; } = DateTime.Now;
 		public string FilePathUrl { get; set; }
 		public Ticket Ticket { get; set; } 
 	}

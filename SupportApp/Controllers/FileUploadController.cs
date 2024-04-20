@@ -25,29 +25,32 @@ namespace SupportApp.Controllers
 		public ActionResult Index()
 		{
 			try{
-				return Ok("This controller is working Fine.");
-				//Attachment handling(assuming attachment object exists in ticketAndTargetDto)
 
-				//		 if (ticketAndTargetDto.Attachment != null)
-				//{
-				//	// Extract attachment information
-				//	var attachment = ticketAndTargetDto.Attachment;
-				//	string fileName = ticketAndTargetDto.Attachment.ToString();
+                //Attachment handling(assuming attachment object exists in ticketAndTargetDto)
+
+                //if (ticketAndTargetDto.Attachment != null)
+                //{
+                //	// Extract attachment information
+                //	var attachment = ticketAndTargetDto.Attachment;
+                //	string fileName = ticketAndTargetDto.Attachment.ToString();
 
 
-				//	var projectRootPath = Path.Combine(Directory.GetCurrentDirectory());
-				//	string folderPath = Path.Combine(projectRootPath, "UploadMedia");
+                //	var projectRootPath = Path.Combine(Directory.GetCurrentDirectory());
+                //	string folderPath = Path.Combine(projectRootPath, "UploadMedia");
 
-				//	if (!Directory.Exists(folderPath))
-				//	{
-				//		Directory.CreateDirectory(folderPath);
-				//	}
+                //	if (!Directory.Exists(folderPath))
+                //	{
+                //		Directory.CreateDirectory(folderPath);
+                //	}
 
-				//	// Combine folder path and filename
-				//	string filePath = Path.Combine(folderPath, fileName);
-				//	ticketData.Attachment = filePath;
+                //	// Combine folder path and filename
+                //	string filePath = Path.Combine(folderPath, fileName);
+                //	ticketData.Attachment = filePath;
 
-			}catch(Exception ex) {
+                return Ok("This controller is working Fine.");
+
+            }
+            catch(Exception ex) {
 					Console.WriteLine(ex.ToString());
 				return BadRequest(ex.ToString());
 				}
@@ -75,3 +78,36 @@ namespace SupportApp.Controllers
 
 	}
 }
+
+
+
+
+
+//[HttpPost]
+//public IActionResult Upload(SingleFileModel model)
+//{
+//    if (ModelState.IsValid)
+//    {
+//        model.IsResponse = true;
+
+//        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+//        //create folder if not exist
+//        if (!Directory.Exists(path))
+//            Directory.CreateDirectory(path);
+
+//        //get file extension
+//        FileInfo fileInfo = new FileInfo(model.File.FileName);
+//        string fileName = model.FileName + fileInfo.Extension;
+
+//        string fileNameWithPath = Path.Combine(path, fileName);
+
+//        using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+//        {
+//            model.File.CopyTo(stream);
+//        }
+//        model.IsSuccess = true;
+//        model.Message = "File upload successfully";
+//    }
+//    return View("Index", model);
+//}
