@@ -58,22 +58,21 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto )
+		public IActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto, IFormFile UploadedFile)
 		{
 			try {
 
 				//string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", globalFileUploadDto.FilePathUrl);
-				//using (Stream stream = new FileStream(path, FileMode.Create)) {
-				//	globalFileUploadDto.UploadFile.CopyTo(stream);
+				//using (Stream stream = new FileStream(path, FileMode.Create))
+				//{
+				//	globalFileUploadDto.UploadedFile.CopyTo(stream);
 				//}
 
 				return Ok("Upload File saved success...");
 
 			}catch(Exception ex) {
-				return BadRequest("service is not working. . .");
+				return BadRequest("service is not working ...");
 			}
-
-			//return Ok("File Upload Successfully...");
 		}
 
 	}

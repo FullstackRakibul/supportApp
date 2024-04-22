@@ -10,7 +10,9 @@ namespace SupportApp.Models
 		public bool IsActive { get; set; }=true;
 		public DateTime? CreatedAt { get; set; }
 		public DateTime UpdatedAt { get; set; } = DateTime.Now;
-		public string FilePathUrl { get; set; }
+        public IFormFile UploadedFile { get; set; }
+
+        public string FilePathUrl { get; set; }
 		public Ticket Ticket { get; set; } 
 	}
 }
