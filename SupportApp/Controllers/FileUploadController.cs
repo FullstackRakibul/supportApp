@@ -58,7 +58,7 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto, IFormFile UploadedFile)
+		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto)
 		{
 			try {
 
