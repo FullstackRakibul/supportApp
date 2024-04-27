@@ -580,3 +580,4 @@ D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.pdb
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.genruntimeconfig.cache
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\ref\SupportApp.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.csproj.Up2Date
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.staticwebassets.runtime.json

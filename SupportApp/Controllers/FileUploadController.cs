@@ -58,11 +58,13 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto)
+		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto , IFormFile formFile)
 		{
 			try {
 
-				//string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", globalFileUploadDto.FilePathUrl);
+				string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", globalFileUploadDto.FilePathUrl);
+				Directory.CreateDirectory(Path.GetDirectoryName(path));
+
 				//using (Stream stream = new FileStream(path, FileMode.Create))
 				//{
 				//	globalFileUploadDto.UploadedFile.CopyTo(stream);

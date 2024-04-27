@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "NOSxkBLOiBsYJDZkVdh2/JFUHt9dpA2jUEKHPIjBz2o=",
+  "Hash": "jAmekRtbGG4+PAoWPqZOLK24D54XRXTTKTvF2oceVPI=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SupportApp\\wwwroot",
+      "Source": "SupportApp",
+      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\GloballlyUploadedFile",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "GloballlyUploadedFile",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\GloballlyUploadedFile"
+    }
+  ]
 }
