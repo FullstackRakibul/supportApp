@@ -32,5 +32,7 @@ namespace SupportApp.Models
         public DbSet<Unit>? Unit { get; set; }
 
         public DbSet<Menu>? Menu { get; set; }
+
+        public DbSet<GlobalFileUpload>? GlobalFileUpload { get; set; }
     }
 }

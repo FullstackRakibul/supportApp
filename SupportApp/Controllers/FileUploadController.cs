@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging.Signing;
 using SupportApp.DTO;
 using SupportApp.Models;
@@ -58,7 +59,7 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create([FromForm] GlobalFileUploadDto globalFileUploadDto )
+		public async Task<ActionResult> Create([FromForm] GlobalFileUploadDto globalFileUploadDto )
 		{
 			try {
                 if (globalFileUploadDto == null || globalFileUploadDto.UploadedFile == null)
@@ -66,20 +67,18 @@ namespace SupportApp.Controllers
                     return BadRequest("No file uploaded.");
                 }
 
-                
                 //root path for the uploaded file
                 string wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
                 //create folder if not exist
                 if (!Directory.Exists(wwwrootPath)) { 
                     Directory.CreateDirectory(wwwrootPath);
                 }
-
+                //sub path for the uploaded file
                 string folderPath = Path.Combine(wwwrootPath, globalFileUploadDto.FilePathUrl ?? "uploads");
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
                 }
-
 
                 // Get original file name and extension
                 string originalFileName = globalFileUploadDto.UploadedFile.FileName;
@@ -87,7 +86,7 @@ namespace SupportApp.Controllers
 
                 // Create custom file name with prefix, datetime, and postfix
                 Random random = new Random();
-                int randomNumber = random.Next(1000, 9999); // Change range as needed
+                int randomNumber = random.Next(1000, 9999);
                 string customFileName = $"supportApp_{DateTime.Now:yyyyMMddHHmmssfff}_{randomNumber}{fileExtension}";
 
                 // Construct full file path
@@ -99,9 +98,66 @@ namespace SupportApp.Controllers
                     globalFileUploadDto.UploadedFile.CopyTo(stream);
                 }
 
-                return Ok("Upload File saved success...?");
 
-			}catch(Exception ex) {
+                // Insert into database
+                try
+                {
+                    if (string.IsNullOrEmpty(filePath))
+                    {
+                        return BadRequest("File path cannot be null or empty.");
+                    }
+
+                    var insertFileDataIntoDB = new GlobalFileUpload
+                    {
+                        TicketId = globalFileUploadDto.TicketId,
+                        FolderIndex = globalFileUploadDto.FolderIndex,
+                        IsActive = true,
+                        UpdatedAt = DateTime.Now.AddHours(6),
+                        CreatedAt = DateTime.Now.AddHours(6),
+                        FilePathUrl = filePath,
+                    };
+
+                    //_context.GlobalFileUpload.Add(insertFileDataIntoDB);
+                    //await _context.SaveChangesAsync();
+
+                    return Ok("Upload File saved success...");
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Log the exception details
+                    Console.WriteLine($"Error occurred while saving changes to the database: {ex.Message}");
+                    Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                    Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                    return StatusCode(500, "An error occurred while saving changes to the database. Please try again later.");
+                }
+
+
+
+                //if (string.IsNullOrEmpty(filePath))
+                //{
+                //    return BadRequest("File path cannot be null or empty.");
+                //}
+
+                //var insertFileDataIntoDB = new GlobalFileUpload
+                //{
+                //    TicketId=globalFileUploadDto.TicketId,
+                //    FolderIndex= globalFileUploadDto.FolderIndex,
+                //    IsActive=true,
+                //    UpdatedAt=DateTime.Now.AddHours(6),
+                //    CreatedAt = DateTime.Now.AddHours(6),
+                //    FilePathUrl =filePath,
+                //};
+
+                //_context.GlobalFileUpload.Add
+                //    (insertFileDataIntoDB);
+                //await _context.SaveChangesAsync();
+
+
+                //return Ok("Upload File saved success...");
+
+            }
+            catch(Exception ex) {
+
                 Console.WriteLine($"Error occurred while saving file: {ex.Message}");
                 return BadRequest("Failed to save the uploaded file.");
             }
