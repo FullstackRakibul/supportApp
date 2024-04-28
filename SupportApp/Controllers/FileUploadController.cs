@@ -58,23 +58,37 @@ namespace SupportApp.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create([FromBody] GlobalFileUploadDto globalFileUploadDto , IFormFile formFile)
+		public ActionResult Create([FromForm] GlobalFileUploadDto globalFileUploadDto )
 		{
 			try {
+                if (globalFileUploadDto == null || globalFileUploadDto.UploadedFile == null)
+                {
+                    return BadRequest("No file uploaded.");
+                }
 
-				string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", globalFileUploadDto.FilePathUrl);
-				Directory.CreateDirectory(Path.GetDirectoryName(path));
+                string targetDirectory = "uploads"; 
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", targetDirectory);
 
-				//using (Stream stream = new FileStream(path, FileMode.Create))
-				//{
-				//	globalFileUploadDto.UploadedFile.CopyTo(stream);
-				//}
 
-				return Ok("Upload File saved success...");
+                //string folderName = globalFileUploadDto.FilePathUrl ?? "defaultUpload"; 
+                //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folderName);
+
+
+                Directory.CreateDirectory(path);
+
+                string originalFileName = globalFileUploadDto.UploadedFile.FileName;
+                string filePath = Path.Combine(path, originalFileName);
+                using (Stream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    globalFileUploadDto.UploadedFile.CopyTo(stream);
+                }
+
+                return Ok("Upload File saved success...?");
 
 			}catch(Exception ex) {
-				return BadRequest("service is not working ...");
-			}
+                Console.WriteLine($"Error occurred while saving file: {ex.Message}");
+                return BadRequest("Failed to save the uploaded file.");
+            }
 		}
 
 	}
