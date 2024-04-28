@@ -228,7 +228,7 @@ namespace SupportApp.Controllers
 			catch (Exception ex)
 			{
 				// Log the exception or handle it based on your application's requirements
-				return BadRequest("Failed to assign support engineer.");
+				return BadRequest($"Failed to assign support engineer.{ex.Message}");
 			}
 		}
 

@@ -1,7 +1,5 @@
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.Development.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.json
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package-lock.json
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.exe
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.deps.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.runtimeconfig.json
@@ -277,7 +275,6 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticweb
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets.build.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\staticwebassets.development.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\scopedcss\bundle\SupportApp.styles.css
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.csproj.CopyComplete
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\refint\SupportApp.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.pdb
@@ -580,3 +577,5 @@ D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\refint\SupportApp.dll
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.pdb
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.genruntimeconfig.cache
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\ref\SupportApp.dll
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.csproj.Up2Date
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.staticwebassets.runtime.json

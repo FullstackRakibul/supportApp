@@ -10,14 +10,14 @@ namespace SupportApp.Service
             _context = supportAppDbContext;
         }
 
-        public async Task createReview(ReviewDto review)
+        public async Task createReview(ReviewDto reviewDto)
         {
             try {
                 var reviewCreate = new Review { 
                 
-                    TicketId = review.TicketId,
-                    ReviewerId = review.ReviewerId,
-                    ReviewNote = review.ReviewNote,
+                    TicketId = reviewDto.TicketId,
+                    ReviewerId = reviewDto.ReviewerId,
+                    ReviewNote = reviewDto.ReviewNote,
                     CreatedAt = DateTime.UtcNow.AddHours(6),
                     Status  = true,
                 };

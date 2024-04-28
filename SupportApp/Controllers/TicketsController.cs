@@ -38,11 +38,6 @@ namespace SupportApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
-          // if (_context.Ticket == null)
-          // {
-          //     return NotFound();
-          // }
-          // return await _context.Ticket.ToListAsync();
           try
           {
               var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).OrderByDescending(ticket => ticket.CreatedAt)
