@@ -303,115 +303,6 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.NotificationsController",
-    "Method": "GetNotification",
-    "RelativePath": "api/Notifications",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[SupportApp.Models.Notification, SupportApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.NotificationsController",
-    "Method": "PostNotification",
-    "RelativePath": "api/Notifications",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "notification",
-        "Type": "SupportApp.Models.Notification",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "SupportApp.Models.Notification",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.NotificationsController",
-    "Method": "GetNotification",
-    "RelativePath": "api/Notifications/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "SupportApp.Models.Notification",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.NotificationsController",
-    "Method": "PutNotification",
-    "RelativePath": "api/Notifications/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "notification",
-        "Type": "SupportApp.Models.Notification",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.NotificationsController",
-    "Method": "DeleteNotification",
-    "RelativePath": "api/Notifications/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.NotificationsController",
     "Method": "CreateNotification",
     "RelativePath": "api/Notifications/createNotification",
     "HttpMethod": "POST",
@@ -419,7 +310,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "notificationDTO",
+        "Name": "notificationDto",
         "Type": "SupportApp.DTO.NotificationDto",
         "IsRequired": true
       }
@@ -534,6 +425,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.ReviewsController",
+    "Method": "createReviewNote",
+    "RelativePath": "api/Reviews/create-review-note",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reviewDto",
+        "Type": "SupportApp.DTO.ReviewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SupportApp.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "SupportApp.Controllers.ReviewsController",
@@ -980,19 +897,40 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
-    "Method": "GetPaginationList",
-    "RelativePath": "api/Tickets/getPaginationList/{currentPage}/{pageSize}",
+    "Method": "GetMailTicketList",
+    "RelativePath": "api/Tickets/GetMailTicketList/{Skip}/{Take}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "currentPage",
+        "Name": "Skip",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "pageSize",
+        "Name": "Take",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "GetPaginationList",
+    "RelativePath": "api/Tickets/getPaginationList/{Skip}/{Take}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Skip",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Take",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -1109,6 +1047,22 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
+    "Method": "SoftReminder",
+    "RelativePath": "api/Tickets/soft-reminder/{ticketId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.TicketsController",
     "Method": "GetTicketPriorityEnum",
     "RelativePath": "api/Tickets/ticketPriority",
     "HttpMethod": "GET",
@@ -1129,9 +1083,9 @@
   },
   {
     "ContainingType": "SupportApp.Controllers.TicketsController",
-    "Method": "UpdateForCheck",
-    "RelativePath": "api/Tickets/updateForCheck/{ticketId}",
-    "HttpMethod": "GET",
+    "Method": "UpdateForCheckTicketStatus",
+    "RelativePath": "api/Tickets/UpdateForCheckTicketStatus/{ticketId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -1143,7 +1097,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "SupportApp.Models.Ticket",
+        "Type": "System.String",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1500,42 +1454,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[SupportApp.Models.Ticket, SupportApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "SupportApp.Controllers.TargetsController",
-    "Method": "AssignSupportEngineer",
-    "RelativePath": "ticket/{ticketId}/assignsupportengineer/{SupportEngineerId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ticketId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "SupportApp.Models.Target",
-        "IsRequired": true
-      },
-      {
-        "Name": "SupportEngineerId",
-        "Type": "",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "SupportApp.Models.Target",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428162739147_7982.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428162739147_7982.jpg"
+    },
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428162837572_9612.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428162837572_9612.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SupportApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.SupportApp.props",
+      "PackagePath": "build\\SupportApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.SupportApp.props",
+      "PackagePath": "buildMultiTargeting\\SupportApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.SupportApp.props",
+      "PackagePath": "buildTransitive\\SupportApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

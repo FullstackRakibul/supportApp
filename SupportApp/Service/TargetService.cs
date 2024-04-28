@@ -53,7 +53,7 @@ namespace SupportApp.Service
 					int newTargetId = selectTarget.Id;
 					var newNotification = new Notification
 					{
-						UserId = "088100",
+						UserId = selectTarget.AgentId.ToString(),
 						IsRead = false,
 						TargetId = newTargetId,
 						Message = $"A new ticket Ticket has been created.",
@@ -72,13 +72,13 @@ namespace SupportApp.Service
                         UnitId = _context.Unit.Where(u => u.Name == "Corporate Office").FirstOrDefault().Id,
                     };
 
-                    _context.Target.Add(newTarget);
-                    _context.SaveChangesAsync();
+                     _context.Target.Add(newTarget);
+                    await _context.SaveChangesAsync();
 
-					int newTargetId = selectTarget.Id;
+					int newTargetId = newTarget.Id;
 					var newNotification = new Notification
 					{
-						UserId = "088100",
+						UserId = newTarget.AgentId.ToString(),
 						IsRead = false,
 						TargetId = newTargetId,
 						Message = $"A new ticket Ticket has been created.",

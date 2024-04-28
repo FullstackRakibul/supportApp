@@ -5,6 +5,7 @@ using Org.BouncyCastle.Utilities;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service.Notifications;
+using System;
 namespace SupportApp.Service;
 public class TicketService
 {
@@ -98,6 +99,7 @@ public class TicketService
             Console.WriteLine($" This Ticket:'{emailDetails.MessageId}'is already exits.");
         }
     }
+
     // create ticket from frontend form 
     public async void CreateTicket(TicketAndTargetDto ticketAndTargetDto)
     {
@@ -111,8 +113,12 @@ public class TicketService
                 Title = ticketAndTargetDto.Title,
                 TicketNumber = generatedTicketNumber,
                 Description = ticketAndTargetDto.Description,
-                Attachment = ticketAndTargetDto.Attachment,
-                CreatedAt = ticketAndTargetDto.CreatedAt,
+
+                // need to save the file on my local ................
+                //Attachment = ticketAndTargetDto.Attachment.ToString(),
+
+
+			    CreatedAt = ticketAndTargetDto.CreatedAt,
                 CreatedBy = ticketAndTargetDto.CreatedBy,
                 MessageId = generatedTicketNumber,
                 Priority = TicketPriority.Regular,
@@ -120,46 +126,122 @@ public class TicketService
                 IsEmail = false,
                 TicketTypeId = ticketAndTargetDto.TicketTypeId,
                 UpdatedAt = null,
-
-
             };
 
-            _context.Ticket.Add(ticketData);
+
+			//---------------------------------------------------------------
+
+			// Attachment handling (assuming attachment object exists in ticketAndTargetDto)
+			//         if (ticketAndTargetDto.Attachment != null)
+			//         {
+			//             // Extract attachment information
+			//             var attachment = ticketAndTargetDto.Attachment;
+			//             string fileName = ticketAndTargetDto.Attachment.ToString();
+
+			//             // Get the project root folder path
+			//             var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Navigate up two levels
+
+			//             // Combine path for "media" subfolder
+			//             string folderPath = Path.Combine(projectRootPath, "UploadMedia");
+
+			//             // Check if the folder exists, if not, create it
+			//             if (!Directory.Exists(folderPath))
+			//             {
+			//                 Directory.CreateDirectory(folderPath);
+			//             }
+
+			//             // Combine folder path and filename
+			//             string filePath = Path.Combine(folderPath, fileName);
+			//	//System.IO.File.WriteAllBytes(filePath, attachment);
+			//	ticketData.Attachment = filePath;
+			//         }
+
+			////---------------------------------------------------------------
+
+			//________________________________________
+
+
+			
+
+			//________________________________________
+
+			_context.Ticket.Add(ticketData);
             _context.SaveChanges();
 
-            int newTicketId = ticketData.Id;
+
+
+
+            // create target after ticket has been created 
+            //int newTicketId = ticketData.Id;
             var newTarget = new Target
             {
-                TicketId = newTicketId,
+                TicketId = ticketData.Id,
                 DepartmentId = ticketAndTargetDto.DepartmentId,
                 UnitId = ticketAndTargetDto.UnitId,
             };
-
             _context.Target.Add(newTarget);
             await _context.SaveChangesAsync();
-
-            // auto create new notification for the raised ticket
-   //         int newTargetId = newTarget.Id;
-   //         var newNotification = new Notification
-   //         {
-			//	  UserId: ticketAndTargetDto.UserId,
-   //               IsRead: false,
-   //               TargetId: newTargetId
-			//};
-   //         _context.Notification.Add(newNotification);
-		 //   await _context.SaveChangesAsync();
-
 
 		Console.WriteLine("Create Ticket Successfully.");
         }
         catch (Exception ex)
         {
             Console.WriteLine("This is Service layer error.", ex.Message);
-
         }
     }
 
-    public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
+
+	//private readonly Random _random = new Random();
+
+	//private string GenerateUniqueFilename(string originalFilename)
+	//{
+	//	// Extract original file extension
+	//	string extension = Path.GetExtension(originalFilename);
+
+	//	// Generate a unique timestamped filename with a number postfix
+	//	string uniqueFilename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + _random.Next(1000, 9999) + extension;
+
+	//	return uniqueFilename;
+	//}
+
+
+	//--------------------------
+	private string SaveAttachment(IFormFile attachment, string fileName)
+	{
+		// Determine the path to store the file
+		var projectRootPath = Path.Combine(Directory.GetCurrentDirectory()); // Or use a different path
+		string folderPath = Path.Combine(projectRootPath, "UploadMedia"); // Create a subfolder for organization
+
+		// Ensure the folder exists
+		if (!Directory.Exists(folderPath))
+		{
+			Directory.CreateDirectory(folderPath);
+		}
+
+		// Construct the full file path
+		string filePath = Path.Combine(folderPath, fileName);
+
+		try
+		{
+			// Write the file contents to the designated path
+			using (Stream stream = new FileStream(filePath, FileMode.Create))
+			{
+				attachment.CopyTo(stream);
+			}
+
+			return filePath; // Return the saved file path for reference
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("Error saving attachment: " + ex.Message);
+			throw; // Re-throw for higher-level handling
+		}
+	}
+
+	//----------------------------
+
+
+	public void UpdateTicketstatus(UpdateTicketStatusDto updateTicketStatusDto)
     {
         try {
             var ticketData = _context.Ticket.Where(t => t.Id == updateTicketStatusDto.Id).FirstOrDefault();
@@ -281,7 +363,7 @@ public class TicketService
 	public IEnumerable<Ticket> GetPaginationList(int currentPage, int pageSize)
 	{
 		int skip = (currentPage - 1) * pageSize;
-		return _context.Ticket.OrderByDescending(t => t.CreatedAt)
+		return _context.Ticket.OrderByDescending(t => t.CreatedAt).Where(t => (int)t.Status < 5)
 							   .Skip(skip)
 							   .Take(pageSize)
 							   .ToList();
@@ -327,8 +409,7 @@ public class TicketService
 		try
 		{
 			int skip = (currentPage - 1) * pageSize;
-
-			return  _context.Ticket.Where(t => t.IsEmail == true)
+			return  _context.Ticket.Where(t => t.IsEmail == true && (int)t.Status < 4)
 						.OrderByDescending(t => t.CreatedAt)
 						.Skip(skip)
 						.Take(pageSize)
@@ -338,6 +419,45 @@ public class TicketService
 		{
 			Console.WriteLine(ex);
 			return Enumerable.Empty<Ticket>();
+		}
+	}
+
+	// add soft reminder to an agent ..............
+
+	public async Task<string> Softreminder(int ticketId)
+	{
+		try
+
+            //_context.Target.FirstOrDefault(t => t.TicketId == ticketId);
+        {
+			var targetData = await _context.Target.FirstOrDefaultAsync(t => t.TicketId == ticketId);
+
+			if (targetData != null)
+			{
+				var notificationToUpdate = await _context.Notification.FirstOrDefaultAsync(n => n.TargetId == targetData.Id);
+
+				if (notificationToUpdate != null)
+				{
+					notificationToUpdate.IsRead = true;
+                    
+					await _context.SaveChangesAsync();
+
+					return ("Notification marked as read successfully.");
+				}
+				else
+				{
+					return ("No notification found for the specified target.");
+				}
+			}
+			else
+			{
+				return ("Target not found for the ticket ID.");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return ("Internal server error."); 
 		}
 	}
 

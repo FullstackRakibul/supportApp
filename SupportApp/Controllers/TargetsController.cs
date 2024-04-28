@@ -213,9 +213,6 @@ namespace SupportApp.Controllers
 
 
 		// ..............................................Admin API's........................................
-
-
-
 		[HttpPost("assignSupportEngineer")]
 		public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
         //public IActionResult AssignSupportEngineer(int ticketId, int agentId)
@@ -231,7 +228,7 @@ namespace SupportApp.Controllers
 			catch (Exception ex)
 			{
 				// Log the exception or handle it based on your application's requirements
-				return BadRequest("Failed to assign support engineer.");
+				return BadRequest($"Failed to assign support engineer.{ex.Message}");
 			}
 		}
 

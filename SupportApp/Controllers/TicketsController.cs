@@ -38,11 +38,6 @@ namespace SupportApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
-          // if (_context.Ticket == null)
-          // {
-          //     return NotFound();
-          // }
-          // return await _context.Ticket.ToListAsync();
           try
           {
               var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).OrderByDescending(ticket => ticket.CreatedAt)
@@ -357,7 +352,7 @@ namespace SupportApp.Controllers
 
 		// UpdateForCheckTicketStatus API 
 
-		[HttpGet("UpdateForCheckTicketStatus/{ticketId}")]
+		[HttpPost("UpdateForCheckTicketStatus/{ticketId}")]
 		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
 		{
 			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
@@ -397,5 +392,21 @@ namespace SupportApp.Controllers
 				return StatusCode(500, "Server Response Error.");
 			}
 		}
+
+        [HttpPost("soft-reminder/{ticketId}")]
+		public async Task<IActionResult> SoftReminder(int ticketId)
+		{
+            try
+            {
+                var reminder = await _ticketService.Softreminder(ticketId);
+                return Ok(reminder);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Server Response Error.");
+            }
+        }
+
 	}
 }
