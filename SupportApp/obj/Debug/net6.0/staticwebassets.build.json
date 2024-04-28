@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "NOSxkBLOiBsYJDZkVdh2/JFUHt9dpA2jUEKHPIjBz2o=",
+  "Hash": "yuCqozD0iToXkTqlrGYWi4Anr9cSOqpCSPX0OpEzVas=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SupportApp\\wwwroot",
+      "Source": "SupportApp",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428220743704_2946.jpg",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "test/supportApp_20240428220743704_2946.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428220743704_2946.jpg"
+    },
+    {
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "testFiles/supportApp_20240428215321427_2211.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp"
+    },
+    {
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "ticketFiles/supportApp_20240428164024009_5769.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg"
+    }
+  ]
 }

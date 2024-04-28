@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp",
+      "PackagePath": "staticwebassets\\testFiles\\supportApp_20240428215321427_2211.webp"
+    },
+    {
+      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428220743704_2946.jpg",
+      "PackagePath": "staticwebassets\\test\\supportApp_20240428220743704_2946.jpg"
+    },
+    {
+      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428164024009_5769.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SupportApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.SupportApp.props",
+      "PackagePath": "build\\SupportApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.SupportApp.props",
+      "PackagePath": "buildMultiTargeting\\SupportApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.SupportApp.props",
+      "PackagePath": "buildTransitive\\SupportApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

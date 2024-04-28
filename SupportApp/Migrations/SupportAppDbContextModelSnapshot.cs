@@ -151,6 +151,39 @@ namespace SupportApp.Migrations
                     b.ToTable("Department");
                 });
 
+            modelBuilder.Entity("SupportApp.Models.GlobalFileUpload", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FilePathUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FolderIndex")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("GlobalFileUpload");
+                });
+
             modelBuilder.Entity("SupportApp.Models.Menu", b =>
                 {
                     b.Property<int>("Id")
@@ -428,6 +461,17 @@ namespace SupportApp.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SupportApp.Models.GlobalFileUpload", b =>
+                {
+                    b.HasOne("SupportApp.Models.Ticket", "Ticket")
+                        .WithMany("GlobalFileAttachments")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
+                });
+
             modelBuilder.Entity("SupportApp.Models.Notification", b =>
                 {
                     b.HasOne("SupportApp.Models.Target", "Target")
@@ -492,6 +536,8 @@ namespace SupportApp.Migrations
 
             modelBuilder.Entity("SupportApp.Models.Ticket", b =>
                 {
+                    b.Navigation("GlobalFileAttachments");
+
                     b.Navigation("Reviews");
 
                     b.Navigation("Target");
