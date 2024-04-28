@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ky2h43zKaj2B9Oy2q7TyHLjQlxIR2mU+SBVuY2r57qk=",
+  "Hash": "oExSxXRCw1rFxKMkubw4p+l1C2iksya0Z5ZHPBrrVfA=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428162739147_7982.jpg"
+    },
+    {
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428162837572_9612.jpg",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "ticketFiles/supportApp_20240428162837572_9612.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428162837572_9612.jpg"
     }
   ]
 }

@@ -1,7 +1,5 @@
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.Development.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.json
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package-lock.json
-E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.exe
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.deps.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.runtimeconfig.json
