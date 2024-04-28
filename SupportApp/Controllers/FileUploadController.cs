@@ -66,18 +66,34 @@ namespace SupportApp.Controllers
                     return BadRequest("No file uploaded.");
                 }
 
-                string targetDirectory = "uploads"; 
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", targetDirectory);
+                
+                //root path for the uploaded file
+                string wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                //create folder if not exist
+                if (!Directory.Exists(wwwrootPath)) { 
+                    Directory.CreateDirectory(wwwrootPath);
+                }
+
+                string folderPath = Path.Combine(wwwrootPath, globalFileUploadDto.FilePathUrl ?? "uploads");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
 
 
-                //string folderName = globalFileUploadDto.FilePathUrl ?? "defaultUpload"; 
-                //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folderName);
-
-
-                Directory.CreateDirectory(path);
-
+                // Get original file name and extension
                 string originalFileName = globalFileUploadDto.UploadedFile.FileName;
-                string filePath = Path.Combine(path, originalFileName);
+                string fileExtension = Path.GetExtension(originalFileName);
+
+                // Create custom file name with prefix, datetime, and postfix
+                Random random = new Random();
+                int randomNumber = random.Next(1000, 9999); // Change range as needed
+                string customFileName = $"supportApp_{DateTime.Now:yyyyMMddHHmmssfff}_{randomNumber}{fileExtension}";
+
+                // Construct full file path
+                string filePath = Path.Combine(folderPath, customFileName);
+
+                // Save the uploaded file to the specified path
                 using (Stream stream = new FileStream(filePath, FileMode.Create))
                 {
                     globalFileUploadDto.UploadedFile.CopyTo(stream);
@@ -125,4 +141,64 @@ namespace SupportApp.Controllers
 //        model.Message = "File upload successfully";
 //    }
 //    return View("Index", model);
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //if (globalFileUploadDto == null || globalFileUploadDto.UploadedFile == null)
+ //               {
+ //                   return BadRequest("No file uploaded.");
+ //               }
+
+ //               //string targetDirectory = "uploads"; 
+ //               //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", targetDirectory);
+
+
+ //               //string folderName = globalFileUploadDto.FilePathUrl ?? "defaultUpload"; 
+ //               //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folderName);
+
+
+ //               string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/");
+ //               //create folder if not exist
+ //               if (!Directory.Exists(path)) { 
+ //                   Directory.CreateDirectory(path);
+ //               }
+
+ //               //get file extension
+ //               FileInfo fileInfo = new FileInfo(globalFileUploadDto.UploadedFile.FileName);
+ //               string fileName = globalFileUploadDto.UploadedFile + fileInfo.Extension;
+
+
+ //               Directory.CreateDirectory(path);
+
+ //               string originalFileName = globalFileUploadDto.UploadedFile.FileName;
+ //               string filePath = Path.Combine(path, originalFileName);
+
+ //               string fileNameWithPath = Path.Combine(path, fileName);
+
+ //               //using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+ //               //{
+ //               //    globalFileUploadDto.UploadedFile.CopyTo(stream);
+ //               //}
+
+
+
+ //               using (Stream stream = new FileStream(fileNameWithPath, FileMode.Create))
+ //               {
+ //                   globalFileUploadDto.UploadedFile.CopyTo(stream);
+ //               }
+
+ //               return Ok("Upload File saved success...?");
+
+
+
 //}

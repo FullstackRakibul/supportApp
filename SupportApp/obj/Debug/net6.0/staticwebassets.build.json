@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SJuOjSFe/N8YLtg17HbuzBK7h6zoJymrofwFEThEahU=",
+  "Hash": "9Jy8LYMpzJLaxzhzIjpcL6ILvdDaxf9zYO/NRYBjzI8=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\GloballlyUploadedFile",
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\DemoUpload.xlsx",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "GloballlyUploadedFile",
+      "RelativePath": "DemoUpload.xlsx",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\GloballlyUploadedFile"
+      "OriginalItemSpec": "wwwroot\\DemoUpload.xlsx"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\GloballlyUploadedFile2",
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\Files\\Microsoft.AspNetCore.Http.FormFile.jpg",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "GloballlyUploadedFile2",
+      "RelativePath": "Files/Microsoft.AspNetCore.Http.FormFile.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,15 +52,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\GloballlyUploadedFile2"
+      "OriginalItemSpec": "wwwroot\\Files\\Microsoft.AspNetCore.Http.FormFile.jpg"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\GloballlyUploadedFile3",
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\Microsoft.AspNetCore.Http.FormFile.xlsx",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "GloballlyUploadedFile3",
+      "RelativePath": "Microsoft.AspNetCore.Http.FormFile.xlsx",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,15 +71,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\GloballlyUploadedFile3"
+      "OriginalItemSpec": "wwwroot\\Microsoft.AspNetCore.Http.FormFile.xlsx"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\GloballlyUploadedFile4",
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\prefix_20240428122504381_2665.jpg",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "GloballlyUploadedFile4",
+      "RelativePath": "prefix_20240428122504381_2665.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -90,15 +90,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\GloballlyUploadedFile4"
+      "OriginalItemSpec": "wwwroot\\prefix_20240428122504381_2665.jpg"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\uploads\\huawei-support-app-featured-img-3.jpg",
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\supportApp_20240428122251877.xlsx",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "uploads/huawei-support-app-featured-img-3.jpg",
+      "RelativePath": "supportApp_20240428122251877.xlsx",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,7 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\huawei-support-app-featured-img-3.jpg"
+      "OriginalItemSpec": "wwwroot\\supportApp_20240428122251877.xlsx"
     }
   ]
 }
