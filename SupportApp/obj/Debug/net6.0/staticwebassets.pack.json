@@ -1,16 +1,24 @@
 {
   "Files": [
     {
-      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp",
-      "PackagePath": "staticwebassets\\testFiles\\supportApp_20240428215321427_2211.webp"
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222009411_6648.webp",
+      "PackagePath": "staticwebassets\\test\\supportApp_20240428222009411_6648.webp"
     },
     {
-      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428220743704_2946.jpg",
-      "PackagePath": "staticwebassets\\test\\supportApp_20240428220743704_2946.jpg"
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222202535_2445.webp",
+      "PackagePath": "staticwebassets\\test\\supportApp_20240428222202535_2445.webp"
     },
     {
-      "Id": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg",
-      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428164024009_5769.jpg"
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171205705_8143.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428171205705_8143.jpg"
+    },
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171212938_6389.xlsx",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428171212938_6389.xlsx"
+    },
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240428221711074_4092.jpg"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SupportApp.Microsoft.AspNetCore.StaticWebAssets.props",
