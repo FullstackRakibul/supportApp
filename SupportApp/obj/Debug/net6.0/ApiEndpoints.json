@@ -302,6 +302,47 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SupportApp.Controllers.FileUploadController",
+    "Method": "Index",
+    "RelativePath": "api/FileUpload",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.FileUploadController",
+    "Method": "Create",
+    "RelativePath": "api/FileUpload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TicketId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "FolderIndex",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UploadedFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "FilePathUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SupportApp.Controllers.NotificationsController",
     "Method": "CreateNotification",
     "RelativePath": "api/Notifications/createNotification",

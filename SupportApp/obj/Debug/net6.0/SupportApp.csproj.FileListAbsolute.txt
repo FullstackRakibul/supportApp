@@ -288,8 +288,6 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportAp
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\BCrypt.Net.dll
 D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.Development.json
 D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\appsettings.json
-D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package-lock.json
-D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\ClientApp\package.json
 D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.exe
 D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.deps.json
 D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.runtimeconfig.json
@@ -579,3 +577,4 @@ D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.genruntimeconf
 D:\alpha\dotnet\SupportApp\SupportApp\obj\Debug\net6.0\ref\SupportApp.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Debug\net6.0\SupportApp.csproj.Up2Date
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.staticwebassets.runtime.json
+D:\alpha\dotnet\SupportApp\SupportApp\bin\Debug\net6.0\SupportApp.staticwebassets.runtime.json
