@@ -117,8 +117,8 @@ namespace SupportApp.Controllers
                         FilePathUrl = filePath,
                     };
 
-                    //_context.GlobalFileUpload.Add(insertFileDataIntoDB);
-                    //await _context.SaveChangesAsync();
+                    _context.GlobalFileUpload.Add(insertFileDataIntoDB);
+                    await _context.SaveChangesAsync();
 
                     return Ok("Upload File saved success...");
                 }
