@@ -18,6 +18,8 @@ namespace SupportApp.Models
         public UserStatus Status { get; set; } = UserStatus.Active;
         public WorkingStatus WorkingStatus { get; set; } = WorkingStatus.Available;
         public UserRole UserRole { get; set; } = UserRole.Employee;
+
+        public ICollection<CodeSnippetAccess>? CodeSnippetAccess { get; set; }
     }
 
     public enum UserStatus

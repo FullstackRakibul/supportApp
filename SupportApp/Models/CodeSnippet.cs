@@ -12,8 +12,11 @@ namespace SupportApp.Models
         public string? SoftwareType { get; set; }
         public string Code { get; set; }
         public string? Author { get; set; }
+        public string? IsPublic { get; set; }
         public DateTime CreatedAt { get; set; } 
-        public DateTime? UpdatedAt { get; set; } 
+        public DateTime? UpdatedAt { get; set; }
+
+        public ICollection<CodeSnippetAccess> CodeSnippetAccess { get; set; }
     }
 
 }
