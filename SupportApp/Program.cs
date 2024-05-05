@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
 using SupportApp.Service.Notifications;
 using SupportApp.SignalR;
+using SupportApp.Repository.IReposiroty;
+using SupportApp.Repository;
 
 
 
@@ -44,9 +46,11 @@ builder.Services.AddTransient<TicketService , TicketService>();
 builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
 builder.Services.AddTransient<PaginationService, PaginationService>();
 
+
 //builder.Services.AddTransient<NotificationService, NotificationService>();
 
 builder.Services.AddScoped<TargetService,TargetService>();
+builder.Services.AddScoped<CodeSnippetRepository, CodeSnippetRepository>();
 builder.Services.AddTransient<AuthController>();
 
 //builder.Services.AddCors(options =>
