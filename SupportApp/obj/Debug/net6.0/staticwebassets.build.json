@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yuCqozD0iToXkTqlrGYWi4Anr9cSOqpCSPX0OpEzVas=",
+  "Hash": "DQBbfVXsFHrlsY8elPzfGgY+7amvesJv6S3rulTVfxU=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428220743704_2946.jpg",
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222009411_6648.webp",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "test/supportApp_20240428220743704_2946.jpg",
+      "RelativePath": "test/supportApp_20240428222009411_6648.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428220743704_2946.jpg"
+      "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428222009411_6648.webp"
     },
     {
-      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp",
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222202535_2445.webp",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "testFiles/supportApp_20240428215321427_2211.webp",
+      "RelativePath": "test/supportApp_20240428222202535_2445.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,15 +52,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\testFiles\\supportApp_20240428215321427_2211.webp"
+      "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428222202535_2445.webp"
     },
     {
-      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg",
+      "Identity": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\alpha\\dotnet\\SupportApp\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
-      "RelativePath": "ticketFiles/supportApp_20240428164024009_5769.jpg",
+      "RelativePath": "ticketFiles/supportApp_20240428221711074_4092.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,7 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428164024009_5769.jpg"
+      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg"
     }
   ]
 }
