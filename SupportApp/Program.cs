@@ -51,6 +51,7 @@ builder.Services.AddTransient<PaginationService, PaginationService>();
 
 builder.Services.AddScoped<TargetService,TargetService>();
 builder.Services.AddScoped<CodeSnippetRepository, CodeSnippetRepository>();
+builder.Services.AddScoped<ICodeSnippetInterface, ICodeSnippetInterface>();
 builder.Services.AddTransient<AuthController>();
 
 //builder.Services.AddCors(options =>

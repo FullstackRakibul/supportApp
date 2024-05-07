@@ -11,11 +11,16 @@ namespace SupportApp.Controllers
     {
         private readonly ICodeSnippetInterface _codeSnippetInterface;
 
-        [HttpGet("getAllCode")]
-        public ActionResult Index()
+        [HttpGet]
+        [Route("get-all-code", Name = "getAllCode")]
+        public async Task<IActionResult> GetAllCodes()
         {
-            var codeSnippet = _codeSnippetInterface.GetAllAsync();
-            return View(codeSnippet);
+            var codeSnippet = await _codeSnippetInterface.GetAllAsync();
+            if (codeSnippet == null)
+            {
+                return NotFound();
+            }
+            return Ok("Controller Works");
         }
     }
 }
