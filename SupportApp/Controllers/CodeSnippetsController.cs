@@ -21,9 +21,9 @@ namespace SupportApp.Controllers
 
         [HttpGet]
         [Route("get-all-code", Name = "getAllCode")]
-        public  IActionResult GetAllCodes()
+        public async Task<IActionResult> GetAllCodes()
         {
-            var codeSnippet =  _codeSnippetInterface.GetAllAsync();
+            var codeSnippet = await _codeSnippetInterface.GetAllAsync();
             if (codeSnippet == null)
             {
                 return NotFound();

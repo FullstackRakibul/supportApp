@@ -13,11 +13,11 @@ namespace SupportApp.Repository
         public  CodeSnippetRepository(SupportAppDbContext supportAppDbContext) {
             _context = supportAppDbContext;
         }
-        public  IEnumerable<CodeSnippet> GetAllAsync()
+        public async Task<IEnumerable<CodeSnippet>> GetAllAsync()
         {
             try
             {
-                var codeData = _context.CodeSnippet.ToList();
+                var codeData =await _context.CodeSnippet.ToListAsync();
                 return codeData;
             }
             catch (Exception ex)
