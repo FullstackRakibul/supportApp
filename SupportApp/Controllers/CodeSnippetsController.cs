@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportApp.DTO;
+using SupportApp.Models;
 using SupportApp.Repository.IReposiroty;
 
 namespace SupportApp.Controllers
@@ -28,7 +29,12 @@ namespace SupportApp.Controllers
             {
                 return NotFound();
             }
-            return Ok(codeSnippet);
+            return Ok( new ApiResponseDto<IEnumerable<CodeSnippet>>
+            {
+                Status=true,
+                Message="Getting all code's data successfully .",
+                Data=codeSnippet
+            });
         }
     }
 }
