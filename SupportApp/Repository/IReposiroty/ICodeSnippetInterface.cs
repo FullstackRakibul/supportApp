@@ -3,6 +3,6 @@ namespace SupportApp.Repository.IReposiroty
 {
     public interface ICodeSnippetInterface
     {
-        Task<IEnumerable<CodeSnippet>> GetAllAsync();
+        IEnumerable<CodeSnippet> GetAllAsync();
     }
 }
