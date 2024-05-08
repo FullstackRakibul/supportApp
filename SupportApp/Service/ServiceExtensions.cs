@@ -18,7 +18,7 @@ namespace SupportApp.Service {
 
         public static IServiceCollection AddScopedServices(this IServiceCollection services)
         {
-           services.AddTransient<ICodeSnippetInterface, CodeSnippetRepository>();
+          // services.AddTransient<ICodeSnippetInterface, CodeSnippetRepository>();
             return services;
         }
 

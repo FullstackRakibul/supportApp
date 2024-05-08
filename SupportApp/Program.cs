@@ -12,6 +12,7 @@ using SupportApp.Service.Notifications;
 using SupportApp.SignalR;
 using SupportApp.Repository.IReposiroty;
 using SupportApp.Repository;
+using SupportApp.DependencyContainer;
 
 
 
@@ -24,6 +25,9 @@ try {
     builder.Services.AddTransientServices();
     builder.Services.AddScopedServices();
     builder.Services.AddSingletonServices();
+    builder.Services.RegistrationServices();
+
+
 }
 catch(Exception ex) {
     Console.WriteLine(ex);
