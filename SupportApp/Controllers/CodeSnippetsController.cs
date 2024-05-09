@@ -41,7 +41,7 @@ namespace SupportApp.Controllers
 
         [HttpGet]
         [Route ("show-code-{id}" , Name ="showCode")]
-        public async Task<IActionResult> ShowCode (int id)
+        public async Task<IActionResult> ShowCodeSnippet(int id)
         {
             try {
                 var getCodeData = await _codeSnippetInterface.GetCodeAsync(id);
@@ -66,6 +66,62 @@ namespace SupportApp.Controllers
                 }
             }
             catch(Exception ex) { 
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("create-code-snippet")]
+        public async Task<IActionResult> CreateCodeSnippet()
+        {
+            try
+            {
+                return Ok(new ApiResponseDto<string>
+                {
+                    Status = true,
+                    Message = "CodeSnippet created successfully",
+                    Data = {}
+                });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPut("update-code-snippet-{id}")]
+        public async Task<IActionResult> UpdateCodeSnippet(int id)
+        {
+            try
+            {
+                return Ok(new ApiResponseDto<string>
+                {
+                    Status = true,
+                    Message = "CodeSnippet update successfully.",
+                    Data = id.ToString()
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("delete-code-snippet-{id}")]
+        public async Task<IActionResult> DeleteCodeSnippet(int id)
+        {
+            try
+            {
+                return Ok(new ApiResponseDto<string>
+                {
+                    Status = true,
+                    Message = "CodeSnippet deleted successfully.",
+                    Data = id.ToString()
+                });
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
