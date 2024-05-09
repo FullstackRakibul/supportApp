@@ -26,8 +26,6 @@ try {
     builder.Services.AddScopedServices();
     builder.Services.AddSingletonServices();
     builder.Services.RegistrationServices();
-
-
 }
 catch(Exception ex) {
     Console.WriteLine(ex);
@@ -47,7 +45,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
-builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
+
 builder.Services.AddTransient<PaginationService, PaginationService>();
 
 

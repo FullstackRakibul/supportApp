@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Repository.IReposiroty;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace SupportApp.Controllers
 {
@@ -35,6 +37,37 @@ namespace SupportApp.Controllers
                 Message="Getting all code's data successfully .",
                 Data=codeSnippet
             });
+        }
+
+        [HttpGet]
+        [Route ("show-code-{id}" , Name ="showCode")]
+        public async Task<IActionResult> ShowCode (int id)
+        {
+            try {
+                var getCodeData = await _codeSnippetInterface.GetCodeAsync(id);
+
+                if(getCodeData == null)
+                {
+                    return Ok(new ApiResponseDto<CodeSnippet>
+                    {
+                        Status = false,
+                        Message = "Code Not Found",
+                        Data = getCodeData
+                    });
+                }
+                else
+                {
+                    return Ok(new ApiResponseDto<CodeSnippet>
+                    {
+                        Status = true,
+                        Message = "Code data retrieved successfully",
+                        Data = getCodeData
+                    });
+                }
+            }
+            catch(Exception ex) { 
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

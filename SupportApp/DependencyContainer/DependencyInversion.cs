@@ -1,5 +1,6 @@
 ﻿using SupportApp.Repository;
 using SupportApp.Repository.IReposiroty;
+using SupportApp.Service;
 
 namespace SupportApp.DependencyContainer
 {
@@ -8,7 +9,11 @@ namespace SupportApp.DependencyContainer
         public static IServiceCollection RegistrationServices(this IServiceCollection services)
         {
 
-            // repositories 
+            //services ......
+            services.AddTransient<TicketTypeService, TicketTypeService>();
+
+
+            // repositories ......
             services.AddTransient<ICodeSnippetInterface , CodeSnippetRepository>();
             return services;
         }

@@ -26,5 +26,19 @@ namespace SupportApp.Repository
                 throw;
             }
         }
+
+        public async Task<CodeSnippet> GetCodeAsync(int id)
+        {
+            try
+            {
+                var responseData = await _context.CodeSnippet.FirstOrDefaultAsync(x => x.Id == id);
+                return responseData; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred while fetching code data: " + ex.Message);
+                throw; 
+            }
+        }
     }
 }
