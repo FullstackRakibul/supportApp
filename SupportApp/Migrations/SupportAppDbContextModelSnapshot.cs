@@ -146,8 +146,11 @@ namespace SupportApp.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsPublic")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPublic")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Language")
                         .IsRequired()

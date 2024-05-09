@@ -72,15 +72,17 @@ namespace SupportApp.Controllers
 
 
         [HttpPost("create-code-snippet")]
-        public async Task<IActionResult> CreateCodeSnippet()
+        public async Task<IActionResult> CreateCodeSnippet([FromBody] CodeSnippetDto codeSnippetDto)
         {
             try
             {
+                //var responseCreateCodeSnippet = await _codeSnippetInterface
+
                 return Ok(new ApiResponseDto<string>
                 {
                     Status = true,
                     Message = "CodeSnippet created successfully",
-                    Data = {}
+                    Data = codeSnippetDto.Title
                 });
             }
             catch(Exception ex)
