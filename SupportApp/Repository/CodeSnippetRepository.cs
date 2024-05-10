@@ -17,7 +17,7 @@ namespace SupportApp.Repository
         {
             try
             {
-                var codeData =await _context.CodeSnippet.ToListAsync();
+                var codeData =await _context.CodeSnippet.Where(code => code.IsActive==true).ToListAsync();
                 return codeData;
             }
             catch (Exception ex)
@@ -38,6 +38,49 @@ namespace SupportApp.Repository
             {
                 Console.WriteLine("Error occurred while fetching code data: " + ex.Message);
                 throw; 
+            }
+        }
+
+        public async Task<string> CreateCodeSnippet(CodeSnippetDto codeSnippetDto)
+        {
+            try
+            {
+                var createRecord = new CodeSnippet
+                {
+                    Title = codeSnippetDto.Title,
+                    Language = codeSnippetDto.Language,
+                    Description = codeSnippetDto.Description,
+                    SoftwareType = codeSnippetDto.SoftwareType,
+                    Code = codeSnippetDto.Code,
+                    Author = codeSnippetDto.Author,
+                    CreatedAt = DateTime.Now,
+                    IsActive = true,
+                    IsPublic = false
+                };
+                _context.CodeSnippet.Add(createRecord);
+                await _context.SaveChangesAsync();
+                return "Code Snippet Record created successfully .";
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<string> DeleteCodeSnippet(int id)
+        {
+            try
+            {
+                //var deleteData =  await _context.CodeSnippet.FirstOrDefaultAsync();
+
+                return "Record Deleted Successfully !";
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return ex.ToString();
             }
         }
     }
