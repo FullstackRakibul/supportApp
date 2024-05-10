@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using SupportApp.Service.Pagination;
 using SupportApp.Service.Notifications;
 using SupportApp.SignalR;
+using SupportApp.Repository.IReposiroty;
+using SupportApp.Repository;
+using SupportApp.DependencyContainer;
 
 
 
@@ -22,6 +25,7 @@ try {
     builder.Services.AddTransientServices();
     builder.Services.AddScopedServices();
     builder.Services.AddSingletonServices();
+    builder.Services.RegistrationServices();
 }
 catch(Exception ex) {
     Console.WriteLine(ex);
@@ -41,8 +45,9 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
-builder.Services.AddTransient<TicketTypeService, TicketTypeService>();
+
 builder.Services.AddTransient<PaginationService, PaginationService>();
+
 
 //builder.Services.AddTransient<NotificationService, NotificationService>();
 

@@ -1,4 +1,6 @@
 ﻿
+using SupportApp.Repository;
+using SupportApp.Repository.IReposiroty;
 using SupportApp.Service.Notifications;
 
 namespace SupportApp.Service { 
@@ -16,6 +18,7 @@ namespace SupportApp.Service {
 
         public static IServiceCollection AddScopedServices(this IServiceCollection services)
         {
+          // services.AddTransient<ICodeSnippetInterface, CodeSnippetRepository>();
             return services;
         }
 

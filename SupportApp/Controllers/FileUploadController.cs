@@ -69,6 +69,7 @@ namespace SupportApp.Controllers
 
                 //root path for the uploaded file
                 string wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
                 //create folder if not exist
                 if (!Directory.Exists(wwwrootPath)) { 
                     Directory.CreateDirectory(wwwrootPath);
@@ -98,7 +99,6 @@ namespace SupportApp.Controllers
                     globalFileUploadDto.UploadedFile.CopyTo(stream);
                 }
 
-
                 // Insert into database
                 try
                 {
@@ -116,9 +116,8 @@ namespace SupportApp.Controllers
                         CreatedAt = DateTime.Now.AddHours(6),
                         FilePathUrl = filePath,
                     };
-
-                    //_context.GlobalFileUpload.Add(insertFileDataIntoDB);
-                    //await _context.SaveChangesAsync();
+                    _context.GlobalFileUpload.Add(insertFileDataIntoDB);
+                    await _context.SaveChangesAsync();
 
                     return Ok("Upload File saved success...");
                 }
@@ -130,131 +129,11 @@ namespace SupportApp.Controllers
                     Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                     return StatusCode(500, "An error occurred while saving changes to the database. Please try again later.");
                 }
-
-
-
-                //if (string.IsNullOrEmpty(filePath))
-                //{
-                //    return BadRequest("File path cannot be null or empty.");
-                //}
-
-                //var insertFileDataIntoDB = new GlobalFileUpload
-                //{
-                //    TicketId=globalFileUploadDto.TicketId,
-                //    FolderIndex= globalFileUploadDto.FolderIndex,
-                //    IsActive=true,
-                //    UpdatedAt=DateTime.Now.AddHours(6),
-                //    CreatedAt = DateTime.Now.AddHours(6),
-                //    FilePathUrl =filePath,
-                //};
-
-                //_context.GlobalFileUpload.Add
-                //    (insertFileDataIntoDB);
-                //await _context.SaveChangesAsync();
-
-
-                //return Ok("Upload File saved success...");
-
             }
             catch(Exception ex) {
-
                 Console.WriteLine($"Error occurred while saving file: {ex.Message}");
                 return BadRequest("Failed to save the uploaded file.");
             }
 		}
-
 	}
 }
-
-
-
-
-
-//[HttpPost]
-//public IActionResult Upload(SingleFileModel model)
-//{
-//    if (ModelState.IsValid)
-//    {
-//        model.IsResponse = true;
-
-//        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
-
-//        //create folder if not exist
-//        if (!Directory.Exists(path))
-//            Directory.CreateDirectory(path);
-
-//        //get file extension
-//        FileInfo fileInfo = new FileInfo(model.File.FileName);
-//        string fileName = model.FileName + fileInfo.Extension;
-
-//        string fileNameWithPath = Path.Combine(path, fileName);
-
-//        using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-//        {
-//            model.File.CopyTo(stream);
-//        }
-//        model.IsSuccess = true;
-//        model.Message = "File upload successfully";
-//    }
-//    return View("Index", model);
-
-
-
-
-
-
-
-
-
-
-
-
-
- //if (globalFileUploadDto == null || globalFileUploadDto.UploadedFile == null)
- //               {
- //                   return BadRequest("No file uploaded.");
- //               }
-
- //               //string targetDirectory = "uploads"; 
- //               //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", targetDirectory);
-
-
- //               //string folderName = globalFileUploadDto.FilePathUrl ?? "defaultUpload"; 
- //               //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folderName);
-
-
- //               string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/");
- //               //create folder if not exist
- //               if (!Directory.Exists(path)) { 
- //                   Directory.CreateDirectory(path);
- //               }
-
- //               //get file extension
- //               FileInfo fileInfo = new FileInfo(globalFileUploadDto.UploadedFile.FileName);
- //               string fileName = globalFileUploadDto.UploadedFile + fileInfo.Extension;
-
-
- //               Directory.CreateDirectory(path);
-
- //               string originalFileName = globalFileUploadDto.UploadedFile.FileName;
- //               string filePath = Path.Combine(path, originalFileName);
-
- //               string fileNameWithPath = Path.Combine(path, fileName);
-
- //               //using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
- //               //{
- //               //    globalFileUploadDto.UploadedFile.CopyTo(stream);
- //               //}
-
-
-
- //               using (Stream stream = new FileStream(fileNameWithPath, FileMode.Create))
- //               {
- //                   globalFileUploadDto.UploadedFile.CopyTo(stream);
- //               }
-
- //               return Ok("Upload File saved success...?");
-
-
-
-//}

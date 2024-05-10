@@ -125,6 +125,72 @@ namespace SupportApp.Migrations
                     b.ToTable("BaseUser");
                 });
 
+            modelBuilder.Entity("SupportApp.Models.CodeSnippet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPublic")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SoftwareType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Language");
+
+                    b.ToTable("CodeSnippet");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.CodeSnippetAccess", b =>
+                {
+                    b.Property<int>("CodeSnippetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BaseUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("CodeSnippetId", "BaseUserId");
+
+                    b.HasIndex("BaseUserId");
+
+                    b.ToTable("CodeSnippetAccess");
+                });
+
             modelBuilder.Entity("SupportApp.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -174,7 +240,7 @@ namespace SupportApp.Migrations
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -461,6 +527,25 @@ namespace SupportApp.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SupportApp.Models.CodeSnippetAccess", b =>
+                {
+                    b.HasOne("SupportApp.Models.BaseUser", "BaseUser")
+                        .WithMany("CodeSnippetAccess")
+                        .HasForeignKey("BaseUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SupportApp.Models.CodeSnippet", "CodeSnippet")
+                        .WithMany("CodeSnippetAccess")
+                        .HasForeignKey("CodeSnippetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BaseUser");
+
+                    b.Navigation("CodeSnippet");
+                });
+
             modelBuilder.Entity("SupportApp.Models.GlobalFileUpload", b =>
                 {
                     b.HasOne("SupportApp.Models.Ticket", "Ticket")
@@ -527,6 +612,16 @@ namespace SupportApp.Migrations
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SupportApp.Models.BaseUser", b =>
+                {
+                    b.Navigation("CodeSnippetAccess");
+                });
+
+            modelBuilder.Entity("SupportApp.Models.CodeSnippet", b =>
+                {
+                    b.Navigation("CodeSnippetAccess");
                 });
 
             modelBuilder.Entity("SupportApp.Models.Target", b =>
