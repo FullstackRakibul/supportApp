@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240429091901250_5908.xlsx"
     },
     {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240511085520302_7210.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240511085520302_7210.jpg"
+    },
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240511085659332_2936.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240511085659332_2936.jpg"
+    },
+    {
+      "Id": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240511090300508_4439.jpg",
+      "PackagePath": "staticwebassets\\ticketFiles\\supportApp_20240511090300508_4439.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SupportApp.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

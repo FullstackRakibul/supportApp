@@ -67,15 +67,20 @@ namespace SupportApp.Controllers
                     return BadRequest("No file uploaded.");
                 }
 
+                //string folderPath = @"C:\inetpub\wwwroot\UplodedFiles";
+
                 //root path for the uploaded file
                 string wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
+
                 //create folder if not exist
-                if (!Directory.Exists(wwwrootPath)) { 
+                if (!Directory.Exists(wwwrootPath))
+                {
                     Directory.CreateDirectory(wwwrootPath);
                 }
                 //sub path for the uploaded file
                 string folderPath = Path.Combine(wwwrootPath, globalFileUploadDto.FilePathUrl ?? "uploads");
+                
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
