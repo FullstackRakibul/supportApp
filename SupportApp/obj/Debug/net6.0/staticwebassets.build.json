@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "YTEfJYqHNS4pVjrTADZfyg12tx248ELScX03fbsiOWk=",
+=======
+  "Hash": "AumnYR/HTDIN1DvH5icQaKwY/YXu4dH/wNkyU3MNm9Y=",
+>>>>>>> 45f6e5b831d492a42bc7d5c0327a42a41f73f58e
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
@@ -10,17 +14,17 @@
     {
       "Name": "SupportApp\\wwwroot",
       "Source": "SupportApp",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222009411_6648.webp",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\test\\supportApp_20240428222009411_6648.webp",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "test/supportApp_20240428222009411_6648.webp",
       "AssetKind": "All",
@@ -36,10 +40,10 @@
       "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428222009411_6648.webp"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\test\\supportApp_20240428222202535_2445.webp",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\test\\supportApp_20240428222202535_2445.webp",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "test/supportApp_20240428222202535_2445.webp",
       "AssetKind": "All",
@@ -55,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\test\\supportApp_20240428222202535_2445.webp"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171205705_8143.jpg",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171205705_8143.jpg",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "ticketFiles/supportApp_20240428171205705_8143.jpg",
       "AssetKind": "All",
@@ -74,10 +78,10 @@
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428171205705_8143.jpg"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171212938_6389.xlsx",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428171212938_6389.xlsx",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "ticketFiles/supportApp_20240428171212938_6389.xlsx",
       "AssetKind": "All",
@@ -93,10 +97,10 @@
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428171212938_6389.xlsx"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "ticketFiles/supportApp_20240428221711074_4092.jpg",
       "AssetKind": "All",
@@ -112,10 +116,10 @@
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240428221711074_4092.jpg"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240429084757790_6155.py",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240429084757790_6155.py",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "ticketFiles/supportApp_20240429084757790_6155.py",
       "AssetKind": "All",
@@ -131,10 +135,10 @@
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240429084757790_6155.py"
     },
     {
-      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240429091901250_5908.xlsx",
+      "Identity": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240429091901250_5908.xlsx",
       "SourceId": "SupportApp",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "ContentRoot": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\wwwroot\\",
       "BasePath": "_content/SupportApp",
       "RelativePath": "ticketFiles/supportApp_20240429091901250_5908.xlsx",
       "AssetKind": "All",

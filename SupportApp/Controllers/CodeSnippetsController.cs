@@ -76,13 +76,13 @@ namespace SupportApp.Controllers
         {
             try
             {
-                //var responseCreateCodeSnippet = await _codeSnippetInterface
+                var responseCreateCodeSnippet = await _codeSnippetInterface.CreateCodeSnippet(codeSnippetDto);
 
                 return Ok(new ApiResponseDto<string>
                 {
                     Status = true,
                     Message = "CodeSnippet created successfully",
-                    Data = codeSnippetDto.Title
+                    Data = responseCreateCodeSnippet
                 });
             }
             catch(Exception ex)
@@ -115,11 +115,13 @@ namespace SupportApp.Controllers
         {
             try
             {
+                var deleteResponse = await _codeSnippetInterface.DeleteCodeSnippet(id);
+
                 return Ok(new ApiResponseDto<string>
                 {
                     Status = true,
                     Message = "CodeSnippet deleted successfully.",
-                    Data = id.ToString()
+                    Data = deleteResponse
                 });
             }
             catch (Exception ex)

@@ -157,6 +157,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SupportApp.Controllers.CodeSnippetsController",
+    "Method": "CreateCodeSnippet",
+    "RelativePath": "api/CodeSnippets/create-code-snippet",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codeSnippetDto",
+        "Type": "SupportApp.DTO.CodeSnippetDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.CodeSnippetsController",
+    "Method": "DeleteCodeSnippet",
+    "RelativePath": "api/CodeSnippets/delete-code-snippet-{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.CodeSnippetsController",
+    "Method": "GetAllCodes",
+    "RelativePath": "api/CodeSnippets/get-all-code",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.CodeSnippetsController",
+    "Method": "ShowCodeSnippet",
+    "RelativePath": "api/CodeSnippets/show-code-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SupportApp.Controllers.CodeSnippetsController",
+    "Method": "UpdateCodeSnippet",
+    "RelativePath": "api/CodeSnippets/update-code-snippet-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SupportApp.Controllers.DepartmentsController",
     "Method": "GetDepartment",
     "RelativePath": "api/Departments",
