@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Repository.IReposiroty;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace SupportApp.Controllers
 {
@@ -85,7 +83,7 @@ namespace SupportApp.Controllers
                     Data = responseCreateCodeSnippet
                 });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -93,16 +91,24 @@ namespace SupportApp.Controllers
 
 
         [HttpPut("update-code-snippet-{id}")]
-        public async Task<IActionResult> UpdateCodeSnippet(int id)
+        public async Task<IActionResult> UpdateCodeSnippet(CodeSnippetDto codeSnippetDto)
         {
             try
             {
-                return Ok(new ApiResponseDto<string>
+                var updateData = await _codeSnippetInterface.UpdateCodeSnippetAsync(codeSnippetDto);
+                if( updateData != null)
                 {
-                    Status = true,
-                    Message = "CodeSnippet update successfully.",
-                    Data = id.ToString()
-                });
+                    return Ok(new ApiResponseDto<string>
+                    {
+                        Status = true,
+                        Message = "CodeSnippet update successfully.",
+                        Data = updateData
+                    });
+                }
+                else
+                {
+                    return BadRequest("Resource not found !!!");
+                }
             }
             catch (Exception ex)
             {

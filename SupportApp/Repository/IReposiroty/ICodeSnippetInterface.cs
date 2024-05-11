@@ -7,8 +7,8 @@ namespace SupportApp.Repository.IReposiroty
     {
         Task<IEnumerable<CodeSnippet>> GetAllAsync();
         Task<CodeSnippet> GetCodeAsync(int id);
-
         Task<string> CreateCodeSnippet(CodeSnippetDto codeSnippetDto);
+        Task<string> UpdateCodeSnippetAsync(CodeSnippetDto codeSnippetDto);
         Task<string> DeleteCodeSnippet(int id);
     }
 }

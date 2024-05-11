@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Repository.IReposiroty;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace SupportApp.Repository
 {
@@ -65,7 +66,40 @@ namespace SupportApp.Repository
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw;
+                return "Error in record creating.";
+            }
+        }
+
+        public async Task<string> UpdateCodeSnippetAsync(CodeSnippetDto codeSnippetDto)
+        {
+            try
+            {
+                var updatedData = await _context.CodeSnippet.FirstOrDefaultAsync(data => data.Id == codeSnippetDto.Id);
+                if (updatedData != null)
+                {
+                    updatedData.Title = codeSnippetDto.Title;
+                    updatedData.Language = codeSnippetDto.Language;
+                    updatedData.Description = codeSnippetDto.Description;
+                    updatedData.SoftwareType = codeSnippetDto.SoftwareType;
+                    updatedData.Code = codeSnippetDto.Code;
+                    updatedData.UpdatedAt = DateTime.Now;
+                    updatedData.IsActive = codeSnippetDto.IsActive;
+                    updatedData.IsPublic = codeSnippetDto.IsPublic;
+
+
+                    _context.CodeSnippet.Update(updatedData);
+                    _context.SaveChangesAsync();
+                    return "Record has been Updated !";
+                }
+                else
+                {
+                    return "Record update failed...";
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return "There is an error on updating. Check Repo";
             }
         }
 
@@ -73,9 +107,19 @@ namespace SupportApp.Repository
         {
             try
             {
+                var deletedData = await _context.CodeSnippet.FirstOrDefaultAsync(data=>data.Id==id);
 
-                return "Record Deleted Successfully !";
-
+                if (deletedData != null && deletedData.IsActive!=false)
+                {
+                    deletedData.IsActive= false;
+                    deletedData.UpdatedAt= DateTime.Now;
+                    await _context.SaveChangesAsync();
+                    return "Record Deleted Successfully !";
+                }
+                else
+                {
+                    return "Record Not found!";
+                }
             }
             catch(Exception ex)
             {
