@@ -1,25 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\alpha\\dotnet\\SupportAppProduction\\",
+  "WorkspaceRootPath": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportappproduction\\supportapp\\controllers\\codesnippetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\properties\\servicedependencies.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\properties\\servicedependencies.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\controllers\\codesnippetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\codesnippetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportappproduction\\supportapp\\repository\\codesnippetrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\repository\\codesnippetrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\repository\\codesnippetrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportappproduction\\supportapp\\repository\\ireposiroty\\icodesnippetinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\repository\\ireposiroty\\icodesnippetinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\repository\\ireposiroty\\icodesnippetinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportappproduction\\supportapp\\controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|d:\\alpha\\dotnet\\supportappproduction\\supportapp\\dto\\codesnippetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|e:\\rakibul hasan\\alpha projects\\supportappproduction\\supportapp\\dto\\codesnippetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974EFB8B-898C-4BCF-89F1-84F4D311C480}|SupportApp\\SupportApp.csproj|solutionrelative:supportapp\\dto\\codesnippetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -29,7 +41,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 163,
+          "DockedWidth": 136,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -38,11 +50,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\appsettings.json",
+              "RelativeDocumentMoniker": "SupportApp\\appsettings.json",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\appsettings.json",
+              "RelativeToolTip": "SupportApp\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-11T08:25:39.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CodeSnippetRepository.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Repository\\CodeSnippetRepository.cs",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Repository\\CodeSnippetRepository.cs",
               "RelativeDocumentMoniker": "SupportApp\\Repository\\CodeSnippetRepository.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Repository\\CodeSnippetRepository.cs",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Repository\\CodeSnippetRepository.cs",
               "RelativeToolTip": "SupportApp\\Repository\\CodeSnippetRepository.cs",
               "ViewState": "AQIAAD8AAAAAAAAAAAAAAE8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -51,43 +76,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ICodeSnippetInterface.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
               "RelativeDocumentMoniker": "SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
               "RelativeToolTip": "SupportApp\\Repository\\IReposiroty\\ICodeSnippetInterface.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-05T08:34:18.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-05T08:34:18.819Z"
             }
           ]
         },
         {
-          "DockedWidth": 237,
+          "DockedWidth": 264,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "serviceDependencies.json",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Properties\\serviceDependencies.json",
+              "RelativeDocumentMoniker": "SupportApp\\Properties\\serviceDependencies.json",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Properties\\serviceDependencies.json",
+              "RelativeToolTip": "SupportApp\\Properties\\serviceDependencies.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-11T08:45:02.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "SupportApp\\Properties\\launchSettings.json",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "SupportApp\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-11T08:44:19.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "CodeSnippetsController.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Controllers\\CodeSnippetsController.cs",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Controllers\\CodeSnippetsController.cs",
               "RelativeDocumentMoniker": "SupportApp\\Controllers\\CodeSnippetsController.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Controllers\\CodeSnippetsController.cs",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Controllers\\CodeSnippetsController.cs",
               "RelativeToolTip": "SupportApp\\Controllers\\CodeSnippetsController.cs",
-              "ViewState": "AQIAAHEAAAAAAAAAAAA9wHcAAAA0AAAA",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAowIUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-05T11:12:03.973Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "TicketsController.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Controllers\\TicketsController.cs",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Controllers\\TicketsController.cs",
               "RelativeDocumentMoniker": "SupportApp\\Controllers\\TicketsController.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\Controllers\\TicketsController.cs",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\Controllers\\TicketsController.cs",
               "RelativeToolTip": "SupportApp\\Controllers\\TicketsController.cs",
               "ViewState": "AQIAAHAAAAAAAAAAAAAcwHgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -95,11 +145,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "CodeSnippetDto.cs",
-              "DocumentMoniker": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\DTO\\CodeSnippetDto.cs",
+              "DocumentMoniker": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\DTO\\CodeSnippetDto.cs",
               "RelativeDocumentMoniker": "SupportApp\\DTO\\CodeSnippetDto.cs",
-              "ToolTip": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\DTO\\CodeSnippetDto.cs",
+              "ToolTip": "E:\\Rakibul hasan\\alpha projects\\SupportAppProduction\\SupportApp\\DTO\\CodeSnippetDto.cs",
               "RelativeToolTip": "SupportApp\\DTO\\CodeSnippetDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
