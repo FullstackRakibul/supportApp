@@ -7,7 +7,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SupportApp.Controllers;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity;
+using SupportApp.Service.Pagination;
+using SupportApp.Service.Notifications;
+using SupportApp.SignalR;
+using SupportApp.Repository.IReposiroty;
+using SupportApp.Repository;
+using SupportApp.DependencyContainer;
 
 
 
@@ -15,6 +20,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//------------------------ Service Extention Register ---------------------
+try {
+    builder.Services.AddTransientServices();
+    builder.Services.AddScopedServices();
+    builder.Services.AddSingletonServices();
+    builder.Services.RegistrationServices();
+}
+catch(Exception ex) {
+    Console.WriteLine(ex);
+    throw;
+}
+// SignalR Hub 
+builder.Services.AddSignalR();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,17 +45,32 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<EmailBoxService, EmailBoxService>();
 builder.Services.AddTransient<TicketService , TicketService>();
-builder.Services.AddScoped<TargetService,TargetService>();
 
+builder.Services.AddTransient<PaginationService, PaginationService>();
+
+
+//builder.Services.AddTransient<NotificationService, NotificationService>();
+
+builder.Services.AddScoped<TargetService,TargetService>();
 builder.Services.AddTransient<AuthController>();
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddDefaultPolicy(builders =>
+//    {
+//        builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+        
+//    });
+
+//});
+
 builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builders =>
-    {
-        builders.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-    });
-});
+	options.AddPolicy("Open", builder => builder.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
+
+
+
+
+
 
 // config Dependency Injection
 builder.Services.AddDbContext<SupportAppDbContext>(options =>
@@ -57,6 +90,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
+// JWT 
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
+
+
 var app = builder.Build();
 
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -67,6 +105,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else {
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
 
 // jwt service
 app.UseAuthentication();
@@ -75,4 +117,5 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<ReviewHub>("/reviewHub").RequireCors("Open");
 app.Run();

@@ -122,62 +122,119 @@ namespace SupportApp.Controllers
         }
 
 
-        // AssignSupportEngineer
-        [HttpGet("/ticket/{ticketId}/assignsupportengineer/{SupportEngineerId}")]
-        public async Task<ActionResult<Target>> AssignSupportEngineer(int ticketId, [FromBody] Target request)
-        {
-            try
-            {
-                // Find the target ticket based on the provided ticketId
-                var targetTicket = await _context.Ticket.FindAsync(ticketId);
+        //// AssignSupportEngineer
+        //[HttpPost("/ticket/{ticketId}/assignsupportengineer/{SupportEngineerId}")]
+        //public async Task<ActionResult<Target>> AssignSupportEngineer(int ticketId, [FromBody] Target request)
+        //{
+        //    try
+        //    {
+        //        // Find the target ticket based on the provided ticketId
+        //        var targetTicket = await _context.Ticket.FindAsync(ticketId);
 
-                // Check if the ticket exists
-                if (targetTicket == null)
-                {
-                    return NotFound("Ticket not found");
-                }
+        //        // Check if the ticket exists
+        //        if (targetTicket == null)
+        //        {
+        //            return NotFound("Ticket not found");
+        //        }
 
                 
-                var newTarget = new Target
-                {
-                    TicketId = ticketId,
-                    AgentId = request.AgentId,
-                    //DepartmentId = request.DepartmentId,
-                    //UnitId = request.UnitId,
-                    //Objective = request.Objective
-                };
+        //        var newTarget = new Target
+        //        {
+        //            TicketId = ticketId,
+        //            AgentId = request.AgentId,
+        //            //DepartmentId = request.DepartmentId,
+        //            //UnitId = request.UnitId,
+        //            //Objective = request.Objective
+        //        };
 
-                // Add the new target to the context and save changes
-                _context.Target.Add(newTarget);
-                await _context.SaveChangesAsync();
+        //        // Add the new target to the context and save changes
+        //        _context.Target.Add(newTarget);
+        //        await _context.SaveChangesAsync();
 
-                return Ok(newTarget);
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions, log errors, and return an appropriate response
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
-            }
-        }
+        //        return Ok(newTarget);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exceptions, log errors, and return an appropriate response
+        //        return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
+        //    }
+        //}
 
 
-        [HttpPost("assignSupportEngineer")]
-        public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
+
+        [HttpGet("assign/ticket/{id}")]
+        public async Task<IActionResult> GetAssignDetails(int id)
         {
-            try
-            {
-                int ticketId = targetSupportEngineerDto.TicketId;
-                int agentId = targetSupportEngineerDto.AgentId;
+            var ticketDetailsData = await _context.Target.FirstOrDefaultAsync(t => t.TicketId == id);
 
-                _targetService.AssignSupportEngineer(ticketId,agentId);
-                return Ok("Support engineer assigned successfully.");
-            }
-            catch (Exception ex)
+            if (ticketDetailsData == null)
             {
-                // Log the exception or handle it based on your application's requirements
-                return BadRequest("Failed to assign support engineer.");
+                return NotFound();
             }
+
+            return Ok(ticketDetailsData);
         }
-    }
+
+
+        // ..............................................Agent API's........................................
+
+
+        // assign ticket list for Agnet
+		[HttpGet("agentIssueList/{agentId}")]
+		public async Task<IActionResult> AgentIssueList(string agentId)
+		{
+			var agentData = await _context.Agent.FirstOrDefaultAsync(agent => agent.EmpCode == agentId);
+			if (agentData == null) { 
+                return NotFound("No data for this agent .");
+            }
+
+			var ticketDetailsData = await _context.Target
+									.Include(t => t.Ticket) 
+									.Where(t => t.AgentId == agentData.AgentId) 
+									.Select(t => t.Ticket) 
+									.ToListAsync();
+
+			if (ticketDetailsData == null || ticketDetailsData.Count == 0)
+			{
+				return NotFound("No ticket details found for this agent.");
+			}
+
+			return Ok(ticketDetailsData);
+		}
+
+		// assign support engineer ............
+
+
+
+
+		// ..............................................Agent API's........................................
+
+
+
+
+		// ..............................................Admin API's........................................
+		[HttpPost("assignSupportEngineer")]
+		public IActionResult AssignSupportEngineer([FromBody] TargetSupportEngineerDto targetSupportEngineerDto)
+        //public IActionResult AssignSupportEngineer(int ticketId, int agentId)
+        {
+			try
+			{
+				int ticketId = targetSupportEngineerDto.TicketId;
+				int agentId = targetSupportEngineerDto.AgentId;
+
+				_targetService.AssignSupportEngineer(ticketId, agentId);
+				return Ok("Support engineer assigned successfully #$.");
+			}
+			catch (Exception ex)
+			{
+				// Log the exception or handle it based on your application's requirements
+				return BadRequest($"Failed to assign support engineer.{ex.Message}");
+			}
+		}
+
+
+
+
+	}
 
 }

@@ -13,7 +13,8 @@ namespace SupportApp.Models
         public string MessageId { get; set; } = string.Empty;
         public int? UserId { get; set; }
         public string? Attachment { get; set; }
-        public bool? IsEmail { get; set; }
+
+		public bool? IsEmail { get; set; }
         public string? FromEmail { get; set; }
         public string? EmailCc { get; set; }
         public int? UpdatedBy { get; set; }
@@ -30,9 +31,11 @@ namespace SupportApp.Models
        public Target? Target { get; set; }
 
         public ICollection<Review>? Reviews { get; set; }
-        
+		public ICollection<GlobalFileUpload> GlobalFileAttachments { get; set; }
+	}
 
-    }
+
+
 
     public enum TicketPriority
     {
@@ -47,8 +50,8 @@ namespace SupportApp.Models
         Open,
         Acknowledged,
         InProgress,
-        Closed,
         Complete,
+        Closed,
         Deleted
     }
 }

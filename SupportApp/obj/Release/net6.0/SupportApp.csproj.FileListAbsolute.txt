@@ -288,3 +288,4 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\refint\
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\SupportApp.pdb
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\SupportApp.genruntimeconfig.cache
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\ref\SupportApp.dll
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Release\net6.0\BCrypt.Net.dll

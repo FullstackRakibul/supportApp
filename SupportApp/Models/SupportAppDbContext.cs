@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SupportApp.Models;
 
 namespace SupportApp.Models
 {
     public class SupportAppDbContext : DbContext
     {
 
-        public SupportAppDbContext(DbContextOptions<SupportAppDbContext>options) 
-            : base(options) {
-    }
+        public SupportAppDbContext(DbContextOptions<SupportAppDbContext> options)
+            : base(options) { 
+        
+        }
 
 
 
@@ -32,5 +32,30 @@ namespace SupportApp.Models
         public DbSet<Unit>? Unit { get; set; }
 
         public DbSet<Menu>? Menu { get; set; }
+
+        public DbSet<GlobalFileUpload>? GlobalFileUpload { get; set; }
+
+        public DbSet<CodeSnippet> CodeSnippet { get; set; }
+
+        public DbSet<CodeSnippetAccess> CodeSnippetAccess { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CodeSnippet>()
+                .HasIndex(c => c.Language);
+
+            modelBuilder.Entity<CodeSnippetAccess>()
+        .HasKey(cs => new { cs.CodeSnippetId, cs.BaseUserId });
+
+            modelBuilder.Entity<CodeSnippetAccess>()
+        .HasOne(cs => cs.CodeSnippet)
+        .WithMany(cs => cs.CodeSnippetAccess)
+        .HasForeignKey(cs => cs.CodeSnippetId);
+
+         modelBuilder.Entity<CodeSnippetAccess>()
+                .HasOne(cs => cs.BaseUser)
+                .WithMany(cs => cs.CodeSnippetAccess)
+                .HasForeignKey(cs => cs.BaseUserId);
+        }
     }
 }

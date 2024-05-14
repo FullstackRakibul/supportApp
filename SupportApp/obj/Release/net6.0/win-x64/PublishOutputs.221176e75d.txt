@@ -6,6 +6,7 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\SupportApp.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\SupportApp.runtimeconfig.json
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\SupportApp.pdb
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\BCrypt.Net.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\BouncyCastle.Cryptography.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\Humanizer.dll
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\PubTmp\Out\MailKit.dll

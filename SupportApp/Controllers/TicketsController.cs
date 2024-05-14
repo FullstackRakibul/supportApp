@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit.Encodings;
 using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
+using SupportApp.Service.Pagination;
 
 namespace SupportApp.Controllers
 {
@@ -20,28 +23,26 @@ namespace SupportApp.Controllers
         private readonly SupportAppDbContext _context;
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
+        private readonly PaginationService _paginationService;
        
 
-        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService )
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService  , PaginationService paginationService )
         {
             _context = context;
             _ticketService = ticketService;
             _emailBoxService = emailBoxService;
+            _paginationService = paginationService;
         }
 
         // GET: api/Ticket
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
-          // if (_context.Ticket == null)
-          // {
-          //     return NotFound();
-          // }
-          // return await _context.Ticket.ToListAsync();
           try
           {
-              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).ToListAsync();
-              return tickets;
+              var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted).OrderByDescending(ticket => ticket.CreatedAt)
+               .ToListAsync();
+                return tickets;
           }
           catch (Exception ex)
           {
@@ -52,11 +53,15 @@ namespace SupportApp.Controllers
 
 
         [HttpGet("getTicketFromMail")]
-        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketFromMial()
+        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketFromMail()
         {
             try
             {
-                var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true).ToListAsync();
+                //var tickets = await _context.Ticket.Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true).ToListAsync();
+                var tickets = await _context.Ticket
+               .Where(ticket => ticket.Status != TicketStatus.Deleted && ticket.IsEmail == true)
+               .OrderByDescending(ticket => ticket.Status)
+               .ToListAsync();
                 return tickets;
             }
             catch (Exception ex)
@@ -184,8 +189,6 @@ namespace SupportApp.Controllers
         [HttpGet("FetchEmailData")]
         public IActionResult FetchEmailDataToDatabase()
         {
-            
-            Console.WriteLine("API working - test 01");
             try
             {
                 var emailDetailsList = _emailBoxService.GetEmailDetails();
@@ -284,5 +287,126 @@ namespace SupportApp.Controllers
         }
 
 
-    }
+
+
+        //------------------------------------------- employee routes apis................
+
+        // get ticket list by ticket creator ID
+        [HttpGet("getTicketByCreator/{EmpCode}")]
+        public async Task<ActionResult<Ticket>> GetTicketByCreator(string EmpCode)
+        {
+            try
+            {
+                var ticketDetails = await _context.Ticket
+                .Where(t => t.CreatedBy == EmpCode)
+                .ToListAsync();
+                if (ticketDetails == null)
+                {
+                    return NotFound(); 
+                }
+
+                return Ok(ticketDetails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+        }
+
+		// get ticket list by ticket creator ID
+		[HttpGet("getAcknowledgeTicketByCreator/{EmpCode}")]
+		public async Task<ActionResult<Ticket>> GetAcknowledgeTicketByCreator(string EmpCode)
+		{
+			try
+			{
+                var acknowledgeTicketData = await _ticketService.GetAcknowledgeTicketListByCreatorAsync(EmpCode);
+                return Ok(acknowledgeTicketData);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500);
+			}
+		}
+
+		//------------------------------------------- agent routes apis................
+
+
+		// get ticket list by ticket creator ID
+		[HttpGet("getRecentRaisedTicketByCreator/{EmpCode}")]
+		public async Task<ActionResult<Ticket>> GetRecentRaisedTicketByCreator(string EmpCode)
+		{
+			try
+			{
+				var acknowledgeTicketData = await _ticketService.GetRecentRaisedTicketListByCreatorAsync(EmpCode);
+				return Ok(acknowledgeTicketData);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500);
+			}
+		}
+
+
+		// UpdateForCheckTicketStatus API 
+
+		[HttpPost("UpdateForCheckTicketStatus/{ticketId}")]
+		public async Task<ActionResult<string>> UpdateForCheckTicketStatus(int ticketId)
+		{
+			var result = await _ticketService.UpdateForCheckTicketStatus(ticketId);
+			return Ok(result);
+		}
+
+		// Pagination API
+		[HttpGet("getPaginationList/{Skip}/{Take}")]
+        public IActionResult GetPaginationList(int Skip, int Take)
+        {
+
+			try
+			{
+				var tickets = _ticketService.GetPaginationList(Skip, Take);
+				return Ok(tickets);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+
+
+        // Email List API
+		[HttpGet("GetMailTicketList/{Skip}/{Take}")]
+		public IActionResult GetMailTicketList(int Skip, int Take)
+		{
+			try
+			{
+                var getMailTicketList = _ticketService.GetMailTicketList(Skip, Take);
+                return Ok(getMailTicketList);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return StatusCode(500, "Server Response Error.");
+			}
+		}
+
+        [HttpPost("soft-reminder/{ticketId}")]
+		public async Task<IActionResult> SoftReminder(int ticketId)
+		{
+            try
+            {
+                var reminder = await _ticketService.Softreminder(ticketId);
+                return Ok(reminder);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500, "Server Response Error.");
+            }
+        }
+
+	}
 }

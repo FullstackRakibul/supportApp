@@ -254,3 +254,4 @@ E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\SupportApp.pdb
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\SupportApp.genruntimeconfig.cache
 E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\obj\Release\net6.0\win-x64\ref\SupportApp.dll
+E:\Rakibul hasan\alpha projects\SupportApp\SupportApp\bin\Release\net6.0\win-x64\BCrypt.Net.dll
