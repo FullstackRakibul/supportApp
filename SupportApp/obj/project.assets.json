@@ -11699,7 +11699,11 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\rakib\\.nuget\\packages\\": {},
+=======
     "C:\\Users\\Rabbi\\.nuget\\packages\\": {},
+>>>>>>> 85bac5ce80e19d80c392e4025d9be851a9e5d168
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -11707,15 +11711,25 @@
     "restore": {
       "projectUniqueName": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\SupportApp.csproj",
       "projectName": "SupportApp",
+<<<<<<< HEAD
+      "projectPath": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\SupportApp.csproj",
+      "packagesPath": "C:\\Users\\rakib\\.nuget\\packages\\",
+      "outputPath": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\obj\\",
+=======
       "projectPath": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\SupportApp.csproj",
       "packagesPath": "C:\\Users\\Rabbi\\.nuget\\packages\\",
       "outputPath": "D:\\alpha\\dotnet\\SupportAppProduction\\SupportApp\\obj\\",
+>>>>>>> 85bac5ce80e19d80c392e4025d9be851a9e5d168
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
+        "C:\\Users\\rakib\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
         "C:\\Users\\Rabbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 85bac5ce80e19d80c392e4025d9be851a9e5d168
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11824,7 +11838,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> 85bac5ce80e19d80c392e4025d9be851a9e5d168
       }
     }
   },
