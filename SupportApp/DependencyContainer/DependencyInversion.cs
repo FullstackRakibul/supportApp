@@ -11,10 +11,13 @@ namespace SupportApp.DependencyContainer
 
             //services ......
             services.AddTransient<TicketTypeService, TicketTypeService>();
+            
 
 
             // repositories ......
             services.AddTransient<ICodeSnippetInterface , CodeSnippetRepository>();
+            services.AddTransient<ITicketInterface, TicketRepository>();
+
             return services;
         }
     }

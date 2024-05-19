@@ -72,7 +72,6 @@ namespace SupportApp.Controllers
                 //root path for the uploaded file
                 string wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
-
                 //create folder if not exist
                 if (!Directory.Exists(wwwrootPath))
                 {

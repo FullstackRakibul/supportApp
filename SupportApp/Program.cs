@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-//------------------------ Service Extention Register ---------------------
+//------------------------ Service Extension Register ---------------------
 try {
     builder.Services.AddTransientServices();
     builder.Services.AddScopedServices();

@@ -22,8 +22,8 @@ namespace SupportApp.DTO
         public TicketPriority Priority { get; set; } = TicketPriority.Regular;
 
         public int TicketTypeId { get; set; }
-        public TicketType? TicketType { get; set; }
-        public Target? Target { get; set; }
+        //public TicketType? TicketType { get; set; }
+        //public Target? Target { get; set; }
 
 
         // Add other properties for Ticket
@@ -33,11 +33,11 @@ namespace SupportApp.DTO
         public int UnitId { get; set; }
         public string? Objective { get; set; }
 
-        public Ticket? Ticket { get; set; }
+        //public Ticket? Ticket { get; set; }
 
-        public ICollection<Department> Department { get; set; } = new List<Department>();
-        public ICollection<Unit> Unit { get; set; } = new List<Unit>();
-        public ICollection<Notification> Notification { get; set; } = new List<Notification>();
+        //public ICollection<Department> Department { get; set; } = new List<Department>();
+        //public ICollection<Unit> Unit { get; set; } = new List<Unit>();
+        //public ICollection<Notification> Notification { get; set; } = new List<Notification>();
 
         // add proparties for Notification 
 		public bool IsRead { get; set; }
