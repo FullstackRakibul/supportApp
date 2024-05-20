@@ -12,6 +12,9 @@ using SupportApp.DTO;
 using SupportApp.Models;
 using SupportApp.Service;
 using SupportApp.Service.Pagination;
+using SupportApp.Repository.IReposiroty;
+using SupportApp.Repository;
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace SupportApp.Controllers
 {
@@ -24,14 +27,16 @@ namespace SupportApp.Controllers
         private readonly TicketService _ticketService;
         private readonly EmailBoxService _emailBoxService;
         private readonly PaginationService _paginationService;
-       
+        private readonly ITicketInterface _ticketInterface;
 
-        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService  , PaginationService paginationService )
+
+        public TicketsController(SupportAppDbContext context, TicketService ticketService, EmailBoxService emailBoxService  , PaginationService paginationService , ITicketInterface ticketInterface)
         {
             _context = context;
             _ticketService = ticketService;
             _emailBoxService = emailBoxService;
             _paginationService = paginationService;
+            _ticketInterface = ticketInterface;
         }
 
         // GET: api/Ticket
@@ -394,8 +399,8 @@ namespace SupportApp.Controllers
 		}
 
         [HttpPost("soft-reminder/{ticketId}")]
-		public async Task<IActionResult> SoftReminder(int ticketId)
-		{
+        public async Task<IActionResult> SoftReminder(int ticketId)
+        {
             try
             {
                 var reminder = await _ticketService.Softreminder(ticketId);
@@ -408,5 +413,49 @@ namespace SupportApp.Controllers
             }
         }
 
+
+
+
+        //::::::::::::::::::::::::::::::::::::::  INTERFACE AND REPOSITORY :::::::::::::::::::::::::::::::::::::::
+
+
+
+        //:::::::::::::::::::::::::::::::: Raised Issue
+        [HttpPost]
+        [Route("raised-attachment-issue" , Name ="raisedIssueController")]
+        public async Task<IActionResult> RaisedIssueWithAttachment( TicketAndTargetDto ticketAndTargetDto )
+        {
+            try
+            {
+                var responseData = await _ticketInterface.RaisedIssueWithAttachment(ticketAndTargetDto);
+
+                return Ok(new ApiResponseDto<string>
+                {
+                    Status = true,
+                    Message = "This Api and repo works fine",
+                    Data = responseData
+                });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        //::::::::::::::::::::::::::::::::: Update Issue
+        [HttpPut]
+        [Route("update-attachment-issue",Name = "updateIssueController")]
+        public async Task<IActionResult> UpdateIssue(TicketAndTargetDto ticketAndTargetDto)
+        {
+            var updateIssueData =await _ticketInterface.UpdateRaisedIssueWithAttachment(ticketAndTargetDto);
+
+            return Ok(new ApiResponseDto<string>
+            {
+                Status  =true,
+                Message ="This controller Works fine",
+                Data    = updateIssueData
+            });
+        }
 	}
 }

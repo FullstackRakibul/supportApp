@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YTEfJYqHNS4pVjrTADZfyg12tx248ELScX03fbsiOWk=",
+  "Hash": "BV91OIZ/LcXYJ5T0JUmNoZOoYzaojczjZV8CX7aul5s=",
   "Source": "SupportApp",
   "BasePath": "_content/SupportApp",
   "Mode": "Default",
@@ -205,6 +205,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240511090300508_4439.jpg"
+    },
+    {
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240519143554330_9265.png",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "ticketFiles/supportApp_20240519143554330_9265.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240519143554330_9265.png"
+    },
+    {
+      "Identity": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\ticketFiles\\supportApp_20240519143643773_5515.png",
+      "SourceId": "SupportApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Rakibul hasan\\alpha projects\\SupportApp\\SupportApp\\wwwroot\\",
+      "BasePath": "_content/SupportApp",
+      "RelativePath": "ticketFiles/supportApp_20240519143643773_5515.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ticketFiles\\supportApp_20240519143643773_5515.png"
     }
   ]
 }
